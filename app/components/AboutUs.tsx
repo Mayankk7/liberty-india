@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AboutUs() {
   return (
@@ -66,8 +67,8 @@ export default function AboutUs() {
           </p>
 
           {/* CTA Button */}
-          <a
-            href="#contact"
+          <Link
+            href="/about-us"
             className="inline-block px-8 py-3 md:px-10 md:py-3.5 text-sm md:text-base font-medium text-white rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl hover:brightness-110 cursor-pointer transform"
             style={{
               backgroundColor: '#E07B39',
@@ -75,8 +76,8 @@ export default function AboutUs() {
             }}
             aria-label="Discover more about Liberty India's travel experiences"
           >
-            Discover More
-          </a>
+            Discover Now
+          </Link>
         </div>
       </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AboutIndia() {
   return (
@@ -69,7 +70,7 @@ export default function AboutIndia() {
         {/* Row 1: Heritage, Culture, Architecture */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
           {/* Heritage Card */}
-          <div className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
+          <Link href="/heritage" className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
             <Image
               src="/images/about-india/home/heritage.svg"
               alt="Heritage - Living Legacies"
@@ -99,10 +100,10 @@ export default function AboutIndia() {
                 </p>
               </div>
             </div>
-          </div>
+          </Link>
 
           {/* Culture Card */}
-          <div className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
+          <Link href="/culture" className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
             <Image
               src="/images/about-india/home/culture.svg"
               alt="Culture - The Pulse of India"
@@ -132,7 +133,7 @@ export default function AboutIndia() {
                 </p>
               </div>
             </div>
-          </div>
+          </Link>
 
           {/* Architecture Card */}
           <div className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">

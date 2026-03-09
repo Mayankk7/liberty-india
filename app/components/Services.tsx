@@ -5,10 +5,10 @@ import Image from 'next/image';
 const services = [
   {
     id: 'incentive',
-    title: 'Incentive Programs',
-    subtitle: 'Reward Through Experience',
-    description: 'Transformational journeys that inspire and motivate.',
-    image: '/images/services/incentive.svg',
+    title: 'Cruise Handling',
+    subtitle: 'Journeys by Water',
+    description: 'Effortless river and coastal cruise experiences.',
+    image: '/images/services/cruise.svg',
   },
   {
     id: 'meetings',
@@ -26,10 +26,10 @@ const services = [
   },
   {
     id: 'cruise',
-    title: 'Cruise Handling',
-    subtitle: 'Journeys by Water',
-    description: 'Effortless river and coastal cruise experiences.',
-    image: '/images/services/cruise.svg',
+    title: 'Incentive Programs',
+    subtitle: 'Reward Through Experience',
+    description: 'Transformational journeys that inspire and motivate.',
+    image: '/images/services/incentive.svg',
   },
   {
     id: 'education',

@@ -1,19 +1,28 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const NAV_ITEMS = [
-  { label: 'Home', href: '#home' },
-  { label: 'About us', href: '#about-us' },
-  { label: 'About India', href: '#about-india', hasDropdown: true },
-  { label: 'Our Services', href: '#services', hasDropdown: true },
-  { label: 'Journeys', href: '#journeys' },
-  { label: 'Contact Us', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'About us', href: '/about-us' },
+  { label: 'About India', href: '/#about-india', hasDropdown: true },
+  { label: 'Our Services', href: '/#services', hasDropdown: true },
+  { label: 'Journeys', href: '/#journeys' },
+  { label: 'Contact Us', href: '/#contact' },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  variant?: 'transparent' | 'white';
+}
+
+export default function Navbar({ variant = 'transparent' }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  // For white variant, always show as scrolled (white bg)
+  const isWhiteBg = variant === 'white' || scrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,21 +35,32 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed left-0 right-0 z-50 py-3 md:py-4 transition-all duration-300 ${
-        scrolled ? 'top-0 bg-white shadow-md' : 'top-4 bg-transparent'
+        isWhiteBg ? 'top-0 bg-white shadow-md' : 'top-4 bg-transparent'
       }`}
       role="navigation"
       aria-label="Main navigation"
     >
       <div className="flex items-center justify-between w-[90%] mx-auto">
+        {/* Logo */}
+        <Link href="/" className="flex-shrink-0">
+          <Image
+            src={isWhiteBg ? "/images/hero-section/logo-footer.svg" : "/images/hero-section/logo.svg"}
+            alt="Liberty India"
+            width={50}
+            height={50}
+            className="w-10 h-10 md:w-12 md:h-12"
+          />
+        </Link>
+
         {/* Desktop Nav Links */}
-        <div className="hidden lg:flex items-center flex-1">
+        <div className="hidden lg:flex items-center flex-1 ml-10 xl:ml-14">
           <div className="flex items-center gap-10 xl:gap-14 2xl:gap-16">
             {NAV_ITEMS.map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 className={`group flex items-center gap-1.5 text-[13px] xl:text-[14px] font-light tracking-wide transition-colors duration-200 cursor-pointer ${
-                  scrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white/90 hover:text-white'
+                  isWhiteBg ? 'text-gray-700 hover:text-gray-900' : 'text-white/90 hover:text-white'
                 }`}
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
               >
@@ -60,7 +80,7 @@ export default function Navbar() {
                     />
                   </svg>
                 )}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -71,7 +91,7 @@ export default function Navbar() {
           <button
             aria-label="Search"
             className={`p-1.5 transition-colors duration-200 cursor-pointer ${
-              scrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white/80 hover:text-white'
+              isWhiteBg ? 'text-gray-700 hover:text-gray-900' : 'text-white/80 hover:text-white'
             }`}
           >
             <svg
@@ -91,7 +111,7 @@ export default function Navbar() {
             aria-label="Open menu"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={`flex flex-col justify-center items-end gap-1.25 p-1.5 transition-colors duration-200 cursor-pointer ${
-              scrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white/80 hover:text-white'
+              isWhiteBg ? 'text-gray-700 hover:text-gray-900' : 'text-white/80 hover:text-white'
             }`}
           >
             <span className="block w-7 h-[1.5px] bg-current rounded-full" />
@@ -117,7 +137,7 @@ export default function Navbar() {
           </div>
           <div className="flex flex-col items-center gap-8 pt-12">
             {NAV_ITEMS.map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
@@ -125,7 +145,7 @@ export default function Navbar() {
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
