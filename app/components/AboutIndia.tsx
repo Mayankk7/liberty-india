@@ -29,16 +29,16 @@ export default function AboutIndia() {
           <Image
             src="/images/about-india/home/india-map.svg"
             alt="India map silhouette"
-            width={500}
-            height={600}
-            className="w-[50%] md:w-[45%] lg:w-[38%] h-auto object-contain drop-shadow-lg"
+            width={600}
+            height={700}
+            className="w-[55%] md:w-[45%] lg:w-[40%] h-auto object-contain drop-shadow-lg"
             priority
           />
         </div>
 
         {/* Layer 3: Text Content - left-aligned, centered within the map */}
         <div className="absolute inset-0 z-20 flex items-center justify-center -mt-4 md:-mt-5 lg:-mt-6">
-          <div className="flex flex-col items-start justify-center text-left -ml-24 md:-ml-36 lg:-ml-48">
+          <div className="flex flex-col items-start justify-center text-left -ml-28 md:-ml-36 lg:-ml-48">
             {/* Heading */}
             <h2
               id="about-india-heading"
