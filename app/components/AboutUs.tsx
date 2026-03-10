@@ -76,7 +76,9 @@ export default function AboutUs() {
             }}
             aria-label="Discover more about Liberty India's travel experiences"
           >
-            Discover Now
+              <Link href="/about-us" className="" onClick={e => { if (!['/about-us'].includes('/about-us')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
+                Discover Now
+              </Link>
           </Link>
         </div>
       </div>

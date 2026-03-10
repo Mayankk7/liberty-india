@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const quickLinks = [
   { label: 'Home', href: '#home' },
@@ -31,7 +32,15 @@ export default function Footer() {
     name: '',
     phone: '',
     email: '',
+    message: '',
+    purpose: '',
+    agree: false,
+    recaptcha: '',
   });
+
+  const handleRecaptcha = (value: string | null) => {
+    setFormData((prev) => ({ ...prev, recaptcha: value || '' }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,9 +49,9 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="w-full">
+    <footer id="contact" className="">
       {/* Contact Section with Footer-1 Background Image - Full Width, No Magnification */}
-      <div className="relative w-full">
+      <div className="relative w-[102vw] left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] max-w-none">
         {/* Background Image - As-is, no cropping */}
         <Image
           src="/images/hero-section/footer-1.svg"
@@ -52,6 +61,7 @@ export default function Footer() {
           className="w-full h-auto"
           sizes="100vw"
           priority
+          style={{ display: 'block' }}
         />
 
         {/* Decorative Icon */}
@@ -117,6 +127,52 @@ export default function Footer() {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="px-4 py-3 bg-transparent border border-gray-800 rounded text-gray-900 placeholder-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#E07B39]"
                     style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+                  />
+                </div>
+                {/* Purpose Dropdown */}
+                <select
+                  value={formData.purpose}
+                  onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
+                  className="px-4 py-3 bg-transparent border border-gray-800 rounded text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#E07B39]"
+                  style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+                  required
+                >
+                  <option value="" disabled>Select Purpose</option>
+                  <option value="cruise-handling">Cruise Handling</option>
+                  <option value="meetings-conferences">Meetings & Conferences</option>
+                  <option value="premium-leisure">Premium Leisure</option>
+                  <option value="incentive-programs">Incentive Programs</option>
+                  <option value="education-tours">Education Tours</option>
+                  <option value="special-interest-tours">Special Interest Tours</option>
+                  <option value="sports-tourism">Sports Tourism</option>
+                  <option value="event-production">Event Production & Content</option>
+                </select>
+                {/* Message Textbox */}
+                <textarea
+                  placeholder="Your message (optional)"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="px-4 py-3 bg-transparent border border-gray-800 rounded text-gray-900 placeholder-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#E07B39] min-h-20"
+                  style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+                />
+                {/* Checkbox */}
+                <label className="flex items-start gap-2 text-xs md:text-sm text-gray-900 font-light cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.agree}
+                    onChange={(e) => setFormData({ ...formData, agree: e.target.checked })}
+                    required
+                    className="accent-[#E07B39] mt-1"
+                  />
+                  <span>
+                    I agree to receive marketing communications and updates from Liberty International Tourism Group and their partners. I understand that my details will be used in accordance with the privacy policy.
+                  </span>
+                </label>
+                {/* reCAPTCHA Actual */}
+                <div className="mt-6 mb-2 flex justify-center">
+                  <ReCAPTCHA
+                    sitekey="YOUR_RECAPTCHA_SITE_KEY"
+                    onChange={handleRecaptcha}
                   />
                 </div>
                 <button
@@ -200,7 +256,7 @@ export default function Footer() {
               </h4>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <svg className="w-4 h-4 text-[#E07B39] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#E07B39] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/>
                   </svg>
                   <p
@@ -211,7 +267,7 @@ export default function Footer() {
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <svg className="w-4 h-4 text-[#E07B39] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#E07B39] shrink-0" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
                   </svg>
                   <a
@@ -223,7 +279,7 @@ export default function Footer() {
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <svg className="w-4 h-4 text-[#E07B39] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#E07B39] shrink-0" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"/>
                   </svg>
                   <a

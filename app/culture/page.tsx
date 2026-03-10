@@ -14,7 +14,7 @@ export default function CulturePage() {
 
       {/* Hero Section with Culture Image */}
       <section className="relative w-full pt-16">
-        <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh]">
+        <div className="relative w-[102vw] h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
             src="/images/about-india/culture/culture-bg.svg"
             alt="Culture of India - Traditional puppets and artistry"

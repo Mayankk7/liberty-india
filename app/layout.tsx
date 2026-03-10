@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Playfair_Display, Merriweather, Poppins } from 'next/font/google';
 import './globals.css';
+import PageLoader from './components/PageLoader';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -133,6 +134,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${merriweather.className} antialiased overflow-x-hidden`}>
+        <PageLoader />
         {children}
       </body>
     </html>

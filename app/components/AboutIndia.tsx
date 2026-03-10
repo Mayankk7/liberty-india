@@ -31,38 +31,12 @@ export default function AboutIndia() {
             alt="India map silhouette"
             width={600}
             height={700}
-            className="w-[55%] md:w-[45%] lg:w-[40%] h-auto object-contain drop-shadow-lg"
+            className="w-[56%] md:w-[47%] lg:w-[42%] h-auto object-contain drop-shadow-lg"
             priority
           />
         </div>
 
         {/* Layer 3: Text Content - left-aligned, centered within the map */}
-        <div className="absolute inset-0 z-20 flex items-center justify-center -mt-4 md:-mt-5 lg:-mt-6">
-          <div className="flex flex-col items-start justify-center text-left -ml-28 md:-ml-36 lg:-ml-48">
-            {/* Heading */}
-            <h2
-              id="about-india-heading"
-              className="text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-gray-800 leading-snug mb-2 md:mb-3"
-              style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
-            >
-              India&apos;s
-              <br />
-              Extraordinary
-              <br />
-              Tapestry, Woven
-              <br />
-              by Liberty
-            </h2>
-
-            {/* Description */}
-            <p
-              className="text-[9px] md:text-[10px] lg:text-xs text-gray-600 font-light leading-relaxed max-w-45 md:max-w-50 lg:max-w-56"
-              style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-            >
-              For 20 years, exclusive relationships with artisans, communities, and heritage custodians have powered our bespoke MICE, weddings, and cultural journeys.
-            </p>
-          </div>
-        </div>
       </div>
 
       {/* India Experience Cards Grid */}
@@ -136,7 +110,7 @@ export default function AboutIndia() {
           </Link>
 
           {/* Architecture Card */}
-          <div className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
+          <Link href="/architecture" className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
             <Image
               src="/images/about-india/home/architecture.svg"
               alt="Architecture - Monuments Beyond Imagination"
@@ -166,13 +140,13 @@ export default function AboutIndia() {
                 </p>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
 
         {/* Row 2: Nature (larger), Spiritual (smaller) */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-2">
           {/* Nature Card - 3/5 width */}
-          <div className="md:col-span-3 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
+          <Link href="/nature" className="md:col-span-3 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
             <Image
               src="/images/about-india/home/nature.svg"
               alt="Nature - Landscapes Without Limits"
@@ -202,46 +176,48 @@ export default function AboutIndia() {
                 </p>
               </div>
             </div>
-          </div>
+          </Link>
 
           {/* Spiritual Card - 2/5 width */}
           <div className="md:col-span-2 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
-            <Image
-              src="/images/about-india/home/spiritual.svg"
-              alt="Spiritual - Paths of Inner Discovery"
-              fill
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 transition-opacity duration-500 group-hover:from-black/50 group-hover:to-black/70" />
-            <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6">
-              <h3
-                className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg"
-                style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
-              >
-                Spiritual
-              </h3>
-              <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                <p
-                  className="text-lg md:text-xl font-medium text-white mb-1 drop-shadow-md"
+            <Link href="/spiritual" className="block w-full h-full">
+              <Image
+                src="/images/about-india/home/spiritual.svg"
+                alt="Spiritual - Paths of Inner Discovery"
+                fill
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 transition-opacity duration-500 group-hover:from-black/50 group-hover:to-black/70" />
+              <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6">
+                <h3
+                  className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
-                  Paths of Inner Discovery
-                </p>
-                <p
-                  className="text-sm md:text-base text-white/90 font-light leading-relaxed drop-shadow"
-                  style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-                >
-                  Sacred journeys through the world&apos;s deepest philosophies.
-                </p>
+                  Spiritual
+                </h3>
+                <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                  <p
+                    className="text-lg md:text-xl font-medium text-white mb-1 drop-shadow-md"
+                    style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+                  >
+                    Paths of Inner Discovery
+                  </p>
+                  <p
+                    className="text-sm md:text-base text-white/90 font-light leading-relaxed drop-shadow"
+                    style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+                  >
+                    From sacred rivers to ancient temples and spiritual traditions.
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
 
         {/* Row 3: Wellness (smaller), Wildlife (larger) */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           {/* Wellness Card - 2/5 width */}
-          <div className="md:col-span-2 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
+          <Link href="/wellness" className="md:col-span-2 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1" onClick={e => { if (!['/wellness'].includes('/wellness')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
             <Image
               src="/images/about-india/home/wellness.svg"
               alt="Wellness - Ancient Wisdom, Modern Renewal"
@@ -271,10 +247,10 @@ export default function AboutIndia() {
                 </p>
               </div>
             </div>
-          </div>
+          </Link>
 
           {/* Wildlife Card - 3/5 width */}
-          <div className="md:col-span-3 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
+          <Link href="/wildlife" className="md:col-span-3 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1" onClick={e => { if (!['/wildlife'].includes('/wildlife')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
             <Image
               src="/images/about-india/home/wildlife.svg"
               alt="Wildlife - Into the Wild Heart of India"
@@ -304,7 +280,7 @@ export default function AboutIndia() {
                 </p>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
 

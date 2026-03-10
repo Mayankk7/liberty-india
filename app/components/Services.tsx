@@ -91,7 +91,7 @@ export default function Services() {
         {/* Section 1: Incentive (left ~30%) + Right column (Meetings top, Cruise/Premium bottom) */}
         <div className="flex flex-col md:flex-row gap-1.5 mb-1.5">
           {/* Incentive Programs - ~30% width, increased height */}
-          <div className="md:w-[28%] group relative h-[500px] md:h-[700px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1">
+          <div className="md:w-[28%] group relative h-[500px] md:h-[700px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1" onClick={() => window.location.href = '/under-development'} tabIndex={0} role="button" onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/under-development'; }} aria-label={services[0].title + ' (under development)'}>
             <Image
               src={services[0].image}
               alt={services[0].title}
@@ -127,7 +127,7 @@ export default function Services() {
           {/* Right column - ~72% width */}
           <div className="md:w-[72%] flex flex-col gap-1.5">
             {/* Meetings & Conferences - top */}
-            <div className="group relative h-[280px] md:h-[350px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1">
+            <div className="group relative h-[280px] md:h-[350px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1" onClick={() => window.location.href = '/under-development'} tabIndex={0} role="button" onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/under-development'; }} aria-label={services[1].title + ' (under development)'}>
               <Image
                 src={services[1].image}
                 alt={services[1].title}
@@ -163,7 +163,7 @@ export default function Services() {
             {/* Cruise + Premium Leisure - bottom row, side by side, taller to overlap Education */}
             <div className="flex gap-1.5">
               {/* Cruise Handling */}
-              <div className="w-1/2 group relative h-[400px] md:h-[650px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1">
+              <div className="w-1/2 group relative h-[400px] md:h-[650px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1" onClick={() => window.location.href = '/under-development'} tabIndex={0} role="button" onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/under-development'; }} aria-label={services[3].title + ' (under development)'}>
                 <Image
                   src={services[3].image}
                   alt={services[3].title}
@@ -197,7 +197,7 @@ export default function Services() {
               </div>
 
               {/* Premium Leisure */}
-              <div className="w-1/2 group relative h-[400px] md:h-[650px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1">
+              <div className="w-1/2 group relative h-[400px] md:h-[650px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1" onClick={() => window.location.href = '/under-development'} tabIndex={0} role="button" onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/under-development'; }} aria-label={services[2].title + ' (under development)'}>
                 <Image
                   src={services[2].image}
                   alt={services[2].title}
@@ -236,7 +236,7 @@ export default function Services() {
         {/* Section 2: Education (left ~30%) + Event Production (right ~72%, same height as Meetings) */}
         <div className="flex flex-col md:flex-row gap-1.5 mb-1.5 md:-mt-[300px]">
           {/* Education Tours - ~30% width, same height as Incentive */}
-          <div className="md:w-[28%] group relative h-[500px] md:h-[700px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1">
+          <div className="md:w-[28%] group relative h-[500px] md:h-[700px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1" onClick={() => window.location.href = '/under-development'} tabIndex={0} role="button" onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/under-development'; }} aria-label={services[4].title + ' (under development)'}>
             <Image
               src={services[4].image}
               alt={services[4].title}
@@ -270,7 +270,7 @@ export default function Services() {
           </div>
 
           {/* Event Production - ~72% width, same height as Meetings */}
-          <div className="md:w-[72%] group relative h-[280px] md:h-[400px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1 md:self-end">
+          <div className="md:w-[72%] group relative h-[280px] md:h-[400px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1 md:self-end" onClick={() => window.location.href = '/under-development'} tabIndex={0} role="button" onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/under-development'; }} aria-label={services[7].title + ' (under development)'}>
             <Image
               src={services[7].image}
               alt={services[7].title}
@@ -307,7 +307,7 @@ export default function Services() {
         {/* Section 3: Sports + Special Interest - horizontal 50/50 split */}
         <div className="flex flex-col md:flex-row gap-1.5">
           {/* Sports Tourism */}
-          <div className="md:w-1/2 group relative h-[250px] md:h-[320px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1">
+          <div className="md:w-1/2 group relative h-[250px] md:h-[320px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1" onClick={() => window.location.href = '/under-development'} tabIndex={0} role="button" onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/under-development'; }} aria-label={services[6].title + ' (under development)'}>
             <Image
               src={services[6].image}
               alt={services[6].title}
@@ -341,7 +341,7 @@ export default function Services() {
           </div>
 
           {/* Special Interest Tours */}
-          <div className="md:w-1/2 group relative h-[250px] md:h-[320px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1">
+          <div className="md:w-1/2 group relative h-[250px] md:h-[320px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1" onClick={() => window.location.href = '/under-development'} tabIndex={0} role="button" onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/under-development'; }} aria-label={services[5].title + ' (under development)'}>
             <Image
               src={services[5].image}
               alt={services[5].title}

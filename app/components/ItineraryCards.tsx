@@ -42,7 +42,15 @@ export default function ItineraryCards({ heading, subheading, items, bgColor }: 
       {/* Cards Grid */}
       <div className="w-[90%] max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
         {items.map((item, index) => (
-          <div key={index} className="flex flex-col">
+          <div
+            key={index}
+            className="flex flex-col cursor-pointer hover:shadow-xl transition-shadow duration-200"
+            onClick={() => window.location.href = '/under-development'}
+            tabIndex={0}
+            role="button"
+            onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/under-development'; }}
+            aria-label={item.title + ' (under development)'}
+          >
             {/* Image */}
             <div className="relative w-full aspect-[4/5] overflow-hidden rounded-sm">
               <Image

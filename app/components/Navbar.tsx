@@ -63,23 +63,16 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
                   isWhiteBg ? 'text-gray-700 hover:text-gray-900' : 'text-white/90 hover:text-white'
                 }`}
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+                onClick={e => {
+                  // List of real pages
+                  const realPages = ['/', '/about-us', '/#about-india', '/#services', '/#journeys', '/#contact', '/nature', '/wellness', '/wildlife', '/heritage', '/spiritual', '/culture'];
+                  if (!realPages.includes(item.href)) {
+                    e.preventDefault();
+                    window.location.href = '/under-development';
+                  }
+                }}
               >
                 {item.label}
-                {item.hasDropdown && (
-                  <svg
-                    className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                )}
               </Link>
             ))}
           </div>
