@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
+// import ReCAPTCHA from 'react-google-recaptcha';
 
 const quickLinks = [
   { label: 'Home', href: '#home' },
@@ -38,9 +38,9 @@ export default function Footer() {
     recaptcha: '',
   });
 
-  const handleRecaptcha = (value: string | null) => {
-    setFormData((prev) => ({ ...prev, recaptcha: value || '' }));
-  };
+  // const handleRecaptcha = (value: string | null) => {
+  //   setFormData((prev) => ({ ...prev, recaptcha: value || '' }));
+  // };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -168,13 +168,15 @@ export default function Footer() {
                     I agree to receive marketing communications and updates from Liberty International Tourism Group and their partners. I understand that my details will be used in accordance with the privacy policy.
                   </span>
                 </label>
-                {/* reCAPTCHA Actual */}
+                {/* reCAPTCHA Actual - Temporarily commented out for deployment */}
+                {/**
                 <div className="mt-6 mb-2 flex justify-center">
                   <ReCAPTCHA
                     sitekey="YOUR_RECAPTCHA_SITE_KEY"
                     onChange={handleRecaptcha}
                   />
                 </div>
+                */}
                 <button
                   type="submit"
                   className="w-full py-3.5 bg-gray-900 hover:bg-gray-800 text-[#E07B39] text-base font-medium rounded-md transition-colors duration-300 cursor-pointer"
