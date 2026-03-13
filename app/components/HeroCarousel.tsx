@@ -69,6 +69,14 @@ export default function HeroCarousel() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [goNext, goPrev]);
 
+  // Periodic auto-advance every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      goNext();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [goNext]);
+
   return (
     <section
       className="relative h-screen w-full overflow-hidden bg-[#1a1008]"

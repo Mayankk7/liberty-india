@@ -314,6 +314,7 @@ export default function CulturePage() {
             description: "Traverse inward to Rajasthan's regal palaces and royal heritage. From desert forts to palace lakes, experience majestic Jodhpur, Udaipur, Jaipur, and authentic cultural encounters.",
             price: 1330,
             duration: '14 Days',
+            // slug: 'colourful-rajasthan', // Uncomment and set correct slug if available
           },
           {
             image: '/images/itineraries/north-india.svg',
@@ -324,6 +325,7 @@ export default function CulturePage() {
             description: "Explore North India's sacred soil and cultural tapestry. From the red fort of Agra to Varanasi's timeless ghats, explore Hindu temples and shrines of Rishikesh and Haridwar.",
             price: 1330,
             duration: '9 Days',
+            // slug: 'gems-north-india', // Uncomment and set correct slug if available
           },
           {
             image: '/images/itineraries/south-india.svg',
@@ -334,6 +336,7 @@ export default function CulturePage() {
             description: "See the best South India has to offer including the holy towns, coastal temples, historic hill stations, magnificent temples, and pristine coastal shores.",
             price: 1330,
             duration: '12 Days',
+            // slug: 'gems-south-india', // Uncomment and set correct slug if available
           },
         ]}
       />

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type JourneyTag = 'Luxury Hotels' | 'On Tour Guidance' | 'Local Guides' | 'Small Group' | 'Private Group' | 'Cultural' | 'Heritage' | 'Wildlife' | 'Nature' | 'Spiritual';
 
@@ -19,8 +20,8 @@ interface Journey {
 const journeys: Journey[] = [
   // Small Group Journeys
   {
-    id: 'northwest-india',
-    title: 'Northwest India & The City of Joy',
+    id: 'northeast-india-city-of-joy',
+    title: 'Northeast India & The City of Joy',
     description: 'Experience the exotic wonders of Golden Triangle, Varanasi and Kolkata as curated explorer delves beyond tourist stops. Explore the pink city of Jaipur.',
     image: '/images/itineraries/northwest-india.svg',
     tags: ['Luxury Hotels', 'On Tour Guidance', 'Local Guides', 'Small Group'],
@@ -78,36 +79,6 @@ const journeys: Journey[] = [
     duration: '9 Days',
     type: 'small-group',
   },
-  {
-    id: 'india-natural-treasures',
-    title: "India's Natural & Historical Treasures",
-    description: "Delight in rich wildlife in Ranthambore, Agra's splendid Taj, and historic wildlife reserves like Corbett. World class lodges and custom experiences make this an unforgettable journey.",
-    image: '/images/itineraries/natural-treasures.svg',
-    tags: ['Wildlife', 'Nature', 'Luxury Hotels', 'Small Group'],
-    price: 4450,
-    duration: '12 Days',
-    type: 'small-group',
-  },
-  {
-    id: 'vibrant-gujarat',
-    title: 'Vibrant Gujarat with Central India',
-    description: "This begins is a rare combining heritage, wildlife, and culture. Discover Gujarat's hidden gems: Asiatic lions, serene Rann landscapes, cities of the Ahmedabad-Champaner-Sasan triangle.",
-    image: '/images/itineraries/gujarat.svg',
-    tags: ['Wildlife', 'Cultural', 'Heritage', 'Small Group'],
-    price: 5505,
-    duration: '14 Days',
-    type: 'small-group',
-  },
-  {
-    id: 'northeast-india-retreats',
-    title: 'Northeast India Retreats',
-    description: 'Experience the mystical face of India—remote and sacred landscapes of Tashigang, Assam, Kaziranga and more. Wildlife, traditions, and tribal culture await.',
-    image: '/images/itineraries/northeast.svg',
-    tags: ['Nature', 'Wildlife', 'Cultural', 'Small Group'],
-    price: 4295,
-    duration: '14 Days',
-    type: 'small-group',
-  },
   // Private Group Journeys
   {
     id: 'private-royal-rajasthan',
@@ -127,16 +98,6 @@ const journeys: Journey[] = [
     tags: ['Luxury Hotels', 'Private Group', 'Nature', 'Spiritual'],
     price: 5800,
     duration: '10 Days',
-    type: 'private',
-  },
-  {
-    id: 'private-himalayan-escape',
-    title: 'Himalayan Private Escape',
-    description: 'Journey through the majestic Himalayas with private guides. From Shimla to Ladakh, experience breathtaking mountain vistas and Buddhist monasteries.',
-    image: '/images/itineraries/northeast.svg',
-    tags: ['Nature', 'Private Group', 'Spiritual', 'Cultural'],
-    price: 8200,
-    duration: '14 Days',
     type: 'private',
   },
   {
@@ -235,76 +196,87 @@ export default function Journeys() {
 
         {/* Journeys Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {filteredJourneys.map((journey) => (
-            <div
-              key={journey.id}
-              className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-gray-100"
-            >
-              {/* Image */}
-              <div className="relative h-64 md:h-80 overflow-hidden">
-                <Image
-                  src={journey.image}
-                  alt={journey.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-
-              {/* Content */}
-              <div className="p-5 md:p-6">
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-3">
-                  {journey.tags.slice(0, 4).map((tag) => (
-                    <span
-                      key={tag}
-                      className={`px-2 py-0.5 text-[10px] md:text-xs font-medium rounded-full ${tagColors[tag]}`}
-                    >
-                      {tag}
-                    </span>
-                  ))}
+          {filteredJourneys.map((journey) => {
+            // Link only the Northeast India & The City of Joy card
+            const isNortheast = journey.id === 'northeast-india-city-of-joy';
+            const linkHref = isNortheast ? '/itineraries/northeast-india-city-of-joy' : undefined;
+            const cardContent = (
+              <div
+                className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-gray-100"
+              >
+                {/* Image */}
+                <div className="relative h-64 md:h-80 overflow-hidden">
+                  <Image
+                    src={journey.image}
+                    alt={journey.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
 
-                {/* Title */}
-                <h3
-                  className="text-lg md:text-xl font-semibold text-gray-900 mb-2 group-hover:text-[#E07B39] transition-colors duration-300"
-                  style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
-                >
-                  {journey.title}
-                </h3>
-
-                {/* Description */}
-                <p
-                  className="text-sm text-gray-600 font-light leading-relaxed mb-4 line-clamp-3"
-                  style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-                >
-                  {journey.description}
-                </p>
-
-                {/* Price & Duration */}
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <div>
-                    <span
-                      className="text-xl md:text-2xl font-semibold text-[#E07B39]"
-                      style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
-                    >
-                      ${journey.price.toLocaleString()}
-                    </span>
-                    <span className="text-sm text-gray-500 ml-1">per person</span>
+                {/* Content */}
+                <div className="p-5 md:p-6">
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {journey.tags.slice(0, 4).map((tag) => (
+                      <span
+                        key={tag}
+                        className={`px-2 py-0.5 text-[10px] md:text-xs font-medium rounded-full ${tagColors[tag]}`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                  <div className="text-right">
-                    <span
-                      className="text-sm font-medium text-gray-700"
-                      style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-                    >
-                      {journey.duration}
-                    </span>
+
+                  {/* Title */}
+                  <h3
+                    className="text-lg md:text-xl font-semibold text-gray-900 mb-2 group-hover:text-[#E07B39] transition-colors duration-300"
+                    style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+                  >
+                    {journey.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p
+                    className="text-sm text-gray-600 font-light leading-relaxed mb-4 line-clamp-3"
+                    style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+                  >
+                    {journey.description}
+                  </p>
+
+                  {/* Price & Duration */}
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div>
+                      <span
+                        className="text-xl md:text-2xl font-semibold text-[#E07B39]"
+                        style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+                      >
+                        ${journey.price.toLocaleString()}
+                      </span>
+                      <span className="text-sm text-gray-500 ml-1">per person</span>
+                    </div>
+                    <div className="text-right">
+                      <span
+                        className="text-sm font-medium text-gray-700"
+                        style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+                      >
+                        {journey.duration}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+            return isNortheast ? (
+              <Link href={linkHref!} key={journey.id} passHref legacyBehavior>
+                <a style={{ textDecoration: 'none' }}>{cardContent}</a>
+              </Link>
+            ) : (
+              <div key={journey.id}>{cardContent}</div>
+            );
+          })}
         </div>
 
         {/* View All Button */}

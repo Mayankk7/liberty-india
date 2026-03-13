@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 
+import Link from 'next/link';
+
 interface ItineraryItem {
   image: string;
   alt: string;
@@ -11,6 +13,7 @@ interface ItineraryItem {
   description: string;
   price: number;
   duration: string;
+  slug?: string; // Optional slug for linking
 }
 
 interface ItineraryCardsProps {
@@ -41,100 +44,116 @@ export default function ItineraryCards({ heading, subheading, items, bgColor }: 
 
       {/* Cards Grid */}
       <div className="w-[90%] max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col cursor-pointer hover:shadow-xl transition-shadow duration-200"
-            onClick={() => window.location.href = '/under-development'}
-            tabIndex={0}
-            role="button"
-            onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/under-development'; }}
-            aria-label={item.title + ' (under development)'}
-          >
-            {/* Image */}
-            <div className="relative w-full aspect-[4/5] overflow-hidden rounded-sm">
-              <Image
-                src={item.image}
-                alt={item.alt}
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            {/* Card Content */}
-            <div className="pt-4 flex flex-col flex-1">
-              {/* Category & Best Time */}
-              <div className="flex items-center justify-between mb-3">
-                <span
-                  className="text-xs md:text-sm text-gray-600"
-                  style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-                >
-                  {item.category}
-                </span>
-                <span
-                  className="text-xs md:text-sm"
-                  style={{
-                    fontFamily: 'var(--font-merriweather), Georgia, serif',
-                    color: '#E07B39',
-                  }}
-                >
-                  Best Time | {item.bestTime}
-                </span>
+        {items.map((item, index) => {
+          const card = (
+            <div
+              className="flex flex-col cursor-pointer hover:shadow-xl transition-shadow duration-200"
+              tabIndex={0}
+              role="button"
+              aria-label={item.title + (item.slug ? '' : ' (under development)')}
+            >
+              {/* Image */}
+              <div className="relative w-full aspect-4/5 overflow-hidden rounded-sm">
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  fill
+                  className="object-cover"
+                />
               </div>
 
-              {/* Title */}
-              <h3
-                className="text-lg md:text-xl font-semibold text-gray-900 mb-2"
-                style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
-              >
-                {item.title}
-              </h3>
-
-              {/* Description */}
-              <p
-                className="text-sm text-gray-600 leading-relaxed mb-4 flex-1"
-                style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-              >
-                {item.description}
-              </p>
-
-              {/* Price & Duration */}
-              <div className="flex items-center justify-between border-t border-gray-100 pt-3">
-                <div>
+              {/* Card Content */}
+              <div className="pt-4 flex flex-col flex-1">
+                {/* Category & Best Time */}
+                <div className="flex items-center justify-between mb-3">
                   <span
-                    className="text-xs text-gray-500 block"
+                    className="text-xs md:text-sm text-gray-600"
                     style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                   >
-                    Starting from
+                    {item.category}
                   </span>
-                  <span className="flex items-baseline gap-1">
-                    <span
-                      className="text-lg md:text-xl font-bold"
-                      style={{
-                        fontFamily: 'var(--font-playfair), Georgia, serif',
-                        color: '#E07B39',
-                      }}
-                    >
-                      ${item.price.toLocaleString()}
-                    </span>
-                    <span
-                      className="text-xs text-gray-500"
-                      style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-                    >
-                      per person
-                    </span>
+                  <span
+                    className="text-xs md:text-sm"
+                    style={{
+                      fontFamily: 'var(--font-merriweather), Georgia, serif',
+                      color: '#E07B39',
+                    }}
+                  >
+                    Best Time | {item.bestTime}
                   </span>
                 </div>
-                <span
-                  className="text-sm text-gray-700 font-medium"
+
+                {/* Title */}
+                <h3
+                  className="text-lg md:text-xl font-semibold text-gray-900 mb-2"
+                  style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+                >
+                  {item.title}
+                </h3>
+
+                {/* Description */}
+                <p
+                  className="text-sm text-gray-600 leading-relaxed mb-4 flex-1"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
-                  {item.duration}
-                </span>
+                  {item.description}
+                </p>
+
+                {/* Price & Duration */}
+                <div className="flex items-center justify-between border-t border-gray-100 pt-3">
+                  <div>
+                    <span
+                      className="text-xs text-gray-500 block"
+                      style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+                    >
+                      Starting from
+                    </span>
+                    <span className="flex items-baseline gap-1">
+                      <span
+                        className="text-lg md:text-xl font-bold"
+                        style={{
+                          fontFamily: 'var(--font-playfair), Georgia, serif',
+                          color: '#E07B39',
+                        }}
+                      >
+                        ${item.price.toLocaleString()}
+                      </span>
+                      <span
+                        className="text-xs text-gray-500"
+                        style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+                      >
+                        per person
+                      </span>
+                    </span>
+                  </div>
+                  <span
+                    className="text-sm text-gray-700 font-medium"
+                    style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+                  >
+                    {item.duration}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+          if (item.slug) {
+            return (
+              <Link href={`/itineraries/${item.slug}`} key={index} passHref legacyBehavior>
+                <a style={{ textDecoration: 'none' }}>{card}</a>
+              </Link>
+            );
+          } else {
+            return (
+              <div
+                key={index}
+                onClick={() => window.location.href = '/under-development'}
+                onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/under-development'; }}
+              >
+                {card}
+              </div>
+            );
+          }
+        })}
       </div>
     </section>
   );
