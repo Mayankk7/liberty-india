@@ -15,7 +15,7 @@ export default function WellnessPage() {
       <section className="relative w-[105vw] bg-[#FDF8E8] pt-0">
         <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
-            src="/images/services/meetings/meetings-bg.svg"
+            src="https://ik.imagekit.io/libertyindia/services/meetings/meetings-bg.png"
             alt="Meetings Hero"
             fill
             className="object-cover object-center"
@@ -46,13 +46,13 @@ export default function WellnessPage() {
                 <div className="relative w-full max-w-full mx-auto" style={{height:'600px'}}>
           <div className="grid grid-cols-1 md:grid-cols-3 w-full h-full">
             <div className="relative h-full w-full">
-              <Image src="/images/services/meetings/picture-1.svg" alt="Meetings 1" fill className="object-cover object-center" priority={false} />
+              <Image src="https://ik.imagekit.io/libertyindia/services/meetings/picture-1.svg" alt="Meetings 1" fill className="object-cover object-center" priority={false} />
             </div>
             <div className="relative h-full w-full">
-              <Image src="/images/services/meetings/picture-2.svg" alt="Meetings 2" fill className="object-cover object-center" priority={false} />
+              <Image src="https://ik.imagekit.io/libertyindia/services/meetings/picture-2.svg" alt="Meetings 2" fill className="object-cover object-center" priority={false} />
             </div>
             <div className="relative h-full w-full">
-              <Image src="/images/services/meetings/picture-3.svg" alt="Meetings 3" fill className="object-cover object-center" priority={false} />
+              <Image src="https://ik.imagekit.io/libertyindia/services/meetings/picture-3.svg" alt="Meetings 3" fill className="object-cover object-center" priority={false} />
             </div>
           </div>
           {/* Overlay Card */}
@@ -93,7 +93,7 @@ export default function WellnessPage() {
         {/* Right: Image */}
         <div className="w-full md:w-[62%] h-[60vh] md:h-[60vh] relative mt-6 md:mt-10">
           <Image
-            src="/images/services/meetings/heritage.svg"
+            src="https://ik.imagekit.io/libertyindia/services/meetings/heritage.svg"
             alt="Banquet Hall"
             fill
             className="object-cover object-center"
@@ -113,7 +113,7 @@ export default function WellnessPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-0 rounded overflow-hidden shadow-lg w-full" style={{minHeight:'900px'}}>
             {/* Top Left */}
             <div className="relative h-[400px] md:h-[450px] overflow-hidden">
-              <Image src="/images/services/meetings/capital-city.svg" alt="Capital City Conferences" fill className="object-cover object-center" priority={false} />
+              <Image src="https://ik.imagekit.io/libertyindia/services/meetings/capital-city.svg" alt="Capital City Conferences" fill className="object-cover object-center" priority={false} />
               <div className="absolute bottom-0 right-0 w-2/3 min-h-[110px] bg-white/95 border-t border-r border-gray-200 p-6 md:p-8 z-10 flex flex-col justify-end" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.04)'}}>
                 <h3 className="font-semibold text-lg md:text-xl mb-1 text-left">Capital City Conferences</h3>
                 <p className="text-gray-700 text-sm md:text-base text-left whitespace-normal break-words">A global business hub with ultra-luxury venues, seamless international access</p>
@@ -121,7 +121,7 @@ export default function WellnessPage() {
             </div>
             {/* Top Right */}
             <div className="relative h-[400px] md:h-[450px] overflow-hidden">
-              <Image src="/images/services/meetings/beachside.svg" alt="Beachside Conferences" fill className="object-cover object-center" priority={false} />
+              <Image src="https://ik.imagekit.io/libertyindia/services/meetings/beachside.svg" alt="Beachside Conferences" fill className="object-cover object-center" priority={false} />
               <div className="absolute bottom-0 left-0 w-2/3 min-h-[110px] bg-white/95 border-t border-l border-gray-200 p-6 md:p-11 text-left z-10 flex flex-col justify-end" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.04)'}}>
                 <h3 className="font-semibold text-lg md:text-xl mb-1 text-left">Beachside Conferences</h3>
                 <p className="text-gray-700 text-sm md:text-base text-left whitespace-normal break-words">Sun, sea, and sophisticated resort conferencing</p>
@@ -129,7 +129,7 @@ export default function WellnessPage() {
             </div>
             {/* Bottom Left */}
             <div className="relative h-[400px] md:h-[450px] overflow-hidden">
-              <Image src="/images/services/meetings/serenity.svg" alt="Serenity & Strategy" fill className="object-cover object-center" priority={false} />
+              <Image src="https://ik.imagekit.io/libertyindia/services/meetings/serenity.svg" alt="Serenity & Strategy" fill className="object-cover object-center" priority={false} />
               <div className="absolute top-0 right-0 w-2/3 min-h-[110px] bg-white/95 border-b border-r border-gray-200 p-6 md:p-11 z-10 flex flex-col justify-start" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.04)'}}>
                 <h3 className="font-semibold text-lg md:text-xl mb-1 text-left">Serenity & Strategy</h3>
                 <p className="text-gray-700 text-sm md:text-base text-left whitespace-normal break-words">Adventure, culture, wellness, CSR, and entertainment</p>
@@ -137,7 +137,7 @@ export default function WellnessPage() {
             </div>
             {/* Bottom Right */}
             <div className="relative h-[400px] md:h-[450px] overflow-hidden">
-              <Image src="/images/services/meetings/heritage.svg" alt="Heritage Blend" fill className="object-cover object-center" priority={false} />
+              <Image src="https://ik.imagekit.io/libertyindia/services/meetings/heritage.svg" alt="Heritage Blend" fill className="object-cover object-center" priority={false} />
               <div className="absolute top-0 left-0 w-2/3 min-h-[110px] bg-white/95 border-b border-l border-gray-200 p-6 md:p-8 text-left z-10 flex flex-col justify-start" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.04)'}}>
                 <h3 className="font-semibold text-lg md:text-xl mb-1 text-left">Heritage Blend</h3>
                 <p className="text-gray-700 text-sm md:text-base text-left whitespace-normal break-words">Palace venues and regal hospitality create an inspiring backdrop for intimate</p>
@@ -155,7 +155,7 @@ export default function WellnessPage() {
         {/* Left: Image */}
         <div className="w-full md:w-1/2 h-[350px] md:h-auto relative min-h-[350px]">
           <Image
-            src="/images/services/meetings/program.svg"
+            src="https://ik.imagekit.io/libertyindia/services/meetings/program.svg"
             alt="Customized Programs"
             fill
             className="object-cover object-center rounded-none"

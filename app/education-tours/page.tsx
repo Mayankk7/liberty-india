@@ -18,7 +18,7 @@ export default function EducationToursPage() {
       <section className="relative w-[105vw] bg-[#FDF8E8] pt-0">
         <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
-            src="/images/services/education-tours/education-bg.svg"
+            src="https://ik.imagekit.io/libertyindia/services/education-tours/education-bg.svg"
             alt="Education Tours Hero"
             fill
             className="object-cover object-center"
@@ -50,13 +50,13 @@ export default function EducationToursPage() {
         <div className="relative w-screen max-w-none m-0 p-0" style={{height:'700px'}}>
           <div className="grid grid-cols-1 md:grid-cols-3 w-screen h-full m-0 p-0">
             <div className="relative h-full w-full">
-              <Image src="/images/services/education-tours/picture-1.svg" alt="Education Tour 1" fill className="object-cover object-center" priority={false} />
+              <Image src="https://ik.imagekit.io/libertyindia/services/education-tours/picture-1.svg" alt="Education Tour 1" fill className="object-cover object-center" priority={false} />
             </div>
             <div className="relative h-full w-[full] md:-ml-8">
-              <Image src="/images/services/education-tours/picture-2.svg" alt="Education Tour 2" fill className="object-cover object-center" priority={false} />
+              <Image src="https://ik.imagekit.io/libertyindia/services/education-tours/picture-2.svg" alt="Education Tour 2" fill className="object-cover object-center" priority={false} />
             </div>
             <div className="relative h-full w-full">
-              <Image src="/images/services/education-tours/picture-3.svg" alt="Education Tour 3" fill className="object-cover object-center" priority={false} />
+              <Image src="https://ik.imagekit.io/libertyindia/services/education-tours/picture-3.svg" alt="Education Tour 3" fill className="object-cover object-center" priority={false} />
             </div>
           </div>
           {/* Overlay Card */}
@@ -77,7 +77,7 @@ export default function EducationToursPage() {
                         {/* Top Left */}
                         <div className="relative h-100 md:h-112.5 w-[103%] overflow-hidden">
                           <Image 
-                            src="/images/services/education-tours/history.svg" 
+                            src="https://ik.imagekit.io/libertyindia/services/education-tours/history.svg"
                             alt="History & Heritage" 
                             fill 
                             className="object-cover absolute inset-0 w-full h-full" 
@@ -90,7 +90,7 @@ export default function EducationToursPage() {
                         </div>
                         {/* Top Right */}
                         <div className="relative h-100 md:h-112.5 overflow-hidden">
-                          <Image src="/images/services/education-tours/culture.svg" alt="Cultural Studies" fill className="object-cover object-center" priority={false} />
+                          <Image src="https://ik.imagekit.io/libertyindia/services/education-tours/culture.svg" alt="Cultural Studies" fill className="object-cover object-center" priority={false} />
                           <div className="absolute bottom-0 left-0 w-2/3 min-h-27.5 bg-white/95 border-t border-l border-gray-200 p-6 md:p-8 text-left z-10 flex flex-col justify-end" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.04)'}}>
                             <h3 className="font-semibold text-lg md:text-xl mb-1 text-left">Cultural Studies</h3>
                             <p className="text-gray-700 text-sm md:text-base text-left whitespace-normal wrap-break-word">Discover India's philosophies, arts, traditions, and contemporary society through Interactive learning.</p>
@@ -98,7 +98,7 @@ export default function EducationToursPage() {
                         </div>
                         {/* Bottom Left */}
                         <div className="relative h-100 md:h-112.5 overflow-hidden">
-                          <Image src="/images/services/education-tours/science.svg" alt="Science & Nature" fill className="object-cover object-center" priority={false} />
+                          <Image src="https://ik.imagekit.io/libertyindia/services/education-tours/science.svg" alt="Science & Nature" fill className="object-cover object-center" priority={false} />
                           <div className="absolute top-0 right-0 w-2/3 min-h-27.5 bg-white/95 border-b border-r border-gray-200 p-6 md:p-11 z-10 flex flex-col justify-start" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.04)'}}>
                             <h3 className="font-semibold text-lg md:text-xl mb-1 text-left">Science & Nature</h3>
                             <p className="text-gray-700 text-sm md:text-base text-left whitespace-normal wrap-break-word">Explore biodiversity, conservation, and Himalayan ecosystems through field-based study.</p>
@@ -106,8 +106,8 @@ export default function EducationToursPage() {
                         </div>
                         {/* Bottom Right */}
                         <div className="relative h-100 md:h-112.5 overflow-hidden">
-                          <Image src="/images/services/education-tours/social-studies.svg" alt="Social Studies" fill className="object-cover object-center" priority={false} />
-                          <div className="absolute top-0 left-0 w-2/3 min-h-27.5 bg-white/95 border-b border-l border-gray-200 p-6 md:p-8 text-left z-10 flex flex-col justify-start" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.04)'}}>
+                          <Image src="https://ik.imagekit.io/libertyindia/services/education-tours/social-studies.svg" alt="Social Studies" fill className="object-cover object-center" priority={false} />
+                          <div className="absolute top-0 left-0 w-2/3 min-h-27.5 bg-white/95 border-b border-l border-gray-200 p-7 md:p-8 text-left z-10 flex flex-col justify-start" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.04)'}}>
                             <h3 className="font-semibold text-lg md:text-xl mb-1 text-left">Social Studies & Development</h3>
                             <p className="text-gray-700 text-sm md:text-base text-left whitespace-normal wrap-break-word">Engage with communities and development initiatives to understand India's social transformation.</p>
                           </div>
@@ -123,7 +123,7 @@ export default function EducationToursPage() {
         </h2>
         <div className="relative w-screen max-w-none flex justify-center items-center" style={{height:'100vh'}}>
           <Image
-            src="/images/services/education-tours/experience.svg"
+            src="https://ik.imagekit.io/libertyindia/services/education-tours/experience.svg"
             alt="Signature Education Tours Experiences"
             fill
             className="object-cover object-center"

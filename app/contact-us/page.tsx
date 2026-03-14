@@ -10,24 +10,9 @@ export default function ContactUs() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("Sending...");
-    try {
-      const res = await fetch("/api/send-contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        setStatus("Message sent successfully!");
-        setForm({ name: "", email: "", message: "" });
-      } else {
-        setStatus("Failed to send message.");
-      }
-    } catch {
-      setStatus("Failed to send message.");
-    }
+    setStatus("Contact form submission is currently unavailable.");
   };
 
   return (

@@ -8,7 +8,7 @@ const services = [
     title: 'Cruise Handling',
     subtitle: 'Journeys by Water',
     description: 'Effortless river and coastal cruise experiences.',
-    image: 'https://ik.imagekit.io/libertyindia/services/cruise.svg',
+    image: 'https://ik.imagekit.io/libertyindia/services/cruise.jpg',
   },
   {
     id: 'meetings',

@@ -17,7 +17,7 @@ export default function CruiseHandlingPage() {
       <section className="relative w-[105vw] bg-[#FDF8E8] pt-0">
         <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
-            src="/images/services/cruise/cruise-bg.svg"
+            src="https://ik.imagekit.io/libertyindia/services/cruise/cruise-bg.jpg"
             alt="Cruise Handling Hero"
             fill
             className="object-cover object-center"
@@ -49,13 +49,13 @@ export default function CruiseHandlingPage() {
         <div className="relative w-screen max-w-none m-0 p-0" style={{height:'700px'}}>
           <div className="grid grid-cols-1 md:grid-cols-3 w-screen h-full m-0 p-0">
             <div className="relative h-full w-full">
-              <Image src="/images/services/cruise/picture-1.svg" alt="Cruise 1" fill className="object-cover object-center" priority={false} />
+              <Image src="https://ik.imagekit.io/libertyindia/services/cruise/picture-1.png" alt="Cruise 1" fill className="object-cover object-center" priority={false} />
             </div>
             <div className="relative h-full w-[37vw] md:-ml-8">
-              <Image src="/images/services/cruise/picture-2.svg" alt="Cruise 2" fill className="object-cover object-center" priority={false} />
+              <Image src="https://ik.imagekit.io/libertyindia/services/cruise/picture-2.png" alt="Cruise 2" fill className="object-cover object-center" priority={false} />
             </div>
             <div className="relative h-full w-full">
-              <Image src="/images/services/cruise/picture-3.svg" alt="Cruise 3" fill className="object-cover object-center" priority={false} />
+              <Image src="https://ik.imagekit.io/libertyindia/services/cruise/picture-3.png" alt="Cruise 3" fill className="object-cover object-center" priority={false} />
             </div>
           </div>
           {/* Overlay Card */}
@@ -75,7 +75,7 @@ export default function CruiseHandlingPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 mt-8 grid-rows-2 gap-0 rounded overflow-hidden shadow-lg w-full" style={{minHeight:'900px'}}>
                   {/* Top Left */}
                   <div className="relative h-100 md:h-112.5 overflow-hidden">
-                    <Image src="/images/services/cruise/shore.svg" alt="Shore Excursion Design & Execution" fill className="object-cover object-center" priority={false} />
+                    <Image src="https://ik.imagekit.io/libertyindia/services/cruise/shore.svg" alt="Shore Excursion Design & Execution" fill className="object-cover object-center" priority={false} />
                     <div className="absolute bottom-0 right-0 w-2/3 min-h-27.5 bg-white/95 border-t border-r border-gray-200 p-6 md:p-8 z-10 flex flex-col justify-end" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.04)'}}>
                       <h3 className="font-semibold text-lg md:text-xl mb-1 text-left">Shore Excursion Design & Execution</h3>
                       <p className="text-gray-700 text-sm md:text-base text-left whitespace-normal wrap-break-word">Seamlessly planned destination experiences with local expertise</p>
@@ -83,7 +83,7 @@ export default function CruiseHandlingPage() {
                   </div>
                   {/* Top Right */}
                   <div className="relative h-100 md:h-112.5 overflow-hidden">
-                    <Image src="/images/services/cruise/logistics.svg" alt="Ground Transportation & Logistics" fill className="object-cover object-center" priority={false} />
+                    <Image src="https://ik.imagekit.io/libertyindia/services/cruise/logistics.svg" alt="Ground Transportation & Logistics" fill className="object-cover object-center" priority={false} />
                     <div className="absolute bottom-0 left-0 w-2/3 min-h-27.5 bg-white/95 border-t border-l border-gray-200 p-6 md:p-8 text-left z-10 flex flex-col justify-end" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.04)'}}>
                       <h3 className="font-semibold text-lg md:text-xl mb-1 text-left">Ground Transportation & Logistics</h3>
                       <p className="text-gray-700 text-sm md:text-base text-left whitespace-normal wrap-break-word">Reliable transport solutions ensuring smooth guest movement</p>
@@ -91,7 +91,7 @@ export default function CruiseHandlingPage() {
                   </div>
                   {/* Bottom Left */}
                   <div className="relative h-100 md:h-112.5 overflow-hidden">
-                    <Image src="/images/services/cruise/meet-greet.svg" alt="Meet & Greet & Guest Assistance" fill className="object-cover object-center" priority={false} />
+                    <Image src="https://ik.imagekit.io/libertyindia/services/cruise/meet-greet.svg" alt="Meet & Greet & Guest Assistance" fill className="object-cover object-center" priority={false} />
                     <div className="absolute top-0 right-0 w-2/3 min-h-27.5 bg-white/95 border-b border-r border-gray-200 p-6 md:p-11 z-10 flex flex-col justify-start" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.04)'}}>
                       <h3 className="font-semibold text-lg md:text-xl mb-1 text-left">Meet & Greet & Guest Assistance</h3>
                       <p className="text-gray-700 text-sm md:text-base text-left whitespace-normal wrap-break-word">Personalized arrival services with dedicated guest support</p>
@@ -99,7 +99,7 @@ export default function CruiseHandlingPage() {
                   </div>
                   {/* Bottom Right */}
                   <div className="relative h-100 md:h-112.5 overflow-hidden">
-                    <Image src="/images/services/cruise/pre-tours.svg" alt="Pre & Post Tours" fill className="object-cover object-center" priority={false} />
+                    <Image src="https://ik.imagekit.io/libertyindia/services/cruise/pre-tours.svg" alt="Pre & Post Tours" fill className="object-cover object-center" priority={false} />
                     <div className="absolute top-0 left-0 w-2/3 min-h-27.5 bg-white/95 border-b border-l border-gray-200 p-6 md:p-8 text-left z-10 flex flex-col justify-start" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.04)'}}>
                       <h3 className="font-semibold text-lg md:text-xl mb-1 text-left">Pre & Post Tours</h3>
                       <p className="text-gray-700 text-sm md:text-base text-left whitespace-normal wrap-break-word">Palace venues and regal hospitality create an inspiring backdrop for intimate</p>
@@ -116,7 +116,7 @@ export default function CruiseHandlingPage() {
         </h2>
         <div className="relative w-screen max-w-none flex justify-center items-center" style={{height:'100vh'}}>
           <Image
-            src="/images/services/cruise/experiences.svg"
+            src="https://ik.imagekit.io/libertyindia/services/cruise/experiences.png"
             alt="Signature Cruise Experiences"
             fill
             className="object-cover object-center"
@@ -132,7 +132,7 @@ export default function CruiseHandlingPage() {
           subheading="Travel through centuries of history with journeys designed for discerning explorers"
           items={[
             {
-              image: '/images/itineraries/taj-tigers.svg',
+              image: 'https://ik.imagekit.io/libertyindia/itineraries/taj-tigers.svg',
               alt: 'Taj & Tigers',
               category: 'Culture & History',
               bestTime: 'October - March',
@@ -142,7 +142,7 @@ export default function CruiseHandlingPage() {
               duration: '10 Days',
             },
             {
-              image: '/images/itineraries/golden-triangle.svg',
+              image: 'https://ik.imagekit.io/libertyindia/itineraries/golden-triangle.svg',
               alt: 'Golden Triangle of India (Classical)',
               category: 'Adventure Tour',
               bestTime: 'October - March',
@@ -152,7 +152,7 @@ export default function CruiseHandlingPage() {
               duration: '10 Days',
             },
             {
-              image: '/images/itineraries/north-india.svg',
+              image: 'https://ik.imagekit.io/libertyindia/itineraries/north-india.svg',
               alt: 'Gems of North India',
               category: 'Culture & History',
               bestTime: 'October - March',
