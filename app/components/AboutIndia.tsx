@@ -145,7 +145,7 @@ export default function AboutIndia() {
           {/* Nature Card - 3/5 width */}
           <Link href="/nature" className="md:col-span-3 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
             <Image
-                src="https://ik.imagekit.io/libertyindia/about-india/home/nature.png"
+                src="https://ik.imagekit.io/libertyindia/about-india/home/nature.png?updatedAt=1773508275329"
                 alt="Nature - Landscapes Without Limits"
                 fill
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
@@ -216,7 +216,7 @@ export default function AboutIndia() {
           {/* Wellness Card - 2/5 width */}
           <Link href="/wellness" className="md:col-span-2 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1" onClick={e => { if (!['/wellness'].includes('/wellness')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
             <Image
-              src="https://ik.imagekit.io/libertyindia/about-india/home/wellness.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/home/wellness.png"
               alt="Wellness - Ancient Wisdom, Modern Renewal"
               fill
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"

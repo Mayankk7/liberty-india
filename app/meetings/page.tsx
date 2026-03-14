@@ -21,10 +21,11 @@ export default function WellnessPage() {
             className="object-cover object-center"
             priority
           />
+          <div className="absolute inset-0 bg-black" style={{ opacity: 0.2 }}></div>
           <div className="absolute inset-0 flex items-center justify-center">
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-light tracking-wide drop-shadow-lg"
-              style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-extrabold tracking-wide drop-shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
+              style={{ fontFamily: 'var(--font-playfair), Georgia, serif', textShadow: '0 4px 20px rgba(0,0,0,0.2)' }}
             >
               Meetings & Conferences
             </h1>
@@ -57,14 +58,14 @@ export default function WellnessPage() {
           </div>
           {/* Overlay Card */}
           <div className="absolute left-8 top-1/2 -translate-y-1/2 bg-white px-8 py-10 md:px-12 md:py-12 shadow-lg max-w-xl text-left" style={{fontFamily:'var(--font-merriweather), Georgia, serif'}}>
-            <p className="text-lg text-gray-800 leading-relaxed">
-              MICE (Meetings, Incentives, Conferences, Exhibitions) travel combines business requirements with transformational experiences. It's about facilitating productive meetings while creating an environment where participants feel valued and inspired
+            <p className="text-xl text-gray-800 leading-relaxed">
+              MICE (Meetings, Incentives, Conferences, Exhibitions) travel combines business requirements with transformational experiences. It's about facilitating productive meetings while creating an environment where attendees can connect, learn, and be inspired.
             </p>
           </div>
         </div>
         <div className="w-full text-center bg-[#FDF8E8] py-8 mt-0">
           <span className="text-xl md:text-2xl font-bold text-gray-800" style={{fontFamily:'var(--font-playfair), Georgia, serif'}}>
-            Liberty India specializes in Meetings and Event Management that
+            Liberty India specializes in Meetings and Conferences that
           </span>
         </div>
       </section>
@@ -75,7 +76,7 @@ export default function WellnessPage() {
         {/* Left: List */}
         <div className="w-full md:w-[38%] flex flex-col divide-y divide-gray-200 bg-white px-4 md:px-10 py-6 md:py-12">
           <div className="py-8 px-4 md:px-8 text-lg md:text-xl text-gray-700" style={{fontFamily:'var(--font-merriweather), Georgia, serif'}}>
-            Ensures flawless logistical execution for large-scale events
+            Ensures flawless logistical execution for large-scale meetings
           </div>
           <div className="py-8 px-4 md:px-8 text-lg md:text-xl text-gray-700" style={{fontFamily:'var(--font-merriweather), Georgia, serif'}}>
             Provides inspiring venues and environments for serious business

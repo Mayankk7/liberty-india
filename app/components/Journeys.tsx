@@ -19,118 +19,18 @@ interface Journey {
 }
 
 const journeys: Journey[] = [
-  // Small Group Journeys
-  {
-    id: 'northeast-india-city-of-joy',
-    title: 'Northeast India & The City of Joy',
-    description: 'Experience the exotic wonders of Golden Triangle, Varanasi and Kolkata as curated explorer delves beyond tourist stops. Explore the pink city of Jaipur.',
-    image: '/images/itineraries/northwest-india.svg',
-    tags: ['Luxury Hotels', 'On Tour Guidance', 'Local Guides', 'Small Group'],
-    price: 5200,
-    duration: '15 Days',
-    type: 'small-group',
-  },
-  {
-    id: 'gems-south-india',
-    title: 'Gems of South India',
-    description: 'See the best South India has to offer including the holy towns, coastal temples, historic hill stations, magnificent temples, Rajasthani water temples, rural Kerala, and pristine coastal shores in this unforgettable adventure.',
-    image: '/images/itineraries/south-india.svg',
-    tags: ['Luxury Hotels', 'On Tour Guidance', 'Small Group'],
-    price: 3895,
-    duration: '12 Days',
-    type: 'small-group',
-  },
-  {
-    id: 'colourful-rajasthan',
-    title: 'Colourful Rajasthan',
-    description: "Traverse inward to Rajasthan's regal palaces and royal heritage. From desert forts to palace lakes, experience majestic Jodhpur, Udaipur, Jaipur, Pushkar, Bikaner, and authentic cultural encounters.",
-    image: '/images/itineraries/rajasthan.svg',
-    tags: ['Cultural', 'Heritage', 'On Tour Guidance', 'Small Group'],
-    price: 3695,
-    duration: '14 Days',
-    type: 'small-group',
-  },
-  {
-    id: 'taj-tigers',
-    title: 'Taj & Tigers',
-    description: "Combine India's most iconic monument, pulsating wildlife, safari trails, rare tigers and wildlife, the UNESCO-listed Khajuraho temples, and Ganges river sunrise experience.",
-    image: '/images/itineraries/taj-tigers.svg',
-    tags: ['Wildlife', 'Heritage', 'Local Guides', 'Small Group'],
-    price: 3250,
-    duration: '10 Days',
-    type: 'small-group',
-  },
-  {
-    id: 'golden-triangle-classical',
-    title: 'Golden Triangle of India (Classical)',
-    description: "India takes you on a mesmerizing story. Spend three nights exploring Delhi's luminous Red Fort. Witness sunrise at the Taj Mahal, and immerse yourself in the sensory tapestry of Jaipur's pink bazaars and timeless Rajasthani hospitality.",
-    image: '/images/itineraries/golden-triangle.svg',
-    tags: ['Luxury Hotels', 'On Tour Guidance', 'Small Group'],
-    price: 1575,
-    duration: '6 Days',
-    type: 'small-group',
-  },
-  {
-    id: 'gems-north-india',
-    title: 'Gems of North India',
-    description: "Explore North India's sacred soil and cultural tapestry. From the red fort of Agra to Varanasi's timeless ghats, explore Hindu temples and shrines of Rishikesh and Haridwar.",
-    image: '/images/itineraries/north-india.svg',
-    tags: ['Spiritual', 'Cultural', 'On Tour Guidance', 'Small Group'],
-    price: 2350,
-    duration: '9 Days',
-    type: 'small-group',
-  },
-  // Private Group Journeys
-  {
-    id: 'private-royal-rajasthan',
-    title: 'Royal Rajasthan Private',
-    description: 'An exclusive private journey through Rajasthan\'s royal heritage. Stay in palace hotels, enjoy private guided tours, and experience the land of kings with personalized attention.',
-    image: '/images/itineraries/rajasthan.svg',
-    tags: ['Luxury Hotels', 'Private Group', 'Heritage', 'Cultural'],
-    price: 7500,
-    duration: '12 Days',
-    type: 'private',
-  },
-  {
-    id: 'private-kerala-wellness',
-    title: 'Kerala Wellness Retreat',
-    description: 'Immerse yourself in Ayurvedic healing, houseboat stays in backwaters, and private beach experiences. A transformative wellness journey tailored to your needs.',
-    image: '/images/itineraries/south-india.svg',
-    tags: ['Luxury Hotels', 'Private Group', 'Nature', 'Spiritual'],
-    price: 5800,
-    duration: '10 Days',
-    type: 'private',
-  },
-  {
-    id: 'private-wildlife-safari',
-    title: 'Ultimate Wildlife Safari',
-    description: 'Private wildlife expeditions across India\'s finest reserves. Track tigers in Ranthambore, spot elephants in Kaziranga, and enjoy luxury jungle lodges.',
-    image: '/images/itineraries/taj-tigers.svg',
-    tags: ['Wildlife', 'Private Group', 'Luxury Hotels', 'Nature'],
-    price: 9500,
-    duration: '15 Days',
-    type: 'private',
-  },
-  {
-    id: 'private-golden-triangle-luxury',
-    title: 'Golden Triangle Luxury',
-    description: 'Experience Delhi, Agra, and Jaipur in ultimate luxury. Private chauffeurs, five-star palace stays, and exclusive access to monuments at sunrise.',
-    image: '/images/itineraries/golden-triangle.svg',
-    tags: ['Luxury Hotels', 'Private Group', 'Heritage', 'Cultural'],
-    price: 4500,
-    duration: '7 Days',
-    type: 'private',
-  },
-  {
-    id: 'private-spiritual-varanasi',
-    title: 'Spiritual Varanasi Journey',
-    description: 'A deeply personal spiritual experience in India\'s holiest city. Private ceremonies, guided meditation, and exclusive access to ancient temples.',
-    image: '/images/itineraries/north-india.svg',
-    tags: ['Spiritual', 'Private Group', 'Cultural', 'Heritage'],
-    price: 3800,
-    duration: '6 Days',
-    type: 'private',
-  },
+  // ...existing code...
+  // Replace with mapped itineraries
+  ...itineraries.map(it => ({
+    id: it.slug,
+    title: it.title,
+    description: it.subtitle || it.overview?.[0] || '',
+    image: it.heroImage || it.overviewImage || '',
+    tags: (it.categories as JourneyTag[]),
+    price: parseInt(it.startingPrice.replace(/[^\d]/g, '')) || 0,
+    duration: it.duration,
+    type: it.durationDays > 10 ? 'small-group' : 'private', // Adjust as needed, or use a category/tag if available
+  })),
 ];
 
 const tagColors: Record<JourneyTag, string> = {
@@ -171,17 +71,6 @@ export default function Journeys() {
           {/* Toggle Buttons */}
           <div className="inline-flex rounded-full border border-gray-300 p-1 bg-gray-50">
             <button
-              onClick={() => setActiveTab('small-group')}
-              className={`px-6 py-2.5 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 cursor-pointer ${
-                activeTab === 'small-group'
-                  ? 'bg-[#E07B39] text-white shadow-md'
-                  : 'bg-transparent text-gray-600 hover:text-gray-900'
-              }`}
-              style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-            >
-              Small Group Journeys
-            </button>
-            <button
               onClick={() => setActiveTab('private')}
               className={`px-6 py-2.5 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 cursor-pointer ${
                 activeTab === 'private'
@@ -191,6 +80,17 @@ export default function Journeys() {
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
               Private Group Journeys
+            </button>
+            <button
+              onClick={() => setActiveTab('small-group')}
+              className={`px-6 py-2.5 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 cursor-pointer ${
+                activeTab === 'small-group'
+                  ? 'bg-[#E07B39] text-white shadow-md'
+                  : 'bg-transparent text-gray-600 hover:text-gray-900'
+              }`}
+              style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+            >
+              Small Group Journeys
             </button>
           </div>
         </div>

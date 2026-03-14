@@ -25,11 +25,6 @@ const signatureExperiences = [
     title: 'Cooking Workshop',
   },
   {
-    image: '/images/itineraries/north-east/painting.svg',
-    category: 'Adventure Tour',
-    title: 'Painting Workshop',
-  },
-  {
     image: '/images/itineraries/north-east/jazz-bar.svg',
     category: 'Culture & History',
     title: 'Drink at a jazz Bar',
@@ -55,6 +50,8 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
           className="object-cover brightness-75"
           priority
         />
+        {/* 20% opacity overlay */}
+        <div className="absolute inset-0 bg-black/20 pointer-events-none" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4 gap-6">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg tracking-wide leading-tight">{itinerary.title}</h1>
           <p className="text-lg md:text-xl mb-6 drop-shadow-lg max-w-3xl mx-auto leading-relaxed tracking-wide">{itinerary.subtitle}</p>
@@ -62,16 +59,20 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
         </div>
         {/* Book Button bottom right */}
         <div className="absolute bottom-8 right-8">
-          <button className="bg-gray-300 text-gray-700 px-8 py-3 rounded-lg text-lg font-semibold opacity-80 cursor-not-allowed" disabled>Book</button>
+          <button className="bg-gray-300 text-gray-700 px-16 py-3 rounded-lg text-lg font-semibold opacity-80 cursor-not-allowed" disabled>Book</button>
         </div>
       </div>
 
       {/* Tabs/Navbar */}
       <div className="bg-[#F8F6E9] border-b border-[#F2EFD9] flex justify-center gap-16 py-6 text-lg font-medium mb-8 px-8">
-        <a href="#overview" className="hover:underline px-20">Overview</a>
-        <a href="#itinerary" className="hover:underline px-20">Itinerary</a>
-        <a href="#dates" className="hover:underline px-20">Dates & Prices</a>
-        <a href="#details" className="hover:underline px-20">Journey Details</a>
+        <a href="#overview" className="px-20 transition-colors duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg transition-all duration-300 hover:scale-105">Overview</a>
+        <a href="#itinerary" className="px-20 transition-colors duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg transition-all duration-300 hover:scale-105">Itinerary</a>
+        <a className="px-20 cursor-pointer transition-colors duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg transition-all duration-300 hover:scale-105" onClick={e => {
+          e.preventDefault();
+          const section = document.getElementById('details');
+          if (section) section.scrollIntoView({ behavior: 'smooth' });
+        }}>Dates & Prices</a>
+        <a href="#details" className="px-20 transition-colors duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg transition-all duration-300 hover:scale-105">Journey Details</a>
       </div>
 
       {/* Overview Section */}
@@ -87,7 +88,37 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
               {text}
             </p>
           ))}
-          <button className="mt-10 mx-10 py-3 border rounded px-10 bg-[#FCFAF3] hover:bg-[#F8F6E9] text-[#3B3B3B] font-medium text-base">DOWNLOAD DOCX</button>
+          {/* Download DOCX button - functional */}
+          {(() => {
+            // Map itinerary slug/title to file name
+            const fileMap: Record<string, string> = {
+              'northeast-india-city-of-joy': 'Northeast India &  The City of Joy.pdf',
+              'kairali-ayurvedic-healing-village': 'Ayurveda - Kairali.docx',
+              'taj-tigers': 'Taj & Tigers.pdf',
+              'classical-golden-triangle': 'Classical Golden Triangle.docx',
+              'unveiling-enchanting-south': 'Unveiling the Enchanting South – Tamil Nadu & Kerala.docx',
+              // Add more mappings as needed
+            };
+            const fileName = fileMap[itinerary.slug] || fileMap[itinerary.title?.toLowerCase().replace(/\s+/g, '-')];
+            if (fileName) {
+              return (
+                <a
+                  href={`/files/${fileName}`}
+                  download
+                  className="mt-10 mx-10 py-3 border rounded px-10 bg-[#FCFAF3] hover:bg-[#F8F6E9] text-[#3B3B3B] font-medium text-base inline-block"
+                  style={{ textDecoration: 'none' }}
+                >
+                  DOWNLOAD DOCX
+                </a>
+              );
+            } else {
+              return (
+                <button className="mt-10 mx-10 py-3 border rounded px-10 bg-[#FCFAF3] text-[#3B3B3B] font-medium text-base opacity-60 cursor-not-allowed" disabled>
+                  DOCX Not Available
+                </button>
+              );
+            }
+          })()}
         </div>
         <div className="w-1/2 flex items-center justify-center pr-8">
           <Image
@@ -103,7 +134,7 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
       </section>
 
       {/* Summary Section */}
-      <section className="w-screen py-12 px-0" style={{ background: '#FFFDEC' }}>
+      <section className="w-screen py-12 px-0" style={{ background: '#FFFDEC', borderBottom: '4px solid #EF9120' }}>
         <div className="w-[90vw] mx-auto px-6">
           <div className="relative">
             <h2
@@ -119,7 +150,13 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
             <button
               className="bg-blue-900 text-white px-6 py-2 rounded text-base absolute right-0 top-0 transition-all duration-200 hover:bg-orange-500 cursor-pointer"
               style={{ minWidth: '220px', transform: 'translateY(10px)' }}
-              onClick={() => setShowItinerary(true)}
+              onClick={() => {
+                setShowItinerary(true);
+                setTimeout(() => {
+                  const section = document.getElementById('itinerary');
+                  if (section) section.scrollIntoView({ behavior: 'smooth' });
+                }, 300);
+              }}
             >
               View Day Wise Overview
             </button>
@@ -143,7 +180,13 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
           <div className="grid md:grid-cols-2 gap-16 rounded p-10" style={{ background: '#FFFDEC', border: '1.5px solid #E9E4BF', boxShadow: '0 0 0 1px #F5F1D6' }}>
             <ul className="space-y-10 text-base leading-relaxed tracking-wide">
               {itinerary.summary.map((item: string, i: number) => (
-                <li key={i} className="flex items-start gap-4 border-b last:border-b-0 border-[#F5F1D6] pb-8">
+                <li key={i} className="flex items-start gap-4 border-b last:border-b-0 border-[#F5F1D6] pb-8 cursor-pointer" onClick={async () => {
+                  setShowItinerary(true);
+                  setTimeout(() => {
+                    const section = document.getElementById('itinerary');
+                    if (section) section.scrollIntoView({ behavior: 'smooth' });
+                  }, 300);
+                }}>
                   <span className="text-lg mt-1" style={{ color: '#B89B5E' }}>✦</span>
                   <span className="block w-full" style={{ wordBreak: 'break-word', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
@@ -151,7 +194,13 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
             </ul>
             <ul className="space-y-10 text-base leading-relaxed tracking-wide">
               {itinerary.summaryRight.map((item: string, i: number) => (
-                <li key={i} className="flex items-start gap-4 border-b last:border-b-0 border-[#F5F1D6] pb-8">
+                <li key={i} className="flex items-start gap-4 border-b last:border-b-0 border-[#F5F1D6] pb-8 cursor-pointer" onClick={async () => {
+                  setShowItinerary(true);
+                  setTimeout(() => {
+                    const section = document.getElementById('itinerary');
+                    if (section) section.scrollIntoView({ behavior: 'smooth' });
+                  }, 300);
+                }}>
                   <span className="text-lg mt-1" style={{ color: '#B89B5E' }}>✦</span>
                   <span className="block w-full" style={{ wordBreak: 'break-word', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
@@ -230,6 +279,15 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
                   <li key={i} className="flex items-center gap-4 font-normal">{item}</li>
                 ))}
               </ul>
+                {/* Starting Price Display */}
+                {itinerary.startingPrice && (
+                  <div className="mb-4 text-lg font-semibold text-[#B89B5E]">
+                    Starting Price: <span className="font-bold text-[#232323]">{itinerary.startingPrice.toLocaleString()}</span>
+                    {itinerary.startingPriceNote && (
+                      <span className="ml-2 text-base font-normal text-[#B89B5E]">{itinerary.startingPriceNote}</span>
+                    )}
+                  </div>
+                )}
             </div>
             <div>
               <h2 className="text-3xl font-bold mb-8" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Important Notes</h2>
@@ -243,13 +301,18 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
         </div>
       </section>
     {/* Signature Experience Section */}
+    {/*
     <section className="w-screen py-20 px-0 bg-white">
       <div className="w-[70vw] mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 tracking-wide" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Signature Experience</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
           {signatureExperiences.map((exp, i) => (
-            <div key={i} className="flex flex-col items-start">
-              <div className="w-full aspect-4/5 min-h-80 relative overflow-hidden mb-4 shadow">
+            <div
+              key={i}
+              className="flex flex-col items-start transition-transform duration-300 ease-in-out cursor-pointer hover:scale-[1.04] hover:shadow-lg"
+              style={{ borderRadius: '1rem', boxShadow: '0 2px 8px rgba(185,155,94,0.08)' }}
+            >
+              <div className="w-full aspect-4/5 min-h-80 relative overflow-hidden mb-4 shadow ">
                 <Image
                   src={exp.image}
                   alt={exp.title}
@@ -265,7 +328,7 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
           ))}
         </div>
       </div>
-    </section>
+    </section> */}
     <Footer/>
     </div>
   );

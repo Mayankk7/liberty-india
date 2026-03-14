@@ -23,9 +23,11 @@ export default function ArchitecturePage() {
             className="object-cover object-center"
             priority
           />
+          {/* 20% opacity overlay */}
+          <div className="absolute inset-0 bg-black/20 pointer-events-none" />
           <div className="absolute inset-0 flex items-center justify-center">
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-light tracking-wide drop-shadow-lg"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-extrabold tracking-wide drop-shadow-lg"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
               Architecture
@@ -87,7 +89,7 @@ export default function ArchitecturePage() {
             style={{ width: '42%', height: '60%' }}
           >
             <p
-              className="text-sm md:text-base lg:text-[15px] text-gray-700 leading-loose lg:leading-loose max-w-lg mx-auto"
+              className="text-sm md:text-base lg:text-xl text-gray-700 leading-loose lg:leading-loose max-w-lg mx-auto"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
               India&apos;s architectural heritage spans millennia and styles—from the soaring temple gopurams of the south to the delicate marble inlay work of Mughal monuments to the modernist masterpieces of the 20th century. Every structure tells stories of the civilization, values, and artistic vision of its era.
@@ -247,14 +249,14 @@ export default function ArchitecturePage() {
           <ImageTextOverlay
             items={[
               {
-                image: '/images/about-india/architecture/victoria-memorial.svg',
+                image: 'https://ik.imagekit.io/libertyindia/about-india/architecture/victoria-memorial.png',
                 alt: 'Victoria Memorial',
                 title: 'Victoria Memorial',
                 description:
                   'A grand marble landmark in Kolkata blending classical European design with Mughal influences, symbolizing the elegance of the colonial era',
               },
               {
-                image: '/images/about-india/architecture/mumbai-cst.svg',
+                image: 'https://ik.imagekit.io/libertyindia/about-india/architecture/mumbai-cst.png',
                 alt: 'Mumbai CST',
                 title: 'Mumbai CST',
                 description:
@@ -265,47 +267,48 @@ export default function ArchitecturePage() {
           />
         </section>
 
-      {/* Itinerary Section */}
-        <ItineraryCards
-          heading={"Explore the Architecture\nExperience the Journey"}
-          subheading={"Travel through centuries of history with journeys designed for discerning explorers"}
-          bgColor="#FDF8E8"
-            items={[
-              {
-                image: 'https://ik.imagekit.io/libertyindia/itineraries/northwest-india.svg',
-                alt: 'Northeast India & The City of Joy',
-                category: 'Culture, Nature, Wildlife',
-                bestTime: 'October – March',
-                title: 'Northeast India & The City of Joy',
-                description: "Experience the iconic wonders of India's Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi's historic sites, and experience the pink city of Jaipur.",
-                price: 1330,
-                duration: '13 Days',
-                slug: 'northeast-india-city-of-joy'
-              },
-              {
-                image: 'https://ik.imagekit.io/libertyindia/itineraries/south-india.svg',
-                alt: 'Gems of South India',
-                category: 'Culture, Nature, Wildlife',
-                bestTime: 'October – March',
-                title: 'Gems of South India',
-                description: 'See the best South India has to offer including the holy towns, coastal temples, historic hill stations, magnificent temples, Rajasthani water temples, rural Kerala, and pristine coastal shores in this unforgettable adventure.',
-                price: 3895,
-                duration: '12 Days',
-                slug: 'gems-south-india'
-              },
-              {
-                image: 'https://ik.imagekit.io/libertyindia/itineraries/rajasthan.svg',
-                alt: 'Colourful Rajasthan',
-                category: 'Cultural, Heritage, On Tour Guidance, Small Group',
-                bestTime: 'October – March',
-                title: 'Colourful Rajasthan',
-                description: "Traverse inward to Rajasthan's regal palaces and royal heritage. From desert forts to palace lakes, experience majestic Jodhpur, Udaipur, Jaipur, Pushkar, Bikaner, and authentic cultural encounters.",
-                price: 3695,
-                duration: '14 Days',
-                slug: 'colourful-rajasthan'
-              }
-            ]}
-        />
+                     <ItineraryCards
+                       heading={"Explore the Culture\nExperience the Journey"}
+                       subheading="Immerse yourself in India's living traditions with journeys designed for the culturally curious"
+                       bgColor="#FDF39F4D"
+                       items={[
+                         {
+                           image: 'https://ik.imagekit.io/libertyindia/itineraries/north-east/main-bg.svg',
+                           alt: 'Northeast India & The City of Joy',
+                           category: 'Culture',
+                           bestTime: 'October – March',
+                           title: 'Northeast India & The City of Joy',
+                           description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
+                           price: 1330,
+                           duration: '13 Days',
+                           slug: 'northeast-india-city-of-joy',
+                         },
+                         {
+                           image: 'https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/main-bg.png',
+                           alt: 'The Classical Golden Triangle of India',
+                           category: 'Culture',
+                           bestTime: 'October – March',
+                           title: 'The Classical Golden Triangle of India',
+                           description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
+                           price: 1013,
+                           duration: '7 Days',
+                           slug: 'classical-golden-triangle',
+                         },
+                         {
+                           image: 'https://ik.imagekit.io/libertyindia/itineraries/south-india-tamil-nadu/main-bg.png',
+                           alt: 'Unveiling the Enchanting South — Tamil Nadu',
+                           category: 'Culture',
+                           bestTime: 'October – March',
+                           title: 'Unveiling the Enchanting South — Tamil Nadu',
+                           description: 'Discover the magnificent temple architecture, French colonial heritage, and living craft traditions of Tamil Nadu.',
+                           price: 880,
+                           duration: '10 Days',
+                           slug: 'unveiling-the-enchanting-south-tamil-nadu',
+                         },
+                       ]}
+                     />
+             
+     
           {/*
           <ItineraryCards
             heading={"Explore the Architecture\nExperience the Journey"}

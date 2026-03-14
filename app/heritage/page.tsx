@@ -24,11 +24,12 @@ export default function HeritagePage() {
             className="object-cover object-center"
             priority
           />
-          
+          {/* 20% opacity overlay */}
+          <div className="absolute inset-0 bg-black/20 pointer-events-none" />
           {/* Heritage Text Overlay */}
           <div className="absolute inset-0 flex items-center justify-center">
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-light tracking-wide drop-shadow-lg"
+              className="text-4xl md:text-6xl lg:text-7xl xl:text-7xl text-white font-extrabold tracking-wide drop-shadow-lg"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
               Heritage
@@ -78,7 +79,7 @@ export default function HeritagePage() {
             style={{ width: '42%', height: '60%' }}
           >
             <p
-              className="text-sm md:text-base lg:text-[15px] text-gray-700 leading-loose lg:leading-[2] max-w-lg mx-auto"
+              className="text-sm md:text-base lg:text-xl text-gray-700 leading-loose lg:leading-[2] max-w-xl mx-auto"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
               India&apos;s heritage is not confined to museums or preserved ruins—it is living, breathing, and integrated into daily life. From the morning rituals performed at temples that have stood for over a thousand years, to the festivals that bring entire communities together, India&apos;s past isn&apos;t history. It&apos;s the present.
@@ -378,34 +379,37 @@ export default function HeritagePage() {
         bgColor="#FDF39F4D"
         items={[
           {
-            image: '/images/itineraries/taj-tigers.svg',
+            image: 'https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/main-bg.webp',
             alt: 'Taj & Tigers',
-            category: 'Culture & History',
-            bestTime: 'October - March',
+            category: 'Heritage',
+            bestTime: 'October – March',
             title: 'Taj & Tigers',
-            description: "Combine India's most iconic monument with thrilling wildlife. This 9-day journey features the Taj Mahal, royal Rajasthan heritage, and India's famous tiger reserve experiences.",
-            price: 1330,
-            duration: '13 Days',
+            description: 'Experience the iconic wonders of India’s Golden Triangle combined with thrilling wildlife safaris. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, discover the pink city of Jaipur, and track tigers in Ranthambhore National Park.',
+            price: 1406,
+            duration: '8 Days',
+            slug: 'taj-and-tigers',
           },
           {
-            image: '/images/itineraries/golden-triangle.svg',
-            alt: 'Golden Triangle of India (Classical)',
-            category: 'Adventure Tour',
-            bestTime: 'October - March',
-            title: 'Golden Triangle of India (Classical)',
-            description: "India's most classic itinerary in 7 days. Experience Delhi's history, Agra's romance with the Taj Mahal, and Jaipur's royal splendour in this perfect introduction to India.",
-            price: 1330,
-            duration: '13 Days',
+            image: 'https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/main-bg.png',
+            alt: 'The Classical Golden Triangle of India',
+            category: 'Heritage',
+            bestTime: 'October – March',
+            title: 'The Classical Golden Triangle of India',
+            description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
+            price: 1013,
+            duration: '7 Days',
+            slug: 'classical-golden-triangle',
           },
           {
-            image: '/images/itineraries/north-india.svg',
-            alt: 'Gems of North India',
-            category: 'Culture & History',
-            bestTime: 'October - March',
-            title: 'Gems of North India',
-            description: "Explore North India's spiritual and architectural treasures. From the sacred Ganges in Varanasi to the temples of Khajuraho and royal palaces of Rajasthan.",
+            image: 'https://ik.imagekit.io/libertyindia/itineraries/north-east/main-bg.svg',
+            alt: 'Northeast India & The City of Joy',
+            category: 'Culture',
+            bestTime: 'October – March',
+            title: 'Northeast India & The City of Joy',
+            description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
             price: 1330,
             duration: '13 Days',
+            slug: 'northeast-india-city-of-joy',
           },
         ]}
       />

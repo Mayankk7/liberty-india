@@ -46,18 +46,18 @@ const services = [
     image: 'https://ik.imagekit.io/libertyindia/services/special-interest.svg',
   },
   {
+    id: 'events',
+    title: 'Event Production & Content',
+    subtitle: 'Stories, Brought to Life',
+    description: 'On-ground execution and cinematic content creation.',
+    image: 'https://ik.imagekit.io/libertyindia/services/event-prod.png',
+  },
+  {
     id: 'sports',
     title: 'Sports Tourism',
     subtitle: 'Where Sport Meets Culture',
     description: 'Competitive, traditional, and adventure-led experiences.',
     image: 'https://ik.imagekit.io/libertyindia/services/sports-tourism.svg',
-  },
-  {
-    id: 'events',
-    title: 'Event Production & Content',
-    subtitle: 'Stories, Brought to Life',
-    description: 'On-ground execution and cinematic content creation.',
-    image: 'https://ik.imagekit.io/libertyindia/services/event-prod.svg',
   },
 ];
 
@@ -269,8 +269,8 @@ export default function Services() {
             </div>
           </div>
 
-          {/* Event Production - ~72% width, same height as Meetings */}
-          <div className="md:w-[72%] group relative h-[280px] md:h-[400px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1 md:self-end" onClick={() => window.location.href = '/event-prod'} tabIndex={0} role="button" onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/event-prod'; }} aria-label={services[7].title}>
+          {/* Sports Tourism - ~72% width, same height as Meetings */}
+          <div className="md:w-[72%] group relative h-[280px] md:h-[400px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1 md:self-end" onClick={() => window.location.href = '/sports-tourism'} tabIndex={0} role="button" onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/sports-tourism'; }} aria-label={services[7].title}>
             <Image
               src={services[7].image}
               alt={services[7].title}
@@ -278,7 +278,6 @@ export default function Services() {
               sizes="(max-width: 768px) 100vw, 72vw"
               className="object-cover object-center w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-linear-to-b from-black/50 via-transparent to-black/60" />
             <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6 pt-6 md:pt-8 pb-6 md:pb-8">
               <h3
                 className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg"
@@ -306,8 +305,8 @@ export default function Services() {
 
         {/* Section 3: Sports + Special Interest - horizontal 50/50 split */}
         <div className="flex flex-col md:flex-row gap-1.5">
-          {/* Sports Tourism */}
-          <div className="md:w-1/2 group relative h-[250px] md:h-[320px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1" onClick={() => window.location.href = '/sports-tourism'} tabIndex={0} role="button" onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/sports-tourism'; }} aria-label={services[6].title}>
+          {/* Event Production - horizontal 50/50 split */}
+          <div className="md:w-1/2 group relative h-[250px] md:h-[320px] rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1" onClick={() => window.location.href = '/event-prod'} tabIndex={0} role="button" onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/event-prod'; }} aria-label={services[6].title}>
             <Image
               src={services[6].image}
               alt={services[6].title}
@@ -317,23 +316,14 @@ export default function Services() {
             />
             <div className="absolute inset-0 bg-linear-to-b from-black/50 via-transparent to-black/60" />
             <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6 pt-6 md:pt-8 pb-6 md:pb-8">
-              <h3
-                className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg"
-                style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
-              >
+              <h3 className="text-xl md:text-2xl font-semibold text-white drop-shadow-lg" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
                 {services[6].title}
               </h3>
               <div className="transition-transform duration-500 group-hover:-translate-y-1">
-                <p
-                  className="text-lg md:text-xl font-medium text-white mb-1 drop-shadow-md"
-                  style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
-                >
+                <p className="text-base md:text-lg font-medium text-white mb-1 drop-shadow-md" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
                   {services[6].subtitle}
                 </p>
-                <p
-                  className="text-sm md:text-base text-white/90 font-light leading-relaxed drop-shadow"
-                  style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-                >
+                <p className="text-xs md:text-sm text-white/90 font-light leading-relaxed drop-shadow" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
                   {services[6].description}
                 </p>
               </div>
@@ -349,23 +339,22 @@ export default function Services() {
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover object-center w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-linear-to-b from-black/50 via-transparent to-black/60" />
             <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6 pt-6 md:pt-8 pb-6 md:pb-8">
               <h3
-                className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg"
+                className="text-xl md:text-2xl font-semibold text-white drop-shadow-lg"
                 style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
               >
                 {services[5].title}
               </h3>
               <div className="transition-transform duration-500 group-hover:-translate-y-1">
                 <p
-                  className="text-lg md:text-xl font-medium text-white mb-1 drop-shadow-md"
+                  className="text-base md:text-lg font-medium text-white mb-1 drop-shadow-md"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   {services[5].subtitle}
                 </p>
                 <p
-                  className="text-sm md:text-base text-white/90 font-light leading-relaxed drop-shadow"
+                  className="text-xs md:text-sm text-white/90 font-light leading-relaxed drop-shadow"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
                   {services[5].description}

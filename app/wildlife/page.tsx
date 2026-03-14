@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ImageTextOverlay from '../components/ImageTextOverlay';
 import ItineraryCards from '../components/ItineraryCards';
+import { getItinerariesByCategory } from '../itineraries/itineraries';
 
 export default function SpiritualPage() {
   return (
@@ -22,9 +23,11 @@ export default function SpiritualPage() {
             className="object-cover object-center"
             priority
           />
+          {/* 20% opacity overlay */}
+          <div className="absolute inset-0 bg-black/20 pointer-events-none" />
           <div className="absolute inset-0 flex items-center justify-center">
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-light tracking-wide drop-shadow-lg"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-extrabold tracking-wide drop-shadow-lg"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
               Wildlife
@@ -78,8 +81,8 @@ export default function SpiritualPage() {
                   </div>
                 </div>
                 {/* Text Card Overlay */}
-                <div className="absolute p-8 left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 bg-white px-6 md:px-8 lg:px-10 py-6 md:py-8 lg:py-10 flex items-center z-10 shadow-lg max-w-lg" style={{ width: '40%' }}>
-                  <p className="text-sm md:text-base lg:text-[15px] text-gray-700 leading-loose lg:leading-loose" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+                <div className="absolute p-8 left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 bg-white px-6 md:px-8 lg:px-10 py-6 md:py-8 lg:py-10 flex items-center z-10 shadow-lg max-w-2xl" style={{ width: '40%' }}>
+                  <p className="text-sm md:text-base lg:text-xl text-gray-700 leading-loose lg:leading-loose" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
                     India is the birthplace of humanity's greatest spiritual and philosophical traditions. For millennia, seekers have traveled here to explore the deepest questions: Who am I? What is the purpose of existence? How do we transcend suffering? These questions remain as vital today as they were thousands of years ago.
                   </p>
                 </div>
@@ -125,43 +128,46 @@ export default function SpiritualPage() {
             </div>
 
 
-      <ItineraryCards
-              heading={"Explore the Spirituality\nExperience the Journey"}
-              subheading={"Travel through centuries of history with journeys designed for discerning explorers"}
-              bgColor="#FDF8E8"
-              items={[
-                {
-                  image: "https://ik.imagekit.io/libertyindia/itineraries/taj-tigers.svg",
-                  alt: "Taj & Tigers",
-                  category: "Culture & Nature",
-                  bestTime: "October - March",
-                  title: "Taj & Tigers",
-                  description: "Combine India's most iconic monument with thrilling wildlife. This 9-day journey features the Taj Mahal, royal Rajasthan heritage, and Ranthambore tiger reserve experiences.",
-                  price: 1330,
-                  duration: "13 Days",
-                },
-                {
-                  image: "https://ik.imagekit.io/libertyindia/itineraries/golden-triangle.svg",
-                  alt: "Golden Triangle of India (Classical)",
-                  category: "Adventure Tour",
-                  bestTime: "October - March",
-                  title: "Golden Triangle of India (Classical)",
-                  description: "India's most classic itinerary in 7 days. Experience Delhi history, Agra's romance with the Taj Mahal, and Jaipur's royal splendour in this perfect introduction to India.",
-                  price: 1330,
-                  duration: "13 Days",
-                },
-                {
-                  image: "https://ik.imagekit.io/libertyindia/itineraries/north-india.svg",
-                  alt: "Gems of North India",
-                  category: "Nature & Culture",
-                  bestTime: "October - March",
-                  title: "Gems of North India",
-                  description: "Explore North India's spiritual and natural treasures. From the sacred Ganges in Varanasi to the Himalayan foothills and royal palaces of Rajasthan.",
-                  price: 1330,
-                  duration: "13 Days",
-                },
-              ]}
-            />
+        <ItineraryCards
+          heading={"Explore the Culture\nExperience the Journey"}
+          subheading="Immerse yourself in India's living traditions with journeys designed for the culturally curious"
+          bgColor="#FDF39F4D"
+          items={[
+            {
+              image: 'https://ik.imagekit.io/libertyindia/itineraries/north-east/main-bg.svg',
+              alt: 'Northeast India & The City of Joy',
+              category: 'Culture',
+              bestTime: 'October – March',
+              title: 'Northeast India & The City of Joy',
+              description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
+              price: 1330,
+              duration: '13 Days',
+              slug: 'northeast-india-city-of-joy',
+            },
+            {
+              image: 'https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/main-bg.png',
+              alt: 'The Classical Golden Triangle of India',
+              category: 'Culture',
+              bestTime: 'October – March',
+              title: 'The Classical Golden Triangle of India',
+              description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
+              price: 1013,
+              duration: '7 Days',
+              slug: 'classical-golden-triangle',
+            },
+            {
+              image: 'https://ik.imagekit.io/libertyindia/itineraries/south-india-tamil-nadu/main-bg.png',
+              alt: 'Unveiling the Enchanting South — Tamil Nadu',
+              category: 'Culture',
+              bestTime: 'October – March',
+              title: 'Unveiling the Enchanting South — Tamil Nadu',
+              description: 'Discover the magnificent temple architecture, French colonial heritage, and living craft traditions of Tamil Nadu.',
+              price: 880,
+              duration: '10 Days',
+              slug: 'unveiling-the-enchanting-south-tamil-nadu',
+            },
+          ]}
+        />
 
       {/* Footer */}
       <Footer />

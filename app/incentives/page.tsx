@@ -15,16 +15,17 @@ export default function WellnessPage() {
       <section className="relative w-[105vw] bg-[#FDF8E8] pt-0">
         <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
-            src="/images/services/incentive/incentive-bg.svg"
+            src="https://ik.imagekit.io/libertyindia/services/incentive/incentive-bg.svg"
             alt="Incenttive Hero"
             fill
             className="object-cover object-center"
             priority
           />
+          <div className="absolute inset-0 bg-black" style={{ opacity: 0.2 }}></div>
           <div className="absolute inset-0 flex items-center justify-center">
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-light tracking-wide drop-shadow-lg"
-              style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-extrabold tracking-wide drop-shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
+              style={{ fontFamily: 'var(--font-playfair), Georgia, serif', textShadow: '0 4px 20px rgba(0,0,0,0.2)' }}
             >
               Incentive Programs
             </h1>
@@ -46,7 +47,7 @@ export default function WellnessPage() {
         <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0 w-full h-full">
           <div className="relative h-full w-full">
             <Image
-              src="/images/services/incentive/picture-1.svg"
+              src="https://ik.imagekit.io/libertyindia/services/incentive/picture-1.svg"
               alt="Incentive 1"
               fill
               className="object-cover object-center"
@@ -55,7 +56,7 @@ export default function WellnessPage() {
           </div>
           <div className="relative h-full w-full">
             <Image
-              src="/images/services/incentive/picture-2.svg"
+              src="https://ik.imagekit.io/libertyindia/services/incentive/picture-2.svg"
               alt="Incentive 2"
               fill
               className="object-cover object-center"
@@ -64,7 +65,7 @@ export default function WellnessPage() {
           </div>
           <div className="relative h-full w-full">
             <Image
-              src="/images/services/incentive/picture-3.svg"
+              src="https://ik.imagekit.io/libertyindia/services/incentive/picture-3.svg"
               alt="Incentive 3"
               fill
               className="object-cover object-center"
@@ -73,8 +74,8 @@ export default function WellnessPage() {
           </div>
         </div>
         {/* Text Card Overlay */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-6 md:px-8 lg:px-10 py-6 md:py-8 lg:py-10 flex items-center z-10 shadow-lg min-h-[120px] w-[90%] max-w-[90%]">
-          <p className="text-sm md:text-base lg:text-[15px] text-gray-700 leading-loose lg:leading-loose" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+        <div className="absolute left-1/4 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-6 md:px-8 lg:px-10 py-6 md:py-8 lg:py-10 flex items-center z-10 shadow-lg min-h-[120px] w-[30%] max-w-[90%]">
+          <p className="text-sm md:text-base lg:text-xl text-gray-700 leading-loose lg:leading-loose" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             Incentive travel is about recognition and renewal. It&apos;s about bringing together your top performers in an environment where they can celebrate achievement, strengthen relationships, and return home energized and recommitted.
           </p>
         </div>
@@ -87,7 +88,7 @@ export default function WellnessPage() {
           {/* Image */}
           <div className="relative w-full h-[60vh] md:h-[50vh] lg:h-[90vh] overflow-hidden flex justify-center items-center mx-auto">
             <Image
-              src="/images/services/incentive/picture-4.svg"
+              src="https://ik.imagekit.io/libertyindia/services/incentive/picture-4.svg"
               alt="Incentive Showcase"
               fill
               className="object-cover object-center"
@@ -109,45 +110,45 @@ export default function WellnessPage() {
       <section className="w-full flex justify-center bg-white py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 w-[80vw] max-w-[80vw] mx-auto">
           {/* Row 1 */}
-            <div className="relative aspect-square overflow-hidden">
-            <Image src="/images/services/incentive/destination.svg" alt="Strategic Destination Curation" fill className="object-cover object-center" />
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-white/95 p-8 md:p-8 min-h-[120px] w-[90%] max-w-[90%] flex flex-col justify-center">
+          <div className="relative aspect-square overflow-hidden flex flex-col group transition-all duration-300 ease-in-out hover:scale-105 hover:cursor-pointer">
+            <Image src="https://ik.imagekit.io/libertyindia/services/incentive/destination.svg" alt="Strategic Destination Curation" fill className="object-cover object-center" />
+            <div className="absolute bottom-0 left-0 w-full bg-white/95 p-4 md:p-4 h-1/3 w-[60%] mx-4 flex flex-col justify-center items-center transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:bg-white">
               <h3 className="font-semibold text-lg md:text-xl mb-1">Strategic Destination Curation</h3>
               <p className="text-gray-700 text-sm md:text-base">Destinations aligned with your business goals</p>
             </div>
           </div>
-          <div className="relative aspect-square overflow-hidden">
-            <Image src="/images/services/incentive/itinerary.svg" alt="Bespoke Itinerary Design & Logistics" fill className="object-cover object-center" />
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-white/95 p-8 md:p-8 min-h-[120px] w-[90%] max-w-[90%] flex flex-col justify-center">
+          <div className="relative aspect-square overflow-hidden flex flex-col group transition-all duration-300 ease-in-out hover:scale-105 hover:cursor-pointer">
+            <Image src="https://ik.imagekit.io/libertyindia/services/incentive/itinerary.svg" alt="Bespoke Itinerary Design & Logistics" fill className="object-cover object-center" />
+            <div className="absolute bottom-0 left-0 w-full bg-white/95 p-4 md:p-4 h-1/3 flex flex-col justify-center items-center transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:bg-white">
               <h3 className="font-semibold text-lg md:text-xl mb-1">Bespoke Itinerary Design & Logistics</h3>
               <p className="text-gray-700 text-sm md:text-base">Well-balanced programs and end to end on site coordination</p>
             </div>
           </div>
-          <div className="relative aspect-square overflow-hidden">
-            <Image src="/images/services/incentive/accomodation.svg" alt="Curated Accommodation" fill className="object-cover object-center" />
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-white/95 p-8 md:p-8 min-h-[120px] w-[90%] max-w-[90%] flex flex-col justify-center">
+          <div className="relative aspect-square overflow-hidden flex flex-col group transition-all duration-300 ease-in-out hover:scale-105 hover:cursor-pointer">
+            <Image src="https://ik.imagekit.io/libertyindia/services/incentive/accomodation.svg" alt="Curated Accommodation" fill className="object-cover object-center" />
+            <div className="absolute bottom-0 right-0 w-full bg-white/95 p-4 md:p-4 h-1/3 w-[60%] mr-4 flex flex-col justify-center items-center transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:bg-white">
               <h3 className="font-semibold text-lg md:text-xl mb-1">Curated Accommodation</h3>
               <p className="text-gray-700 text-sm md:text-base">Luxury, heritage and modern accommodations</p>
             </div>
           </div>
           {/* Row 2 */}
-          <div className="relative aspect-square overflow-hidden">
-            <Image src="/images/services/incentive/experience.svg" alt="Signature Experiences" fill className="object-cover object-center" />
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-white/95 p-8 md:p-8 min-h-[120px] w-[90%] max-w-[90%] flex flex-col justify-center">
+          <div className="relative aspect-square overflow-hidden flex flex-col group transition-all duration-300 ease-in-out hover:scale-105 hover:cursor-pointer">
+            <Image src="https://ik.imagekit.io/libertyindia/services/incentive/experience.svg" alt="Signature Experiences" fill className="object-cover object-center" />
+            <div className="absolute top-0 left-0 w-full bg-white/95 p-4 md:p-4 h-1/3 flex flex-col justify-center items-center transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:bg-white">
               <h3 className="font-semibold text-lg md:text-xl mb-1">Signature Experiences</h3>
               <p className="text-gray-700 text-sm md:text-base">Adventure, culture, wellness, CSR, and entertainment</p>
             </div>
           </div>
-          <div className="relative aspect-square overflow-hidden ">
-            <Image src="/images/services/incentive/dinner.svg" alt="Curated Dinner Experiences" fill className="object-cover object-center" />
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-white/95 p-8 md:p-8 min-h-[120px] w-[90%] max-w-[90%] flex flex-col justify-center">
+          <div className="relative aspect-square overflow-hidden flex flex-col group transition-all duration-300 ease-in-out hover:scale-105 hover:cursor-pointer">
+            <Image src="https://ik.imagekit.io/libertyindia/services/incentive/dinner.svg" alt="Curated Dinner Experiences" fill className="object-cover object-center" />
+            <div className="absolute top-0 left-0 w-full bg-white/95 p-4 md:p-4 h-1/3 flex flex-col justify-center items-center transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:bg-white">
               <h3 className="font-semibold text-lg md:text-xl mb-1">Curated Dinner Experiences</h3>
               <p className="text-gray-700 text-sm md:text-base">Culture and historic dinner, Chef’s Table experiences, themed events and more</p>
             </div>
           </div>
-          <div className="relative aspect-square overflow-hidden ">
-            <Image src="/images/services/incentive/journeys.svg" alt="Pre & Post Private Journeys" fill className="object-cover object-center" />
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-white/95 p-8 md:p-8 min-h-[120px] w-[90%] max-w-[90%] flex flex-col justify-center">
+          <div className="relative aspect-square overflow-hidden flex flex-col group transition-all duration-300 ease-in-out hover:scale-105 hover:cursor-pointer">
+            <Image src="https://ik.imagekit.io/libertyindia/services/incentive/journeys.svg" alt="Pre & Post Private Journeys" fill className="object-cover object-center" />
+            <div className="absolute top-0 right-0 w-full bg-white/95 p-4 md:p-4 h-1/3 w-[60%] mr-4 flex flex-col justify-center items-center transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:bg-white">
               <h3 className="font-semibold text-lg md:text-xl mb-1">Pre & Post Private Journeys</h3>
               <p className="text-gray-700 text-sm md:text-base">Customised itineraries based on individual requests</p>
             </div>
@@ -158,7 +159,7 @@ export default function WellnessPage() {
       <section className="w-full flex justify-center bg-white m-0 p-0">
         <div className="relative w-[100vw] h-[80vh] md:h-[130vh] lg:h-[100vh] mx-auto">
             <Image
-              src="/images/services/incentive/collage.svg"
+              src="https://ik.imagekit.io/libertyindia/services/incentive/collage.png"
               alt="Incentive Collage"
               fill
               className="object-contain object-center rounded-lg"
@@ -172,7 +173,7 @@ export default function WellnessPage() {
         {/* Left: Image */}
         <div className="w-full md:w-1/2 h-[200px] md:h-auto relative min-h-[200px]">
           <Image
-            src="/images/services/incentive/programs.svg"
+            src="https://ik.imagekit.io/libertyindia/services/incentive/programs.svg"
             alt="Customized Programs"
             fill
             className="object-cover object-center rounded-none"

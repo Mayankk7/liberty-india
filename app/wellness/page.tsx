@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-
+import ItineraryCards from '../components/ItineraryCards';
 
 export default function WellnessPage() {
   return (
@@ -21,9 +21,11 @@ export default function WellnessPage() {
             className="object-cover object-center"
             priority
           />
+          {/* 20% opacity overlay */}
+          <div className="absolute inset-0 bg-black/20 pointer-events-none" />
           <div className="absolute inset-0 flex items-center justify-center">
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-light tracking-wide drop-shadow-lg"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-extrabold tracking-wide drop-shadow-lg"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
               Wellness
@@ -73,8 +75,8 @@ export default function WellnessPage() {
           </div>
         </div>
         {/* Text Card Overlay */}
-        <div className="absolute left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 bg-white px-6 md:px-8 lg:px-10 py-6 md:py-8 lg:py-10 flex items-center z-10 shadow-lg max-w-lg" style={{ width: '40%' }}>
-          <p className="text-sm md:text-base lg:text-[15px] text-gray-700 leading-loose lg:leading-loose" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+        <div className="absolute left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 bg-white px-6 md:px-8 lg:px-10 py-6 md:py-8 lg:py-10 flex items-center z-10 shadow-lg max-w-2xl" style={{ width: '40%' }}>
+          <p className="text-sm md:text-base lg:text-xl text-gray-700 leading-loose lg:leading-loose" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             India gave the world Yoga and Ayurveda–sophisticated systems of wellness developed over millennia. These aren&apos;t trends; they&apos;re complete frameworks for living in harmony with natural rhythms, preventing disease, and optimizing human potential.
           </p>
         </div>
@@ -82,7 +84,7 @@ export default function WellnessPage() {
 
       <section className="w-full p-12 bg-[#FDF8E8] flex items-center justify-center mb-8">
         <div className="w-full max-w-5xl mx-auto text-center">
-          <h2 className="text-lg md:text-lg lg:text-lg xl:text-lg font-normal text-gray-900 leading-tight" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+          <h2 className="text-lg md:text-lg lg:text-xl xl:text-xl font-normal text-gray-900 leading-tight" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Liberty India wellness journey combines ancient wisdom with modern comfort
           </h2>
         </div>
@@ -114,7 +116,7 @@ export default function WellnessPage() {
       {/* Wellness Retreat Locations Section */}
       <section className="relative w-full py-16 md:py-20">
         <div className="relative w-full flex flex-col items-center" style={{ zIndex: 1 }}>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center mb-2" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center mb-6" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Wellness Retreat Locations
           </h2>
           <p className="text-xs md:text-sm text-center mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>

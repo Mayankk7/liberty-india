@@ -22,9 +22,11 @@ export default function CulturePage() {
             className="object-cover object-center"
             priority
           />
+          {/* 20% opacity overlay */}
+          <div className="absolute inset-0 bg-black/20 pointer-events-none" />
           <div className="absolute inset-0 flex items-center justify-center">
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-light tracking-wide drop-shadow-lg"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-extrabold tracking-wide drop-shadow-lg"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
               Culture
@@ -66,7 +68,7 @@ export default function CulturePage() {
             style={{ width: '42%', height: '60%' }}
           >
             <p
-              className="text-sm md:text-base lg:text-[15px] text-gray-700 leading-loose lg:leading-loose max-w-lg mx-auto"
+              className="text-sm md:text-base lg:text-xl text-gray-700 leading-loose lg:leading-loose max-w-lg mx-auto"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
               Indian culture is not something you observe—it&apos;s something you experience and are transformed by. From the rhythmic cycles of ancient festivals to the intricate traditions embedded in daily rituals, culture in India is a profound expression of spirituality, community, and human connection
@@ -300,46 +302,46 @@ export default function CulturePage() {
       </section>
 
       {/* Culture Itineraries Section */}
-      <ItineraryCards
-        heading={"Explore the Culture\nExperience the Journey"}
-        subheading="Immerse yourself in India's living traditions with journeys designed for the culturally curious"
-        bgColor="#FDF39F4D"
-        items={[
-          {
-            image: '/images/itineraries/rajasthan.svg',
-            alt: 'Colourful Rajasthan',
-            category: 'Culture & Heritage',
-            bestTime: 'October - March',
-            title: 'Colourful Rajasthan',
-            description: "Traverse inward to Rajasthan's regal palaces and royal heritage. From desert forts to palace lakes, experience majestic Jodhpur, Udaipur, Jaipur, and authentic cultural encounters.",
-            price: 1330,
-            duration: '14 Days',
-            // slug: 'colourful-rajasthan', // Uncomment and set correct slug if available
-          },
-          {
-            image: '/images/itineraries/north-india.svg',
-            alt: 'Gems of North India',
-            category: 'Spiritual & Cultural',
-            bestTime: 'October - March',
-            title: 'Gems of North India',
-            description: "Explore North India's sacred soil and cultural tapestry. From the red fort of Agra to Varanasi's timeless ghats, explore Hindu temples and shrines of Rishikesh and Haridwar.",
-            price: 1330,
-            duration: '9 Days',
-            // slug: 'gems-north-india', // Uncomment and set correct slug if available
-          },
-          {
-            image: '/images/itineraries/south-india.svg',
-            alt: 'Gems of South India',
-            category: 'Culture & History',
-            bestTime: 'October - March',
-            title: 'Gems of South India',
-            description: "See the best South India has to offer including the holy towns, coastal temples, historic hill stations, magnificent temples, and pristine coastal shores.",
-            price: 1330,
-            duration: '12 Days',
-            // slug: 'gems-south-india', // Uncomment and set correct slug if available
-          },
-        ]}
-      />
+        <ItineraryCards
+          heading={"Explore the Culture\nExperience the Journey"}
+          subheading="Immerse yourself in India's living traditions with journeys designed for the culturally curious"
+          bgColor="#FDF39F4D"
+          items={[
+            {
+              image: 'https://ik.imagekit.io/libertyindia/itineraries/north-east/main-bg.svg',
+              alt: 'Northeast India & The City of Joy',
+              category: 'Culture',
+              bestTime: 'October – March',
+              title: 'Northeast India & The City of Joy',
+              description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
+              price: 1330,
+              duration: '13 Days',
+              slug: 'northeast-india-city-of-joy',
+            },
+            {
+              image: 'https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/main-bg.png',
+              alt: 'The Classical Golden Triangle of India',
+              category: 'Culture',
+              bestTime: 'October – March',
+              title: 'The Classical Golden Triangle of India',
+              description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
+              price: 1013,
+              duration: '7 Days',
+              slug: 'classical-golden-triangle',
+            },
+            {
+              image: 'https://ik.imagekit.io/libertyindia/itineraries/south-india-tamil-nadu/main-bg.png',
+              alt: 'Unveiling the Enchanting South — Tamil Nadu',
+              category: 'Culture',
+              bestTime: 'October – March',
+              title: 'Unveiling the Enchanting South — Tamil Nadu',
+              description: 'Discover the magnificent temple architecture, French colonial heritage, and living craft traditions of Tamil Nadu.',
+              price: 880,
+              duration: '10 Days',
+              slug: 'unveiling-the-enchanting-south-tamil-nadu',
+            },
+          ]}
+        />
 
       {/* Footer */}
       <Footer />
