@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { itineraries } from '../itineraries/itineraries';
 
 type JourneyTag = 'Luxury Hotels' | 'On Tour Guidance' | 'Local Guides' | 'Small Group' | 'Private Group' | 'Cultural' | 'Heritage' | 'Wildlife' | 'Nature' | 'Spiritual';
 
@@ -197,9 +198,13 @@ export default function Journeys() {
         {/* Journeys Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredJourneys.map((journey) => {
-            // Link only the Northeast India & The City of Joy card
-            const isNortheast = journey.id === 'northeast-india-city-of-joy';
-            const linkHref = isNortheast ? '/itineraries/northeast-india-city-of-joy' : undefined;
+            // Find matching itinerary by slug
+            const matchingItinerary = itineraries.find(
+              (itinerary) => itinerary.slug === journey.id
+            );
+            const linkHref = matchingItinerary
+              ? `/itineraries/${matchingItinerary.slug}`
+              : undefined;
             const cardContent = (
               <div
                 className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-gray-100"
@@ -269,8 +274,8 @@ export default function Journeys() {
                 </div>
               </div>
             );
-            return isNortheast ? (
-              <Link href={linkHref!} key={journey.id} passHref legacyBehavior>
+            return linkHref ? (
+              <Link href={linkHref} key={journey.id} passHref legacyBehavior>
                 <a style={{ textDecoration: 'none' }}>{cardContent}</a>
               </Link>
             ) : (

@@ -10,7 +10,7 @@ const signatureExperiences = [
     title: 'Walk around Botanical Garden',
   },
   {
-    image: '/images/itineraries/north-east/train-ride.svg',
+    image: '/images/itineraries/north-east/tram-ride.jpg',
     category: 'Adventure Tour',
     title: 'Tram Ride',
   },
@@ -27,7 +27,7 @@ const signatureExperiences = [
   {
     image: '/images/itineraries/north-east/painting.svg',
     category: 'Adventure Tour',
-    title: 'Miniature Painting Workshop',
+    title: 'Painting Workshop',
   },
   {
     image: '/images/itineraries/north-east/jazz-bar.svg',
@@ -165,11 +165,11 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
       {showItinerary && (
         <section id="itinerary" className="w-full flex flex-col md:flex-row justify-center items-stretch py-12 px-0 bg-transparent">
           {/* Map Section Left - Sticky */}
-          <div className="hidden md:flex flex-col justify-start items-start bg-white rounded-l-2xl shadow border border-[#F8F6E1] min-h-[700px] max-h-full w-[600px] max-w-[800px] pt-10 pl-10 pr-8 pb-8 sticky top-20 h-[calc(100vh-6rem)]">
+          <div className="hidden md:flex flex-col justify-start items-start bg-white rounded-l-2xl shadow border border-[#F8F6E1] min-h-175 max-h-full w-150 max-w-200 pt-10 pl-10 pr-8 pb-8 sticky top-20 h-[calc(100vh-6rem)]">
             <Image src={itinerary.mapImage || '/images/itineraries/north-east/map.svg'} alt="India Map" width={560} height={420} className="object-contain w-full h-auto mb-0" style={{ alignSelf: 'flex-start' }} />
           </div>
           {/* Itinerary Cards Section Right */}
-          <div className="flex-1 flex flex-col bg-white rounded-r-2xl shadow border border-[#F8F6E1] min-h-[700px] max-h-full w-full md:w-[44vw] px-0 md:px-8 py-10">
+          <div className="flex-1 flex flex-col bg-white rounded-r-2xl shadow border border-[#F8F6E1] min-h-175 max-h-full w-full md:w-[44vw] px-0 md:px-8 py-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-10 px-6 md:px-0">Itinerary</h2>
             <div className="flex flex-col gap-8 w-full">
               {itinerary.days.map((day) => (
@@ -181,7 +181,7 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
                   aria-label={`Day ${day.day}: ${day.title}`}
                 >
                   <div className="flex items-center gap-4 mb-2 pb-4 border-b border-[#B89B5E]">
-                    <span className="bg-[#F8F6E1] border border-[#F8F6E1] text-[#3B3B3B] px-5 py-2 rounded font-bold text-lg tracking-wide shadow-sm mr-2 min-w-[90px] text-center">Day {day.day.toString().padStart(2, '0')}</span>
+                    <span className="bg-[#F8F6E1] border border-[#F8F6E1] text-[#3B3B3B] px-5 py-2 rounded font-bold text-lg tracking-wide shadow-sm mr-2 min-w-22.5 text-center">Day {day.day.toString().padStart(2, '0')}</span>
                     <span className="font-semibold text-lg md:text-xl text-[#3B3B3B]">{day.title}</span>
                     <span className="ml-auto font-semibold text-base text-[#3B3B3B]">Overnight <span className="font-normal">{day.overnight}</span></span>
                   </div>
@@ -191,7 +191,7 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
                     </div>
                     {/* Image Right */}
                     {day.image && (
-                      <div className="relative w-full md:w-80 aspect-[4/3] min-h-[220px] flex-shrink-0 rounded overflow-hidden">
+                      <div className="relative w-full md:w-80 aspect-4/3 min-h-55 shrink-0 rounded overflow-hidden">
                         <Image src={day.image} alt={day.title} fill className="object-cover object-center" />
                       </div>
                     )}
@@ -204,10 +204,10 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
       )}
 
       {/* Inclusions, Dates, Notes Section - Modern Layout with Icons */}
-      <section id="details" className="w-[100vw] py-0 px-0 bg-[#FFFDEC] mt-10 mb-10">
+      <section id="details" className="w-screen py-0 px-0 bg-[#FFFDEC] mt-10 mb-10">
         <div className="w-full mx-auto flex flex-col md:flex-row gap-24 justify-center items-start px-4 md:px-16">
           {/* Left Column: Inclusions & Exclusions */}
-          <div className="flex-1 min-w-[340px] max-w-[600px] w-full p-0">
+          <div className="flex-1 min-w-85 max-w-150 w-full p-0">
             <h2 className="text-3xl font-bold mb-8" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Inclusions & Offers</h2>
             <ul className="mb-8 space-y-8  text-[1.45rem]">
               {itinerary.inclusions && itinerary.inclusions.map((item, i) => (
@@ -222,7 +222,7 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
             </ul>
           </div>
           {/* Right Column: Dates & Prices and Important Notes */}
-          <div className="flex-1 min-w-[340px] max-w-[600px] w-full flex flex-col gap-16">
+          <div className="flex-1 min-w-85 max-w-150 w-full flex flex-col gap-16">
             <div>
               <h2 className="text-3xl font-bold mb-8" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Dates & Prices</h2>
               <ul className="space-y-7 text-[1.15rem]">
@@ -249,7 +249,7 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
           {signatureExperiences.map((exp, i) => (
             <div key={i} className="flex flex-col items-start">
-              <div className="w-full aspect-[4/5] min-h-[320px] relative overflow-hidden mb-4 shadow">
+              <div className="w-full aspect-4/5 min-h-80 relative overflow-hidden mb-4 shadow">
                 <Image
                   src={exp.image}
                   alt={exp.title}

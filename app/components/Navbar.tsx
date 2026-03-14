@@ -20,8 +20,6 @@ interface NavbarProps {
 export default function Navbar({ variant = 'transparent' }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const searchInputRef = useRef<HTMLInputElement>(null);
 
   // For white variant, always show as scrolled (white bg)
   const isWhiteBg = variant === 'white' || scrolled;
@@ -34,11 +32,6 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (searchOpen && searchInputRef.current) {
-      searchInputRef.current.focus();
-    }
-  }, [searchOpen]);
 
   return (
     <nav
@@ -48,35 +41,9 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
       role="navigation"
       aria-label="Main navigation"
     >
-      {/* Search Modal */}
-      {searchOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md relative">
-            <button
-              aria-label="Close search"
-              className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
-              onClick={() => setSearchOpen(false)}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <h2 className="text-xl font-semibold mb-4 text-gray-800">Search</h2>
-            <form onSubmit={e => { e.preventDefault(); setSearchOpen(false); }}>
-              <input
-                ref={searchInputRef}
-                type="text"
-                placeholder="Type to search..."
-                className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
-              />
-              <button type="submit" className="mt-4 w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600 transition">Search</button>
-            </form>
-          </div>
-        </div>
-      )}
-      <div className="flex items-center justify-between w-[90%] mx-auto">
+      <div className="w-full flex items-center justify-center px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40">
         {/* Logo */}
-        <Link href="/" className="shrink-0">
+        <Link href="/" className="shrink-0 mr-8 md:mr-12 lg:mr-16 xl:mr-20">
           <Image
             src={isWhiteBg ? "/images/hero-section/logo-footer.svg" : "/images/hero-section/logo.svg"}
             alt="Liberty India"
@@ -86,52 +53,31 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
           />
         </Link>
 
-        {/* Desktop Nav Links */}
-        <div className="hidden lg:flex items-center flex-1 ml-10 xl:ml-14">
-          <div className="flex items-center gap-10 xl:gap-14 2xl:gap-16">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={`group flex items-center gap-1.5 text-[13px] xl:text-[14px] font-light tracking-wide transition-colors duration-200 cursor-pointer ${
-                  isWhiteBg ? 'text-gray-700 hover:text-gray-900' : 'text-white/90 hover:text-white'
-                }`}
-                style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-                onClick={e => {
-                  // List of real pages
-                  const realPages = ['/', '/about-us', '/#about-india', '/#services', '/#journeys', '/#contact', '/nature', '/wellness', '/wildlife', '/heritage', '/spiritual', '/culture'];
-                  if (!realPages.includes(item.href)) {
-                    e.preventDefault();
-                    window.location.href = '/under-development';
-                  }
-                }}
-              >
+        {/* Desktop Nav Links - spread full width */}
+        <div className="hidden lg:flex flex-1 justify-between">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`flex-1 text-center group flex items-center justify-center gap-1.5 text-[13px] xl:text-[14px] font-light tracking-wide cursor-pointer transition-all duration-300 ease-in-out ${
+                isWhiteBg ? 'text-gray-700 hover:text-[#EF9120]' : 'text-white/90 hover:text-[#EF9120]'
+              }`}
+              style={{ fontFamily: 'var(--font-merriweather), Georgia, serif', position: 'relative' }}
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                // List of real pages
+                const realPages = ['/', '/about-us', '/#about-india', '/#services', '/#journeys', '/#contact', '/nature', '/wellness', '/wildlife', '/heritage', '/spiritual', '/culture'];
+                if (!realPages.includes(item.href)) {
+                  e.preventDefault();
+                  window.location.href = '/under-development';
+                }
+              }}
+            >
+              <span className="relative">
                 {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Right Icon: Animated Hamburger/X */}
-        <div className="flex items-center gap-5 md:gap-6">
-          <button
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`relative flex flex-col justify-center items-end gap-1.25 p-1.5 transition-colors duration-200 cursor-pointer w-8 h-8 ${
-              isWhiteBg ? 'text-gray-700 hover:text-gray-900' : 'text-white/80 hover:text-white'
-            }`}
-          >
-            <span
-              className={`block absolute left-0 top-2 w-7 h-0.5 bg-current rounded-full transition-transform duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
-            />
-            <span
-              className={`block absolute left-0 top-4 w-7 h-0.5 bg-current rounded-full transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}
-            />
-            <span
-              className={`block absolute left-0 top-6 w-7 h-0.5 bg-current rounded-full transition-transform duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
-            />
-            <span className="sr-only">{mobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
-          </button>
+                <span className="absolute left-0 right-0 -bottom-1 h-0.5 bg-[#EF9120] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+              </span>
+            </Link>
+          ))}
         </div>
       </div>
 

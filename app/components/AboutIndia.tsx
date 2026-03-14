@@ -12,10 +12,10 @@ export default function AboutIndia() {
     >
       {/* Background Collage with India Map Overlay */}
       <div className="relative w-full min-h-150 md:min-h-175 lg:min-h-200 mb-8 md:mb-12 lg:mb-16">
-        {/* Layer 1: Background Collage - full width edge to edge */}
-        <div className="absolute inset-0 z-0">
+        {/* Layer 1: Collage covers full background */}
+        <div className="absolute left-0 top-0 w-screen h-full z-0">
           <Image
-            src="/images/about-india/home/collage-fixed.png"
+            src="/images/about-india/home/collage.png"
             alt="Collage of India's diverse destinations including heritage sites, wildlife, culture, and natural landscapes"
             fill
             className="object-cover object-center w-full h-full"
@@ -24,19 +24,17 @@ export default function AboutIndia() {
           />
         </div>
 
-        {/* Layer 2: India Map Overlay - semi-transparent white silhouette */}
-        <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none -mt-4 md:-mt-5 lg:-mt-6">
+        {/* Layer 2: India Map centered, same height as collage */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
           <Image
             src="/images/about-india/home/india-map.svg"
             alt="India map silhouette"
             width={600}
             height={700}
-            className="w-[56%] md:w-[47%] lg:w-[42%] h-auto object-contain drop-shadow-lg"
+            className="h-full w-auto max-h-full object-contain drop-shadow-lg"
             priority
           />
         </div>
-
-        {/* Layer 3: Text Content - left-aligned, centered within the map */}
       </div>
 
       {/* India Experience Cards Grid */}

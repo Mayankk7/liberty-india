@@ -11,6 +11,12 @@ const MONTHS = [
   { id: 'apr', name: 'Apr', image: '/images/hero-section/april.png', destination: 'Baisakhi Rural Games & Wrestling, Punjab' },
   { id: 'may', name: 'May', image: '/images/hero-section/may.jpg', destination: 'Thrissur Pooram, Kerala' },
   { id: 'jun', name: 'Jun', image: '/images/hero-section/june.png', destination: 'Hemis Festival, Ladakh' },
+  { id: 'jul', name: 'Jul', image: '/images/hero-section/july.png', destination: 'Behdienkhlam, Meghalaya' },
+  { id: 'aug', name: 'Aug', image: '/images/hero-section/aug.png', destination: 'Onam (Snake Boat Races / Vallam Kali), Kerala' },
+  { id: 'sept', name: 'Sept', image: '/images/hero-section/sept.png', destination: 'Ganesh Chaturthi, Mumbai' },
+  { id: 'oct', name: 'Oct', image: '/images/hero-section/oct.png', destination: 'Dussehra Fairs & Rural Sports, Pan-India' },
+  { id: 'nov', name: 'Nov', image: '/images/hero-section/nov.png', destination: 'Pushkar Camel Fair, Rajasthan' },
+  { id: 'dec', name: 'Dec', image: '/images/hero-section/dec.png', destination: 'Sunburn, Goa' },
 ];
 
 /** Number of months visible in the bottom slider */
