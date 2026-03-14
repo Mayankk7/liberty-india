@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ItineraryCards from '../components/ItineraryCards';
+import { getItinerariesByCategory } from '../itineraries/itineraries';
 
 
 export default function EducationToursPage() {
@@ -133,43 +134,22 @@ export default function EducationToursPage() {
 
       {/* Explore Programs Section */}
       <section className="w-full bg-[#FDF8E8] py-16 flex flex-col items-center">
-        <ItineraryCards
-          heading="Explore Programs"
-          subheading="Travel through centuries of history with journeys designed for discerning explorers"
-          items={[
-            {
-              image: '/images/itineraries/taj-tigers.svg',
-              alt: 'Taj & Tigers',
-              category: 'Culture & History',
-              bestTime: 'October - March',
-              title: 'Taj & Tigers',
-              description: "Combine India's most iconic monument with thrilling wildlife. This 9-day journey features the Taj Mahal, royal Rajasthan heritage, and India's famous tiger reserve experiences.",
-              price: 1850,
-              duration: '10 Days',
-            },
-            {
-              image: '/images/itineraries/golden-triangle.svg',
-              alt: 'Golden Triangle of India (Classical)',
-              category: 'Adventure Tour',
-              bestTime: 'October - March',
-              title: 'Golden Triangle of India (Classical)',
-              description: "India's most classic itinerary in 7 days. Experience Delhi's history, Agra's romance with the Taj Mahal, and Jaipur's royal splendor in this perfect introduction to India.",
-              price: 2150,
-              duration: '10 Days',
-            },
-            {
-              image: '/images/itineraries/north-india.svg',
-              alt: 'Gems of North India',
-              category: 'Culture & History',
-              bestTime: 'October - March',
-              title: 'Gems of North India',
-              description: "Explore North India's spiritual and architectural treasures. From the sacred Ganges in Varanasi to the temples of Khajuraho and royal palaces of Rajasthan.",
-              price: 2350,
-              duration: '10 Days',
-            },
-          ]}
-          bgColor="#FDF8E8"
-        />
+          <ItineraryCards
+            heading="Explore Programs"
+            subheading="Travel through centuries of history with journeys designed for discerning explorers"
+            items={getItinerariesByCategory('Adventure').map(it => ({
+              image: it.heroImage,
+              alt: it.title,
+              category: it.categories.join(', '),
+              bestTime: it.bestTime,
+              title: it.title,
+              description: it.subtitle,
+              price: Number(it.startingPrice.replace(/[^\d]/g, '')),
+              duration: it.duration,
+              slug: it.slug
+            }))}
+            bgColor="#FDF8E8"
+          />
       </section>
       <Footer />
     </main>

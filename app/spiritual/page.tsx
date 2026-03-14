@@ -16,7 +16,7 @@ export default function SpiritualPage() {
       <section className="relative w-full pt-0">
         <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
-            src="/images/about-india/spiritual/spiritual-bg.svg"
+            src="https://ik.imagekit.io/libertyindia/about-india/spiritual/spiritual-bg.svg"
             alt="Spiritual India Hero"
             fill
             className="object-cover object-center"
@@ -51,7 +51,7 @@ export default function SpiritualPage() {
                 <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0 w-full h-full">
                   <div className="relative h-full w-full">
                     <Image
-                      src="/images/about-india/spiritual/picture-1.svg"
+                      src="https://ik.imagekit.io/libertyindia/about-india/spiritual/picture-1.png"
                       alt="Nature 1"
                       fill
                       className="object-cover object-center"
@@ -60,7 +60,7 @@ export default function SpiritualPage() {
                   </div>
                   <div className="relative h-full w-full">
                     <Image
-                      src="/images/about-india/spiritual/picture-2.svg"
+                      src="https://ik.imagekit.io/libertyindia/about-india/spiritual/picture-2.png"
                       alt="Nature 2"
                       fill
                       className="object-cover object-center"
@@ -69,7 +69,7 @@ export default function SpiritualPage() {
                   </div>
                   <div className="relative h-full w-full">
                     <Image
-                      src="/images/about-india/spiritual/picture-3.svg"
+                      src="https://ik.imagekit.io/libertyindia/about-india/spiritual/picture-3.png"
                       alt="Nature 3"
                       fill
                       className="object-cover object-center"
@@ -89,7 +89,7 @@ export default function SpiritualPage() {
             {/* Section Footer Text */}
             <section className="w-full pt-2 pb-4 md:pt-3 md:pb-6 lg:pt-4 lg:pb-8 bg-[#FDF8E8] flex items-center justify-center mb-8">
               <div className="w-full max-w-5xl mx-auto text-center">
-                <h2 className="text-lg md:text-lg lg:text-lg xl:text-lg font-normal text-gray-900 leading-tight" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+                <h2 className="text-2xl md:text-2xl lg:text-2xl xl:text-2xl font-normal text-gray-900 leading-tight" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
                   Liberty India connects you with India's spiritual dimensions authentically and respectfully
                 </h2>
               </div>
@@ -109,13 +109,13 @@ export default function SpiritualPage() {
           startPosition="left"
           items={[
             {
-              image: '/images/about-india/spiritual/varanasi.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/spiritual/varanasi.svg',
               alt: 'Varanasi Ghats',
               title: 'Varanasi',
               description: 'The holiest city for Hindus, where the Ganges River is believed to cleanse souls of past karma. Witness evening aarti (prayer ceremonies) on the ghats. (Uttar Pradesh)',
             },
             {
-              image: '/images/about-india/spiritual/haridwar.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/spiritual/haridwar.png',
               alt: 'Haridwar Ghat',
               title: 'Haridwar',
               description: 'The northern gateway to the Himalayas, where the Ganges emerges from mountains; pilgrims bathe in sacred waters during the Kumbh Mela. (Uttarakhand)',
@@ -138,13 +138,13 @@ export default function SpiritualPage() {
           startPosition="left"
           items={[
             {
-              image: '/images/about-india/spiritual/bodh-gaya.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/spiritual/bodh-gaya.png',
               alt: 'Bodh Gaya Mahabodhi Temple',
               title: 'Bodh Gaya',
               description: 'The place where Buddha attained enlightenment under the Bodhi Tree; the Mahabodhi Temple is one of the world’s oldest brick temples. (Bihar)',
             },
             {
-              image: '/images/about-india/spiritual/sarnath.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/spiritual/sarnath.svg',
               alt: 'Sarnath Stupa',
               title: 'Sarnath',
               description: 'Where Buddha delivered his first sermon, now featuring the iconic Lion Capital. (Uttar Pradesh)',
@@ -167,7 +167,7 @@ export default function SpiritualPage() {
           startPosition="right"
           items={[
              {
-              image: '/images/about-india/spiritual/golden-temple.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/spiritual/golden-temple.png',
               alt: 'Golden Temple Amritsar',
               title: 'Golden Temple',
               description: 'The most revered gurdwara (Sikh temple), featuring the Langar (community kitchen) that serves free meals to all visitors regardless of faith or status. (Amritsar, Punjab)',
@@ -183,7 +183,7 @@ export default function SpiritualPage() {
               bgColor="#FDF8E8"
               items={[
                 {
-                  image: "/images/itineraries/taj-tigers.svg",
+                  image: "https://ik.imagekit.io/libertyindia/itineraries/taj-tigers.svg",
                   alt: "Taj & Tigers",
                   category: "Culture & Nature",
                   bestTime: "October - March",
@@ -193,7 +193,7 @@ export default function SpiritualPage() {
                   duration: "13 Days",
                 },
                 {
-                  image: "/images/itineraries/golden-triangle.svg",
+                  image: "https://ik.imagekit.io/libertyindia/itineraries/golden-triangle.svg",
                   alt: "Golden Triangle of India (Classical)",
                   category: "Adventure Tour",
                   bestTime: "October - March",
@@ -203,7 +203,7 @@ export default function SpiritualPage() {
                   duration: "13 Days",
                 },
                 {
-                  image: "/images/itineraries/north-india.svg",
+                  image: "https://ik.imagekit.io/libertyindia/itineraries/north-india.svg",
                   alt: "Gems of North India",
                   category: "Nature & Culture",
                   bestTime: "October - March",

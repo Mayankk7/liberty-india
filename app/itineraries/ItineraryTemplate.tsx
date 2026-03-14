@@ -10,7 +10,7 @@ const signatureExperiences = [
     title: 'Walk around Botanical Garden',
   },
   {
-    image: '/images/itineraries/north-east/tram-ride.jpg',
+    image: '/images/itineraries/north-east/tram-train.png',
     category: 'Adventure Tour',
     title: 'Tram Ride',
   },
@@ -209,13 +209,13 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
           {/* Left Column: Inclusions & Exclusions */}
           <div className="flex-1 min-w-85 max-w-150 w-full p-0">
             <h2 className="text-3xl font-bold mb-8" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Inclusions & Offers</h2>
-            <ul className="mb-8 space-y-8  text-[1.45rem]">
+            <ul className="mb-8 space-y-8 text-sm md:text-base pb-6">
               {itinerary.inclusions && itinerary.inclusions.map((item, i) => (
                 <li key={i} className="font-normal">{item}</li>
               ))}
             </ul>
             <div className="font-bold mb-3 mt-8 text-xl">What’s Not Included</div>
-            <ul className="space-y-7 text-lg">
+            <ul className="space-y-7 text-sm md:text-base pb-6">
               {itinerary.exclusions && itinerary.exclusions.map((item, i) => (
                 <li key={i} className="font-normal">{item}</li>
               ))}
@@ -225,7 +225,7 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
           <div className="flex-1 min-w-85 max-w-150 w-full flex flex-col gap-16">
             <div>
               <h2 className="text-3xl font-bold mb-8" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Dates & Prices</h2>
-              <ul className="space-y-7 text-[1.15rem]">
+              <ul className="mb-8 space-y-8 text-base md:text-[1.05rem]">
                 {itinerary.datesPrices && itinerary.datesPrices.map((item, i) => (
                   <li key={i} className="flex items-center gap-4 font-normal">{item}</li>
                 ))}

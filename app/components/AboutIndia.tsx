@@ -15,7 +15,7 @@ export default function AboutIndia() {
         {/* Layer 1: Collage covers full background */}
         <div className="absolute left-0 top-0 w-screen h-full z-0">
           <Image
-            src="/images/about-india/home/collage.png"
+            src="https://ik.imagekit.io/libertyindia/about-india/home/Collage.png"
             alt="Collage of India's diverse destinations including heritage sites, wildlife, culture, and natural landscapes"
             fill
             className="object-cover object-center w-full h-full"
@@ -27,10 +27,9 @@ export default function AboutIndia() {
         {/* Layer 2: India Map centered, same height as collage */}
         <div className="absolute inset-0 z-10 flex items-center justify-center">
           <Image
-            src="/images/about-india/home/india-map.svg"
+            src="https://ik.imagekit.io/libertyindia/about-india/home/india-map.svg"
             alt="India map silhouette"
-            width={600}
-            height={700}
+            fill
             className="h-full w-auto max-h-full object-contain drop-shadow-lg"
             priority
           />
@@ -44,7 +43,7 @@ export default function AboutIndia() {
           {/* Heritage Card */}
           <Link href="/heritage" className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
             <Image
-              src="/images/about-india/home/heritage.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/home/Heritage.png"
               alt="Heritage - Living Legacies"
               fill
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
@@ -77,7 +76,7 @@ export default function AboutIndia() {
           {/* Culture Card */}
           <Link href="/culture" className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
             <Image
-              src="/images/about-india/home/culture.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/home/culture.svg"
               alt="Culture - The Pulse of India"
               fill
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
@@ -110,7 +109,7 @@ export default function AboutIndia() {
           {/* Architecture Card */}
           <Link href="/architecture" className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
             <Image
-              src="/images/about-india/home/architecture.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/home/Architecture.png"
               alt="Architecture - Monuments Beyond Imagination"
               fill
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
@@ -146,11 +145,11 @@ export default function AboutIndia() {
           {/* Nature Card - 3/5 width */}
           <Link href="/nature" className="md:col-span-3 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
             <Image
-              src="/images/about-india/home/nature.svg"
-              alt="Nature - Landscapes Without Limits"
-              fill
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            />
+                src="https://ik.imagekit.io/libertyindia/about-india/home/nature.png"
+                alt="Nature - Landscapes Without Limits"
+                fill
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              />
             <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 transition-opacity duration-500 group-hover:from-black/50 group-hover:to-black/70" />
             <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6">
               <h3
@@ -180,7 +179,7 @@ export default function AboutIndia() {
           <div className="md:col-span-2 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
             <Link href="/spiritual" className="block w-full h-full">
               <Image
-                src="/images/about-india/home/spiritual.svg"
+                src="https://ik.imagekit.io/libertyindia/about-india/home/spiritual.svg"
                 alt="Spiritual - Paths of Inner Discovery"
                 fill
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
@@ -217,7 +216,7 @@ export default function AboutIndia() {
           {/* Wellness Card - 2/5 width */}
           <Link href="/wellness" className="md:col-span-2 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1" onClick={e => { if (!['/wellness'].includes('/wellness')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
             <Image
-              src="/images/about-india/home/wellness.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/home/wellness.svg"
               alt="Wellness - Ancient Wisdom, Modern Renewal"
               fill
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
@@ -250,7 +249,7 @@ export default function AboutIndia() {
           {/* Wildlife Card - 3/5 width */}
           <Link href="/wildlife" className="md:col-span-3 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1" onClick={e => { if (!['/wildlife'].includes('/wildlife')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
             <Image
-              src="/images/about-india/home/wildlife.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/home/wildlife.svg"
               alt="Wildlife - Into the Wild Heart of India"
               fill
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
@@ -285,7 +284,7 @@ export default function AboutIndia() {
       {/* Quote Divider Section */}
       <div className="relative w-full overflow-hidden">
         <Image
-          src="/images/about-india/section-end.svg"
+          src="https://ik.imagekit.io/libertyindia/about-india/section-end.svg"
           alt="Mountain landscape with inspirational quote"
           width={1920}
           height={600}

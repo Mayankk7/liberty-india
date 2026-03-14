@@ -15,7 +15,7 @@ export default function WellnessPage() {
       <section className="relative w-[105vw] bg-[#FDF8E8] pt-0">
         <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
-            src="/images/about-india/wellness/wellness-bg.svg"
+            src="https://ik.imagekit.io/libertyindia/about-india/wellness/wellness-bg.svg"
             alt="Wellness India Hero"
             fill
             className="object-cover object-center"
@@ -46,7 +46,7 @@ export default function WellnessPage() {
         <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0 w-full h-full">
           <div className="relative h-full w-full">
             <Image
-              src="/images/about-india/wellness/picture-1.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/wellness/picture-1.svg"
               alt="Wellness 1"
               fill
               className="object-cover object-center"
@@ -55,7 +55,7 @@ export default function WellnessPage() {
           </div>
           <div className="relative h-full w-full">
             <Image
-              src="/images/about-india/wellness/picture-2.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/wellness/picture-2.svg"
               alt="Wellness 2"
               fill
               className="object-cover object-center"
@@ -64,7 +64,7 @@ export default function WellnessPage() {
           </div>
           <div className="relative h-full w-full">
             <Image
-              src="/images/about-india/wellness/picture-3.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/wellness/picture-3.svg"
               alt="Wellness 3"
               fill
               className="object-cover object-center"
@@ -102,7 +102,7 @@ export default function WellnessPage() {
       <section className="w-[100vw] bg-white py-0 mb-6" style={{ position: 'relative', left: '50%', right: '50%', marginLeft: '-50vw', marginRight: '-50vw' }}>
         <div className="relative w-[100vw] h-[100vh] mx-auto">
           <Image
-            src="/images/about-india/wellness/experiences.svg"
+            src="https://ik.imagekit.io/libertyindia/about-india/wellness/experiences.png"
             alt="Ayurveda Retreat Locations"
             fill
             className="object-cover object-center"
@@ -122,7 +122,7 @@ export default function WellnessPage() {
           </p>
           <div className="absolute inset-0 md:mt-24 w-[110vw] h-full -z-10">
             <Image
-              src="/images/about-india/wellness/location-bg.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/wellness/location-bg.svg"
               alt="Wellness Retreat Locations Background"
               fill
               className="object-cover object-center w-full h-full"
@@ -132,7 +132,7 @@ export default function WellnessPage() {
           {/* Ananda Spa - Top */}
           <div className="flex flex-col md:flex-row w-[97vw] md:mt-12 max-w-7xl bg-white bg-opacity-95 overflow-hidden shadow-lg mx-auto">
             <div className="md:w-1/2 w-full h-72 md:h-80 relative">
-              <Image src="/images/about-india/wellness/ananda-spa.svg" alt="Ananda Spa" fill className="object-cover object-center" />
+              <Image src="https://ik.imagekit.io/libertyindia/about-india/wellness/ananda-spa.svg" alt="Ananda Spa" fill className="object-cover object-center" />
             </div>
             <div className="md:w-1/2 w-full p-8 flex flex-col justify-center">
               <h3 className="text-2xl font-semibold mb-2" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Ananda Spa</h3>
@@ -153,13 +153,13 @@ export default function WellnessPage() {
               </p>
             </div>
             <div className="md:w-1/2 w-full h-72 md:h-80 relative">
-              <Image src="/images/about-india/wellness/vana.svg" alt="Six Senses Vana" fill className="object-cover object-center" />
+              <Image src="https://ik.imagekit.io/libertyindia/about-india/wellness/vana.svg" alt="Six Senses Vana" fill className="object-cover object-center" />
             </div>
           </div>
           {/* SwaSwara Wellness - Bottom */}
           <div className="flex flex-col md:flex-row w-[97vw] max-w-7xl bg-white bg-opacity-95 overflow-hidden shadow-lg mx-auto">
             <div className="md:w-1/2 w-full h-72 md:h-80 relative">
-              <Image src="/images/about-india/wellness/swa-swara.svg" alt="SwaSwara Wellness" fill className="object-cover object-center" />
+              <Image src="https://ik.imagekit.io/libertyindia/about-india/wellness/swa-swara.svg" alt="SwaSwara Wellness" fill className="object-cover object-center" />
             </div>
             <div className="md:w-1/2 w-full p-8 flex flex-col justify-center">
               <h3 className="text-2xl font-semibold mb-2" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>SwaSwara Wellness</h3>

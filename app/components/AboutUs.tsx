@@ -16,7 +16,7 @@ export default function AboutUs() {
           {/* Mountain Icon */}
           <div className="mb-3 md:mb-4">
             <Image
-              src="/images/about-us/top-section-img.svg"
+              src="https://ik.imagekit.io/libertyindia/about-us/top-section-img.svg"
               alt="India heritage icon"
               width={80}
               height={60}
@@ -41,7 +41,7 @@ export default function AboutUs() {
           {/* Liberty Logo */}
           <div className="mb-6 md:mb-8">
             <Image
-              src="/images/about-us/logo.svg"
+              src="https://ik.imagekit.io/libertyindia/about-us/logo.svg"
               alt="Liberty India emblem"
               width={70}
               height={70}
@@ -86,7 +86,7 @@ export default function AboutUs() {
       {/* Image Section */}
       <div className="w-[95%] max-w-7xl mx-auto overflow-hidden relative mb-8 md:mb-12 lg:mb-16 rounded-lg">
         <Image
-          src="/images/about-us/home-page.png"
+          src="https://ik.imagekit.io/libertyindia/about-us/home-page.png"
           alt="Liberty India team - passionate travel experts committed to crafting exceptional India experiences"
           width={1920}
           height={1080}
@@ -107,7 +107,7 @@ export default function AboutUs() {
             description:
               'Liberty India is a premier Destination Management Company specializing in bespoke journeys across India for discerning global travellers.',
             url: 'https://libertyindia.com',
-            logo: 'https://libertyindia.com/images/about-us/logo.svg',
+            logo: 'https://ik.imagekit.io/libertyindia/about-us/logo.svg',
             sameAs: [],
             contactPoint: {
               '@type': 'ContactPoint',

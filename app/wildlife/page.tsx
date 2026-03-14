@@ -16,7 +16,7 @@ export default function SpiritualPage() {
       <section className="relative w-full pt-0">
         <div className="relative w-[102vw] h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
-            src="/images/about-india/wildlife/wildlife.svg"
+            src="https://ik.imagekit.io/libertyindia/about-india/wildlife/wildlife.svg"
             alt="Wildlife India Hero"
             fill
             className="object-cover object-center"
@@ -51,7 +51,7 @@ export default function SpiritualPage() {
                 <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0 w-full h-full">
                   <div className="relative h-full w-full">
                     <Image
-                      src="/images/about-india/wildlife/picture-1.svg"
+                      src="https://ik.imagekit.io/libertyindia/about-india/wildlife/picture-1.png"
                       alt="Nature 1"
                       fill
                       className="object-cover object-center"
@@ -60,7 +60,7 @@ export default function SpiritualPage() {
                   </div>
                   <div className="relative h-full w-full">
                     <Image
-                      src="/images/about-india/wildlife/picture-2.svg"
+                      src="https://ik.imagekit.io/libertyindia/about-india/wildlife/picture-2.svg"
                       alt="Nature 2"
                       fill
                       className="object-cover object-center"
@@ -69,7 +69,7 @@ export default function SpiritualPage() {
                   </div>
                   <div className="relative h-full w-full">
                     <Image
-                      src="/images/about-india/wildlife/picture-3.svg"
+                      src="https://ik.imagekit.io/libertyindia/about-india/wildlife/picture-3.svg"
                       alt="Nature 3"
                       fill
                       className="object-cover object-center"
@@ -99,7 +99,7 @@ export default function SpiritualPage() {
               {/* Layer 1: Background Collage - full width edge to edge */}
               <div className="absolute inset-0 z-0">
                 <Image
-                  src="/images/about-india/wildlife/collage.png"
+                  src="https://ik.imagekit.io/libertyindia/about-india/wildlife/collage.png"
                   alt="Collage of India's diverse destinations including heritage sites, wildlife, culture, and natural landscapes"
                   fill
                   className="object-cover object-center w-full h-full"
@@ -109,16 +109,16 @@ export default function SpiritualPage() {
               </div>
       
               {/* Layer 2: India Map Overlay - semi-transparent white silhouette */}
-              <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none -mt-4 md:-mt-5 lg:-mt-6">
-                <Image
-                  src="/images/about-india/wildlife/lion.svg"
-                  alt="India map silhouette"
-                  width={600}
-                  height={700}
-                  className="w-[56%] md:w-[47%] lg:w-[42%] h-auto object-contain drop-shadow-lg"
-                  priority
-                />
-              </div>
+                      <div className="absolute inset-0 z-10 flex items-center justify-center">
+                        <Image
+                          src="https://ik.imagekit.io/libertyindia/about-india/wildlife/lion.svg"
+                          alt="India map silhouette"
+                          fill
+                          className="h-full w-auto max-h-full object-contain drop-shadow-lg"
+                          priority
+                        />
+                      </div>
+                
       
               {/* Layer 3: Text Content - left-aligned, centered within the map */}
               
@@ -131,7 +131,7 @@ export default function SpiritualPage() {
               bgColor="#FDF8E8"
               items={[
                 {
-                  image: "/images/itineraries/taj-tigers.svg",
+                  image: "https://ik.imagekit.io/libertyindia/itineraries/taj-tigers.svg",
                   alt: "Taj & Tigers",
                   category: "Culture & Nature",
                   bestTime: "October - March",
@@ -141,7 +141,7 @@ export default function SpiritualPage() {
                   duration: "13 Days",
                 },
                 {
-                  image: "/images/itineraries/golden-triangle.svg",
+                  image: "https://ik.imagekit.io/libertyindia/itineraries/golden-triangle.svg",
                   alt: "Golden Triangle of India (Classical)",
                   category: "Adventure Tour",
                   bestTime: "October - March",
@@ -151,7 +151,7 @@ export default function SpiritualPage() {
                   duration: "13 Days",
                 },
                 {
-                  image: "/images/itineraries/north-india.svg",
+                  image: "https://ik.imagekit.io/libertyindia/itineraries/north-india.svg",
                   alt: "Gems of North India",
                   category: "Nature & Culture",
                   bestTime: "October - March",

@@ -15,7 +15,7 @@ export default function NaturePage() {
       {/* Hero Section */}
       <section className="relative w-[102vw] h-[50vh] md:h-[60vh] lg:h-[70vh] left-0 right-0 mx-0">
         <Image
-          src="/images/about-india/nature/nature-bg.svg"
+          src="https://ik.imagekit.io/libertyindia/about-india/nature/nature-bg.svg"
           alt="Nature Hero"
           fill
           className="object-cover object-center"
@@ -41,7 +41,7 @@ export default function NaturePage() {
           <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0 w-full h-full">
             <div className="relative h-full w-full">
               <Image
-                src="/images/about-india/nature/picture-1.svg"
+                src="https://ik.imagekit.io/libertyindia/about-india/nature/picture-1.svg"
                 alt="Nature 1"
                 fill
                 className="object-cover object-center"
@@ -50,7 +50,7 @@ export default function NaturePage() {
             </div>
             <div className="relative h-full w-full">
               <Image
-                src="/images/about-india/nature/picture-2.svg"
+                src="https://ik.imagekit.io/libertyindia/about-india/nature/picture-2.svg"
                 alt="Nature 2"
                 fill
                 className="object-cover object-center"
@@ -59,7 +59,7 @@ export default function NaturePage() {
             </div>
             <div className="relative h-full w-full">
               <Image
-                src="/images/about-india/nature/picture-3.svg"
+                src="https://ik.imagekit.io/libertyindia/about-india/nature/picture-3.svg"
                 alt="Nature 3"
                 fill
                 className="object-cover object-center"
@@ -95,21 +95,21 @@ export default function NaturePage() {
             Majestic Mountain Realms
           </h2>
           <p className="text-xs md:text-sm text-gray-600 mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
-            Early structures primarily used wood, later transitioning to rock-cut, such as the Ajanta and Ellora caves (Hindu, Buddhist, Jain) and the monolithic temples at Mahabalipuram
+            Journey through some of the world’s most inspiring mountain regions. From the stark, dramatic landscapes of Leh–Ladakh to the lush valleys of Kashmir, experience nature, culture, and adventure at breathtaking altitudes.
           </p>
         </div>
         <ImageTextOverlay
           startPosition="right"
           items={[
             {
-              image: '/images/about-india/nature/leh-ladakh.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/nature/leh-ladakh.png',
               alt: 'Leh–Ladakh',
               title: 'Leh–Ladakh',
               description:
                 "A high-altitude desert of dramatic landscapes, monasteries, and pristine lakes, offering one of India’s most extraordinary mountain experiences."
             },
             {
-              image: '/images/about-india/nature/kashmir.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/nature/kashmir.png',
               alt: 'Kashmir',
               title: 'Kashmir',
               description:
@@ -133,14 +133,14 @@ export default function NaturePage() {
           startPosition="left"
           items={[
             {
-              image: '/images/about-india/nature/andaman.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/nature/andaman.svg',
               alt: 'Andaman Islands',
               title: 'Andaman Islands',
               description:
                 'Crystal-clear waters, white sand beaches, and untouched natural beauty create a serene tropical escape.'
             },
             {
-              image: '/images/about-india/nature/kovalam.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/nature/kovalam.png',
               alt: 'Kovalam',
               title: 'Kovalam',
               description:
@@ -164,14 +164,14 @@ export default function NaturePage() {
           startPosition="right"
           items={[
             {
-              image: '/images/about-india/nature/jaisalmer.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/nature/jaisalmer.svg',
               alt: 'Jaisalmer',
               title: 'Jaisalmer',
               description:
                 'The Golden City, famed for its sandstone fort, luxury desert camps, and sweeping Thar Desert dunes.'
             },
             {
-              image: '/images/about-india/nature/jodhpur.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/nature/jodhpur.png',
               alt: 'Jodhpur',
               title: 'Jodhpur',
               description:
@@ -195,14 +195,14 @@ export default function NaturePage() {
           startPosition="left"
           items={[
             {
-              image: '/images/about-india/nature/alleppy.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/nature/alleppy.svg',
               alt: 'Alleppey (Alappuzha)',
               title: 'Alleppey (Alappuzha)',
               description:
                 'Known as the Venice of the East, famous for houseboat cruises through palm-lined backwater canals.'
             },
             {
-              image: '/images/about-india/nature/kumarakom.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/nature/kumarakom.png',
               alt: 'Kumarakom',
               title: 'Kumarakom',
               description:
@@ -219,7 +219,7 @@ export default function NaturePage() {
         bgColor="#FDF8E8"
         items={[
           {
-            image: "/images/itineraries/taj-tigers.svg",
+            image: "https://ik.imagekit.io/libertyindia/itineraries/taj-tigers.svg",
             alt: "Taj & Tigers",
             category: "Culture & Nature",
             bestTime: "October - March",
@@ -229,7 +229,7 @@ export default function NaturePage() {
             duration: "13 Days",
           },
           {
-            image: "/images/itineraries/golden-triangle.svg",
+            image: "https://ik.imagekit.io/libertyindia/itineraries/golden-triangle.svg",
             alt: "Golden Triangle of India (Classical)",
             category: "Adventure Tour",
             bestTime: "October - March",
@@ -239,7 +239,7 @@ export default function NaturePage() {
             duration: "13 Days",
           },
           {
-            image: "/images/itineraries/north-india.svg",
+            image: "https://ik.imagekit.io/libertyindia/itineraries/north-india.svg",
             alt: "Gems of North India",
             category: "Nature & Culture",
             bestTime: "October - March",

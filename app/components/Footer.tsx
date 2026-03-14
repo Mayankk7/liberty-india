@@ -54,7 +54,7 @@ export default function Footer() {
       <div className="relative w-[102vw] left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] max-w-none">
         {/* Background Image - As-is, no cropping */}
         <Image
-          src="/images/hero-section/footer-1.svg"
+          src="https://ik.imagekit.io/libertyindia/hero-section/footer-1.svg"
           alt="Misty mountain landscape"
           width={1920}
           height={600}
@@ -67,7 +67,7 @@ export default function Footer() {
         {/* Decorative Icon */}
         <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20">
           <Image
-            src="/images/about-us/top-section-img.svg"
+            src="https://ik.imagekit.io/libertyindia/about-us/top-section-img.svg"
             alt="India monuments"
             width={100}
             height={50}

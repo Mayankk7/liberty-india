@@ -18,7 +18,7 @@ export default function HeritagePage() {
         {/* Heritage Image with Overlay */}
         <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
-            src="/images/about-india/heritage/headers-bg.svg"
+            src="https://ik.imagekit.io/libertyindia/about-india/heritage/headers-bg.png"
             alt="Heritage of India - Ancient doors and architecture"
             fill
             className="object-cover object-center"
@@ -56,19 +56,19 @@ export default function HeritagePage() {
             {/* Image 1 */}
             <div 
               className="relative h-full bg-cover bg-center"
-              style={{ backgroundImage: "url('/images/about-india/heritage/picture-1.svg')" }}
+                style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/heritage/picture-1.svg')" }}
             />
 
             {/* Image 2 */}
             <div 
               className="relative h-full bg-cover bg-center"
-              style={{ backgroundImage: "url('/images/about-india/heritage/picture-2.svg')" }}
+                style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/heritage/picture-2.svg')" }}
             />
 
             {/* Image 3 */}
             <div 
               className="relative h-full bg-cover bg-center"
-              style={{ backgroundImage: "url('/images/about-india/heritage/picture-3.svg')" }}
+                style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/heritage/picture-3.svg')" }}
             />
           </div>
 

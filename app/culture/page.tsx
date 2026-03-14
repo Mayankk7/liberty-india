@@ -16,7 +16,7 @@ export default function CulturePage() {
       <section className="relative w-full pt-16">
         <div className="relative w-[102vw] h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
-            src="/images/about-india/culture/culture-bg.svg"
+            src="https://ik.imagekit.io/libertyindia/about-india/culture/culture-bg.svg"
             alt="Culture of India - Traditional puppets and artistry"
             fill
             className="object-cover object-center"
@@ -49,15 +49,15 @@ export default function CulturePage() {
           <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0">
             <div
               className="relative h-full bg-cover bg-center"
-              style={{ backgroundImage: "url('/images/about-india/culture/picture-1.svg')" }}
+              style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/culture/picture-1.svg')" }}
             />
             <div
               className="relative h-full bg-cover bg-center"
-              style={{ backgroundImage: "url('/images/about-india/culture/picture-2.svg')" }}
+              style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/culture/picture-2.svg')" }}
             />
             <div
               className="relative h-full bg-cover bg-center"
-              style={{ backgroundImage: "url('/images/about-india/culture/picture-3.svg')" }}
+              style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/culture/picture-3.svg')" }}
             />
           </div>
 

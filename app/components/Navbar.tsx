@@ -45,7 +45,7 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
         {/* Logo */}
         <Link href="/" className="shrink-0 mr-8 md:mr-12 lg:mr-16 xl:mr-20">
           <Image
-            src={isWhiteBg ? "/images/hero-section/logo-footer.svg" : "/images/hero-section/logo.svg"}
+            src={isWhiteBg ? "https://ik.imagekit.io/libertyindia/hero-section/logo-footer.svg" : "https://ik.imagekit.io/libertyindia/hero-section/logo.svg"}
             alt="Liberty India"
             width={50}
             height={50}

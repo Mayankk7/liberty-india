@@ -17,7 +17,7 @@ export default function ArchitecturePage() {
       <section className="relative w-full pt-16">
         <div className="relative w-[102vw] h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
-            src="/images/about-india/architecture/architecture-bg.svg"
+            src="https://ik.imagekit.io/libertyindia/about-india/architecture/architecture-bg.svg"
             alt="Architecture of India - Amber Fort"
             fill
             className="object-cover object-center"
@@ -51,8 +51,8 @@ export default function ArchitecturePage() {
           <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0">
             {/* Image 1 */}
             <div className="relative h-full flex items-center justify-center">
-              <Image 
-                  src="/images/about-india/architecture/picture-1.svg" 
+                  <Image 
+                    src="https://ik.imagekit.io/libertyindia/about-india/architecture/picture-1.svg" 
                   alt="Architecture Grid 1" 
                   fill
                   className="object-cover object-center w-full h-full" 
@@ -61,8 +61,8 @@ export default function ArchitecturePage() {
             </div>
             {/* Image 2 */}
             <div className="relative h-full flex items-center justify-center">
-              <Image 
-                  src="/images/about-india/architecture/picture-2.svg" 
+                  <Image 
+                    src="https://ik.imagekit.io/libertyindia/about-india/architecture/picture-2.svg" 
                   alt="Architecture Grid 2" 
                   fill
                   className="object-cover object-center w-full h-full" 
@@ -71,8 +71,8 @@ export default function ArchitecturePage() {
             </div>
             {/* Image 3 */}
             <div className="relative h-full flex items-center justify-center">
-              <Image 
-                  src="/images/about-india/architecture/picture-3.svg" 
+                  <Image 
+                    src="https://ik.imagekit.io/libertyindia/about-india/architecture/picture-3.svg" 
                   alt="Architecture Grid 3" 
                   fill
                   className="object-cover object-center w-full h-full" 
@@ -121,7 +121,7 @@ export default function ArchitecturePage() {
           {/* Nagara */}
           <div className="relative flex-1 flex flex-col items-center">
             <Image
-              src="/images/about-india/architecture/nagara.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/architecture/nagara.png"
               alt="Nagara Temple"
               width={400}
               height={440}
@@ -138,7 +138,7 @@ export default function ArchitecturePage() {
           {/* Dravidian */}
           <div className="relative flex-1 flex flex-col items-center">
             <Image
-              src="/images/about-india/architecture/dravidian.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/architecture/dravidian.svg"
               alt="Dravidian Temple"
               width={400}
               height={440}
@@ -155,7 +155,7 @@ export default function ArchitecturePage() {
           {/* Vesara */}
           <div className="relative flex-1 flex flex-col items-center">
             <Image
-              src="/images/about-india/architecture/vesara.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/architecture/vesara.svg"
               alt="Vesara Temple"
               width={400}
               height={440}
@@ -185,14 +185,14 @@ export default function ArchitecturePage() {
           <ImageTextOverlay
             items={[
               {
-                image: '/images/about-india/architecture/qutub-minar.svg',
+                image: 'https://ik.imagekit.io/libertyindia/about-india/architecture/qutub-minar.png',
                 alt: 'Qutub Minar',
                 title: 'Qutub Minar',
                 description:
                   'A soaring UNESCO landmark of red sandstone, showcasing intricate carvings and the early brilliance of Indo-Islamic design',
               },
               {
-                image: '/images/about-india/architecture/buland-darwaza.svg',
+                image: 'https://ik.imagekit.io/libertyindia/about-india/architecture/buland-darwaza.svg',
                 alt: 'Buland Darwaza',
                 title: 'Buland Darwaza',
                 description:
@@ -216,14 +216,14 @@ export default function ArchitecturePage() {
           <ImageTextOverlay
             items={[
               {
-                image: '/images/about-india/architecture/amber-fort.svg',
+                image: 'https://ik.imagekit.io/libertyindia/about-india/architecture/amber-fort.png',
                 alt: 'Amber Fort',
                 title: 'Amber Fort',
                 description:
                   'Overlooking the Aravalli hills, this majestic palace-fort blends Rajput strength with ornate halls, mirrored chambers, and sweeping courtyards.',
               },
               {
-                image: '/images/about-india/architecture/umaid-bhawan.svg',
+                image: 'https://ik.imagekit.io/libertyindia/about-india/architecture/umaid-bhawan.svg',
                 alt: 'Umaid Bhawan Palace',
                 title: 'Umaid Bhawan Palace',
                 description:
@@ -266,43 +266,64 @@ export default function ArchitecturePage() {
         </section>
 
       {/* Itinerary Section */}
-      <ItineraryCards
-        heading={"Explore the Architecture\nExperience the Journey"}
-        subheading={"Travel through centuries of history with journeys designed for discerning explorers"}
-        bgColor="#FDF8E8"
-        items={[
-          {
-            image: "/images/itineraries/taj-tigers.svg",
-            alt: "Taj & Tigers",
-            category: "Culture & History",
-            bestTime: "October - March",
-            title: "Taj & Tigers",
-            description: "Combine India's most iconic monument with thrilling wildlife. This 9-day journey features the Taj Mahal, royal Rajasthan heritage, and Ranthambore tiger reserve experiences.",
-            price: 1330,
-            duration: "13 Days",
-          },
-          {
-            image: "/images/itineraries/golden-triangle.svg",
-            alt: "Golden Triangle of India (Classical)",
-            category: "Adventure Tour",
-            bestTime: "October - March",
-            title: "Golden Triangle of India (Classical)",
-            description: "India's most classic itinerary in 7 days. Experience Delhi history, Agra's romance with the Taj Mahal, and Jaipur's royal splendour in this perfect introduction to India.",
-            price: 1330,
-            duration: "13 Days",
-          },
-          {
-            image: "/images/itineraries/north-india.svg",
-            alt: "Gems of North India",
-            category: "Culture & History",
-            bestTime: "October - March",
-            title: "Gems of North India",
-            description: "Explore North India's spiritual and architectural treasures. From the sacred Ganges in Varanasi to the temples of Khajuraho and royal palaces of Rajasthan.",
-            price: 1330,
-            duration: "13 Days",
-          },
-        ]}
-      />
+        <ItineraryCards
+          heading={"Explore the Architecture\nExperience the Journey"}
+          subheading={"Travel through centuries of history with journeys designed for discerning explorers"}
+          bgColor="#FDF8E8"
+            items={[
+              {
+                image: 'https://ik.imagekit.io/libertyindia/itineraries/northwest-india.svg',
+                alt: 'Northeast India & The City of Joy',
+                category: 'Culture, Nature, Wildlife',
+                bestTime: 'October – March',
+                title: 'Northeast India & The City of Joy',
+                description: "Experience the iconic wonders of India's Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi's historic sites, and experience the pink city of Jaipur.",
+                price: 1330,
+                duration: '13 Days',
+                slug: 'northeast-india-city-of-joy'
+              },
+              {
+                image: 'https://ik.imagekit.io/libertyindia/itineraries/south-india.svg',
+                alt: 'Gems of South India',
+                category: 'Culture, Nature, Wildlife',
+                bestTime: 'October – March',
+                title: 'Gems of South India',
+                description: 'See the best South India has to offer including the holy towns, coastal temples, historic hill stations, magnificent temples, Rajasthani water temples, rural Kerala, and pristine coastal shores in this unforgettable adventure.',
+                price: 3895,
+                duration: '12 Days',
+                slug: 'gems-south-india'
+              },
+              {
+                image: 'https://ik.imagekit.io/libertyindia/itineraries/rajasthan.svg',
+                alt: 'Colourful Rajasthan',
+                category: 'Cultural, Heritage, On Tour Guidance, Small Group',
+                bestTime: 'October – March',
+                title: 'Colourful Rajasthan',
+                description: "Traverse inward to Rajasthan's regal palaces and royal heritage. From desert forts to palace lakes, experience majestic Jodhpur, Udaipur, Jaipur, Pushkar, Bikaner, and authentic cultural encounters.",
+                price: 3695,
+                duration: '14 Days',
+                slug: 'colourful-rajasthan'
+              }
+            ]}
+        />
+          {/*
+          <ItineraryCards
+            heading={"Explore the Architecture\nExperience the Journey"}
+            subheading={"Travel through centuries of history with journeys designed for discerning explorers"}
+            bgColor="#FDF8E8"
+            items={getItinerariesByCategory('Architecture').map(it => ({
+              image: it.heroImage,
+              alt: it.title,
+              category: it.categories.join(', '),
+              bestTime: it.bestTime,
+              title: it.title,
+              description: it.subtitle,
+              price: Number(it.startingPrice.replace(/[^\d]/g, '')),
+              duration: it.duration,
+              slug: it.slug
+            }))}
+          />
+          */}
 
       {/* Footer */}
       <Footer />

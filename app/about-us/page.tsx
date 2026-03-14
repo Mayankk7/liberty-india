@@ -14,8 +14,8 @@ export default function AboutUsPage() {
       <section className="relative w-full pt-20">
         {/* Team Photo with Overlay */}
         <div className="relative w-full h-[60vh] md:h-[70vh] lg:h-[80vh]">
-          <Image
-            src="/images/about-us/section/liberty-group-pic.svg"
+            <Image
+              src="https://ik.imagekit.io/libertyindia/about-us/section/liberty-group-pic.svg"
             alt="Liberty India team - passionate travel experts committed to crafting exceptional India experiences"
             fill
             className="object-cover object-center"
@@ -57,19 +57,19 @@ export default function AboutUsPage() {
             {/* Image 1 - Palace/Lake */}
             <div 
               className="relative h-full bg-cover bg-center"
-              style={{ backgroundImage: "url('/images/about-us/section/picture-1.svg')" }}
+                style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-us/section/picture-1.svg')" }}
             />
 
             {/* Image 2 - Kerala Backwaters */}
             <div 
               className="relative h-full bg-cover bg-center"
-              style={{ backgroundImage: "url('/images/about-us/section/picture-2.svg')" }}
+                style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-us/section/picture-2.svg')" }}
             />
 
             {/* Image 3 - Kerala Palm Trees */}
             <div 
               className="relative h-full bg-cover bg-center"
-              style={{ backgroundImage: "url('/images/about-us/section/picture-3.svg')" }}
+                style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-us/section/picture-3.svg')" }}
             />
           </div>
 
@@ -93,7 +93,7 @@ export default function AboutUsPage() {
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/about-us/section/picture-4.svg')" }}
+          style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-us/section/picture-4.png')" }}
         />
 
         {/* Centered White Card */}
@@ -146,7 +146,7 @@ export default function AboutUsPage() {
             <div className="group cursor-pointer">
               <div className="relative h-96 md:h-[450px] lg:h-[520px] overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                 <Image
-                  src="/images/about-us/section/picture-5.svg"
+                  src="https://ik.imagekit.io/libertyindia/about-us/section/picture-5.svg"
                   alt="Authentic elephant experience in India"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -172,7 +172,7 @@ export default function AboutUsPage() {
             <div className="group cursor-pointer">
               <div className="relative h-96 md:h-[450px] lg:h-[520px] overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                 <Image
-                  src="/images/about-us/section/picture-6.svg"
+                  src="https://ik.imagekit.io/libertyindia/about-us/section/picture-6.svg"
                   alt="Exclusive heritage site access"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -198,7 +198,7 @@ export default function AboutUsPage() {
             <div className="group cursor-pointer">
               <div className="relative h-96 md:h-[450px] lg:h-[520px] overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                 <Image
-                  src="/images/about-us/section/picture-7.svg"
+                  src="https://ik.imagekit.io/libertyindia/about-us/section/picture-7.svg"
                   alt="Excellence in travel experiences"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -256,7 +256,7 @@ export default function AboutUsPage() {
               </div>
               <div className="relative h-48 md:h-auto">
                 <Image
-                  src="/images/about-us/section/picture-8.svg"
+                  src="https://ik.imagekit.io/libertyindia/about-us/section/picture-8.svg"
                   alt="Local experiences in India"
                   fill
                   className="object-cover"
@@ -268,7 +268,7 @@ export default function AboutUsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               <div className="relative h-48 md:h-auto order-2 md:order-1">
                 <Image
-                  src="/images/about-us/section/picture-9.svg"
+                  src="https://ik.imagekit.io/libertyindia/about-us/section/picture-9.svg"
                   alt="Cultural experiences with local artisans"
                   fill
                   className="object-cover"
@@ -308,7 +308,7 @@ export default function AboutUsPage() {
               </div>
               <div className="relative h-48 md:h-auto">
                 <Image
-                  src="/images/about-us/section/picture-10.svg"
+                  src="https://ik.imagekit.io/libertyindia/about-us/section/picture-10.svg"
                   alt="Professional travel operations team"
                   fill
                   className="object-cover"
@@ -320,7 +320,7 @@ export default function AboutUsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               <div className="relative h-48 md:h-auto order-2 md:order-1">
                 <Image
-                  src="/images/about-us/section/picture-11.svg"
+                  src="https://ik.imagekit.io/libertyindia/about-us/section/picture-11.svg"
                   alt="Sustainable tourism practices"
                   fill
                   className="object-cover"

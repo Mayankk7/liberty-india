@@ -5,18 +5,18 @@ import Image from 'next/image';
 
 /** Month data for the hero carousel - each month maps to a destination & hero image */
 const MONTHS = [
-  { id: 'jan', name: 'Jan', image: '/images/hero-section/feb.png', destination: 'Jallikattu, Tamil Nadu' },
-  { id: 'feb', name: 'Feb', image: '/images/hero-section/feb.png', destination: 'Surajkund Crafts & Folk Festival, Haryana' },
-  { id: 'mar', name: 'Mar', image: '/images/hero-section/march.jpg', destination: 'Auli, Uttarakhand' },
-  { id: 'apr', name: 'Apr', image: '/images/hero-section/april.png', destination: 'Baisakhi Rural Games & Wrestling, Punjab' },
-  { id: 'may', name: 'May', image: '/images/hero-section/may.jpg', destination: 'Thrissur Pooram, Kerala' },
-  { id: 'jun', name: 'Jun', image: '/images/hero-section/june.png', destination: 'Hemis Festival, Ladakh' },
-  { id: 'jul', name: 'Jul', image: '/images/hero-section/july.png', destination: 'Behdienkhlam, Meghalaya' },
-  { id: 'aug', name: 'Aug', image: '/images/hero-section/aug.png', destination: 'Onam (Snake Boat Races / Vallam Kali), Kerala' },
-  { id: 'sept', name: 'Sept', image: '/images/hero-section/sept.png', destination: 'Ganesh Chaturthi, Mumbai' },
-  { id: 'oct', name: 'Oct', image: '/images/hero-section/oct.png', destination: 'Dussehra Fairs & Rural Sports, Pan-India' },
-  { id: 'nov', name: 'Nov', image: '/images/hero-section/nov.png', destination: 'Pushkar Camel Fair, Rajasthan' },
-  { id: 'dec', name: 'Dec', image: '/images/hero-section/dec.png', destination: 'Sunburn, Goa' },
+  { id: 'jan', name: 'Jan', image: 'https://ik.imagekit.io/libertyindia/hero-section/feb.png', destination: 'Jallikattu, Tamil Nadu' },
+  { id: 'feb', name: 'Feb', image: 'https://ik.imagekit.io/libertyindia/hero-section/feb.png', destination: 'Surajkund Crafts & Folk Festival, Haryana' },
+  { id: 'mar', name: 'Mar', image: 'https://ik.imagekit.io/libertyindia/hero-section/march.png', destination: 'Auli, Uttarakhand' },
+  { id: 'apr', name: 'Apr', image: 'https://ik.imagekit.io/libertyindia/hero-section/april.png', destination: 'Baisakhi Rural Games & Wrestling, Punjab' },
+  { id: 'may', name: 'May', image: 'https://ik.imagekit.io/libertyindia/hero-section/may.jpg', destination: 'Thrissur Pooram, Kerala' },
+  { id: 'jun', name: 'Jun', image: 'https://ik.imagekit.io/libertyindia/hero-section/june.png', destination: 'Hemis Festival, Ladakh' },
+  { id: 'jul', name: 'Jul', image: 'https://ik.imagekit.io/libertyindia/hero-section/july.png', destination: 'Behdienkhlam, Meghalaya' },
+  { id: 'aug', name: 'Aug', image: 'https://ik.imagekit.io/libertyindia/hero-section/aug.png', destination: 'Onam (Snake Boat Races / Vallam Kali), Kerala' },
+  { id: 'sept', name: 'Sept', image: 'https://ik.imagekit.io/libertyindia/hero-section/sept.png', destination: 'Ganesh Chaturthi, Mumbai' },
+  { id: 'oct', name: 'Oct', image: 'https://ik.imagekit.io/libertyindia/hero-section/oct.png', destination: 'Dussehra Fairs & Rural Sports, Pan-India' },
+  { id: 'nov', name: 'Nov', image: 'https://ik.imagekit.io/libertyindia/hero-section/nov.png', destination: 'Pushkar Camel Fair, Rajasthan' },
+  { id: 'dec', name: 'Dec', image: 'https://ik.imagekit.io/libertyindia/hero-section/dec.png', destination: 'Sunburn, Goa' },
 ];
 
 /** Number of months visible in the bottom slider */
