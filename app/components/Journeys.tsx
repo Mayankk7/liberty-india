@@ -29,7 +29,7 @@ const journeys: Journey[] = [
     tags: (it.categories as JourneyTag[]),
     price: parseInt(it.startingPrice.replace(/[^\d]/g, '')) || 0,
     duration: it.duration,
-    type: it.durationDays > 10 ? 'small-group' : 'private', // Adjust as needed, or use a category/tag if available
+    type: it.durationDays > 10 ? ('small-group' as 'small-group') : ('private' as 'private'), // Fix type assignment
   })),
 ];
 
