@@ -211,7 +211,7 @@ export default function Footer() {
             {/* Logo */}
             <div className="flex items-center gap-5">
               <Image
-                src="/images/hero-section/logo-footer.svg"
+                src="https://ik.imagekit.io/libertyindia/hero-section/logo-footer.svg"
                 alt="Liberty India Logo"
                 width={70}
                 height={70}

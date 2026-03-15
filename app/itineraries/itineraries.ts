@@ -629,7 +629,7 @@ export const itineraries: Itinerary[] = [
     description:
       "Arrive at Delhi International Airport, where you'll be met by our representative and transferred to your hotel. Settle in and enjoy the rest of the day at leisure, taking in the energy of India's capital city.",
     overnight: "Delhi",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-1.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-1.png?updatedAt=1773538850824",
   },
   {
     day: 2,
@@ -637,7 +637,7 @@ export const itineraries: Itinerary[] = [
     description:
       "After breakfast, proceed for a guided city tour of Delhi. Begin with a visit to Qutub Minar, the 12th‑century Tower of Victory. Continue exploring New Delhi, driving past the President’s House, North and South Blocks, and Parliament House. In the afternoon, head to Old Delhi for lunch at Haveli Dharampura, drive past the Red Fort, visit Jama Masjid, and enjoy a cycle rickshaw ride through the narrow lanes and spice markets of the old city.",
     overnight: "Delhi",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-2.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-2.png?updatedAt=1773539739934",
   },
   {
     day: 3,
@@ -645,7 +645,7 @@ export const itineraries: Itinerary[] = [
     description:
       "After breakfast, drive to Mandawa in the Shekhawati region, famed as Rajasthan’s open‑air art gallery. Check into your heritage hotel in the former Mandawa Castle, adorned with frescoes and a gateway dedicated to Lord Krishna. Later, explore the richly painted havelis of Nawalgarh and Jhunjhunu, seeing some of the finest murals in Rajasthan.",
     overnight: "Mandawa",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-3.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-3.png?updatedAt=1773539765039",
   },
   {
     day: 4,
@@ -653,7 +653,7 @@ export const itineraries: Itinerary[] = [
     description:
       "Depart for Bikaner after breakfast. On arrival, check in at your hotel and relax. Later, visit Junagadh Fort, an impressive complex of palaces, temples, balconies, and courtyards, renowned for its intricate stonework and richly decorated interiors.",
     overnight: "Bikaner",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-4.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-4.png?updatedAt=1773539161291",
   },
   {
     day: 5,
@@ -661,7 +661,7 @@ export const itineraries: Itinerary[] = [
     description:
       "After breakfast, drive across the Thar Desert to Jaisalmer, the fabled Golden City. On arrival, check in at your hotel. The rest of the day is at leisure to soak in the desert atmosphere and explore the surrounding streets at your own pace.",
     overnight: "Jaisalmer",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-5.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-5.png?updatedAt=1773539176393",
   },
   {
     day: 6,
@@ -669,7 +669,7 @@ export const itineraries: Itinerary[] = [
     description:
       "Spend the day discovering Jaisalmer’s architectural treasures. Visit Patwon Ji ki Haveli and Nathmal Ji ki Haveli, remarkable for their carved sandstone façades, then explore Jaisalmer Fort with its bustling lanes and Jain temples. Continue to Lake Gadisar and the royal cenotaphs at Bada Bagh, and in the evening enjoy a camel ride on the Sam Sand Dunes.",
     overnight: "Jaisalmer",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-6.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-6.png?updatedAt=1773539216072",
   },
   {
     day: 7,
@@ -677,7 +677,7 @@ export const itineraries: Itinerary[] = [
     description:
       "After breakfast, drive to Jodhpur, the Blue City of Rajasthan. On arrival, check in at your hotel. Later, begin exploring the city’s old quarters around the Clock Tower Market, filled with spices, textiles, and local handicrafts, or simply enjoy the evening at leisure.",
     overnight: "Jodhpur",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-7.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-7.png?updatedAt=1773539284444",
   },
   {
     day: 8,
@@ -685,7 +685,7 @@ export const itineraries: Itinerary[] = [
     description:
       "Today, visit the mighty Mehrangarh Fort, one of India’s most spectacular hill forts, with sweeping views over the blue‑washed old city. Continue to Jaswant Thada, a serene marble cenotaph built in memory of Maharaja Jaswant Singh II, and spend time around the vibrant Clock Tower and Sardar Market area.",
     overnight: "Jodhpur",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-8.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-8.png?updatedAt=1773539306046",
   },
   {
     day: 9,
@@ -693,7 +693,7 @@ export const itineraries: Itinerary[] = [
     description:
       "Depart Jodhpur after breakfast, driving through rural Rajasthan to the Ranakpur Jain Temples. Explore the 15th‑century Chaumukha Temple, famed for its 29 halls and 1,444 uniquely carved pillars. Continue onward to Udaipur, the romantic City of Lakes, and check in at your hotel for the night.",
     overnight: "Udaipur",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-9.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-9.png?updatedAt=1773539337661",
   },
   {
     day: 10,
@@ -701,7 +701,7 @@ export const itineraries: Itinerary[] = [
     description:
       "Discover Udaipur’s regal charm with a visit to the vast City Palace complex and its Crystal Gallery. Later, visit Jagdish Temple and Saheliyon‑ki‑Bari, the Garden of the Maids of Honour. In the late afternoon, enjoy a shared boat ride on Lake Pichola, admiring the Lake Palace Hotel, the City Palace, and the atmospheric ghats along the lakefront.",
     overnight: "Udaipur",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-10.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-10.png?updatedAt=1773539469997",
   },
   {
     day: 11,
@@ -709,7 +709,7 @@ export const itineraries: Itinerary[] = [
     description:
       "After breakfast, drive to Deogarh, a rural town surrounded by rocky hills and small lakes. Check in at your heritage hotel and later head out on a relaxed village walk, meeting local residents and experiencing the slower rhythms of countryside life.",
     overnight: "Deogarh",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-11.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-11.png?updatedAt=1773539507149",
   },
   {
     day: 12,
@@ -717,7 +717,7 @@ export const itineraries: Itinerary[] = [
     description:
       "Depart Deogarh after breakfast and drive to Jaipur, the famed Pink City. On arrival, check in at your hotel and enjoy the remainder of the day at leisure, with time to relax or begin exploring the nearby bazaars.",
     overnight: "Jaipur",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-12.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-12.png",
   },
   {
     day: 13,
@@ -725,7 +725,7 @@ export const itineraries: Itinerary[] = [
     description:
       "Enjoy a full‑day guided tour of Jaipur. Visit the hilltop Amber Fort and the photogenic Panna Meena Step Well, then explore the City Palace and the Jantar Mantar stone observatory. Pause for photos at the iconic Hawa Mahal before browsing Jaipur’s colourful markets for textiles, jewellery, and handicrafts.",
     overnight: "Jaipur",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-13.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-13.png?updatedAt=1773539532705",
   },
   {
     day: 14,
@@ -733,7 +733,7 @@ export const itineraries: Itinerary[] = [
     description:
       "After breakfast, drive towards Agra, stopping en route at Fatehpur Sikri, Emperor Akbar’s beautifully preserved but short‑lived sandstone capital. Explore its palaces, courtyards, and mosques before continuing to Agra and checking in at your hotel.",
     overnight: "Agra",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-14.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-14.png?updatedAt=1773539550428",
   },
   {
     day: 15,
@@ -741,7 +741,7 @@ export const itineraries: Itinerary[] = [
     description:
       "Rise early for a sunrise visit to the Taj Mahal, watching the marble monument change colour in the soft morning light. Return to the hotel for breakfast, then visit Itmad‑ud‑Daulah, the exquisite ‘Baby Taj’ with delicate marble inlay work. In the evening, enjoy a cooking session and dinner with a local family.",
     overnight: "Agra",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-15.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-15.png?updatedAt=1773539560731",
   },
   {
     day: 16,
@@ -749,7 +749,7 @@ export const itineraries: Itinerary[] = [
     description:
       "After breakfast, drive back to Delhi. On arrival, transfer to Delhi International Airport for your outbound flight, where your Colourful Rajasthan journey concludes.",
     overnight: "—",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-16.png",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-16.png",
   },
 ],
 
