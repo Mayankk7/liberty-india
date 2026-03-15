@@ -102,6 +102,7 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
               'taj-and-tigers': 'Taj-and-Tigers.pdf',
               'classical-golden-triangle': 'Classical Golden Triangle.docx',
               'south-india-tamil-nadu': 'Unveiling the Enchanting South – Tamil Nadu & Kerala.docx',
+              'colourful-rajasthan': 'Colourful Rajasthan.docx',
               // Add more mappings as needed
             };
             const fileName = fileMap[itinerary.slug] || fileMap[itinerary.title?.toLowerCase().replace(/\s+/g, '-')];
