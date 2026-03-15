@@ -2,6 +2,11 @@
 
 import { Itinerary } from './itineraries';
 import Footer from '../components/Footer';
+import dynamic from 'next/dynamic';
+
+const IndiaMap = dynamic(() => import('./IndiaMap'), {
+  ssr: false,
+});
 
 const signatureExperiences = [
   {
@@ -59,7 +64,7 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
         </div>
         {/* Book Button bottom right */}
         <div className="absolute bottom-8 right-8">
-          <button className="bg-gray-300 text-gray-700 px-16 py-3 rounded-lg text-lg font-semibold opacity-80 cursor-not-allowed" disabled>Book</button>
+          <button className="bg-gray-300 text-gray-700 px-8 py-3 rounded-lg text-lg font-semibold opacity-80 cursor-not-allowed" disabled>Book</button>
         </div>
       </div>
 
@@ -94,9 +99,9 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
             const fileMap: Record<string, string> = {
               'northeast-india-city-of-joy': 'Northeast India &  The City of Joy.pdf',
               'kairali-ayurvedic-healing-village': 'Ayurveda - Kairali.docx',
-              'taj-tigers': 'Taj & Tigers.pdf',
+              'taj-and-tigers': 'Taj-and-Tigers.pdf',
               'classical-golden-triangle': 'Classical Golden Triangle.docx',
-              'unveiling-enchanting-south': 'Unveiling the Enchanting South – Tamil Nadu & Kerala.docx',
+              'south-india-tamil-nadu': 'Unveiling the Enchanting South – Tamil Nadu & Kerala.docx',
               // Add more mappings as needed
             };
             const fileName = fileMap[itinerary.slug] || fileMap[itinerary.title?.toLowerCase().replace(/\s+/g, '-')];
@@ -214,8 +219,13 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
       {showItinerary && (
         <section id="itinerary" className="w-full flex flex-col md:flex-row justify-center items-stretch py-12 px-0 bg-transparent">
           {/* Map Section Left - Sticky */}
-          <div className="hidden md:flex flex-col justify-start items-start bg-white rounded-l-2xl shadow border border-[#F8F6E1] min-h-175 max-h-full w-150 max-w-200 pt-10 pl-10 pr-8 pb-8 sticky top-20 h-[calc(100vh-6rem)]">
-            <Image src={itinerary.mapImage || '/images/itineraries/north-east/map.svg'} alt="India Map" width={560} height={420} className="object-contain w-full h-auto mb-0" style={{ alignSelf: 'flex-start' }} />
+          <div className="hidden md:flex flex-col justify-start items-start bg-white  shadow border border-[#F8F6E1] min-h-175 max-h-full w-150 max-w-200 pt-10 pl-10 pr-8 pb-8 sticky top-20 h-[calc(100vh-6rem)]">
+            <IndiaMap coordinates={(itinerary.coordinates ?? []).map(stop => ({
+              name: stop.name,
+              lat: stop.lat,
+              lng: stop.lng,
+              modeToNext: stop.modeToNext === 'road' || stop.modeToNext === 'air' ? stop.modeToNext : null,
+            }))} />
           </div>
           {/* Itinerary Cards Section Right */}
           <div className="flex-1 flex flex-col bg-white rounded-r-2xl shadow border border-[#F8F6E1] min-h-175 max-h-full w-full md:w-[44vw] px-0 md:px-8 py-10">

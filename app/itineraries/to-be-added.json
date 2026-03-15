@@ -26,21 +26,136 @@
       "Ascend Amber Fort, explore Panna Meena Step Well, and wander Jaipur's vibrant markets",
     ],
     days: [
-      { day: 1, title: "Arrive in Delhi", description: "Arrive at Delhi International Airport, where you'll be met by our representative and transferred to your hotel. Settle in and enjoy the rest of the day at leisure, taking in the energy of India's capital city.", overnight: "Delhi", image: "/images/itineraries/north-east/day-1.svg" },
-      { day: 2, title: "Exploring Delhi", description: "Begin with a tour of Old Delhi. Drive past the Red Fort and Jama Masjid, then enjoy a cycle rickshaw ride through the narrow, bustling lanes of Chandni Chowk. Visit the Digambar Jain Temple along the way. In the afternoon, explore New Delhi's grand landmarks. Drive past Rashtrapati Bhawan, Rajpath, and India Gate, then visit Humayun's Tomb, a masterpiece of Mughal architecture, and Qutub Minar with its ancient Iron Pillar dating to the 4th century AD.", overnight: "Delhi", image: "/images/itineraries/north-east/day-2.svg" },
-      { day: 3, title: "Delhi → Mandawa", description: "After breakfast, depart for Mandawa (approx. 6 hours), a town in the heart of the Shekhawati region, known as the open-air art gallery of Rajasthan. Check in at your hotel, a heritage property set within the historic Mandawa Fort. Later, explore the town's painted havelis, including the exquisitely decorated Gulab Rai Wadia Haveli and the unique twin-winged Chowkhadi Haveli, renowned for their beautifully preserved frescoes and murals.", overnight: "Mandawa", image: "/images/itineraries/north-east/day-3.svg" },
-      { day: 4, title: "Mandawa → Bikaner", description: "After breakfast, depart for Bikaner (approx. 4 hours). On arrival, check in at your hotel and rest. Later, visit Junagadh Fort, built in 1593 by Raja Rai Singh. Explore its ornate palaces including Karan Mahal, Anup Mahal, and Phool Mahal, along with intricately designed galleries, windows, and the impressive Zenana quarters.", overnight: "Bikaner", image: "/images/itineraries/north-east/day-4.svg" },
-      { day: 5, title: "Bikaner → Jaisalmer", description: "After breakfast, depart for Jaisalmer (approx. 6 hours), the golden city rising from the heart of the Thar Desert. On arrival, check in at your hotel and enjoy the rest of the day at leisure, soaking in the desert atmosphere.", overnight: "Jaisalmer", image: "/images/itineraries/north-east/day-5.svg" },
-      { day: 6, title: "Exploring Jaisalmer", description: "Begin with a visit to Patwon Ji ki Haveli, a cluster of five ornate mansions built over 50 years starting in 1805, followed by the asymmetrical Nathmal Ji ki Haveli, designed by two brothers who worked on opposite sides simultaneously. Continue to Jaisalmer Fort, the world's largest living fort, still home to families who have resided here for over 800 years. Explore the Jain Temples within, then visit Lake Gadisar and the royal cenotaphs at Bada Bagh.", overnight: "Jaisalmer", image: "/images/itineraries/north-east/day-6.svg" },
-      { day: 7, title: "Jaisalmer → Jodhpur", description: "After breakfast, drive to Jodhpur (approx. 5 hours), the Blue City of Rajasthan, and check in at your hotel. In the evening, explore the vibrant Clock Tower Market, a sensory feast of spices, textiles, handicrafts, and local street food.", overnight: "Jodhpur", image: "/images/itineraries/north-east/day-7.svg" },
-      { day: 8, title: "Jodhpur → Ranakpur → Udaipur", description: "Depart for Udaipur, stopping en route at the magnificent Ranakpur Jain Temples. Over 500 years old and superbly preserved, the main Chaumukha Temple dedicated to Adinath features 29 halls supported by 1,444 pillars, no two of which are exactly alike. Continue to Udaipur, the City of Lakes, and check in at your hotel. Enjoy the rest of the evening at leisure.", overnight: "Udaipur", image: "/images/itineraries/north-east/day-8.svg" },
-      { day: 9, title: "Exploring Udaipur", description: "Visit the magnificent City Palace, a grand complex of courtyards, pavilions, and hanging gardens, along with its Crystal Gallery housing an extraordinary collection of crystal artefacts. Later, explore Jagdish Temple and Saheliyon-ki-Bari, the Garden of the Maids of Honour. In the late afternoon, enjoy a shared boat ride on Lake Pichola, taking in spectacular views of the City Palace, the Lake Palace Hotel, and the picturesque ghats along the water's edge.", overnight: "Udaipur", image: "/images/itineraries/north-east/day-9.svg" },
-      { day: 10, title: "Udaipur → Chittorgarh → Bundi", description: "Depart for Bundi, stopping en route at Chittorgarh Fort, a legendary Rajput stronghold that endured three devastating sieges across its turbulent history—from Sultan Ala-ud-din Khilji in 1303 to Mughal Emperor Akbar in 1568. Continue to Bundi and check in at your hotel. This charming princely town, nestled in the hollow of green hills, retains a rustic, timeless appeal far from the tourist trail.", overnight: "Bundi", image: "/images/itineraries/north-east/day-10.svg" },
-      { day: 11, title: "Bundi → Jaipur", description: "After breakfast, explore the temples of Menal and Bijolia, dating from the 12th century. Visit the Taragarh Fort, the Rajput Chattar Mahal Palace with its magnificent 18th-century paintings, the ornately sculpted Rani ki Baori step well, and the royal cenotaphs. Later, drive to Jaipur (approx. 4 hours), the Pink City, and check in at your hotel.", overnight: "Jaipur", image: "/images/itineraries/north-east/day-11.svg" },
-      { day: 12, title: "Exploring Jaipur", description: "Begin with a guided excursion to the magnificent Amber Fort, the ancient Kachawaha capital. Ascend through five defensive gates to discover ornate halls, temples, and sweeping views. Nearby, visit the intriguing Panna Meena Step Well, an eight-storey 16th-century marvel with criss-crossing staircases. In the afternoon, tour the City Palace, the Jantar Mantar stone observatory, and stop for photographs at the iconic Hawa Mahal. End the day wandering through Jaipur's colourful traditional markets.", overnight: "Jaipur", image: "/images/itineraries/north-east/day-12.svg" },
-      { day: 13, title: "Jaipur → Fatehpur Sikri → Agra", description: "After breakfast, depart for Agra (approx. 6 hours), stopping en route at Fatehpur Sikri, the exquisite red sandstone city built by Akbar the Great in 1569 and mysteriously abandoned shortly after. On arrival, visit Agra Fort, a magnificent 16th-century fortress blending military strength with refined Mughal interiors, where Emperor Shah Jahan was famously imprisoned by his own son.", overnight: "Agra", image: "/images/itineraries/north-east/day-13.svg" },
-      { day: 14, title: "Agra → Delhi", description: "Rise early to witness the Taj Mahal at sunrise—a sublime experience of shifting light and colour across one of the world's most celebrated monuments. Return to the hotel for breakfast. Later, visit the Itmad-ud-Daula Tomb, the delicate marble mausoleum known as the Baby Taj. Afterwards, drive to Delhi International Airport for your onward flight. End of tour.", overnight: "—", image: "/images/itineraries/north-east/day-1.svg" },
-    ],
+  {
+    day: 1,
+    title: "Arrive in Delhi",
+    description:
+      "Arrive at Delhi International Airport, where you'll be met by our representative and transferred to your hotel. Settle in and enjoy the rest of the day at leisure, taking in the energy of India's capital city.",
+    overnight: "Delhi",
+    image: "/images/itineraries/colourful-rajasthan/day-1.svg",
+  },
+  {
+    day: 2,
+    title: "Exploring Delhi",
+    description:
+      "After breakfast, proceed for a guided city tour of Delhi. Begin with a visit to Qutub Minar, the 12th‑century Tower of Victory. Continue exploring New Delhi, driving past the President’s House, North and South Blocks, and Parliament House. In the afternoon, head to Old Delhi for lunch at Haveli Dharampura, drive past the Red Fort, visit Jama Masjid, and enjoy a cycle rickshaw ride through the narrow lanes and spice markets of the old city.",
+    overnight: "Delhi",
+    image: "/images/itineraries/colourful-rajasthan/day-2.svg",
+  },
+  {
+    day: 3,
+    title: "Delhi → Mandawa",
+    description:
+      "After breakfast, drive to Mandawa in the Shekhawati region, famed as Rajasthan’s open‑air art gallery. Check into your heritage hotel in the former Mandawa Castle, adorned with frescoes and a gateway dedicated to Lord Krishna. Later, explore the richly painted havelis of Nawalgarh and Jhunjhunu, seeing some of the finest murals in Rajasthan.",
+    overnight: "Mandawa",
+    image: "/images/itineraries/colourful-rajasthan/day-3.svg",
+  },
+  {
+    day: 4,
+    title: "Mandawa → Bikaner",
+    description:
+      "Depart for Bikaner after breakfast. On arrival, check in at your hotel and relax. Later, visit Junagadh Fort, an impressive complex of palaces, temples, balconies, and courtyards, renowned for its intricate stonework and richly decorated interiors.",
+    overnight: "Bikaner",
+    image: "/images/itineraries/colourful-rajasthan/day-4.svg",
+  },
+  {
+    day: 5,
+    title: "Bikaner → Jaisalmer",
+    description:
+      "After breakfast, drive across the Thar Desert to Jaisalmer, the fabled Golden City. On arrival, check in at your hotel. The rest of the day is at leisure to soak in the desert atmosphere and explore the surrounding streets at your own pace.",
+    overnight: "Jaisalmer",
+    image: "/images/itineraries/colourful-rajasthan/day-5.svg",
+  },
+  {
+    day: 6,
+    title: "Exploring Jaisalmer",
+    description:
+      "Spend the day discovering Jaisalmer’s architectural treasures. Visit Patwon Ji ki Haveli and Nathmal Ji ki Haveli, remarkable for their carved sandstone façades, then explore Jaisalmer Fort with its bustling lanes and Jain temples. Continue to Lake Gadisar and the royal cenotaphs at Bada Bagh, and in the evening enjoy a camel ride on the Sam Sand Dunes.",
+    overnight: "Jaisalmer",
+    image: "/images/itineraries/colourful-rajasthan/day-6.svg",
+  },
+  {
+    day: 7,
+    title: "Jaisalmer → Jodhpur",
+    description:
+      "After breakfast, drive to Jodhpur, the Blue City of Rajasthan. On arrival, check in at your hotel. Later, begin exploring the city’s old quarters around the Clock Tower Market, filled with spices, textiles, and local handicrafts, or simply enjoy the evening at leisure.",
+    overnight: "Jodhpur",
+    image: "/images/itineraries/colourful-rajasthan/day-7.svg",
+  },
+  {
+    day: 8,
+    title: "Exploring Jodhpur",
+    description:
+      "Today, visit the mighty Mehrangarh Fort, one of India’s most spectacular hill forts, with sweeping views over the blue‑washed old city. Continue to Jaswant Thada, a serene marble cenotaph built in memory of Maharaja Jaswant Singh II, and spend time around the vibrant Clock Tower and Sardar Market area.",
+    overnight: "Jodhpur",
+    image: "/images/itineraries/colourful-rajasthan/day-8.svg",
+  },
+  {
+    day: 9,
+    title: "Jodhpur → Ranakpur → Udaipur",
+    description:
+      "Depart Jodhpur after breakfast, driving through rural Rajasthan to the Ranakpur Jain Temples. Explore the 15th‑century Chaumukha Temple, famed for its 29 halls and 1,444 uniquely carved pillars. Continue onward to Udaipur, the romantic City of Lakes, and check in at your hotel for the night.",
+    overnight: "Udaipur",
+    image: "/images/itineraries/colourful-rajasthan/day-9.svg",
+  },
+  {
+    day: 10,
+    title: "Exploring Udaipur",
+    description:
+      "Discover Udaipur’s regal charm with a visit to the vast City Palace complex and its Crystal Gallery. Later, visit Jagdish Temple and Saheliyon‑ki‑Bari, the Garden of the Maids of Honour. In the late afternoon, enjoy a shared boat ride on Lake Pichola, admiring the Lake Palace Hotel, the City Palace, and the atmospheric ghats along the lakefront.",
+    overnight: "Udaipur",
+    image: "/images/itineraries/colourful-rajasthan/day-10.svg",
+  },
+  {
+    day: 11,
+    title: "Udaipur → Deogarh",
+    description:
+      "After breakfast, drive to Deogarh, a rural town surrounded by rocky hills and small lakes. Check in at your heritage hotel and later head out on a relaxed village walk, meeting local residents and experiencing the slower rhythms of countryside life.",
+    overnight: "Deogarh",
+    image: "/images/itineraries/colourful-rajasthan/day-11.svg",
+  },
+  {
+    day: 12,
+    title: "Deogarh → Jaipur",
+    description:
+      "Depart Deogarh after breakfast and drive to Jaipur, the famed Pink City. On arrival, check in at your hotel and enjoy the remainder of the day at leisure, with time to relax or begin exploring the nearby bazaars.",
+    overnight: "Jaipur",
+    image: "/images/itineraries/colourful-rajasthan/day-12.svg",
+  },
+  {
+    day: 13,
+    title: "Exploring Jaipur",
+    description:
+      "Enjoy a full‑day guided tour of Jaipur. Visit the hilltop Amber Fort and the photogenic Panna Meena Step Well, then explore the City Palace and the Jantar Mantar stone observatory. Pause for photos at the iconic Hawa Mahal before browsing Jaipur’s colourful markets for textiles, jewellery, and handicrafts.",
+    overnight: "Jaipur",
+    image: "/images/itineraries/colourful-rajasthan/day-13.svg",
+  },
+  {
+    day: 14,
+    title: "Jaipur → Fatehpur Sikri → Agra",
+    description:
+      "After breakfast, drive towards Agra, stopping en route at Fatehpur Sikri, Emperor Akbar’s beautifully preserved but short‑lived sandstone capital. Explore its palaces, courtyards, and mosques before continuing to Agra and checking in at your hotel.",
+    overnight: "Agra",
+    image: "/images/itineraries/colourful-rajasthan/day-14.svg",
+  },
+  {
+    day: 15,
+    title: "Agra",
+    description:
+      "Rise early for a sunrise visit to the Taj Mahal, watching the marble monument change colour in the soft morning light. Return to the hotel for breakfast, then visit Itmad‑ud‑Daulah, the exquisite ‘Baby Taj’ with delicate marble inlay work. In the evening, enjoy a cooking session and dinner with a local family.",
+    overnight: "Agra",
+    image: "/images/itineraries/colourful-rajasthan/day-15.svg",
+  },
+  {
+    day: 16,
+    title: "Agra → Delhi – Departure",
+    description:
+      "After breakfast, drive back to Delhi. On arrival, transfer to Delhi International Airport for your outbound flight, where your Colourful Rajasthan journey concludes.",
+    overnight: "—",
+    image: "/images/itineraries/colourful-rajasthan/day-16.svg",
+  },
+];
+
     inclusions: [
       "Accommodation in single/twin rooms at selected hotel category or similar",
       "Daily breakfast",

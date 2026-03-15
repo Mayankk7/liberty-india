@@ -47,9 +47,13 @@ const tagColors: Record<JourneyTag, string> = {
 };
 
 export default function Journeys() {
-  const [activeTab, setActiveTab] = useState<'small-group' | 'private'>('small-group');
+  const [activeTab, setActiveTab] = useState<'small-group' | 'private' | 'all'>('small-group');
+  const [showFilters, setShowFilters] = useState(true);
 
-  const filteredJourneys = journeys.filter((journey) => journey.type === activeTab);
+  const filteredJourneys =
+    activeTab === 'all'
+      ? journeys
+      : journeys.filter((journey) => journey.type === activeTab);
 
   return (
     <section
@@ -68,31 +72,33 @@ export default function Journeys() {
             Journeys
           </h2>
 
-          {/* Toggle Buttons */}
-          <div className="inline-flex rounded-full border border-gray-300 p-1 bg-gray-50">
-            <button
-              onClick={() => setActiveTab('private')}
-              className={`px-6 py-2.5 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 cursor-pointer ${
-                activeTab === 'private'
-                  ? 'bg-[#E07B39] text-white shadow-md'
-                  : 'bg-transparent text-gray-600 hover:text-gray-900'
-              }`}
-              style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-            >
-              Private Group Journeys
-            </button>
-            <button
-              onClick={() => setActiveTab('small-group')}
-              className={`px-6 py-2.5 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 cursor-pointer ${
-                activeTab === 'small-group'
-                  ? 'bg-[#E07B39] text-white shadow-md'
-                  : 'bg-transparent text-gray-600 hover:text-gray-900'
-              }`}
-              style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-            >
-              Small Group Journeys
-            </button>
-          </div>
+          {/* Toggle Buttons - hide when showing all */}
+          {showFilters && (
+            <div className="inline-flex rounded-full border border-gray-300 p-1 bg-gray-50">
+              <button
+                onClick={() => setActiveTab('private')}
+                className={`px-6 py-2.5 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 cursor-pointer ${
+                  activeTab === 'private'
+                    ? 'bg-[#E07B39] text-white shadow-md'
+                    : 'bg-transparent text-gray-600 hover:text-gray-900'
+                }`}
+                style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+              >
+                Private Group Journeys
+              </button>
+              <button
+                onClick={() => setActiveTab('small-group')}
+                className={`px-6 py-2.5 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 cursor-pointer ${
+                  activeTab === 'small-group'
+                    ? 'bg-[#E07B39] text-white shadow-md'
+                    : 'bg-transparent text-gray-600 hover:text-gray-900'
+                }`}
+                style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+              >
+                Small Group Journeys
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Journeys Grid */}
@@ -184,18 +190,37 @@ export default function Journeys() {
           })}
         </div>
 
-        {/* View All Button */}
+        {/* Toggle View Button */}
         <div className="text-center mt-12">
-          <a
-            href="#"
-            className="inline-block px-10 py-3.5 text-base font-medium text-white rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
-            style={{
-              backgroundColor: '#E07B39',
-              fontFamily: 'var(--font-merriweather), Georgia, serif',
-            }}
-          >
-            View All Journeys
-          </a>
+          {showFilters ? (
+            <button
+              className="inline-block px-10 py-3.5 text-base font-medium text-white rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
+              style={{
+                backgroundColor: '#E07B39',
+                fontFamily: 'var(--font-merriweather), Georgia, serif',
+              }}
+              onClick={() => {
+                setActiveTab('all');
+                setShowFilters(false);
+              }}
+            >
+              View All Journeys
+            </button>
+          ) : (
+            <button
+              className="inline-block px-10 py-3.5 text-base font-medium text-white rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
+              style={{
+                backgroundColor: '#E07B39',
+                fontFamily: 'var(--font-merriweather), Georgia, serif',
+              }}
+              onClick={() => {
+                setActiveTab('small-group');
+                setShowFilters(true);
+              }}
+            >
+              Hide Journeys
+            </button>
+          )}
         </div>
       </div>
     </section>

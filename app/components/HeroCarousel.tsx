@@ -133,7 +133,7 @@ export default function HeroCarousel() {
         {/* Logo */}
         <div className="mb-6 md:mb-8">
           <Image
-            src="/images/hero-section/logo.svg"
+            src="https://ik.imagekit.io/libertyindia/hero-section/logo.svg"
             alt="Liberty India logo"
             width={90}
             height={90}

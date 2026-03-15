@@ -67,19 +67,23 @@ export default function AboutUs() {
           </p>
 
           {/* CTA Button */}
-          <Link
-            href="/about-us"
+          <a
             className="inline-block px-8 py-3 md:px-10 md:py-3.5 text-sm md:text-base font-medium text-white rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl hover:brightness-110 cursor-pointer transform"
             style={{
               backgroundColor: '#E07B39',
               fontFamily: 'var(--font-merriweather), Georgia, serif',
             }}
             aria-label="Discover more about Liberty India's travel experiences"
+            href="/about-us"
+            onClick={e => {
+              if (!['/about-us'].includes('/about-us')) {
+                e.preventDefault();
+                window.location.href = '/under-development';
+              }
+            }}
           >
-              <Link href="/about-us" className="" onClick={e => { if (!['/about-us'].includes('/about-us')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
-                Discover Now
-              </Link>
-          </Link>
+            Discover more about Liberty India's travel experiences
+          </a>
         </div>
       </div>
 

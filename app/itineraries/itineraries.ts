@@ -66,6 +66,7 @@ export interface Itinerary {
   heroImage: string;
   overviewImage: string;
   mapImage: string;
+  coordinates?: MapStop[];
 }
 
 // ─── Helper: Get itineraries by category ────────────────────────────────────
@@ -77,6 +78,91 @@ export function getItinerariesByCategory(category: ItineraryCategory): Itinerary
 export function getItineraryBySlug(slug: string): Itinerary | undefined {
   return itineraries.find((it) => it.slug === slug);
 }
+
+// ─── Map routes for interactive maps ────────────────────────────────────────
+
+export interface MapStop {
+  name: string;
+  lat: number;
+  lng: number;
+  modeToNext?: "road" | "air" | "rail";
+}
+
+// Keyed by itinerary slug
+export const ITINERARY_MAP_ROUTES: Record<string, MapStop[]> = {
+  // 1. Northeast India & The City of Joy
+  "northeast-india-city-of-joy": [
+    { name: "Kolkata", lat: 22.5726, lng: 88.3639, modeToNext: "air" },
+    { name: "Dibrugarh", lat: 27.4728, lng: 94.912, modeToNext: "road" },
+    { name: "Jorhat", lat: 26.7509, lng: 94.2037, modeToNext: "road" },
+    { name: "Kaziranga", lat: 26.5775, lng: 93.1711, modeToNext: "road" },
+    { name: "Shillong", lat: 25.5788, lng: 91.8933, modeToNext: "road" },
+    { name: "Guwahati", lat: 26.1445, lng: 91.7362, modeToNext: "air" },
+    { name: "Kolkata", lat: 22.5726, lng: 88.3639 },
+  ],
+
+  // 2. Kairali Ayurvedic Healing Village
+  "kairali-ayurvedic-healing-village": [
+    { name: "Kochi", lat: 9.9312, lng: 76.2673, modeToNext: "road" },
+    { name: "Palakkad (Kairali)", lat: 10.7867, lng: 76.6548 },
+  ],
+
+  // 3. Classical Golden Triangle
+  "classical-golden-triangle": [
+    { name: "Delhi", lat: 28.6139, lng: 77.209, modeToNext: "road" },
+    { name: "Agra", lat: 27.1767, lng: 78.0081, modeToNext: "road" },
+    { name: "Jaipur", lat: 26.9124, lng: 75.7873, modeToNext: "road" },
+    { name: "Delhi", lat: 28.6139, lng: 77.209 },
+  ],
+
+  // 7. Taj & Tigers (Golden Triangle with Ranthambhore)
+  "taj-and-tigers": [
+    { name: "Delhi", lat: 28.6139, lng: 77.209, modeToNext: "road" },
+    { name: "Agra", lat: 27.1767, lng: 78.0081, modeToNext: "road" },
+    { name: "Jaipur", lat: 26.9124, lng: 75.7873, modeToNext: "road" },
+    { name: "Ranthambhore", lat: 26.0173, lng: 76.5026, modeToNext: "road" },
+    { name: "Delhi", lat: 28.6139, lng: 77.209 },
+  ],
+
+  // 12. Unveiling the Enchanting South — Tamil Nadu
+  "unveiling-the-enchanting-south-tamil-nadu": [
+    { name: "Chennai", lat: 13.0827, lng: 80.2707, modeToNext: "road" },
+    { name: "Mahabalipuram", lat: 12.6269, lng: 80.192, modeToNext: "road" },
+    { name: "Pondicherry", lat: 11.9416, lng: 79.8083, modeToNext: "road" },
+    { name: "Chidambaram", lat: 11.3995, lng: 79.6914, modeToNext: "road" },
+    { name: "Darasuram", lat: 10.9568, lng: 79.3587, modeToNext: "road" },
+    { name: "Tanjore", lat: 10.787, lng: 79.1378, modeToNext: "road" },
+    { name: "Chettinad", lat: 10.17, lng: 78.8, modeToNext: "road" },
+    { name: "Madurai", lat: 9.9252, lng: 78.1198, modeToNext: "air" },
+    { name: "Chennai", lat: 13.0827, lng: 80.2707 },
+  ],
+
+  // Northeast India Sojourn
+  "northeast-india-sojourn": [
+    { name: "Kolkata", lat: 22.5726, lng: 88.3639, modeToNext: "air" },
+    { name: "Darjeeling", lat: 27.036, lng: 88.2627, modeToNext: "road" },
+    { name: "Pelling", lat: 27.3167, lng: 88.2333, modeToNext: "road" },
+    { name: "Gangtok", lat: 27.3389, lng: 88.6065, modeToNext: "road" },
+    { name: "Kalimpong", lat: 27.068, lng: 88.471, modeToNext: "road" },
+    { name: "Bagdogra", lat: 26.6812, lng: 88.3286, modeToNext: "air" },
+    { name: "Kolkata", lat: 22.5726, lng: 88.3639 },
+  ],
+
+  "colourful-rajasthan": [
+    { name: "Delhi",     lat: 28.6139, lng: 77.2090, modeToNext: "road" },
+    { name: "Mandawa",   lat: 28.0630, lng: 75.1499, modeToNext: "road" },
+    { name: "Bikaner",   lat: 28.0229, lng: 73.3119, modeToNext: "road" },
+    { name: "Jaisalmer", lat: 26.9157, lng: 70.9083, modeToNext: "road" },
+    { name: "Jodhpur",   lat: 26.2389, lng: 73.0243, modeToNext: "road" },
+    { name: "Udaipur",   lat: 24.5854, lng: 73.7125, modeToNext: "road" },
+    { name: "Deogarh",   lat: 25.5421, lng: 73.9080, modeToNext: "road" },
+    { name: "Jaipur",    lat: 26.9124, lng: 75.7873, modeToNext: "road" },
+    { name: "Agra",      lat: 27.1767, lng: 78.0081, modeToNext: "road" },
+    { name: "Delhi",     lat: 28.6139, lng: 77.2090 },
+  ]
+
+};
+
 
 // ─── Itineraries Data ───────────────────────────────────────────────────────
 
@@ -159,6 +245,7 @@ export const itineraries: Itinerary[] = [
       heroImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/main-bg.svg",
       overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/overview.svg",
       mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+      coordinates: ITINERARY_MAP_ROUTES["northeast-india-city-of-joy"],
   },
 
   // ==========================================================================
@@ -198,7 +285,7 @@ export const itineraries: Itinerary[] = [
       { day: 4, title: "Village Walk & Cultural Immersion", description: "After your morning yoga and therapy sessions, join a guided village walk through the surrounding countryside, experiencing the rhythms of rural Kerala life. Return for your afternoon treatment and steam bath, followed by evening meditation in the peaceful forest setting.", overnight: "Kairali Healing Village", image: "https://ik.imagekit.io/libertyindia/itineraries/ayurveda-kairali/day-4.webp" },
       { day: 5, title: "Farm Visit & Cooking Demonstration", description: "Following your morning wellness routine, explore the retreat's organic farm on a guided walk, learning about the herbs and ingredients used in Ayurvedic treatments and cuisine. Later, attend an Ayurvedic cooking demonstration and discover how traditional recipes support holistic well-being. Continue with your afternoon therapy and evening meditation.", overnight: "Kairali Healing Village", image: "https://ik.imagekit.io/libertyindia/itineraries/ayurveda-kairali/day-5.webp" },
       { day: 6, title: "Yoga Philosophy & Restoration", description: "Today's special activity is a lecture on yoga, exploring its philosophical roots and practical benefits for long-term wellness. Continue your daily rhythm of personalised therapies, steam bath, and meditation. Spend your free time at the pool, library, or wandering through the forest paths.", overnight: "Kairali Healing Village", image: "https://ik.imagekit.io/libertyindia/itineraries/ayurveda-kairali/day-6.webp" },
-      { day: 7, title: "Final Day (7-Night Guests) / Continuation", description: "For 7-night guests, enjoy a final morning therapy session and a closing consultation with your physician, who will provide personalised lifestyle and dietary recommendations to carry forward at home. Transfer to Kochi Airport for departure. For guests continuing to 14 or 21 nights, the weekly cycle of therapies, lectures, farm visits, village walks, and cooking demonstrations repeats, deepening your healing journey with each passing week.", overnight: "Kairali Healing Village", image: "https://ik.imagekit.io/libertyindia/itineraries/north-east/day-7.jpeg" },
+      { day: 7, title: "Final Day (7-Night Guests) / Continuation", description: "For 7-night guests, enjoy a final morning therapy session and a closing consultation with your physician, who will provide personalised lifestyle and dietary recommendations to carry forward at home. Transfer to Kochi Airport for departure. For guests continuing to 14 or 21 nights, the weekly cycle of therapies, lectures, farm visits, village walks, and cooking demonstrations repeats, deepening your healing journey with each passing week.", overnight: "Kairali Healing Village", image: "https://ik.imagekit.io/libertyindia/itineraries/ayurveda-kairali/day-7.png" },
     ],
     inclusions: [
       "Accommodation for selected nights in your chosen villa or suite category",
@@ -244,6 +331,7 @@ export const itineraries: Itinerary[] = [
     heroImage: "https://ik.imagekit.io/libertyindia/itineraries/ayurveda-kairali/main-bg.png",
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/ayurveda-kairali/overview.png",
     mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["kairali-ayurvedic-healing-village"],
   },
 
   // ==========================================================================
@@ -280,7 +368,7 @@ export const itineraries: Itinerary[] = [
       { day: 1, title: "Arrive in Delhi", description: "Arrive at Delhi International Airport, where you'll be met by our representative and transferred to your hotel. Settle in and rest after your journey. The evening is at leisure to begin soaking in the energy of India's capital city.", overnight: "Delhi", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-1.webp" },
       { day: 2, title: "Exploring Delhi", description: "Begin with a fascinating tour of Old Delhi. Drive past the Red Fort and Jama Masjid, India's largest mosque, then enjoy a cycle rickshaw ride through the narrow, bustling lanes of Chandni Chowk. Visit the Digambar Jain Temple along the way. In the afternoon, explore New Delhi's grand landmarks. Drive past Rashtrapati Bhawan, Rajpath, and India Gate, then visit Humayun's Tomb, a masterpiece of Mughal architecture, and Qutub Minar with its ancient Iron Pillar dating to the 4th century AD.", overnight: "Delhi", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-2.png" },
       { day: 3, title: "Delhi → Agra", description: "After breakfast, depart for Agra (approx. 4 hours). On arrival, visit Agra Fort, a magnificent 16th-century fortress blending military strength with refined Mughal interiors, where Emperor Shah Jahan was famously imprisoned by his own son. Later, explore the Itmad-ud-Daula Tomb, often called the Baby Taj Mahal. This delicate marble mausoleum, commissioned by Empress Nur Jahan, is the first tomb in India built entirely of marble, commissioned by Empress Nur Jahan for her father.", overnight: "Agra", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-3.png" },
-      { day: 4, title: "Agra → Fatehpur Sikri → Jaipur", description: "Rise early to witness the Taj Mahal at sunrise—a sublime experience of shifting light and colour across one of the world's most celebrated monuments. A tribute built over 22 years by Emperor Shah Jahan in memory of his beloved wife. After breakfast, depart for Jaipur (approx. 6 hours), stopping en route at Fatehpur Sikri, the exquisite red sandstone city built by Akbar the Great in 1569 and mysteriously abandoned shortly after. Arrive in Jaipur and enjoy the rest of the day at leisure.", overnight: "Jaipur", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-4.png" },
+      { day: 4, title: "Agra → Fatehpur Sikri → Jaipur", description: "Rise early to witness the Taj Mahal at sunrise—a sublime experience of shifting light and colour across one of the world's most celebrated monuments. After breakfast, depart for Jaipur (approx. 6 hours), stopping en route at Fatehpur Sikri, the exquisite red sandstone city built by Akbar the Great in 1569 and mysteriously abandoned shortly after. Arrive in Jaipur and enjoy the rest of the day at leisure.", overnight: "Jaipur", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-4.png" },
       { day: 5, title: "Exploring Jaipur", description: "Begin with a guided excursion to the magnificent Amber Fort, the ancient capital of the Kachawaha clan. Ascend through five defensive gates to discover ornate halls, temples, and sweeping views. Nearby, visit the intriguing Panna Meena Step Well, an eight-storey 16th-century marvel with criss-crossing staircases. In the afternoon, tour the City Palace, the Jantar Mantar stone observatory, and stop for photographs at the iconic Hawa Mahal, the Palace of Winds. End the day wandering through Jaipur's colourful traditional markets.", overnight: "Jaipur", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-5.png" },
       { day: 6, title: "Depart Jaipur → Delhi", description: "After a leisurely morning, transfer from Jaipur to Delhi International Airport (approx. 5 hours) to connect with your onward flight. End of tour.", overnight: "—", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-6.png" },
     ],
@@ -321,8 +409,9 @@ export const itineraries: Itinerary[] = [
       { category: "Culture & History", title: "Visit Humayun's Tomb and the ancient Qutub Minar complex" },
     ],
     heroImage: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/main-bg.png",
-    overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/overview.svg",
+    overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/overview.png",
     mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["classical-golden-triangle"],
   },
 
   // ==========================================================================
@@ -408,8 +497,9 @@ export const itineraries: Itinerary[] = [
       { category: "Adventure Tour", title: "Jeep safaris tracking Bengal tigers in Ranthambhore" },
     ],
     heroImage: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/main-bg.webp",
-    overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/overview.svg",
+    overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/overview.png",
     mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["taj-and-tigers"],
   },
 
   // ==========================================================================
@@ -492,8 +582,9 @@ export const itineraries: Itinerary[] = [
       { category: "Culture & History", title: "Attend the evening ceremony at the Meenakshi Temple in Madurai" },
     ],
     heroImage: "https://ik.imagekit.io/libertyindia/itineraries/south-india-tamil-nadu/main-bg.png",
-    overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/overview.svg",
+    overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/south-india-tamil-nadu/overview.png",
     mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["unveiling-the-enchanting-south-tamil-nadu"],
   },
 
   // ==========================================================================
@@ -504,6 +595,206 @@ export const itineraries: Itinerary[] = [
   // ==========================================================================
   // 14. NORTHEAST INDIA SOJOURN — 10 Days (NEW)
   // ==========================================================================
+  {
+    slug: "colourful-rajasthan",
+    title: "Colourful Rajasthan",
+    subtitle: "Immerse yourself in Rajasthan's vivid colours and royal heritage. From desert dunes to palace lakes, experience India's most vibrant state through forts, temples, and authentic cultural encounters.",
+    categories: ["Heritage", "Culture", "Architecture"],
+    duration: "16 Days",
+    durationDays: 16,
+    startingPrice: "€2,086",
+    startingPriceNote: "per person (2 Pax)",
+    route: "Delhi → Mandawa → Bikaner → Jaisalmer → Jodhpur → Udaipur → Deogarh → Jaipur → Agra → Delhi",
+    bestTime: "October – March",
+    overview: [
+      "From the painted havelis of Shekhawati and the golden ramparts of Jaisalmer to the lake palaces of Udaipur and the mighty forts of Jodhpur, this journey reveals Rajasthan in all its colour, grandeur, and living tradition—a land where every city tells its own royal story.",
+      "Ride cycle rickshaws through Old Delhi's ancient bazaars, explore medieval forts and intricately carved Jain temples, cruise across shimmering lakes, and witness the Taj Mahal at sunrise. This is India at its most vivid and unforgettable.",
+    ],
+    summary: [
+      "Cycle rickshaw ride through Old Delhi's Chandni Chowk and visit to Humayun's Tomb and Qutub Minar",
+      "Explore the exquisitely painted havelis and frescoed mansions of Mandawa in the Shekhawati region",
+      "Visit Junagadh Fort in Bikaner and the magnificent golden Jaisalmer Fort, the world's largest living fort",
+      "Discover the ornate Patwon Ji ki Haveli and Nathmal Ji ki Haveli in Jaisalmer",
+    ],
+    summaryRight: [
+      "Explore the 500-year-old Ranakpur Jain Temples with their 1,444 uniquely carved pillars",
+      "Shared boat ride on Lake Pichola in Udaipur with views of the City Palace and Lake Palace",
+      "Visit the historic Chittorgarh Fort and the charming princely town of Bundi",
+      "Ascend Amber Fort, explore Panna Meena Step Well, and wander Jaipur's vibrant markets",
+    ],
+    days: [
+  {
+    day: 1,
+    title: "Arrive in Delhi",
+    description:
+      "Arrive at Delhi International Airport, where you'll be met by our representative and transferred to your hotel. Settle in and enjoy the rest of the day at leisure, taking in the energy of India's capital city.",
+    overnight: "Delhi",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-1.png",
+  },
+  {
+    day: 2,
+    title: "Exploring Delhi",
+    description:
+      "After breakfast, proceed for a guided city tour of Delhi. Begin with a visit to Qutub Minar, the 12th‑century Tower of Victory. Continue exploring New Delhi, driving past the President’s House, North and South Blocks, and Parliament House. In the afternoon, head to Old Delhi for lunch at Haveli Dharampura, drive past the Red Fort, visit Jama Masjid, and enjoy a cycle rickshaw ride through the narrow lanes and spice markets of the old city.",
+    overnight: "Delhi",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-2.png",
+  },
+  {
+    day: 3,
+    title: "Delhi → Mandawa",
+    description:
+      "After breakfast, drive to Mandawa in the Shekhawati region, famed as Rajasthan’s open‑air art gallery. Check into your heritage hotel in the former Mandawa Castle, adorned with frescoes and a gateway dedicated to Lord Krishna. Later, explore the richly painted havelis of Nawalgarh and Jhunjhunu, seeing some of the finest murals in Rajasthan.",
+    overnight: "Mandawa",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-3.png",
+  },
+  {
+    day: 4,
+    title: "Mandawa → Bikaner",
+    description:
+      "Depart for Bikaner after breakfast. On arrival, check in at your hotel and relax. Later, visit Junagadh Fort, an impressive complex of palaces, temples, balconies, and courtyards, renowned for its intricate stonework and richly decorated interiors.",
+    overnight: "Bikaner",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-4.png",
+  },
+  {
+    day: 5,
+    title: "Bikaner → Jaisalmer",
+    description:
+      "After breakfast, drive across the Thar Desert to Jaisalmer, the fabled Golden City. On arrival, check in at your hotel. The rest of the day is at leisure to soak in the desert atmosphere and explore the surrounding streets at your own pace.",
+    overnight: "Jaisalmer",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-5.png",
+  },
+  {
+    day: 6,
+    title: "Exploring Jaisalmer",
+    description:
+      "Spend the day discovering Jaisalmer’s architectural treasures. Visit Patwon Ji ki Haveli and Nathmal Ji ki Haveli, remarkable for their carved sandstone façades, then explore Jaisalmer Fort with its bustling lanes and Jain temples. Continue to Lake Gadisar and the royal cenotaphs at Bada Bagh, and in the evening enjoy a camel ride on the Sam Sand Dunes.",
+    overnight: "Jaisalmer",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-6.png",
+  },
+  {
+    day: 7,
+    title: "Jaisalmer → Jodhpur",
+    description:
+      "After breakfast, drive to Jodhpur, the Blue City of Rajasthan. On arrival, check in at your hotel. Later, begin exploring the city’s old quarters around the Clock Tower Market, filled with spices, textiles, and local handicrafts, or simply enjoy the evening at leisure.",
+    overnight: "Jodhpur",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-7.png",
+  },
+  {
+    day: 8,
+    title: "Exploring Jodhpur",
+    description:
+      "Today, visit the mighty Mehrangarh Fort, one of India’s most spectacular hill forts, with sweeping views over the blue‑washed old city. Continue to Jaswant Thada, a serene marble cenotaph built in memory of Maharaja Jaswant Singh II, and spend time around the vibrant Clock Tower and Sardar Market area.",
+    overnight: "Jodhpur",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-8.png",
+  },
+  {
+    day: 9,
+    title: "Jodhpur → Ranakpur → Udaipur",
+    description:
+      "Depart Jodhpur after breakfast, driving through rural Rajasthan to the Ranakpur Jain Temples. Explore the 15th‑century Chaumukha Temple, famed for its 29 halls and 1,444 uniquely carved pillars. Continue onward to Udaipur, the romantic City of Lakes, and check in at your hotel for the night.",
+    overnight: "Udaipur",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-9.png",
+  },
+  {
+    day: 10,
+    title: "Exploring Udaipur",
+    description:
+      "Discover Udaipur’s regal charm with a visit to the vast City Palace complex and its Crystal Gallery. Later, visit Jagdish Temple and Saheliyon‑ki‑Bari, the Garden of the Maids of Honour. In the late afternoon, enjoy a shared boat ride on Lake Pichola, admiring the Lake Palace Hotel, the City Palace, and the atmospheric ghats along the lakefront.",
+    overnight: "Udaipur",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-10.png",
+  },
+  {
+    day: 11,
+    title: "Udaipur → Deogarh",
+    description:
+      "After breakfast, drive to Deogarh, a rural town surrounded by rocky hills and small lakes. Check in at your heritage hotel and later head out on a relaxed village walk, meeting local residents and experiencing the slower rhythms of countryside life.",
+    overnight: "Deogarh",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-11.png",
+  },
+  {
+    day: 12,
+    title: "Deogarh → Jaipur",
+    description:
+      "Depart Deogarh after breakfast and drive to Jaipur, the famed Pink City. On arrival, check in at your hotel and enjoy the remainder of the day at leisure, with time to relax or begin exploring the nearby bazaars.",
+    overnight: "Jaipur",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-12.png",
+  },
+  {
+    day: 13,
+    title: "Exploring Jaipur",
+    description:
+      "Enjoy a full‑day guided tour of Jaipur. Visit the hilltop Amber Fort and the photogenic Panna Meena Step Well, then explore the City Palace and the Jantar Mantar stone observatory. Pause for photos at the iconic Hawa Mahal before browsing Jaipur’s colourful markets for textiles, jewellery, and handicrafts.",
+    overnight: "Jaipur",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-13.png",
+  },
+  {
+    day: 14,
+    title: "Jaipur → Fatehpur Sikri → Agra",
+    description:
+      "After breakfast, drive towards Agra, stopping en route at Fatehpur Sikri, Emperor Akbar’s beautifully preserved but short‑lived sandstone capital. Explore its palaces, courtyards, and mosques before continuing to Agra and checking in at your hotel.",
+    overnight: "Agra",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-14.png",
+  },
+  {
+    day: 15,
+    title: "Agra",
+    description:
+      "Rise early for a sunrise visit to the Taj Mahal, watching the marble monument change colour in the soft morning light. Return to the hotel for breakfast, then visit Itmad‑ud‑Daulah, the exquisite ‘Baby Taj’ with delicate marble inlay work. In the evening, enjoy a cooking session and dinner with a local family.",
+    overnight: "Agra",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-15.png",
+  },
+  {
+    day: 16,
+    title: "Agra → Delhi – Departure",
+    description:
+      "After breakfast, drive back to Delhi. On arrival, transfer to Delhi International Airport for your outbound flight, where your Colourful Rajasthan journey concludes.",
+    overnight: "—",
+    image: "https://ik.imagekit.io/libertyindia/itineraries/colourful-rajasthan/day-16.png",
+  },
+],
+
+    inclusions: [
+      "Accommodation in single/twin rooms at selected hotel category or similar",
+      "Daily breakfast",
+      "AC vehicle transfers and sightseeing (Toyota Crysta for 2–3 Pax / Tempo Traveller for 4–6 Pax)",
+      "Cycle rickshaw ride in Old Delhi",
+      "Shared boat ride on Lake Pichola in Udaipur",
+      "GST (Goods & Services Tax) as applicable",
+    ],
+    exclusions: [
+      "Domestic or international airfare",
+      "Monument entrance fees and guide services",
+      "Personal expenses (tips, laundry, beverages, spa, telephone calls)",
+      "Expenses caused by factors beyond control (flight cancellations, roadblocks, vehicle malfunction, natural calamities)",
+      "Medical or evacuation insurance",
+      "Travel insurance",
+      "Items not explicitly mentioned in the programme",
+    ],
+    datesPrices: [
+      "Colourful Rajasthan",
+      "Price Validity OCT 2025 – MAR 2026",
+      "Starting from €950 per person (Standard Hotels, 4–6 Pax, Twin Sharing)",
+    ],
+    notes: [
+      "Blackout Period: Dec 20 – Jan 10 (prices above not valid)",
+      "Festival Premium: Extra charges may apply during major festivals",
+      "Weather Clause: Customer bears costs for natural disruptions",
+      "Force Majeure: Company not liable for conditions beyond control",
+      "Red Fort (Delhi) is closed on Mondays; Taj Mahal (Agra) is closed on Fridays",
+    ],
+    signatureExperiences: [
+      { category: "Culture & History", title: "Cycle rickshaw ride through Old Delhi's Chandni Chowk" },
+      { category: "Culture & History", title: "Explore the painted havelis of Mandawa and Jaisalmer" },
+      { category: "Culture & History", title: "Discover the 1,444-pillar Ranakpur Jain Temples" },
+      { category: "Adventure Tour", title: "Shared boat ride on Lake Pichola at sunset" },
+      { category: "Culture & History", title: "Ascend Amber Fort and explore Panna Meena Step Well" },
+      { category: "Culture & History", title: "Sunrise visit to the Taj Mahal" },
+    ],
+    heroImage: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/main-bg.png",
+    overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/overview.png",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/map.png",
+    coordinates: ITINERARY_MAP_ROUTES["colourful-rajasthan"],
+  },
   {
     slug: "northeast-india-sojourn",
     title: "Northeast India Sojourn",
@@ -555,7 +846,8 @@ export const itineraries: Itinerary[] = [
     ],
     heroImage: "https://ik.imagekit.io/libertyindia/itineraries/northeast-india-sojourn/main-bg.png",
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/northeast-india-sojourn/overview.png",
-    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.png",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["northeast-india-sojourn"],
   },
 
   // ==========================================================================

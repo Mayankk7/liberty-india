@@ -195,7 +195,7 @@ export default function Footer() {
         {/* Footer-2 Background Image - Full Complete Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-section/footer-2.svg"
+            src="https://ik.imagekit.io/libertyindia/hero-section/footer-2.png"
             alt="City skyline silhouette"
             fill
             className="object-cover object-bottom w-full h-full"
