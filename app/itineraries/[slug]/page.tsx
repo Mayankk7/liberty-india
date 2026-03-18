@@ -1,3 +1,6 @@
+export async function generateStaticParams() {
+  return itineraries.map((itinerary: Itinerary) => ({ slug: itinerary.slug }));
+}
 import { itineraries, Itinerary } from '../itineraries';
 import ItineraryTemplate from '../ItineraryTemplate';
 
