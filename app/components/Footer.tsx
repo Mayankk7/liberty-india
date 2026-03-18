@@ -49,16 +49,16 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="">
+    <footer id="contact" className="bg-[#2d2d2d] text-white mt-10">
       {/* Contact Section with Footer-1 Background Image - Full Width, No Magnification */}
-      <div className="relative w-[102vw] left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] max-w-none">
+      <div className="relative w-screen max-w-none z-10">
         {/* Background Image - As-is, no cropping */}
         <Image
           src="https://ik.imagekit.io/libertyindia/hero-section/footer-1.svg"
           alt="Misty mountain landscape"
           width={1920}
-          height={600}
-          className="w-full h-auto"
+          height={1000}
+          className="w-full h-[80vh] sm:h-125 md:h-[50vh] lg:h-150 object-cover"
           sizes="100vw"
           priority
           style={{ display: 'block' }}
@@ -77,24 +77,24 @@ export default function Footer() {
 
         {/* Content Overlay */}
         <div className="absolute inset-0 z-10 flex items-center">
-          <div className="w-[90%] mx-auto">
-            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center justify-between">
+          <div className="w-[90vw] mx-auto">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 items-center justify-between">
               {/* Left Text */}
               <div className="lg:w-[60%]">
                 <h2
-                  className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 leading-snug"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 leading-snug"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   We organize the stay of your dreams
                 </h2>
                 <p
-                  className="text-lg md:text-xl text-white/90 font-semibold mb-3"
+                  className="text-[13px] sm:text-lg md:text-xl text-white/90 font-semibold mb-3"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   Contact us today
                 </p>
                 <p
-                  className="text-base md:text-lg text-white/80 font-light leading-relaxed"
+                  className="text-[12px] sm:text-base md:text-lg text-white/80 font-light leading-relaxed"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   We are here to turn your travel dream into an extraordinary reality.
@@ -109,7 +109,7 @@ export default function Footer() {
                     placeholder="Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="px-4 py-3 bg-transparent border border-gray-800 rounded text-gray-900 placeholder-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#E07B39]"
+                    className="px-3 py-2 bg-transparent border border-gray-800 rounded text-gray-900 placeholder-gray-700 text-[13px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#E07B39] w-[85vw] sm:w-50"
                     style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                   />
                   <input
@@ -117,7 +117,7 @@ export default function Footer() {
                     placeholder="Phone Number"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="px-4 py-3 bg-transparent border border-gray-800 rounded text-gray-900 placeholder-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#E07B39]"
+                    className="px-3 py-2 bg-transparent border border-gray-800 rounded text-gray-900 placeholder-gray-700 text-[13px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#E07B39] w-[85vw] sm:w-50"
                     style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                   />
                   <input
@@ -125,7 +125,7 @@ export default function Footer() {
                     placeholder="Email Address"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="px-4 py-3 bg-transparent border border-gray-800 rounded text-gray-900 placeholder-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#E07B39]"
+                    className="px-3 py-2 bg-transparent border border-gray-800 rounded text-gray-900 placeholder-gray-700 text-[13px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#E07B39] w-[85vw] sm:w-50"
                     style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                   />
                 </div>
@@ -191,7 +191,7 @@ export default function Footer() {
       </div>
 
       {/* Main Footer with Footer-2 as Full Background */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden mt-10 md:mt-0">
         {/* Footer-2 Background Image - Full Complete Image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -205,7 +205,7 @@ export default function Footer() {
           <div className="absolute inset-0 bg-[#2d2d2d]/85" />
         </div>
 
-        <div className="relative z-10 w-[90%] mx-auto pt-20 md:pt-28 pb-20 md:pb-28">
+        <div className="relative z-10 w-[90vw] mx-auto pt-10 md:pt-28 pb-10 md:pb-28">
           {/* Top Section: Logo & Social */}
           <div className="flex flex-col md:flex-row items-start md:items-center gap-8 mb-16 md:mb-20">
             {/* Logo */}
@@ -262,7 +262,7 @@ export default function Footer() {
                     <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/>
                   </svg>
                   <p
-                    className="text-white/70 text-xs leading-relaxed"
+                    className="text-white/70 text-[10px] sm:text-xs md:text-sm leading-relaxed"
                     style={{ fontFamily: 'Poppins, sans-serif' }}
                   >
                     ADDRESS: 105, Complex, Sushant Lok Rd, Sector 28A, Sushant Lok Phase 1, Gurugram, Haryana 122001
@@ -274,7 +274,7 @@ export default function Footer() {
                   </svg>
                   <a
                     href="mailto:India@liberty-int.com"
-                    className="text-white/70 text-xs hover:text-white transition-colors"
+                    className="text-white/70 text-[10px] sm:text-xs md:text-sm hover:text-white transition-colors"
                     style={{ fontFamily: 'Poppins, sans-serif' }}
                   >
                     India@liberty-int.com
@@ -286,7 +286,7 @@ export default function Footer() {
                   </svg>
                   <a
                     href="tel:+919811116747"
-                    className="text-white/70 text-xs hover:text-white transition-colors"
+                    className="text-white/70 text-[10px] sm:text-xs md:text-sm hover:text-white transition-colors"
                     style={{ fontFamily: 'Poppins, sans-serif' }}
                   >
                     +91 9811116747
@@ -298,7 +298,7 @@ export default function Footer() {
             {/* Quick Links, Support Links, Legal Links - All in same row */}
             <div>
               <h4
-                className="text-white font-semibold text-sm mb-6 uppercase tracking-wide"
+                className="text-white font-semibold text-[11px] sm:text-sm mb-6 uppercase tracking-wide"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
               >
                 Quick Links
@@ -308,7 +308,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-white/70 text-xs hover:text-white transition-colors"
+                      className="text-white/70 text-[10px] sm:text-xs md:text-sm hover:text-white transition-colors"
                       style={{ fontFamily: 'Poppins, sans-serif' }}
                     >
                       {link.label}
@@ -320,7 +320,7 @@ export default function Footer() {
 
             <div>
               <h4
-                className="text-white font-semibold text-sm mb-6 uppercase tracking-wide"
+                className="text-white font-semibold text-[11px] sm:text-sm mb-6 uppercase tracking-wide"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
               >
                 Support
@@ -330,7 +330,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-white/70 text-xs hover:text-white transition-colors"
+                      className="text-white/70 text-[10px] sm:text-xs md:text-sm hover:text-white transition-colors"
                       style={{ fontFamily: 'Poppins, sans-serif' }}
                     >
                       {link.label}
@@ -342,7 +342,7 @@ export default function Footer() {
 
             <div>
               <h4
-                className="text-white font-semibold text-sm mb-6 uppercase tracking-wide"
+                className="text-white font-semibold text-[11px] sm:text-sm mb-6 uppercase tracking-wide"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
               >
                 Legal
@@ -352,7 +352,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-white/70 text-xs hover:text-white transition-colors"
+                      className="text-white/70 text-[10px] sm:text-xs md:text-sm hover:text-white transition-colors"
                       style={{ fontFamily: 'Poppins, sans-serif' }}
                     >
                       {link.label}

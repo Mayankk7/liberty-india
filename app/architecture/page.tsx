@@ -54,7 +54,7 @@ export default function ArchitecturePage() {
             {/* Image 1 */}
             <div className="relative h-full flex items-center justify-center">
                   <Image 
-                    src="https://ik.imagekit.io/libertyindia/about-india/architecture/picture-1.svg" 
+                    src="https://ik.imagekit.io/libertyindia/about-india/architecture/picture-1.png" 
                   alt="Architecture Grid 1" 
                   fill
                   className="object-cover object-center w-full h-full" 
@@ -64,7 +64,7 @@ export default function ArchitecturePage() {
             {/* Image 2 */}
             <div className="relative h-full flex items-center justify-center">
                   <Image 
-                    src="https://ik.imagekit.io/libertyindia/about-india/architecture/picture-2.svg" 
+                    src="https://ik.imagekit.io/libertyindia/about-india/architecture/picture-2.png" 
                   alt="Architecture Grid 2" 
                   fill
                   className="object-cover object-center w-full h-full" 
@@ -74,7 +74,7 @@ export default function ArchitecturePage() {
             {/* Image 3 */}
             <div className="relative h-full flex items-center justify-center">
                   <Image 
-                    src="https://ik.imagekit.io/libertyindia/about-india/architecture/picture-3.svg" 
+                    src="https://ik.imagekit.io/libertyindia/about-india/architecture/picture-3.png" 
                   alt="Architecture Grid 3" 
                   fill
                   className="object-cover object-center w-full h-full" 

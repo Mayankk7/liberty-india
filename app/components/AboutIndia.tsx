@@ -76,7 +76,7 @@ export default function AboutIndia() {
           {/* Culture Card */}
           <Link href="/culture" className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
             <Image
-              src="https://ik.imagekit.io/libertyindia/about-india/home/culture.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/home/culture.png"
               alt="Culture - The Pulse of India"
               fill
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
@@ -249,7 +249,7 @@ export default function AboutIndia() {
           {/* Wildlife Card - 3/5 width */}
           <Link href="/wildlife" className="md:col-span-3 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1" onClick={e => { if (!['/wildlife'].includes('/wildlife')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
             <Image
-              src="https://ik.imagekit.io/libertyindia/about-india/home/wildlife.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/home/wildlife.png"
               alt="Wildlife - Into the Wild Heart of India"
               fill
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"

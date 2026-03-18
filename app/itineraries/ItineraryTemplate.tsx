@@ -57,10 +57,10 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
         />
         {/* 20% opacity overlay */}
         <div className="absolute inset-0 bg-black/20 pointer-events-none" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4 gap-6">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg tracking-wide leading-tight">{itinerary.title}</h1>
-          <p className="text-lg md:text-xl mb-6 drop-shadow-lg max-w-3xl mx-auto leading-relaxed tracking-wide">{itinerary.subtitle}</p>
-          <div className="text-lg font-semibold mb-8 tracking-wide">{itinerary.duration} | {itinerary.route.replace(/ → /g, ' · ')}</div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4 gap-6 w-[80vw] md:w-auto left-1/2 -translate-x-1/2" style={{ maxWidth: '100vw' }}>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg tracking-wide leading-tight w-full md:w-auto">{itinerary.title}</h1>
+          <p className="text-lg md:text-xl mb-6 drop-shadow-lg max-w-3xl mx-auto leading-relaxed tracking-wide w-full md:w-auto">{itinerary.subtitle}</p>
+          <div className="text-lg font-semibold mb-8 tracking-wide w-full md:w-auto">{itinerary.duration} | {itinerary.route.replace(/ → /g, ' · ')}</div>
         </div>
         {/* Book Button bottom right */}
         <div className="absolute bottom-8 right-8">
@@ -68,26 +68,26 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
         </div>
       </div>
 
-      {/* Tabs/Navbar */}
-      <div className="bg-[#F8F6E9] border-b border-[#F2EFD9] flex justify-center gap-16 py-6 text-lg font-medium mb-8 px-8">
-        <a href="#overview" className="px-20 transition-colors duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg transition-all duration-300 hover:scale-105">Overview</a>
-        <a href="#itinerary" className="px-20 transition-colors duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg transition-all duration-300 hover:scale-105">Itinerary</a>
-        <a className="px-20 cursor-pointer transition-colors duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg transition-all duration-300 hover:scale-105" onClick={e => {
+      {/* Responsive Tabs/Navbar */}
+      <div className="bg-[#F8F6E9] border-b sm:mx-auto border-[#F2EFD9] flex flex-col md:flex-row justify-center gap-4 md:gap-16 py-4 md:py-6 text-base md:text-lg font-medium mb-6 md:mb-8 px-4 md:px-8">
+        <a href="#overview" className="px-6 md:px-20 transition-all duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg hover:scale-105 py-2 md:py-0">Overview</a>
+        <a href="#itinerary" className="px-6 md:px-20 transition-all duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg hover:scale-105 py-2 md:py-0">Itinerary</a>
+        <a className="px-6 md:px-20 cursor-pointer transition-all duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg hover:scale-105 py-2 md:py-0" onClick={e => {
           e.preventDefault();
           const section = document.getElementById('details');
           if (section) section.scrollIntoView({ behavior: 'smooth' });
         }}>Dates & Prices</a>
-        <a href="#details" className="px-20 transition-colors duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg transition-all duration-300 hover:scale-105">Journey Details</a>
+        <a href="#details" className="px-6 md:px-20 transition-all duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg hover:scale-105 py-2 md:py-0">Journey Details</a>
       </div>
 
       {/* Overview Section */}
-      <section id="overview" className="w-screen mx-auto flex flex-row gap-0 py-16">
-        <div className="w-1/2 flex flex-col items-start pl-8 px-10">
-          <h2 className="text-4xl font-bold mb-8 tracking-wide px-10">Overview</h2>
+      <section id="overview" className="w-screen mx-auto flex flex-col md:flex-row gap-8 md:gap-0 py-8 md:py-16 items-center">
+        <div className="w-[80vw] md:w-1/2 flex flex-col items-start pl-4 md:pl-8 px-4 md:px-10">
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 tracking-wide px-4 md:px-10">Overview</h2>
           {itinerary.overview.map((text: string, i: number) => (
             <p
               key={i}
-              className="mb-8 text-lg leading-relaxed tracking-wide px-10 py-1"
+              className="mb-6 md:mb-8 text-base md:text-lg leading-relaxed tracking-wide px-4 md:px-10 py-1 w-full"
               style={{ fontFamily: 'Merriweather, serif', color: '#424242' }}
             >
               {text}
@@ -111,7 +111,7 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
                 <a
                   href={`/files/${fileName}`}
                   download
-                  className="mt-10 mx-10 py-3 border rounded px-10 bg-[#FCFAF3] hover:bg-[#F8F6E9] text-[#3B3B3B] font-medium text-base inline-block"
+                  className="mt-10 mx-4 md:mx-10 py-3 border rounded px-10 bg-[#FCFAF3] hover:bg-[#F8F6E9] text-[#3B3B3B] font-medium text-base inline-block w-full md:w-auto"
                   style={{ textDecoration: 'none' }}
                 >
                   DOWNLOAD DOCX
@@ -119,32 +119,32 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
               );
             } else {
               return (
-                <button className="mt-10 mx-10 py-3 border rounded px-10 bg-[#FCFAF3] text-[#3B3B3B] font-medium text-base opacity-60 cursor-not-allowed" disabled>
+                <button className="mt-10 mx-4 md:mx-10 py-3 border rounded px-10 bg-[#FCFAF3] text-[#3B3B3B] font-medium text-base opacity-60 cursor-not-allowed w-full md:w-auto" disabled>
                   DOCX Not Available
                 </button>
               );
             }
           })()}
         </div>
-        <div className="w-1/2 flex items-center justify-center pr-8">
+        <div className="w-[80vw] md:w-1/2 flex items-center justify-center pr-4 md:pr-8 mt-6 md:mt-0">
           <Image
             src={itinerary.overviewImage}
             alt="Overview"
             width={0}
             height={0}
-            sizes="60vw"
-            style={{ width: '50vw', height: '60vh' }}
+            sizes="80vw"
+            style={{ width: '80vw', height: '40vh', maxWidth: '600px' }}
             className="rounded shadow object-cover"
           />
         </div>
       </section>
 
       {/* Summary Section */}
-      <section className="w-screen py-12 px-0" style={{ background: '#FFFDEC', borderBottom: '4px solid #EF9120' }}>
-        <div className="w-[90vw] mx-auto px-6">
-          <div className="relative">
+      <section className="w-screen py-8 md:py-12 px-0" style={{ background: '#FFFDEC', borderBottom: '4px solid #EF9120' }}>
+        <div className="w-[80vw] md:w-[90vw] mx-auto px-4 md:px-6">
+          <div className="relative flex flex-col md:flex-row md:items-center md:justify-between">
             <h2
-              className="text-4xl font-bold mb-10 tracking-wide pb-2"
+              className="text-2xl md:text-4xl font-bold mb-6 md:mb-10 tracking-wide pb-2 w-full md:w-auto"
               style={{
                 borderBottom: showItinerary ? '4px solid #EF9120' : '4px solid transparent',
                 display: 'inline-block',
@@ -154,8 +154,8 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
               Summary
             </h2>
             <button
-              className="bg-blue-900 text-white px-6 py-2 rounded text-base absolute right-0 top-0 transition-all duration-200 hover:bg-orange-500 cursor-pointer"
-              style={{ minWidth: '220px', transform: 'translateY(10px)' }}
+              className="bg-blue-900 text-white px-4 md:px-6 py-2 rounded text-base mt-4 md:mt-0 md:absolute md:right-0 md:top-0 transition-all duration-200 hover:bg-orange-500 cursor-pointer w-full md:w-auto"
+              style={{ minWidth: '180px', maxWidth: '100vw', transform: 'translateY(0)' }}
               onClick={() => {
                 setShowItinerary(true);
                 setTimeout(() => {
@@ -167,19 +167,25 @@ export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary 
               View Day Wise Overview
             </button>
           </div>
-          <div className="flex flex-wrap gap-12 mb-10">
-              <div className="flex flex-nowrap gap-0 mb-10 items-start">
-                <div className="shrink-0 pr-8 min-w-40 border-r border-[#E9E4BF]">
-                  <div className="font-semibold mb-2 tracking-wide">Duration</div>
-                  <div className="text-lg leading-relaxed tracking-wide">{itinerary.duration}</div>
+          <div className="flex flex-col md:flex-row flex-wrap gap-6 md:gap-12 mb-6 md:mb-10 w-full">
+              <div className="flex flex-col md:flex-row gap-4 md:gap-0 mb-6 md:mb-10 items-center w-full justify-center text-center">
+                <div className="w-full md:w-[20vw] flex flex-col items-start border-b md:border-b-0 md:border-r border-[#E9E4BF] pb-4 md:pb-0 pr-0 md:pr-8">
+                  <div className="font-semibold mb-2 tracking-wide text-base md:text-lg">Duration</div>
+                  <div className="text-base md:text-lg leading-relaxed tracking-wide">{itinerary.duration}</div>
                 </div>
-                <div className="flex flex-col px-16 w-[50vw] mx-auto border-r border-[#E9E4BF]">
-                  <div className="font-semibold mb-2 tracking-wide">Route</div>
-                  <div className="text-lg leading-relaxed tracking-wide">{itinerary.route}</div>
+                <div className="w-full md:w-[60vw] flex flex-col items-center border-b md:border-b-0 md:border-r border-[#E9E4BF] pb-4 md:pb-0 px-0 md:px-16">
+                  <div className="font-semibold mb-2 tracking-wide text-base md:text-lg">Route</div>
+                  <div className="text-base md:text-lg leading-relaxed tracking-wide text-center">
+                    {itinerary.route.split('→').map((r, i, arr) => (
+                      <span key={i} style={{ display: 'inline' }}>
+                        {r.trim()} {i < arr.length - 1 && <span className="text-[#B89B5E]">→</span>}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex flex-col px-8 w-[50vw] mx-auto">
-                  <div className="font-semibold mb-2 tracking-wide">Best Time</div>
-                  <div className="text-lg leading-relaxed tracking-wide">{itinerary.bestTime}</div>
+                <div className="w-full md:w-[30vw] flex flex-col items-start px-0 md:px-8">
+                  <div className="font-semibold mb-2 tracking-wide text-base md:text-lg">Best Time</div>
+                  <div className="text-base md:text-lg leading-relaxed tracking-wide">{itinerary.bestTime}</div>
                 </div>
               </div>
           </div>

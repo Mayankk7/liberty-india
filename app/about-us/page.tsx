@@ -14,13 +14,14 @@ export default function AboutUsPage() {
       <section className="relative w-full pt-20">
         {/* Team Photo with Overlay */}
         <div className="relative w-full h-[60vh] md:h-[70vh] lg:h-[80vh]">
+
             <Image
               src="https://ik.imagekit.io/libertyindia/about-us/section/liberty-group-pic.svg"
-            alt="Liberty India team - passionate travel experts committed to crafting exceptional India experiences"
-            fill
-            className="object-cover object-center"
-            priority
-          />
+              alt="Liberty India team - passionate travel experts committed to crafting exceptional India experiences"
+              fill
+              className="object-cover object-center"
+              priority
+            />
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/30" />
           
@@ -255,7 +256,7 @@ export default function AboutUsPage() {
                 </p>
               </div>
               <div className="relative h-48 md:h-auto">
-                <Image
+                <ImageWithLoader
                   src="https://ik.imagekit.io/libertyindia/about-us/section/picture-8.svg"
                   alt="Local experiences in India"
                   fill
@@ -267,7 +268,7 @@ export default function AboutUsPage() {
             {/* Row 2 - Bespoke Curation (Image Left, Text Right) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               <div className="relative h-48 md:h-auto order-2 md:order-1">
-                <Image
+                <ImageWithLoader
                   src="https://ik.imagekit.io/libertyindia/about-us/section/picture-9.svg"
                   alt="Cultural experiences with local artisans"
                   fill
@@ -307,7 +308,7 @@ export default function AboutUsPage() {
                 </p>
               </div>
               <div className="relative h-48 md:h-auto">
-                <Image
+                <ImageWithLoader
                   src="https://ik.imagekit.io/libertyindia/about-us/section/picture-10.svg"
                   alt="Professional travel operations team"
                   fill
@@ -319,7 +320,7 @@ export default function AboutUsPage() {
             {/* Row 4 - Sustainable Tourism Leadership (Image Left, Text Right) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               <div className="relative h-48 md:h-auto order-2 md:order-1">
-                <Image
+                <ImageWithLoader
                   src="https://ik.imagekit.io/libertyindia/about-us/section/picture-11.svg"
                   alt="Sustainable tourism practices"
                   fill
