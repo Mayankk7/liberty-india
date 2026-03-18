@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import ImageWithLoader from '../components/ImageWithLoader';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -52,7 +53,7 @@ export default function AboutUsPage() {
         </div>
 
         {/* Image Grid with Text Card */}
-        <div className="w-full relative h-96 md:h-[550px] lg:h-[650px] xl:h-[720px]">
+        <div className="w-full relative h-96 md:h-137.5 lg:h-162.5 xl:h-180">
           {/* Background Images Grid */}
           <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0">
             {/* Image 1 - Palace/Lake */}
@@ -80,7 +81,7 @@ export default function AboutUsPage() {
             style={{ width: '42%', height: '60%' }}
           >
             <p
-              className="text-sm md:text-base lg:text-[15px] text-gray-700 leading-loose lg:leading-[2] max-w-lg mx-auto"
+              className="text-sm md:text-base lg:text-[15px] text-gray-700 leading-loose lg:leading-loose max-w-lg mx-auto"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
               Twenty years ago, <strong>Liberty India</strong> was born from a simple vision: craft journeys that connect global travelers to India&apos;s soul. From the grandeur of <strong>Rajasthan&apos;s palaces</strong> to the Serenity of <strong>Kerala backwaters</strong>, we&apos;ve nurtured relationships that unlock authentic moments, becoming the trusted partner for <strong>world-class tour operators</strong> and <strong>luxury advisors</strong> who seek more than holidays. Today, we deliver bespoke experiences across India&apos;s extraordinary destinations, turning client trips into <strong>lifelong stories</strong>.
@@ -90,7 +91,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* Our Philosophy Section */}
-      <section className="w-full relative h-[500px] md:h-[600px] lg:h-[700px]">
+      <section className="w-full relative h-125 md:h-150 lg:h-175">
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center"
@@ -113,7 +114,7 @@ export default function AboutUsPage() {
               True luxury lives in connections
             </p>
             <p
-              className="text-sm md:text-base text-gray-600 leading-loose lg:leading-[2]"
+              className="text-sm md:text-base text-gray-600 leading-loose lg:leading-loose"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
               to cultures, landscapes, stories, people. Not thread counts or stars. Liberty&apos;s 20 years in India means experts who understand your desires and our destinations profoundly
@@ -145,7 +146,7 @@ export default function AboutUsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
             {/* Pillar 1 - Authenticity */}
             <div className="group cursor-pointer">
-              <div className="relative h-96 md:h-[450px] lg:h-[520px] overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
+              <div className="relative h-96 md:h-112.5 lg:h-130 overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                 <Image
                   src="https://ik.imagekit.io/libertyindia/about-us/section/picture-5.svg"
                   alt="Authentic elephant experience in India"
@@ -171,7 +172,7 @@ export default function AboutUsPage() {
 
             {/* Pillar 2 - Exclusivity */}
             <div className="group cursor-pointer">
-              <div className="relative h-96 md:h-[450px] lg:h-[520px] overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
+              <div className="relative h-96 md:h-112.5 lg:h-130 overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                 <Image
                   src="https://ik.imagekit.io/libertyindia/about-us/section/picture-6.svg"
                   alt="Exclusive heritage site access"
@@ -197,7 +198,7 @@ export default function AboutUsPage() {
 
             {/* Pillar 3 - Excellence */}
             <div className="group cursor-pointer">
-              <div className="relative h-96 md:h-[450px] lg:h-[520px] overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
+              <div className="relative h-96 md:h-112.5 lg:h-130 overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                 <Image
                   src="https://ik.imagekit.io/libertyindia/about-us/section/picture-7.svg"
                   alt="Excellence in travel experiences"
