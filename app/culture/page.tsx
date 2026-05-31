@@ -14,19 +14,20 @@ export default function CulturePage() {
 
       {/* Hero Section with Culture Image */}
       <section className="relative w-full pt-16">
-        <div className="relative w-[102vw] h-[50vh] md:h-[60vh] lg:h-[70vh]">
+        <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh] overflow-hidden bg-[#3a2f1f]">
           <Image
             src="https://ik.imagekit.io/libertyindia/about-india/culture/culture-bg.svg"
             alt="Culture of India - Traditional puppets and artistry"
             fill
-            className="object-cover object-center"
+            className="object-cover scale-[1.25] origin-center"
+            style={{ objectPosition: 'center' }}
             priority
           />
           {/* 20% opacity overlay */}
           <div className="absolute inset-0 bg-black/20 pointer-events-none" />
           <div className="absolute inset-0 flex items-center justify-center">
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-extrabold tracking-wide drop-shadow-lg"
+              className="text-4xl md:text-6xl lg:text-7xl xl:text-7xl text-white font-semibold tracking-wide drop-shadow-lg"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
               Culture
@@ -39,10 +40,10 @@ export default function CulturePage() {
       <section className="w-full pt-12 md:pt-16 lg:pt-20 pb-0" style={{ backgroundColor: '#FDF8E8' }}>
         <div className="w-[90%] max-w-5xl mx-auto text-center mb-10 md:mb-14">
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-gray-900 leading-tight"
+            className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-[#424242] leading-tight"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
-            The Living, Breathing Soul of India
+            Where Every Thread Tells a Tale
           </h2>
         </div>
 
@@ -63,13 +64,10 @@ export default function CulturePage() {
             />
           </div>
 
-          <div
-            className="absolute left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 bg-white px-6 md:px-8 lg:px-10 py-6 md:py-8 lg:py-10 flex items-center z-10 shadow-lg"
-            style={{ width: '42%', height: '60%' }}
-          >
+          <div className="absolute top-6 sm:top-8 md:top-12 lg:top-16 left-4 md:left-8 lg:left-12 w-[85%] md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
             <p
-              className="text-sm md:text-base lg:text-xl text-gray-700 leading-loose lg:leading-loose max-w-lg mx-auto"
-              style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+              className="text-lg md:text-xl lg:text-[22px] text-[#424242] leading-loose"
+              style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
               Indian culture is not something you observe—it&apos;s something you experience and are transformed by. From the rhythmic cycles of ancient festivals to the intricate traditions embedded in daily rituals, culture in India is a profound expression of spirituality, community, and human connection
             </p>
@@ -81,8 +79,8 @@ export default function CulturePage() {
       <section className="w-full py-10 md:py-12" style={{ backgroundColor: '#FDF8E8' }}>
         <div className="w-[90%] max-w-5xl mx-auto text-center">
           <p
-            className="text-base md:text-lg lg:text-xl text-gray-800"
-            style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+            className="text-xl md:text-2xl lg:text-3xl font-bold text-[#424242]"
+            style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
             Liberty India connects you with India&apos;s cultural wealth through
           </p>
@@ -93,13 +91,13 @@ export default function CulturePage() {
       <section className="w-full bg-white py-10 md:py-14">
         <div className="w-full text-center mb-10 md:mb-14">
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-4"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-4"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
             A Tapestry of Faiths
           </h2>
           <p
-            className="text-sm md:text-base text-gray-600 leading-relaxed mx-auto text-center"
+            className="text-sm md:text-base text-[#424242] leading-relaxed mx-auto text-center"
             style={{ fontFamily: 'var(--font-merriweather), Georgia, serif', width: '70vw' }}
           >
             India is the birthplace of Hinduism, Buddhism, Jainism, and Sikhism — traditions rooted in karma and dharma — and is also home to vibrant Muslim, Christian, and Zoroastrian communities that enrich its diverse spiritual landscape
@@ -107,31 +105,32 @@ export default function CulturePage() {
         </div>
 
         <ImageTextOverlay
+          variant="heritage"
           startPosition="right"
           items={[
             {
-              image: '/images/about-india/culture/hinduism.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/culture/hinduism.png',
               alt: 'Hinduism - Temples and rituals',
               title: 'Hinduism',
               description:
                 "The world's oldest living spiritual tradition, Hinduism is rooted in the philosophies of dharma and karma, embracing a vast tapestry of rituals, sacred texts, and paths to spiritual liberation",
             },
             {
-              image: '/images/about-india/culture/buddhism.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/culture/buddhism.svg',
               alt: 'Buddhism - Statues and monasteries',
               title: 'Buddhism',
               description:
                 'Founded in India by the Buddha, this timeless philosophy teaches mindfulness, compassion, and the pursuit of enlightenment through the path of balance and inner awakening',
             },
             {
-              image: '/images/about-india/culture/jainism.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/culture/jainism.svg',
               alt: 'Jainism - Temples and sculptures',
               title: 'Jainism',
               description:
                 "One of India's most ancient faiths, Jainism is centered on non-violence, self-discipline, and spiritual purity, inspiring a profound respect for all living beings",
             },
             {
-              image: '/images/about-india/culture/sikhism.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/culture/sikhism.svg',
               alt: 'Sikhism - Golden Temple and community',
               title: 'Sikhism',
               description:
@@ -145,13 +144,13 @@ export default function CulturePage() {
       <section className="w-full bg-white py-10 md:py-14">
         <div className="w-full text-center mb-10 md:mb-14">
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-4"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-4"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
             Festival Immersion Experiences
           </h2>
           <p
-            className="text-sm md:text-base text-gray-600 leading-relaxed mx-auto text-center"
+            className="text-sm md:text-base text-[#424242] leading-relaxed mx-auto text-center"
             style={{ fontFamily: 'var(--font-merriweather), Georgia, serif', width: '70vw' }}
           >
             Time your journey to coincide with India&apos;s most significant cultural celebrations
@@ -159,10 +158,11 @@ export default function CulturePage() {
         </div>
 
         <ImageTextOverlay
+          variant="heritage"
           startPosition="right"
           items={[
             {
-              image: '/images/about-india/culture/diwali.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/culture/diwali.svg',
               alt: 'Diwali - Festival of Lights',
               title: 'Diwali',
               subtitle: 'October - November',
@@ -170,7 +170,7 @@ export default function CulturePage() {
                 'The Festival of Lights, celebrated with prayers, family gatherings, and the symbolic victory of light over darkness',
             },
             {
-              image: '/images/about-india/culture/holi.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/culture/holi.svg',
               alt: 'Holi - Festival of Colors',
               title: 'Holi',
               subtitle: 'March',
@@ -182,56 +182,56 @@ export default function CulturePage() {
       </section>
 
       {/* Artisan & Craft Traditions Section */}
-      <section className="w-full bg-white py-10 md:py-14">
-        <div className="w-full text-center mb-10 md:mb-14">
+      <section className="w-full bg-white pt-2 md:pt-4 pb-10 md:pb-14">
+        <div className="w-full text-center mb-6 md:mb-8">
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-3"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-3"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
             Artisan &amp; Craft Traditions
           </h2>
           <p
-            className="text-sm md:text-base text-gray-600 leading-relaxed"
+            className="text-sm md:text-base text-[#424242] leading-relaxed"
             style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
           >
             Meet the custodians of India&apos;s living craft heritage
           </p>
         </div>
 
-        <div className="mx-auto relative" style={{ width: '70vw' }}>
+        <div className="mx-auto relative" style={{ width: '85vw' }}>
           {/* 2x2 Image Grid */}
           <div className="grid grid-cols-2 gap-0">
             {/* Top Left - Textile */}
-            <div className="relative aspect-4/3">
+            <div className="relative aspect-square md:aspect-4/3">
               <Image
-                src="/images/about-india/culture/textile.svg"
+                src="https://ik.imagekit.io/libertyindia/about-india/culture/textile.svg"
                 alt="Textile Traditions"
                 fill
                 className="object-cover"
               />
             </div>
             {/* Top Right - Pottery */}
-            <div className="relative aspect-4/3">
+            <div className="relative aspect-square md:aspect-4/3">
               <Image
-                src="/images/about-india/culture/pottery.svg"
+                src="https://ik.imagekit.io/libertyindia/about-india/culture/pottery.svg"
                 alt="Pottery & Ceramics"
                 fill
                 className="object-cover"
               />
             </div>
             {/* Bottom Left - Metal Work */}
-            <div className="relative aspect-4/3">
+            <div className="relative aspect-square md:aspect-4/3">
               <Image
-                src="/images/about-india/culture/metal-work.svg"
+                src="https://ik.imagekit.io/libertyindia/about-india/culture/metal-work.svg"
                 alt="Metal Work & Jewellery"
                 fill
                 className="object-cover"
               />
             </div>
             {/* Bottom Right - Wood Carving */}
-            <div className="relative aspect-4/3">
+            <div className="relative aspect-square md:aspect-4/3">
               <Image
-                src="/images/about-india/culture/carving.svg"
+                src="https://ik.imagekit.io/libertyindia/about-india/culture/carving.png"
                 alt="Kashmiri Wood Carving"
                 fill
                 className="object-cover"
@@ -240,58 +240,58 @@ export default function CulturePage() {
           </div>
 
           {/* Center Overlapping Text Cards - 2x2 grid */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 grid grid-cols-2 gap-0.5 w-[55%] md:w-[50%] z-10">
-            <div className="bg-white/95 px-4 py-4 md:px-6 md:py-5">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 grid grid-cols-2 gap-0.5 w-[72%] md:w-[60%] z-10">
+            <div className="bg-white px-4 py-4 md:px-6 md:py-5">
               <h3
-                className="text-sm md:text-base lg:text-lg font-semibold text-gray-900 mb-1"
+                className="text-sm md:text-base lg:text-lg font-semibold text-[#424242] mb-1"
                 style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
               >
                 Textile Traditions
               </h3>
               <p
-                className="text-xs md:text-sm text-gray-600 leading-relaxed"
+                className="text-xs md:text-sm text-[#424242] leading-relaxed"
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
               >
                 Handwoven silks and vibrant fabrics reflecting India&apos;s rich regional craftsmanship
               </p>
             </div>
-            <div className="bg-white/95 px-4 py-4 md:px-6 md:py-5">
+            <div className="bg-white px-4 py-4 md:px-6 md:py-5">
               <h3
-                className="text-sm md:text-base lg:text-lg font-semibold text-gray-900 mb-1"
+                className="text-sm md:text-base lg:text-lg font-semibold text-[#424242] mb-1"
                 style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
               >
                 Pottery &amp; Ceramics
               </h3>
               <p
-                className="text-xs md:text-sm text-gray-600 leading-relaxed"
+                className="text-xs md:text-sm text-[#424242] leading-relaxed"
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
               >
                 Earthy creations shaped by traditional techniques and timeless design
               </p>
             </div>
-            <div className="bg-white/95 px-4 py-4 md:px-6 md:py-5">
+            <div className="bg-white px-4 py-4 md:px-6 md:py-5">
               <h3
-                className="text-sm md:text-base lg:text-lg font-semibold text-gray-900 mb-1"
+                className="text-sm md:text-base lg:text-lg font-semibold text-[#424242] mb-1"
                 style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
               >
                 Metal Work &amp; Jewellery
               </h3>
               <p
-                className="text-xs md:text-sm text-gray-600 leading-relaxed"
+                className="text-xs md:text-sm text-[#424242] leading-relaxed"
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
               >
                 Intricate craftsmanship expressed through ornate metal artefacts and jewellery
               </p>
             </div>
-            <div className="bg-white/95 px-4 py-4 md:px-6 md:py-5">
+            <div className="bg-white px-4 py-4 md:px-6 md:py-5">
               <h3
-                className="text-sm md:text-base lg:text-lg font-semibold text-gray-900 mb-1"
+                className="text-sm md:text-base lg:text-lg font-semibold text-[#424242] mb-1"
                 style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
               >
                 Kashmiri Wood Carving
               </h3>
               <p
-                className="text-xs md:text-sm text-gray-600 leading-relaxed"
+                className="text-xs md:text-sm text-[#424242] leading-relaxed"
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
               >
                 Delicately carved walnut wood creations showcasing timeless artistry
@@ -306,41 +306,7 @@ export default function CulturePage() {
           heading={"Explore the Culture\nExperience the Journey"}
           subheading="Immerse yourself in India's living traditions with journeys designed for the culturally curious"
           bgColor="#FDF39F4D"
-          items={[
-            {
-              image: 'https://ik.imagekit.io/libertyindia/itineraries/north-east/main-bg.svg',
-              alt: 'Northeast India & The City of Joy',
-              category: 'Culture',
-              bestTime: 'October – March',
-              title: 'Northeast India & The City of Joy',
-              description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
-              price: 1330,
-              duration: '13 Days',
-              slug: 'northeast-india-city-of-joy',
-            },
-            {
-              image: 'https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/main-bg.png',
-              alt: 'The Classical Golden Triangle of India',
-              category: 'Culture',
-              bestTime: 'October – March',
-              title: 'The Classical Golden Triangle of India',
-              description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
-              price: 1013,
-              duration: '7 Days',
-              slug: 'classical-golden-triangle',
-            },
-            {
-              image: 'https://ik.imagekit.io/libertyindia/itineraries/south-india-tamil-nadu/main-bg.png',
-              alt: 'Unveiling the Enchanting South — Tamil Nadu',
-              category: 'Culture',
-              bestTime: 'October – March',
-              title: 'Unveiling the Enchanting South — Tamil Nadu',
-              description: 'Discover the magnificent temple architecture, French colonial heritage, and living craft traditions of Tamil Nadu.',
-              price: 880,
-              duration: '10 Days',
-              slug: 'unveiling-the-enchanting-south-tamil-nadu',
-            },
-          ]}
+          category="Culture"
         />
 
       {/* Footer */}

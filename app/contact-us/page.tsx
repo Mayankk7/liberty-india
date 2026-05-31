@@ -16,16 +16,16 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#FCFAF3]">
-      <h1 className="text-4xl font-bold mb-8">Contact Us</h1>
-      <form className="w-full max-w-md bg-white rounded shadow p-8 flex flex-col gap-6" onSubmit={handleSubmit}>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#FCFAF3] px-4 py-12">
+      <h1 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center">Contact Us</h1>
+      <form className="w-full max-w-sm md:max-w-md bg-white rounded shadow p-6 md:p-8 flex flex-col gap-5 md:gap-6" onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
           placeholder="Your Name"
           value={form.name}
           onChange={handleChange}
-          className="border border-gray-300 rounded px-4 py-2 text-lg"
+          className="border border-gray-300 rounded px-4 py-2.5 text-base md:text-lg"
           required
         />
         <input
@@ -34,7 +34,7 @@ export default function ContactUs() {
           placeholder="Your Email"
           value={form.email}
           onChange={handleChange}
-          className="border border-gray-300 rounded px-4 py-2 text-lg"
+          className="border border-gray-300 rounded px-4 py-2.5 text-base md:text-lg"
           required
         />
         <textarea
@@ -42,12 +42,12 @@ export default function ContactUs() {
           placeholder="Your Message"
           value={form.message}
           onChange={handleChange}
-          className="border border-gray-300 rounded px-4 py-2 text-lg min-h-[120px]"
+          className="border border-gray-300 rounded px-4 py-2.5 text-base md:text-lg min-h-[120px]"
           required
         />
         <button
           type="submit"
-          className="bg-[#E07B39] text-white font-semibold rounded px-6 py-3 text-lg hover:bg-orange-600 transition-all"
+          className="bg-[#E07B39] text-white font-semibold rounded px-6 py-3 text-base md:text-lg hover:bg-orange-600 transition-all"
         >
           Send Message
         </button>

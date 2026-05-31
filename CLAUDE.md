@@ -1,0 +1,540 @@
+# CLAUDE.md — Liberty India Project Context
+
+> **Read this file first at the start of every session.** Running memory of the
+> project. At the **end of every working session**, update the
+> [Session Log](#session-log) with what was done and what's next. Keep the log
+> short — archive old entries to `SESSION_LOG_ARCHIVE.md` when this file grows
+> past ~30k chars.
+
+---
+
+## 1. What this project is
+
+**Liberty India** — marketing website for an Indian Destination Management
+Company (DMC) specializing in MICE, luxury leisure travel, events, and curated
+itineraries. Tagline: *"Where Ancient Wisdom Meets Modern Luxury."*
+
+Content/marketing site (no backend, no database). Focus is **frontend: UI/UX
+across the whole site**.
+
+## 2. Tech stack
+
+- **Next.js 16.1.6** (App Router) + **React 19.2**
+- **TypeScript** (strict)
+- **Tailwind CSS v4** (config-in-CSS via `@theme` in `app/globals.css`)
+- **react-leaflet 5** — interactive India map on itineraries
+- **react-google-recaptcha** — contact form
+- Deployed on **Vercel**
+
+Commands: `npm run dev` (local), `npm run build` (verify before commit),
+`npm run lint`.
+
+## 3. Project structure
+
+```
+app/
+  layout.tsx              Root layout, fonts, SEO metadata, JSON-LD
+  page.tsx                Homepage
+  globals.css             Tailwind theme, custom utilities, base styles
+  components/             Shared components (Navbar, Footer, HeroCarousel,
+                          ItineraryCard, ItineraryCards, Journeys, Services,
+                          PageLoader, …)
+  components/services/    Shared service-page components: ServiceHero,
+                          TaglineStrip, SectionOverview, CustomizedPrograms,
+                          exploreItems.ts
+  itineraries/            IndiaMap, ItineraryTemplate, itineraries.ts data,
+                          [slug] dynamic itinerary pages
+  our-services/<slug>/    7 service sub-pages (meetings-conferences,
+                          incentives, premium-leisure, cruise-handling,
+                          special-interest, sports-tourism, education-tours)
+  <topic>/page.tsx        About-India sections: heritage, culture, architecture,
+                          wildlife, wellness, spiritual, nature
+  event-prod/             Still on old flat-route layout (not yet folded into
+                          /our-services pattern)
+  about-us, contact-us    Static pages
+public/images/            All site imagery (organized by section)
+public/fonts/             Self-hosted Big Caslon CC (.otf, 400/700/900 + italics)
+```
+
+## 4. Design system (keep consistent)
+
+- **Fonts:**
+  - Headings / `.font-serif` / `var(--font-playfair)` → **Big Caslon CC**
+    (self-hosted in `public/fonts/`, Playfair Display fallback).
+  - Body / `.font-merriweather` / `var(--font-merriweather)` → **Segoe UI**
+    (Merriweather fallback).
+  - Poppins (`--font-poppins`) for UI accents.
+  - Global 1% letter-spacing on h1–h6 + `.font-serif`.
+- **Colors:** white background `#ffffff`; primary text `#424242` (NOT
+  `text-gray-900` — use `text-[#424242]` for consistency with the heritage
+  benchmark). Cream bands: `#FDF8E8` (solid) and `rgba(253,243,159,0.2-0.5)`.
+  Brand orange: `#E07B39` (also `#e58021` for the Promise pillar headings).
+- **Custom utilities** in `globals.css`: `text-shadow-lg`, `text-shadow-sm`,
+  `animate-hero-fade-in`, `scrollbar-hide`, global smooth-scroll.
+- Tailwind v4 — extend the theme in `globals.css` `@theme`, NOT a JS config.
+- **Heritage benchmark pattern** for `/about-india/*` sections: top-overlap
+  intro card (serif Playfair, 22px, `#424242`, `leading-loose`), bold-serif
+  connector line, `ImageTextOverlay variant="heritage"` with `h-[414px]`,
+  ItineraryCards on `bgColor="#FDF39F4D"`.
+- **Service-page pattern** for `/our-services/*`: `<ServiceHero>` →
+  `<TaglineStrip>` → `<SectionOverview>` → either `<ItineraryCards>` with
+  `getExploreItems('<folderSlug>')` (5 sections) or `<CustomizedPrograms>`
+  form (Meetings, Incentives) → Footer.
+- **Unified itinerary card** (`app/components/ItineraryCard.tsx`): bordered
+  `rounded-lg`, fixed `h-64 md:h-80` image w/ hover scale, orange meta line,
+  `line-clamp-3` desc, price footer. Used everywhere — do NOT recreate inline.
+
+## 5. Working agreement
+
+- Scope is **frontend / UI / UX only** unless told otherwise.
+- Match existing component patterns, fonts, and spacing — keep it cohesive.
+- Use shared components (`ItineraryCard`, `ServiceHero`, `TaglineStrip`,
+  `SectionOverview`, `CustomizedPrograms`, `ItineraryCards`) — do not
+  duplicate their markup inline on pages.
+- Run `npm run build` before declaring frontend work done (catches type errors).
+- **🚫 NEVER `git push`.** Hard rule. Local commits for progress tracking are
+  fine — push is forbidden until final sign-off.
+- **Footer contact form is P0-frozen** — wired to `/api/contact` via Resend.
+  Only style/layout changes allowed; logic/fields/state untouched.
+- **Always update the Session Log below before ending a session.** Keep entries
+  short: one-line summary + Done + Files + Next. Archive when file > 30k chars.
+
+---
+
+## Current State (snapshot as of 2026-05-20)
+
+**Home page:** Fully synced to Figma (sessions 5–7). Hero, AboutUs, AboutIndia,
+Services grid, Journeys, Footer/CTA all updated. Self-hosted Big Caslon CC live.
+Contact form working via `/api/contact` + Resend (needs `RESEND_API_KEY` in
+Vercel env to actually send mail in prod).
+
+**`/about-india/*` sections:** All 6 synced to Figma + heritage benchmark
+(sessions 8–11): culture, architecture, nature, spiritual, wildlife, wellness.
+
+**`/our-services/*` sections:** All 7 sub-pages live with the shared pattern
+(sessions 12–14): meetings-conferences, incentives, premium-leisure,
+cruise-handling, special-interest, sports-tourism, education-tours. Old flat
+routes (`/meetings`, `/incentives`, etc.) deleted; homepage Services grid
+repointed.
+
+**`/about-us`:** Synced to Figma (session 6).
+
+**Build status:** `npm run build` clean 30/30, all routes static.
+
+## Known open items / tech debt
+
+- ⚠️ **ItineraryCards content debt:** All 6 `/about-india/*` sections and 5
+  `/our-services/*` sections pass placeholder/shared itinerary items. Needs a
+  coordinated content pass in `app/itineraries/itineraries.ts` to wire real
+  per-section itineraries. 4 of the 6 Explore-Programs card titles
+  (Taj & Tigers, Gems of North India, Gems of South India, Colourful Rajasthan)
+  currently route to `/under-development`.
+- ⚠️ **`CustomizedPrograms` form is dead** — no `onSubmit`. Wire to
+  `/api/contact` when ready (single component, propagates to Meetings +
+  Incentives automatically).
+- ⚠️ **`/event-prod`** still on old flat-route layout — not yet folded into
+  `/our-services/*` pattern.
+- ⚠️ **Wellness Ayurveda overlay** (session 11) — verify on dev that
+  `experiences.png` doesn't have cards baked in (would duplicate the overlay).
+- ⚠️ **P1-7:** Jan/Feb hero use the same image — needs a January asset uploaded.
+- **Pre-existing lint debt:** unescaped entities, PageLoader `require`,
+  HeroCarousel setState-in-effect, stray unused imports. Not introduced by
+  recent work — separate cleanup pass if desired.
+- See `TECH_DEBT.md` for the full list.
+
+## Deployment notes
+
+- For contact form email delivery: set `RESEND_API_KEY` (required),
+  `CONTACT_TO` (default `India@liberty-int.com`), and `CONTACT_FROM` (a
+  Resend-verified sender) in Vercel env. Without `RESEND_API_KEY` the form
+  succeeds but only logs server-side.
+
+---
+
+## Session Log
+
+> Newest on top. Keep entries short: `### YYYY-MM-DD (session N) — summary`
+> then **Done**, **Files**, **Next**. Older sessions archived in
+> `SESSION_LOG_ARCHIVE.md`.
+
+### 2026-05-29 (session 30) — UX fixes: hero spacing, navbar smooth-scroll, About-India category filtering, expert button, day-card images
+**Done:** Five frontend fixes. Build clean 43/43.
+1. **Hero letter-spacing** (`HeroCarousel.tsx`) — tagline `tracking-[0.28em]→[0.1em]`; service line
+   `[0.15em] md:[0.25em] → [0.05em] md:[0.1em]`.
+2. **Navbar in-page scroll** (`Navbar.tsx`) — root cause: Lenis owns smooth scroll (native
+   `scroll-behavior` removed), so native hash jumps were instant/flaky (the "Our Services
+   doesn't scroll" bug). Added `useLenis()` + `usePathname()`, a `handleNavClick` that on the
+   homepage `preventDefault`s and drives `lenis.scrollTo(el,{offset:-80})` (Home → `scrollTo(0)`),
+   and an effect that smooth-scrolls when arriving on `/` with a hash (cross-page). Wired desktop
+   + mobile links. Section ids confirmed: `#about-india` (AboutIndia), `#services` (Services),
+   `#contact` (Footer).
+3. **About-India itinerary filtering** (`ItineraryCards.tsx` + 7 pages) — added a data-driven
+   `category` prop: when set, cards derive from `getItinerariesByCategory(category)` (limit 3),
+   using real `startingPrice` (hides label/note for "Price on request"). Each `/about-india/*`
+   page now passes `category="Heritage|Culture|Architecture|Nature|Spiritual|Wildlife|Wellness"`
+   instead of hardcoded (often wrong-category) items. Services pages keep the `items` path
+   (getExploreItems) unchanged. **Note:** `git checkout`-recovered architecture page after a
+   transform-script regex over-deleted it; doing so surfaced a pre-existing HEAD bug (Architecture
+   page's card heading read "Explore the Culture") — fixed to "Explore the Architecture".
+4. **FloatingExpertButton** — removed chat icon, `rounded-full → rounded-[4px]`, text always
+   visible (was `hidden sm:inline`).
+5. **Day-card images** (`DaysSection.tsx`) — dropped `md:rounded-[8px]` so day thumbnails are
+   square.
+**Files:** `app/components/HeroCarousel.tsx`, `app/components/Navbar.tsx`,
+`app/components/ItineraryCards.tsx`, `app/itineraries/template/FloatingExpertButton.tsx`,
+`app/itineraries/template/DaysSection.tsx`, `app/{heritage,culture,wildlife,spiritual,nature,wellness,architecture}/page.tsx`,
+`CLAUDE.md`.
+**Next:** User reviews on dev — (a) hero spacing; (b) navbar: Home scrolls to top, About
+India/Our Services/Contact smooth-scroll from home AND from other pages, no more flaky Our
+Services; (c) each About-India section shows only its own itineraries (Wellness shows 2 — only
+2 wellness itineraries exist); (d) sticky expert button is a rectangle w/ no icon; (e) day-card
+images square. Possible follow-up: bump About-India `limit` if they want more than 3 cards.
+
+### 2026-05-29 (session 29) — Premium imaging: India's Natural & Historical Treasures + Gems of South India (+ Rajasthan hero refresh)
+**Done:** The **last two** placeholder itineraries imaged via the established pipeline (Pexels
+premium → Wikimedia Commons for niche subjects → `sharp` → visually verify EVERY image,
+re-source dup/B&W/foreign/wrong-region/weak → block-scoped wiring → SOURCES.md). Build clean
+43/43; on-disk verified 27/27 + 14/14, 0 missing.
+*(0) Colourful Rajasthan hero:* user re-uploaded `…/colorful-rajasthan/main-bg.png` (Udaipur
+City Palace over Lake Pichola — fetched & verified premium); code already pointed there, so
+appended a `?updatedAt=` cache-buster (L832) to force the refresh past Next/CDN image cache.
+*(1) India's Natural & Historical Treasures (27 imgs):* 15 days + tiger hero + Taj-reflection
+overview + 6 signature + 4 hotels. **Heaviest distinctness job yet** — combines Golden Triangle
++ Ranthambore + Central-India tigers, overlapping 3 done itineraries; cross-checked every
+shared subject vs golden-triangle-with-ranthambore / encounter-tiger / safari. Re-sourced 11:
+hero (flat lying tiger → dramatic striding tiger), day-2 (gritty fish-stall → Red-Fort
+rickshaw), day-6 (murky forest → sunbeam sal-forest road), day-9 (**Delhi/sepia Jantar Mantar
+mislabel → Jaipur City Palace Peacock Gate**), day-11 (**exact GT id-dup** → fort gate), yoga
+(seaside → temple yoga), boat (**alpine speedboat** → Indian forest lake), balloon
+(**Cappadocia** → India), 3 hotels (**exact GT id-dups**). Kept tigers vary deliberately
+(jeep+tiger / dappled walk / two tigers / hero stride).
+*(2) Gems of South India (Karnataka+Goa, 14 imgs):* 12 days + Mysore-Palace hero + coffee-hills
+overview (no signature, no hotels — not authored). Overlaps southern-splendour; used its
+SOURCES.md to guarantee distinct shots. Re-sourced 6: day-2 (**Gumbaz mislabel → Lalbagh Glass
+House**, and **moved the Gumbaz to day-4** = Srirangapatna, accurate), day-4 (ambiguous
+Mysore-interior → Gumbaz), day-7 (**dup of day-6** → Mullayanagiri), day-12 (**Palolem clashed
+SS** → Agonda), hero (square palace detail → wide Mysore Palace daytime), overview
+(**Munnar/Kerala tea → Western-Ghats coffee**).
+**Files:** `app/itineraries/itineraries.ts` (INHT + Gems blocks: day images + hero/overview/
+hotel URLs + comments; Rajasthan hero L832 cache-buster); new — 41 images + `SOURCES.md` in
+`public/images/itineraries/indias-natural-and-historical-treasures/` and `…/gems-of-south-india/`;
+`CLAUDE.md`.
+**Next:** User reviews on dev — `/itineraries/colourful-rajasthan` (new Udaipur hero),
+`/itineraries/indias-natural-and-historical-treasures` (the distinct tiger/Delhi/monument shots
+vs GT/tiger/safari), `/itineraries/gems-of-south-india` (Karnataka shots vs Southern Splendour).
+**All premium-pass itineraries now imaged.** Remaining = the original ~9 on client ImageKit /
+cross-referenced images (classical-golden-triangle, taj-and-tigers, colourful-rajasthan days,
+northeast-india-city-of-joy, kairali-ayurvedic-healing-village,
+unveiling-the-enchanting-south-tamil-nadu, northeast-india-sojourn) — same pass on request.
+Pexels key in gitignored `.claude-tmp/keys.env`.
+
+### 2026-05-29 (session 28) — Premium imaging: Enchanting Central India + Enchanting South India (TN & Kerala)
+**Done:** Two more itineraries fully imaged via the established pipeline (Pexels premium
+primary → Wikimedia Commons for niche subjects → `sharp` compress → visually verify EVERY
+image, re-source weak/dup/off-subject/B&W/foreign picks → block-scoped Node wiring asserting
+exactly 1 match each → per-folder `SOURCES.md`). Hotels = representative luxury/heritage
+stand-ins (flagged). Build clean 43/43.
+*(1) Enchanting Central India (12 days, 21 imgs):* days = Bandra–Worli Sea Link (night),
+Gateway of India, Bibi ka Maqbara, Ellora rock-cut temple, Ajanta chaitya hall, Omkareshwar,
+Maheshwari handloom, Mandu pavilion, river aarti (Ujjain/Ram Ghat), Taj-ul-Masjid, Sanchi
+torana, CST; hero = **Ellora Kailasa (elevated)**; overview = Maheshwar Narmada ghat; 3 Mumbai
+signature (Bollywood / Art Deco / dawn); 4 hotels. Re-sourced 3: hero (Pexels gave **B&W** →
+Commons colour Kailasa), day-10 (Pexels "Taj-ul-Masjid" returned a **Sri-Lanka red mosque** →
+Commons real Bhopal mosque), day-1 (too-dark Marine Drive → Sea Link). **Distinctness vs
+vibrant-gujarat-central-india verified** (Maheshwar/Mandu/Ujjain/Bhopal/Sanchi = different
+subjects or compositions; 6 distinct Mumbai shots across days 1/2/12 + 3 signature).
+*(2) Enchanting South India — TN & Kerala (16 days, 22 imgs):* days = Kapaleeshwarar (Chennai),
+Shore Temple, Pondicherry villa, Auroville Matrimandir, Brihadeeshwara, Chettinad terracotta
+horses, Athangudi mansion interior, Meenakshi gopuram detail, Thirumalai Nayak Palace, cardamom
+harvest, Periyar lake cruise, Alleppey houseboat, Marari beach, Kerala palm coast, Kathakali,
+Chinese fishing nets; hero = **Alleppey backwaters (golden hour)**; overview = Meenakshi
+gopuram; 4 hotels. **Signature left empty per user decision** (source doc's block was wrong
+NE-India template content). Re-sourced 4: day-1 (drab grey aerial → Kapaleeshwarar), day-6
+(**dup** of day-7 Athangudi → terracotta horses), day-8 + overview (**identical** temple-tank
+w/ cement billboard → 2 distinct Meenakshi gopurams). Kept verified-Kochi daytime nets over a
+prettier sunset shot (likely Vietnam — geographic accuracy).
+**Files:** `app/itineraries/itineraries.ts` (both blocks: day images + hero/overview/hotel
+URLs + comments); new — ~43 images + `SOURCES.md` in
+`public/images/itineraries/enchanting-central-india/` and
+`…/enchanting-south-india-tamilnadu-kerala/`; `CLAUDE.md`.
+**Next:** User reviews both on dev (`/itineraries/enchanting-central-india`,
+`/itineraries/enchanting-south-india-tamilnadu-kerala`) — check the 6 distinct Mumbai shots,
+Ellora hero vs day-4, and the 3 distinct South-India temple shots (Kapaleeshwarar/Meenakshi×2).
+Remaining placeholder itineraries for the same pass on request: gems-of-south-india,
+indias-natural-and-historical-treasures, + the original ~9 (classical-golden-triangle,
+taj-and-tigers, colourful-rajasthan, northeast-india-city-of-joy,
+kairali-ayurvedic-healing-village, unveiling-the-enchanting-south-tamil-nadu,
+northeast-india-sojourn, …). Pexels key in gitignored `.claude-tmp/keys.env`.
+
+### 2026-05-29 (session 27) — Premium imaging: Encounter (Royal Bengal Tiger) + Footsteps of Lord Buddha
+**Done:** Two more itineraries fully imaged via the established pipeline (Pexels premium
+primary → Wikimedia Commons for niche subjects → `sharp` compress → visually verify every
+image, re-source weak/dup/off-subject picks → wire via block-scoped Node script → per-folder
+`SOURCES.md`). Hotels = representative luxury/lodge stand-ins (flagged).
+*(1) Encounter with the Royal Bengal Tiger (20):* 11 days (India Gate dusk, Humayun's Tomb,
+forested-hills lake → Bandhavgarh, **Bengal tiger**, sun-ray forest drive, chital, Pench sal
+forest, **leopard in a tree**, Tadoba lake, **tiger in water**, forest trail), hero (tiger
+face), overview (tiger in forest), 3 signature (yoga, Old Delhi tandoori-skewers, street
+art), 4 hotels (Claridges / Brij bush-lodge / Outpost tents / Waghoba). Re-sourced 9 weak
+picks: India Gate + Humayun dups (vs Safari/GT), B&W tiger → color, jeep + leopard dups,
+Coorg misty-hills (wrong region) → central-India, golgappa → smoky tandoori skewers,
+**beach resort → genuine bush/safari lodge**. Wired via scoped script (safari-day text
+repeats per-park; replacements scoped to the block).
+*(2) On the Footsteps of Lord Buddha (21):* 15 days — day-1/2 deliberately **Lotus Temple +
+Jama Masjid** (distinct from Encounter's India Gate/Humayun), Rumi Darwaza, Bara Imambara,
+**Sravasti Jetavana ruins**, Maya Devi Temple, **Lumbini World-Peace-Pagoda lily pond**,
+**Kushinagar reclining Buddha** (cropped around the head from a wide banner), **Vaishali
+Ashokan lion-pillar**, Rajgir Vishwa Shanti Stupa, Nalanda ruins, Mahabodhi Temple, Ganga
+Aarti, dawn ghats, Varanasi boats — hero = **Buddha on Ghora Katora Lake, Rajgir** (on-circuit,
+atmospheric), overview = Ganges panorama, 4 hotels. Pexels covered Delhi/Lucknow/Bodhgaya/
+Varanasi/hero/hotels; **Commons supplied the 4 pilgrimage sites Pexels lacks** (Sravasti,
+Lumbini, Kushinagar, Vaishali — Commons image host 429-throttles, so used cooldown + per-image
+backoff). Re-sourced: day-5 Nalanda-dup → Sravasti, day-7 redundant-Buddha → Lumbini pagoda,
+day-8 Korean-temple reclining Buddha → real Kushinagar one, day-9 low-res Sarnath pillar →
+Vaishali, garden-ornament hero → Ghora Katora, sandstone-aerial hotel → resort. 4 Varanasi
+shots kept visibly distinct. `signatureExperiences: []` left empty (per user). Build clean 43/43.
+**Files:** `app/itineraries/itineraries.ts` (both entries: days + hero/overview + hotels +
+block comments; tiger also signature); new — ~41 images + `SOURCES.md` in
+`public/images/itineraries/encounter-with-the-royal-bengal-tiger/` and
+`…/footsteps-of-lord-buddha/`; `CLAUDE.md`.
+**Next:** User reviews both on dev (`/itineraries/encounter-with-the-royal-bengal-tiger`,
+`/itineraries/footsteps-of-lord-buddha`) — check tiger variety (no repeats), the 4 distinct
+Varanasi shots, and the cropped Kushinagar Buddha at thumbnail size. Remaining placeholder/
+Commons-era itineraries that can get the same premium pass on request: gems-of-south-india,
+enchanting-central-india, enchanting-south-india-tamilnadu-kerala,
+indias-natural-and-historical-treasures, + the original 9. Pexels key kept in gitignored
+`.claude-tmp/keys.env`.
+
+### 2026-05-29 (session 26) — Premium imaging: Incredible NE India + Golden Triangle with Ranthambore
+**Done:** Two more itineraries fully imaged via the Pexels premium pipeline (visually
+verified every image; re-sourced any B&W / dup / off-subject / weak picks; Commons only
+where Pexels was thin). Hotels = representative luxury stand-ins (flagged in each SOURCES.md).
+*(1) Incredible North East India (23):* 14 days (Howrah Bridge, Victoria Memorial,
+Dakshineswar temple, Darjeeling tea-hills, **Darjeeling toy train — from Commons** as Pexels
+only had a model, Darjeeling town, Pelling Buddhist pavilion, hill lake, giant Buddha
+[representative], Sikkim monastery, Teesta valley, Lotus Temple, Qutub Minar, India Gate
+night), hero (Kanchenjunga sunrise), overview (Yumthang Valley), 3 signature (yoga, Old Delhi
+food, street art), 4 hotels. Re-sourced the B&W Kanchenjunga hero → color, a scaffolded
+Buddha → clean, a dup tea-hills overview, a B&W toy-train station, and two weak hotels;
+day-12/13 (Lotus/Qutub) made distinct from Safari's.
+*(2) Golden Triangle with Ranthambore (23):* 8 days (India Gate, Humayun's Tomb, Agra Fort,
+**Taj at sunrise**, Hawa Mahal, Ranthambore ruin, **Bengal tiger**, Jal Mahal), hero (Taj
+classic), overview (Amber Fort), 9 signature (yoga, Old Delhi food, street art, Agra food,
+Mughal heritage, marble inlay, Rajasthani food, decorated elephants, heritage cycling), 4
+hotels. Re-sourced 6 that duplicated Safari (India Gate / Humayun / Agra Fort / Ganesha
+mural) or were B&W (Old Delhi food, Agra heritage). **Wired via a scoped Node script** —
+GT's Delhi/Agra day text collides verbatim with other Golden-Triangle itineraries, so
+edits were scoped to the GT block (each phrase unique within it) to avoid mis-targeting.
+Build clean 43/43.
+**Files:** `app/itineraries/itineraries.ts` (both entries: days + hero/overview + signature
++ hotels + block comments); new — ~46 images + `SOURCES.md` in
+`public/images/itineraries/incredible-north-east-india/` and
+`…/golden-triangle-with-ranthambore/`; `CLAUDE.md`.
+**Next:** User reviews both on dev (`/itineraries/incredible-north-east-india`,
+`/itineraries/golden-triangle-with-ranthambore`). Continue the set one-by-one with the
+Pexels standard (`.claude-tmp/keys.env` kept, gitignored). Itineraries still on
+placeholders / Commons-era picks (e.g. gems-of-south-india, enchanting-central-india,
+enchanting-south-india-tamilnadu-kerala, indias-natural-and-historical-treasures,
+encounter-with-the-royal-bengal-tiger, footsteps-of-lord-buddha, + the original
+9) can get the same premium pass on request.
+
+### 2026-05-29 (session 25) — Premium sourcing switch (Pexels) + Safari & Heritage Trail + day-card image fix
+**Done:**
+*(1) Day-card image no-stretch fix (global).* `app/itineraries/template/DaysSection.tsx`
+— the right-hand day image was `md:aspect-auto md:self-stretch` so it grew taller when a
+long description grew the card. Changed to fixed `aspect-[4/3] self-start` (drop
+`md:aspect-auto`/`md:self-stretch`/`md:rounded-br`, add `md:rounded-[8px]`). Now the image
+is a constant ~4:3 thumbnail; long text grows the card while the image stays put. Shared
+component → applies to every itinerary's day list.
+*(2) New premium image standard.* Per user feedback (prior Commons picks "ok but can be
+better" → want luxury/clean/high-res), switched the sourcing pipeline to **Pexels API**
+(professional free-license stock; key stored in gitignored `.claude-tmp/keys.env`, never
+committed/echoed), Wikimedia Commons now only a fallback. (User supplied a Pexels key; no
+Unsplash key yet → Pexels + Commons.)
+*(3) Safari & Heritage Trail — fully imaged (24).* `safari-and-heritage-trail` (12-day
+Delhi/Agra + Bandhavgarh/Kanha/Pench tiger safaris): all 12 day cards, hero (Bengal tiger),
+overview (Humayun's Tomb), 6 signature experiences (Art Walk → Ganesha street mural,
+Moonlit Square → Old Delhi night street food, Yoga at Sivananda → meditation, Cooking →
+Indian thali, Village walks → terraced fields, Yoga by Taj → seaside dawn yoga), 4 hotels.
+Visually verified all 24; **re-sourced 5**: hero & day-4 (initially duped day-5 tiger /
+day-8 forest-road), day-6 (Pexels top was black-and-white → color gypsy safari), art-walk
+(first hit had Chinese signage → Indian Ganesha mural), yoga-by-taj (was Cappadocia/Turkey
+→ seaside yoga). "Journey Page Content Template" confirmed = the section-spec doc
+(`.claude-tmp/docx-extracted/`), used as the coverage checklist (not a separate build).
+Hotels = representative premium stand-ins (flagged in SOURCES.md). Stored locally under
+`public/images/itineraries/safari-and-heritage-trail/` (+ signature/, hotels/, SOURCES.md).
+Build clean 43/43.
+**Files:** `app/itineraries/template/DaysSection.tsx` (no-stretch fix);
+`app/itineraries/itineraries.ts` (Safari 12 days + hero/overview + 6 signature + 4 hotels +
+comments); new — 24 Pexels images + `SOURCES.md` in
+`public/images/itineraries/safari-and-heritage-trail/`; `CLAUDE.md`.
+**Next:** User reviews Safari (`/itineraries/safari-and-heritage-trail`) + the stretch fix
+on any itinerary (e.g. Southern Splendour day-2) on dev. Continue the set one-by-one with
+the Pexels standard (kept `.claude-tmp/keys.env` for this — gitignored). If an Unsplash key
+is added later, can widen the pool. Earlier-itinerary images (Gujarat/Southern, sourced
+from Commons) could be re-sourced to the Pexels premium bar later if the user wants
+consistency. Still open from session 22: Gujarat day-5.png low-res (client upload).
+
+### 2026-05-29 (session 24) — Finished Vibrant Gujarat page + fully imaged Southern Splendour
+**Done:** Completed every remaining image container on two itineraries (~35
+web-sourced, free-licensed images via the same Commons pipeline as session 23 —
+Commons-only files, `sharp`-compressed, visually verified, multiple re-source
+rounds for misses; stored LOCALLY under
+`public/images/itineraries/<slug>/` with `signature/` + `hotels/` subfolders).
+*(1) Vibrant Gujarat remainder (12):* hero (Rann of Kutch white desert),
+overview (Statue of Unity), 6 signature experiences (Kutchi-embroidery Bhuj,
+Kathak, handloom Maheshwari weaving, Chikankari, Awadhi/Tunday-kebab cooking,
+Hazratganj bazaar), 4 hotels. The 2 previously-imageless signature items
+(Kathak, Threads-of-Lucknow) now have images so the full 6-card grid renders.
+*(2) Southern Splendour — full (23):* all 14 day cards (Vidhana Soudha,
+Brindavan musical fountain, Mysore Palace dusk, Kabini elephant, Abbey Falls,
+Gommateshwara, Halebidu, Chitradurga, Hampi stone chariot, Pattadakal, Panaji
+church, Bom Jesus, Palolem, Goa sunset), hero (epic Hampi boulder landscape),
+overview (Baga Beach), 3 signature (illuminated Mysore Palace, silk weaving,
+Fontainhas), 4 hotels. Notable re-sources: day-6 (row of idols → the
+Gommateshwara monolith), day-12 (parking lot → Bom Jesus facade), day-3 (Dasara
+night → dusk, to differ from the night-palace signature), hero (Virupaksha w/
+power lines → promoted the epic golden-hour Hampi landscape), Lalitha Mahal
+(interior hall → palace exterior). **Hotels = representative** per user (actual
+where free-licensed: Lalitha Mahal for Royal Orchid Metropole, Vijay Vilas
+Palace for Ambika Niwas, Noor-us-Sabah for Jehan Numa, Vivanta-by-Taj for
+Renaissance, Dwarka Resort for Taj Holiday Village; Wild-Ass-Sanctuary for Kutch
+Safari, Kabini reservoir for Kaav, Matanga-Hill Hampi for Heritage Resort) —
+all flagged *(representative)* in each `SOURCES.md`. Wrote/extended both
+`SOURCES.md` manifests (per-image subject · license · author · Commons page).
+`mapImage` left untouched on both (unused by template). Build clean 43/43.
+**Files:** `app/itineraries/itineraries.ts` (Gujarat hero/overview/6-signature/
+4-hotels + Southern 14-days/hero/overview/3-signature/4-hotels + both block
+comments); new — `public/images/itineraries/vibrant-gujarat-central-india/`
+(main-bg, overview, signature/×6, hotels/×4) + appended its SOURCES.md;
+`public/images/itineraries/southern-splendour/` (day-1…14, main-bg, overview,
+signature/×3, hotels/×4, SOURCES.md); `CLAUDE.md`.
+**Next:** User reviews both pages on dev (`/itineraries/vibrant-gujarat-central-india`,
+`/itineraries/southern-splendour`) — hero, overview, every day card, full
+Signature grid, all 4 hotels. When the client supplies their own / official
+photos (esp. hotels) and uploads to ImageKit, swap the local refs for ImageKit
+URLs (paths documented in each SOURCES.md) and delete the local files.
+Remaining placeholder itineraries (e.g. `gems-of-south-india` and others added
+since — file now has 18 itineraries) can get the same pass on request. Still
+open from session 22: Gujarat day-5.png low-res (225×225, client upload).
+
+### 2026-05-29 (session 23) — Web-sourced day photos for Vibrant Gujarat days 8–20
+**Done:** Filled the 13 imageless central-India day cards (8–20) with
+content-relevant, free-licensed photos. User chose: source free-license web
+photos (added to repo) + scope = day cards only (hero/overview/signature/hotels
+left untouched). Pipeline: pulled each landmark's photo from **Wikimedia
+Commons** via the API, accepting **only `/wikipedia/commons/` files** (Commons
+policy = free-license guarantee), compressed with `sharp` to ~1280px JPG
+(~100–300 KB each, ~2.3 MB total), stored **locally** at
+`public/images/itineraries/vibrant-gujarat-central-india/day-N.jpg` (client
+hasn't uploaded 8–20 to ImageKit). **Visually verified all 13**; re-sourced 5:
+day-10 (API gave the *Delhi* Jahaz Mahal, not Mandu's → swapped to Mandu ship
+palace), day-12 (amateur shot w/ camera watermark → Upper Lake/Bada Talab),
+day-9 & day-16 (no Commons lead image → Roopmati's Pavilion / Bara Imambara via
+file-search), day-18 (photographer's note "contact before commercial use" →
+swapped to a clean CC BY 2.0 dawn-Sangam by *ptwo*). Wrote
+`SOURCES.md` manifest (per-image subject · license · author · Commons file
+page). Subjects: 8 Maheshwar ghats, 9 Roopmati's Pavilion, 10 Jahaz Mahal,
+11 Mahakaleshwar, 12 Upper Lake, 13 Sanchi Stupa, 14 Bhimbetka, 15 Rumi
+Darwaza, 16 Bara Imambara, 17 The Residency, 18 Triveni Sangam, 19 Ram ki
+Paidi, 20 Ram Mandir. **Mixed hosts (documented):** days 1–7 = ImageKit URLs,
+days 8–20 = local `/images/…` paths — block-header comment explains; swap to
+ImageKit when client uploads. Build clean 43/43.
+**Files:** `app/itineraries/itineraries.ts` (image on days 8–20 + header
+comment); new — 13 `day-8…20.jpg` + `SOURCES.md` in
+`public/images/itineraries/vibrant-gujarat-central-india/`; `CLAUDE.md`.
+**Next:** When the client uploads their own day-8…20 (and hero/overview/map) to
+ImageKit, swap the local refs for URLs and delete the local files. Optional dev
+spot-check: day-11 (night Mahakaleshwar), day-13 (portrait Sanchi center-crops
+in card). Still open from session 22: day-5.png low-res (225×225). Repeat the
+same web-sourcing pass for *Gems of South India* if wanted. Gujarat
+signature-experience + suggested-hotel images remain placeholders (out of scope
+this session).
+
+### 2026-05-29 (session 22) — Real day photos for Vibrant Gujarat (days 1–7)
+**Done:** Client began uploading real itinerary photography to ImageKit under
+`itineraries/vibrant-gujarat-central-india/day-N.png`. Probed the folder:
+days 1–7 are live (200), days 8–20 + main-bg/overview/map still 404 (pending).
+Wired the 7 available `day-N.png` into the Vibrant Gujarat `days[]` array,
+replacing Day 1's old `classical-golden-triangle/day-1.webp` placeholder and
+adding `image` to days 2–7 (previously imageless). Stored clean URLs (dropped
+the `?updatedAt=` cache-buster) to match the file's convention. Visually
+spot-checked all 7: day-1 Delhi/Kartavya Path, day-2 Prag Mahal Bhuj, day-3
+Rann of Kutch, day-4 Kutch Bhunga huts, day-5 garden pond, day-6 heritage
+palace, day-7 Statue of Unity — `day-N → Day N` mapping confirmed. No
+next.config change needed (ik.imagekit.io already an allowed remote host).
+Build clean 43/43. **Two flags raised to user (awaiting decision):** (a)
+day-5.png is only 225×225px (9 KB) — low-res, will look soft in the card;
+recommend re-upload at ~1200px+. (b) RESOLVED — user confirmed the day-5/day-6
+swap: Day 5 (Ambika Niwas Palace) now references day-6.png (palace) and Day 6
+(wildlife sanctuary) references day-5.png (pond). Cross-wiring documented via
+inline comments + the block header note so it isn't "fixed" back later.
+**Files:** `app/itineraries/itineraries.ts` (Gujarat days 1–7 `image` fields +
+header comment refresh), `CLAUDE.md`.
+**Next:** Wire remaining Gujarat images (day-8..day-20, hero/main-bg, overview,
+map) as the client uploads them — user will post new URLs here. Then repeat the
+same pass for the other recently-added itinerary, *Gems of South India*
+(also still on neighbour-itinerary placeholders per session 17). Still open:
+day-5.png is low-res (225×225) — re-upload at ~1200px+ when possible.
+Signature-experience + suggested-hotel images for Gujarat also still placeholders.
+
+### 2026-05-28 (session 21) — Footer link cleanup + working navbar search overlay
+**Done:**
+*(1) Footer.* `quickLinks` array trimmed: dropped dead `Blog →
+/under-development`, added real `Contact Us → /contact-us`. Final 6
+links: Home, About us, About India, Tours, Services, Contact Us. The
+entire `Legal & Compliance` column was removed — all 4 of its entries
+were `/under-development` placeholders with no real legal pages behind
+them. `legalLinks` const + the rendered `<div>` block (heading + `<ul>`)
+deleted from Footer.tsx. Links grid rebalanced
+`lg:grid-cols-3` → `sm:grid-cols-2` (+ `lg:max-w-3xl` so the remaining
+Contact Us + Quick Links columns don't fan out across the full container
+width).
+*(2) Working navbar search.* New `app/components/SearchOverlay.tsx` —
+full-screen modal mirroring the proven `ExpertInquiryModal` pattern
+(`bg-black/70 backdrop-blur-md z-[100]`, ESC close, body-scroll-lock,
+click-outside dismiss). Centered 720px card with cream-tinted autofocus
+search input, prefix magnifier, live itinerary list below. Matching uses
+the existing `applyFilters` helper from `app/journeys/filters.ts` (sole
+source of search logic — searches title + subtitle + route +
+categories). Each result row shows a 56px thumbnail (`heroImage`),
+Big-Caslon title, and `duration · region · €price` meta line; click
+pushes to `/itineraries/<slug>`. Empty-query state shows a "Popular
+journeys" peek of the first 3 itineraries. No-match state shows a soft
+"No journeys match …" with a "Browse all journeys" CTA. Footer bar of
+the overlay always exposes a `See all N results in Journeys →` deep-link
+to `/journeys?q=<encoded>` (the existing /journeys filter system already
+honours `?q=`). Keyboard nav: ↑/↓ cycles through results,
+Enter navigates, ESC closes; visible kbd hint in the footer.
+*(3) Navbar wiring.* Added `searchOpen` state. Desktop search button (was
+decorative SVG, no onClick) now triggers `setSearchOpen(true)` + got
+`cursor-pointer` + better aria label. Added a new "Search" row in the
+mobile hamburger menu — same magnifier icon, taps close the mobile menu
+then open the overlay (so it isn't trapped behind the menu's z-50
+backdrop). `<SearchOverlay>` mounted once at the bottom of Navbar's JSX.
+Build clean 43/43.
+**Files:** modified — `app/components/Footer.tsx`,
+`app/components/Navbar.tsx`. new — `app/components/SearchOverlay.tsx`.
+**Next:** User reviews on dev. Walk: (a) Footer at desktop + mobile —
+6 Quick Links + Contact column + form area should balance, no Legal
+column. (b) Desktop magnifier in navbar → overlay opens with popular
+journeys peek; type `kerala`/`rajasthan`/`heritage` → live results,
+arrow-key + Enter navigates, click a result → itinerary page. (c) "See
+all results in Journeys" → `/journeys?q=…` with input pre-filled. (d)
+Mobile hamburger → Search row → menu closes, overlay opens. Possible
+follow-ups: surface category chips inside the overlay for one-tap
+"Heritage / Wildlife / Wellness" entry points if user wants a more
+guided start; thumbnail-fallback if any future itinerary ships without a
+`heroImage` (currently all 20 have one).
+
+---
+
+*Sessions 2–20 archived. See `SESSION_LOG_ARCHIVE.md` for full historical log
+including: initial UX audit + P0 fixes (form, navbar, dead links), Link
+codemod, P1 batch (hero CTA, carousel pacing), Home Figma sync feedback
+rounds, About Us Figma sync, UI consistency batch (unified itinerary card,
+responsive CTA), the 4-session `/about-india/*` sync pass (culture,
+architecture, nature, spiritual, wildlife, wellness), the Our Services
+rollout (12–14), site-wide smooth-scroll + `/journeys` page (15–16), and the
+itinerary roster + detail-page polish, responsive sweep, and enquiry-form
+redesign (17–20).*

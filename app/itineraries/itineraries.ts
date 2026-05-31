@@ -41,6 +41,13 @@ export interface ItineraryDay {
 export interface SignatureExperience {
   category: string;
   title: string;
+  image?: string;
+}
+
+export interface SuggestedHotel {
+  name: string;
+  city: string;
+  image: string;
 }
 
 export interface Itinerary {
@@ -67,6 +74,7 @@ export interface Itinerary {
   overviewImage: string;
   mapImage: string;
   coordinates?: MapStop[];
+  suggestedHotels?: SuggestedHotel[];
 }
 
 // ─── Helper: Get itineraries by category ────────────────────────────────────
@@ -149,17 +157,151 @@ export const ITINERARY_MAP_ROUTES: Record<string, MapStop[]> = {
   ],
 
   "colourful-rajasthan": [
-    { name: "Delhi",     lat: 28.6139, lng: 77.2090, modeToNext: "road" },
-    { name: "Mandawa",   lat: 28.0630, lng: 75.1499, modeToNext: "road" },
-    { name: "Bikaner",   lat: 28.0229, lng: 73.3119, modeToNext: "road" },
-    { name: "Jaisalmer", lat: 26.9157, lng: 70.9083, modeToNext: "road" },
-    { name: "Jodhpur",   lat: 26.2389, lng: 73.0243, modeToNext: "road" },
-    { name: "Udaipur",   lat: 24.5854, lng: 73.7125, modeToNext: "road" },
-    { name: "Deogarh",   lat: 25.5421, lng: 73.9080, modeToNext: "road" },
-    { name: "Jaipur",    lat: 26.9124, lng: 75.7873, modeToNext: "road" },
-    { name: "Agra",      lat: 27.1767, lng: 78.0081, modeToNext: "road" },
-    { name: "Delhi",     lat: 28.6139, lng: 77.2090 },
-  ]
+    { name: "Delhi",       lat: 28.6139, lng: 77.2090, modeToNext: "road" },
+    { name: "Mandawa",     lat: 28.0630, lng: 75.1499, modeToNext: "road" },
+    { name: "Bikaner",     lat: 28.0229, lng: 73.3119, modeToNext: "road" },
+    { name: "Jaisalmer",   lat: 26.9157, lng: 70.9083, modeToNext: "road" },
+    { name: "Jodhpur",     lat: 26.2389, lng: 73.0243, modeToNext: "road" },
+    { name: "Ranakpur",    lat: 25.1158, lng: 73.4710, modeToNext: "road" },
+    { name: "Udaipur",     lat: 24.5854, lng: 73.7125, modeToNext: "road" },
+    { name: "Chittorgarh", lat: 24.8887, lng: 74.6269, modeToNext: "road" },
+    { name: "Bundi",       lat: 25.4305, lng: 75.6390, modeToNext: "road" },
+    { name: "Jaipur",      lat: 26.9124, lng: 75.7873, modeToNext: "road" },
+    { name: "Agra",        lat: 27.1767, lng: 78.0081, modeToNext: "road" },
+    { name: "Delhi",       lat: 28.6139, lng: 77.2090 },
+  ],
+
+  // Vibrant Gujrat With Central India (replaced 2026-05-26 with new doc route)
+  "vibrant-gujarat-central-india": [
+    { name: "Delhi",          lat: 28.6139, lng: 77.2090, modeToNext: "air" },
+    { name: "Bhuj",           lat: 23.2420, lng: 69.6669, modeToNext: "road" },
+    { name: "Surendra Nagar", lat: 22.7196, lng: 71.6369, modeToNext: "road" },
+    { name: "Kevadia",        lat: 21.8350, lng: 73.7160, modeToNext: "road" },
+    { name: "Maheshwar",      lat: 22.1761, lng: 75.5851, modeToNext: "road" },
+    { name: "Mandu",          lat: 22.3603, lng: 75.4002, modeToNext: "road" },
+    { name: "Ujjain",         lat: 23.1765, lng: 75.7885, modeToNext: "road" },
+    { name: "Bhopal",         lat: 23.2599, lng: 77.4126, modeToNext: "air" },
+    { name: "Lucknow",        lat: 26.8467, lng: 80.9462, modeToNext: "road" },
+    { name: "Prayagraj",      lat: 25.4358, lng: 81.8463, modeToNext: "road" },
+    { name: "Ayodhya",        lat: 26.7995, lng: 82.2032, modeToNext: "air" },
+    { name: "Mumbai",         lat: 19.0760, lng: 72.8777 },
+  ],
+
+  // Gems of South India
+  "gems-of-south-india": [
+    { name: "Bengaluru",  lat: 12.9716, lng: 77.5946, modeToNext: "road" },
+    { name: "Mysuru",     lat: 12.2958, lng: 76.6394, modeToNext: "road" },
+    { name: "Hassan",     lat: 13.0033, lng: 76.0958, modeToNext: "road" },
+    { name: "Chikmagalur",lat: 13.3161, lng: 75.7720, modeToNext: "road" },
+    { name: "Hampi",      lat: 15.3350, lng: 76.4600, modeToNext: "road" },
+    { name: "Badami",     lat: 15.9149, lng: 75.6770, modeToNext: "air" },
+    { name: "Goa",        lat: 15.2993, lng: 74.1240 },
+  ],
+
+  // Safari & Heritage Trail
+  "safari-and-heritage-trail": [
+    { name: "Delhi",       lat: 28.6139, lng: 77.2090, modeToNext: "air" },
+    { name: "Bandhavgarh", lat: 23.6975, lng: 81.0335, modeToNext: "road" },
+    { name: "Kanha",       lat: 22.3344, lng: 80.6111, modeToNext: "road" },
+    { name: "Pench",       lat: 21.7611, lng: 79.2417, modeToNext: "air" },
+    { name: "Agra",        lat: 27.1767, lng: 78.0081 },
+  ],
+
+  // Incredible North East India
+  "incredible-north-east-india": [
+    { name: "Kolkata",     lat: 22.5726, lng: 88.3639, modeToNext: "air" },
+    { name: "Bagdogra",    lat: 26.6812, lng: 88.3286, modeToNext: "road" },
+    { name: "Darjeeling",  lat: 27.0360, lng: 88.2627, modeToNext: "road" },
+    { name: "Pelling",     lat: 27.3167, lng: 88.2333, modeToNext: "road" },
+    { name: "Ravangla",    lat: 27.2867, lng: 88.3712, modeToNext: "road" },
+    { name: "Gangtok",     lat: 27.3389, lng: 88.6065, modeToNext: "road" },
+    { name: "Kalimpong",   lat: 27.0680, lng: 88.4710, modeToNext: "air" },
+    { name: "Delhi",       lat: 28.6139, lng: 77.2090 },
+  ],
+
+  // Golden Triangle with Ranthambore
+  "golden-triangle-with-ranthambore": [
+    { name: "Delhi",       lat: 28.6139, lng: 77.2090, modeToNext: "road" },
+    { name: "Agra",        lat: 27.1767, lng: 78.0081, modeToNext: "road" },
+    { name: "Jaipur",      lat: 26.9124, lng: 75.7873, modeToNext: "road" },
+    { name: "Ranthambore", lat: 26.0173, lng: 76.5026, modeToNext: "road" },
+    { name: "Delhi",       lat: 28.6139, lng: 77.2090 },
+  ],
+
+  // Enchanting Central India
+  "enchanting-central-india": [
+    { name: "Mumbai",      lat: 19.0760, lng: 72.8777, modeToNext: "air" },
+    { name: "Aurangabad",  lat: 19.8762, lng: 75.3433, modeToNext: "road" },
+    { name: "Burhanpur",   lat: 21.3081, lng: 76.2295, modeToNext: "road" },
+    { name: "Maheshwar",   lat: 22.1761, lng: 75.5851, modeToNext: "road" },
+    { name: "Ujjain",      lat: 23.1765, lng: 75.7885, modeToNext: "road" },
+    { name: "Bhopal",      lat: 23.2599, lng: 77.4126, modeToNext: "air" },
+    { name: "Mumbai",      lat: 19.0760, lng: 72.8777 },
+  ],
+
+  // Enchanting South India — Tamil Nadu & Kerala
+  "enchanting-south-india-tamilnadu-kerala": [
+    { name: "Chennai",       lat: 13.0827, lng: 80.2707, modeToNext: "road" },
+    { name: "Mahabalipuram", lat: 12.6269, lng: 80.1920, modeToNext: "road" },
+    { name: "Pondicherry",   lat: 11.9416, lng: 79.8083, modeToNext: "road" },
+    { name: "Tanjore",       lat: 10.7870, lng: 79.1378, modeToNext: "road" },
+    { name: "Chettinad",     lat: 10.0721, lng: 78.7745, modeToNext: "road" },
+    { name: "Madurai",       lat: 9.9252,  lng: 78.1198, modeToNext: "road" },
+    { name: "Periyar",       lat: 9.5916,  lng: 77.1606, modeToNext: "road" },
+    { name: "Alleppey",      lat: 9.4981,  lng: 76.3388, modeToNext: "road" },
+    { name: "Mararikulam",   lat: 9.5851,  lng: 76.3041, modeToNext: "road" },
+    { name: "Kochi",         lat: 9.9312,  lng: 76.2673 },
+  ],
+
+  // India's Natural & Historical Treasures
+  "indias-natural-and-historical-treasures": [
+    { name: "Delhi",       lat: 28.6139, lng: 77.2090, modeToNext: "air" },
+    { name: "Tadoba",      lat: 20.2569, lng: 79.3814, modeToNext: "road" },
+    { name: "Pench",       lat: 21.7611, lng: 79.2417, modeToNext: "air" },
+    { name: "Jaipur",      lat: 26.9124, lng: 75.7873, modeToNext: "road" },
+    { name: "Ranthambore", lat: 26.0173, lng: 76.5026, modeToNext: "rail" },
+    { name: "Agra",        lat: 27.1767, lng: 78.0081, modeToNext: "road" },
+    { name: "Delhi",       lat: 28.6139, lng: 77.2090 },
+  ],
+
+  // Encounter With The Royal Bengal Tiger
+  "encounter-with-the-royal-bengal-tiger": [
+    { name: "Delhi",       lat: 28.6139, lng: 77.2090, modeToNext: "air" },
+    { name: "Bandhavgarh", lat: 23.6975, lng: 81.0335, modeToNext: "road" },
+    { name: "Kanha",       lat: 22.3344, lng: 80.6111, modeToNext: "road" },
+    { name: "Pench",       lat: 21.7611, lng: 79.2417, modeToNext: "road" },
+    { name: "Tadoba",      lat: 20.2569, lng: 79.3814, modeToNext: "air" },
+    { name: "Delhi",       lat: 28.6139, lng: 77.2090 },
+  ],
+
+  // Southern Splendour
+  "southern-splendour": [
+    { name: "Bengaluru",   lat: 12.9716, lng: 77.5946, modeToNext: "road" },
+    { name: "Mysore",      lat: 12.2958, lng: 76.6394, modeToNext: "road" },
+    { name: "Kabini",      lat: 11.9651, lng: 76.3469, modeToNext: "road" },
+    { name: "Coorg",       lat: 12.4244, lng: 75.7382, modeToNext: "road" },
+    { name: "Hassan",      lat: 13.0033, lng: 76.0958, modeToNext: "road" },
+    { name: "Chikmagalur", lat: 13.3161, lng: 75.7720, modeToNext: "road" },
+    { name: "Hampi",       lat: 15.3350, lng: 76.4600, modeToNext: "road" },
+    { name: "Aihole",      lat: 16.0167, lng: 75.8833, modeToNext: "road" },
+    { name: "Goa",         lat: 15.2993, lng: 74.1240 },
+  ],
+
+  // On the Footsteps of Lord Buddha
+  "footsteps-of-lord-buddha": [
+    { name: "Delhi",       lat: 28.6139, lng: 77.2090, modeToNext: "air" },
+    { name: "Lucknow",     lat: 26.8467, lng: 80.9462, modeToNext: "road" },
+    { name: "Sravasti",    lat: 27.5167, lng: 82.0500, modeToNext: "road" },
+    { name: "Lumbini",     lat: 27.4694, lng: 83.2747, modeToNext: "road" },
+    { name: "Kushinagar",  lat: 26.7400, lng: 83.8900, modeToNext: "road" },
+    { name: "Vaishali",    lat: 25.9912, lng: 85.1300, modeToNext: "road" },
+    { name: "Patna",       lat: 25.5941, lng: 85.1376, modeToNext: "road" },
+    { name: "Rajgir",      lat: 25.0322, lng: 85.4189, modeToNext: "road" },
+    { name: "Nalanda",     lat: 25.1359, lng: 85.4438, modeToNext: "road" },
+    { name: "Bodhgaya",    lat: 24.6961, lng: 84.9921, modeToNext: "road" },
+    { name: "Varanasi",    lat: 25.3176, lng: 82.9739, modeToNext: "air" },
+    { name: "Delhi",       lat: 28.6139, lng: 77.2090 },
+  ],
 
 };
 
@@ -179,7 +321,7 @@ export const itineraries: Itinerary[] = [
     duration: "13 Days",
     durationDays: 13,
     startingPrice: "$1,330",
-    startingPriceNote: "per person (2 Pax)",
+    startingPriceNote: "per person (2 people)",
     route: "Kolkata → Dibrugarh → Jorhat → Kaziranga → Shillong → Guwahati",
     bestTime: "October – March",
     overview: [
@@ -236,16 +378,22 @@ export const itineraries: Itinerary[] = [
       "Force Majeure: Company not liable for conditions beyond control",
     ],
     signatureExperiences: [
-      { category: "Culture & History", title: "Walk around Botanical Garden" },
-      { category: "Adventure Tour", title: "Tram Ride" },
-      { category: "Culture & History", title: "Visit Mother Teresa's house" },
-      { category: "Culture & History", title: "Cooking Workshop" },
-      { category: "Culture", title: "Drink at a jazz Bar" },
+      { category: "Culture & History", title: "Walk around Botanical Garden", image: "/images/signature-experience/northeast-india/botanical-garden.jpg" },
+      { category: "Adventure Tour",   title: "Tram Ride",                     image: "/images/signature-experience/northeast-india/tram-ride.jpg" },
+      { category: "Culture & History", title: "Visit Mother Teresa's house", image: "/images/signature-experience/northeast-india/mother-teresa-house.jpg" },
+      { category: "Culture & History", title: "Cooking Workshop",            image: "/images/signature-experience/northeast-india/cooking-workshop.jpg" },
+      { category: "Adventure Tour",   title: "Miniature Painting Workshop", image: "/images/signature-experience/northeast-india/miniature-painting.jpg" },
+      { category: "Culture",          title: "Drink at a jazz Bar",          image: "/images/signature-experience/northeast-india/jazz-bar.jpg" },
     ],
       heroImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/main-bg.svg",
       overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/overview.svg",
       mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
       coordinates: ITINERARY_MAP_ROUTES["northeast-india-city-of-joy"],
+      suggestedHotels: [
+        { name: "The Oberoi Grand",     city: "Kolkata",   image: "https://ik.imagekit.io/libertyindia/itineraries/north-east/day-2.svg" },
+        { name: "Wild Mahseer",         city: "Dibrugarh", image: "https://ik.imagekit.io/libertyindia/itineraries/north-east/day-4.svg" },
+        { name: "Diphlu River Lodge",   city: "Kaziranga", image: "https://ik.imagekit.io/libertyindia/itineraries/north-east/day-7.svg" },
+      ],
   },
 
   // ==========================================================================
@@ -259,7 +407,7 @@ export const itineraries: Itinerary[] = [
     duration: "7 / 14 / 21 Nights",
     durationDays: 7,
     startingPrice: "€1,230",
-    startingPriceNote: "per person (2 Pax)",
+    startingPriceNote: "per person (2 people)",
     route: "Kochi → Palakkad (Kairali Healing Village)",
     bestTime: "October – March",
     overview: [
@@ -345,7 +493,7 @@ export const itineraries: Itinerary[] = [
     duration: "7 Days",
     durationDays: 7,
     startingPrice: "€1,013",
-    startingPriceNote: "per person (2 Pax)",
+    startingPriceNote: "per person (2 people)",
     route: "Delhi → Agra → Jaipur → Delhi",
     bestTime: "October – March",
     overview: [
@@ -375,7 +523,7 @@ export const itineraries: Itinerary[] = [
     inclusions: [
       "Accommodation in single/twin rooms at selected hotel category or similar",
       "Daily breakfast",
-      "AC vehicle transfers and sightseeing (Toyota Crysta for 2–3 Pax / Tempo Traveller for 4–6 Pax)",
+      "AC vehicle transfers and sightseeing (Toyota Crysta for 2–3 people / Tempo Traveller for 4–6 people)",
       "Cycle rickshaw ride in Old Delhi",
       "GST (Goods & Services Tax) as applicable",
     ],
@@ -391,7 +539,7 @@ export const itineraries: Itinerary[] = [
     datesPrices: [
       "Classical Golden Triangle",
       "Price Validity OCT 2025 – MAR 2026",
-      "Starting from €390 per person (Standard Hotels, 4–6 Pax, Twin Sharing)",
+      "Starting from €390 per person (Standard Hotels, 4–6 people, Twin Sharing)",
     ],
     notes: [
       "Blackout Period: Dec 20 – Jan 10 (prices above not valid)",
@@ -430,7 +578,7 @@ export const itineraries: Itinerary[] = [
     duration: "8 Days",
     durationDays: 8,
     startingPrice: "€1,406",
-    startingPriceNote: "per person (2 Pax)",
+    startingPriceNote: "per person (2 people)",
     route: "Delhi → Agra → Jaipur → Ranthambhore → Delhi",
     bestTime: "October – March",
     overview: [
@@ -462,7 +610,7 @@ export const itineraries: Itinerary[] = [
     inclusions: [
       "Accommodation in single/twin rooms at selected hotel category or similar",
       "Daily breakfast; full board at Ranthambhore",
-      "AC vehicle transfers and sightseeing (Toyota Crysta for 2–3 Pax / Tempo Traveller for 4–6 Pax)",
+      "AC vehicle transfers and sightseeing (Toyota Crysta for 2–3 people / Tempo Traveller for 4–6 people)",
       "Cycle rickshaw ride in Old Delhi",
       "Two shared jeep safaris in Ranthambhore National Park",
       "GST (Goods & Services Tax) as applicable",
@@ -478,7 +626,7 @@ export const itineraries: Itinerary[] = [
     datesPrices: [
       "Golden Triangle with Ranthambhore",
       "Price Validity OCT 2025 – MAR 2026",
-      "Starting from €690 per person (Standard Hotels, 4–6 Pax, Twin Sharing)",
+      "Starting from €690 per person (Standard Hotels, 4–6 people, Twin Sharing)",
     ],
     notes: [
       "Blackout Period: Dec 20 – Jan 10 (prices above not valid)",
@@ -517,7 +665,7 @@ export const itineraries: Itinerary[] = [
     duration: "10 Days",
     durationDays: 10,
     startingPrice: "€880",
-    startingPriceNote: "per person (2 Pax)",
+    startingPriceNote: "per person (2 people)",
     route: "Chennai → Mahabalipuram → Pondicherry → Tanjore → Chettinad → Madurai → Chennai",
     bestTime: "October – March",
     overview: [
@@ -550,7 +698,7 @@ export const itineraries: Itinerary[] = [
     inclusions: [
       "Accommodation in single/twin rooms at selected hotel category or similar",
       "Daily breakfast",
-      "AC vehicle transfers and sightseeing (Toyota Crysta for 2–3 Pax / Tempo Traveller for 4–6 Pax)",
+      "AC vehicle transfers and sightseeing (Toyota Crysta for 2–3 people / Tempo Traveller for 4–6 people)",
       "GST (Goods & Services Tax) as applicable",
     ],
     exclusions: [
@@ -565,7 +713,7 @@ export const itineraries: Itinerary[] = [
     datesPrices: [
       "Unveiling the Enchanting South — Tamil Nadu",
       "Price Validity OCT 2025 – MAR 2026",
-      "Starting from €880 per person (Standard Hotels, 4–6 Pax, Twin Sharing)",
+      "Starting from €880 per person (Standard Hotels, 4–6 people, Twin Sharing)",
     ],
     notes: [
       "Blackout Period: Dec 20 – Jan 10 (prices above not valid)",
@@ -595,185 +743,76 @@ export const itineraries: Itinerary[] = [
   // ==========================================================================
   // 14. NORTHEAST INDIA SOJOURN — 10 Days (NEW)
   // ==========================================================================
+  // Replaced 2026-05-26 from itineraries/Colorful Rajasthan.docx — new doc has
+  // 14 days (was 16), routes through Ranakpur, Chittorgarh, and Bundi (was via
+  // Deogarh). Slug preserved (URL-stable, British spelling kept). Existing
+  // image URLs preserved as placeholders for the new days too.
   {
     slug: "colourful-rajasthan",
-    title: "Colourful Rajasthan",
-    subtitle: "Immerse yourself in Rajasthan's vivid colours and royal heritage. From desert dunes to palace lakes, experience India's most vibrant state through forts, temples, and authentic cultural encounters.",
+    title: "Colorful Rajasthan",
+    subtitle: "Experience the land of Kings, its majestic forts and opulent palaces as this immersive journey takes you through a bygone era of royal grandeur and architectural brilliance.",
     categories: ["Heritage", "Culture", "Architecture"],
-    duration: "16 Days",
-    durationDays: 16,
-    startingPrice: "€2,086",
-    startingPriceNote: "per person (2 Pax)",
-    route: "Delhi → Mandawa → Bikaner → Jaisalmer → Jodhpur → Udaipur → Deogarh → Jaipur → Agra → Delhi",
-    bestTime: "October – March",
+    duration: "14 Days",
+    durationDays: 14,
+    startingPrice: "Price on request",
+    startingPriceNote: "Contact for quote",
+    route: "Delhi → Mandawa → Bikaner → Jaisalmer → Jodhpur → Ranakpur → Udaipur → Chittorgarh → Bundi → Jaipur → Agra → Delhi",
+    bestTime: "October – April",
     overview: [
-      "From the painted havelis of Shekhawati and the golden ramparts of Jaisalmer to the lake palaces of Udaipur and the mighty forts of Jodhpur, this journey reveals Rajasthan in all its colour, grandeur, and living tradition—a land where every city tells its own royal story.",
-      "Ride cycle rickshaws through Old Delhi's ancient bazaars, explore medieval forts and intricately carved Jain temples, cruise across shimmering lakes, and witness the Taj Mahal at sunrise. This is India at its most vivid and unforgettable.",
+      "The tour starts and ends in Delhi. The first stop in Mandawa is famous for its beautiful havelis, followed by Bikaner and Jaisalmer — known for their deserted lands, camel and cattle farms, and golden sandstone buildings. Jodhpur, the Blue City, welcomes you with the grand Mehrangarh Fort.",
+      "See the peaceful Jain temples at Ranakpur on the way to Udaipur, the City of Lakes. Continue through Chittorgarh's historic stories of bravery and Bundi's princely charm. The last part of the tour takes you through Jaipur, the Pink City, followed by a visit to the iconic Taj Mahal in Agra.",
     ],
     summary: [
-      "Cycle rickshaw ride through Old Delhi's Chandni Chowk and visit to Humayun's Tomb and Qutub Minar",
-      "Explore the exquisitely painted havelis and frescoed mansions of Mandawa in the Shekhawati region",
-      "Visit Junagadh Fort in Bikaner and the magnificent golden Jaisalmer Fort, the world's largest living fort",
-      "Discover the ornate Patwon Ji ki Haveli and Nathmal Ji ki Haveli in Jaisalmer",
+      "Cycle Rickshaw ride in the narrow-crowded lanes of Old Delhi",
+      "Painted havelis and frescoed mansions of Mandawa in the Shekhawati region",
+      "Junagadh Fort in Bikaner and the golden Jaisalmer Fort — the world's largest living fort",
+      "Camel Desert Safari followed by dinner in the dunes, Jaisalmer",
     ],
     summaryRight: [
-      "Explore the 500-year-old Ranakpur Jain Temples with their 1,444 uniquely carved pillars",
-      "Shared boat ride on Lake Pichola in Udaipur with views of the City Palace and Lake Palace",
-      "Visit the historic Chittorgarh Fort and the charming princely town of Bundi",
-      "Ascend Amber Fort, explore Panna Meena Step Well, and wander Jaipur's vibrant markets",
+      "500-year-old Ranakpur Jain Temples with their 1,444 uniquely carved pillars",
+      "Private boat ride on Lake Pichola, Udaipur",
+      "Chittorgarh Fort and the princely town of Bundi",
+      "Jeep ride to Amber Fort, Jaipur and sunrise photoshoot at the Taj Mahal",
     ],
     days: [
-  {
-    day: 1,
-    title: "Arrive in Delhi",
-    description:
-      "Arrive at Delhi International Airport, where you'll be met by our representative and transferred to your hotel. Settle in and enjoy the rest of the day at leisure, taking in the energy of India's capital city.",
-    overnight: "Delhi",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-1.png?updatedAt=1773538850824",
-  },
-  {
-    day: 2,
-    title: "Exploring Delhi",
-    description:
-      "After breakfast, proceed for a guided city tour of Delhi. Begin with a visit to Qutub Minar, the 12th‑century Tower of Victory. Continue exploring New Delhi, driving past the President’s House, North and South Blocks, and Parliament House. In the afternoon, head to Old Delhi for lunch at Haveli Dharampura, drive past the Red Fort, visit Jama Masjid, and enjoy a cycle rickshaw ride through the narrow lanes and spice markets of the old city.",
-    overnight: "Delhi",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-2.png?updatedAt=1773539739934",
-  },
-  {
-    day: 3,
-    title: "Delhi → Mandawa",
-    description:
-      "After breakfast, drive to Mandawa in the Shekhawati region, famed as Rajasthan’s open‑air art gallery. Check into your heritage hotel in the former Mandawa Castle, adorned with frescoes and a gateway dedicated to Lord Krishna. Later, explore the richly painted havelis of Nawalgarh and Jhunjhunu, seeing some of the finest murals in Rajasthan.",
-    overnight: "Mandawa",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-3.png?updatedAt=1773539765039",
-  },
-  {
-    day: 4,
-    title: "Mandawa → Bikaner",
-    description:
-      "Depart for Bikaner after breakfast. On arrival, check in at your hotel and relax. Later, visit Junagadh Fort, an impressive complex of palaces, temples, balconies, and courtyards, renowned for its intricate stonework and richly decorated interiors.",
-    overnight: "Bikaner",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-4.png?updatedAt=1773539161291",
-  },
-  {
-    day: 5,
-    title: "Bikaner → Jaisalmer",
-    description:
-      "After breakfast, drive across the Thar Desert to Jaisalmer, the fabled Golden City. On arrival, check in at your hotel. The rest of the day is at leisure to soak in the desert atmosphere and explore the surrounding streets at your own pace.",
-    overnight: "Jaisalmer",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-5.png?updatedAt=1773539176393",
-  },
-  {
-    day: 6,
-    title: "Exploring Jaisalmer",
-    description:
-      "Spend the day discovering Jaisalmer’s architectural treasures. Visit Patwon Ji ki Haveli and Nathmal Ji ki Haveli, remarkable for their carved sandstone façades, then explore Jaisalmer Fort with its bustling lanes and Jain temples. Continue to Lake Gadisar and the royal cenotaphs at Bada Bagh, and in the evening enjoy a camel ride on the Sam Sand Dunes.",
-    overnight: "Jaisalmer",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-6.png?updatedAt=1773539216072",
-  },
-  {
-    day: 7,
-    title: "Jaisalmer → Jodhpur",
-    description:
-      "After breakfast, drive to Jodhpur, the Blue City of Rajasthan. On arrival, check in at your hotel. Later, begin exploring the city’s old quarters around the Clock Tower Market, filled with spices, textiles, and local handicrafts, or simply enjoy the evening at leisure.",
-    overnight: "Jodhpur",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-7.png?updatedAt=1773539284444",
-  },
-  {
-    day: 8,
-    title: "Exploring Jodhpur",
-    description:
-      "Today, visit the mighty Mehrangarh Fort, one of India’s most spectacular hill forts, with sweeping views over the blue‑washed old city. Continue to Jaswant Thada, a serene marble cenotaph built in memory of Maharaja Jaswant Singh II, and spend time around the vibrant Clock Tower and Sardar Market area.",
-    overnight: "Jodhpur",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-8.png?updatedAt=1773539306046",
-  },
-  {
-    day: 9,
-    title: "Jodhpur → Ranakpur → Udaipur",
-    description:
-      "Depart Jodhpur after breakfast, driving through rural Rajasthan to the Ranakpur Jain Temples. Explore the 15th‑century Chaumukha Temple, famed for its 29 halls and 1,444 uniquely carved pillars. Continue onward to Udaipur, the romantic City of Lakes, and check in at your hotel for the night.",
-    overnight: "Udaipur",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-9.png?updatedAt=1773539337661",
-  },
-  {
-    day: 10,
-    title: "Exploring Udaipur",
-    description:
-      "Discover Udaipur’s regal charm with a visit to the vast City Palace complex and its Crystal Gallery. Later, visit Jagdish Temple and Saheliyon‑ki‑Bari, the Garden of the Maids of Honour. In the late afternoon, enjoy a shared boat ride on Lake Pichola, admiring the Lake Palace Hotel, the City Palace, and the atmospheric ghats along the lakefront.",
-    overnight: "Udaipur",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-10.png?updatedAt=1773539469997",
-  },
-  {
-    day: 11,
-    title: "Udaipur → Deogarh",
-    description:
-      "After breakfast, drive to Deogarh, a rural town surrounded by rocky hills and small lakes. Check in at your heritage hotel and later head out on a relaxed village walk, meeting local residents and experiencing the slower rhythms of countryside life.",
-    overnight: "Deogarh",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-11.png?updatedAt=1773539507149",
-  },
-  {
-    day: 12,
-    title: "Deogarh → Jaipur",
-    description:
-      "Depart Deogarh after breakfast and drive to Jaipur, the famed Pink City. On arrival, check in at your hotel and enjoy the remainder of the day at leisure, with time to relax or begin exploring the nearby bazaars.",
-    overnight: "Jaipur",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-12.png",
-  },
-  {
-    day: 13,
-    title: "Exploring Jaipur",
-    description:
-      "Enjoy a full‑day guided tour of Jaipur. Visit the hilltop Amber Fort and the photogenic Panna Meena Step Well, then explore the City Palace and the Jantar Mantar stone observatory. Pause for photos at the iconic Hawa Mahal before browsing Jaipur’s colourful markets for textiles, jewellery, and handicrafts.",
-    overnight: "Jaipur",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-13.png?updatedAt=1773539532705",
-  },
-  {
-    day: 14,
-    title: "Jaipur → Fatehpur Sikri → Agra",
-    description:
-      "After breakfast, drive towards Agra, stopping en route at Fatehpur Sikri, Emperor Akbar’s beautifully preserved but short‑lived sandstone capital. Explore its palaces, courtyards, and mosques before continuing to Agra and checking in at your hotel.",
-    overnight: "Agra",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-14.png?updatedAt=1773539550428",
-  },
-  {
-    day: 15,
-    title: "Agra",
-    description:
-      "Rise early for a sunrise visit to the Taj Mahal, watching the marble monument change colour in the soft morning light. Return to the hotel for breakfast, then visit Itmad‑ud‑Daulah, the exquisite ‘Baby Taj’ with delicate marble inlay work. In the evening, enjoy a cooking session and dinner with a local family.",
-    overnight: "Agra",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-15.png?updatedAt=1773539560731",
-  },
-  {
-    day: 16,
-    title: "Agra → Delhi – Departure",
-    description:
-      "After breakfast, drive back to Delhi. On arrival, transfer to Delhi International Airport for your outbound flight, where your Colourful Rajasthan journey concludes.",
-    overnight: "—",
-    image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-16.png",
-  },
-],
-
+      { day: 1,  title: "Arrive in Delhi",                 description: "Meet our representative on arrival at Delhi International Airport and transfer to your hotel.", overnight: "Delhi", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-1.png?updatedAt=1773538850824" },
+      { day: 2,  title: "Delhi",                           description: "Old Delhi tour: Red Fort (drive-past), Jama Masjid, cycle rickshaw ride through Chandni Chowk, and Digambar Jain Temple. Afternoon New Delhi: Rashtrapati Bhawan, Rajpath, India Gate, Humayun's Tomb, and Qutub Minar with the 4th-century Iron Pillar.", overnight: "Delhi", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-2.png?updatedAt=1773539739934" },
+      { day: 3,  title: "Delhi → Mandawa",                 description: "Drive to Mandawa in the Shekhawati region — Rajasthan's open-air art gallery. Check in at your heritage hotel adorned with frescoes.", overnight: "Mandawa", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-3.png?updatedAt=1773539765039" },
+      { day: 4,  title: "Mandawa → Bikaner",               description: "Drive to Bikaner. Afternoon visit to Junagadh Fort — a 1593 complex of palaces, temples, and ornate galleries with the Karan, Anup, Chandra, and Phool Mahals.", overnight: "Bikaner", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-4.png?updatedAt=1773539161291" },
+      { day: 5,  title: "Bikaner → Jaisalmer",             description: "Drive across the Thar Desert to Jaisalmer, the Golden City. Rest of the day at leisure.", overnight: "Jaisalmer", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-5.png?updatedAt=1773539176393" },
+      { day: 6,  title: "Jaisalmer",                       description: "Visit Patwon Ji ki Haveli and Nathmal Ji ki Haveli — exquisite carved sandstone mansions — and Jaisalmer Fort, said to be the world's largest living fort. Evening camel safari followed by dinner in the dunes.", overnight: "Jaisalmer", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-6.png?updatedAt=1773539216072" },
+      { day: 7,  title: "Jaisalmer → Jodhpur",             description: "Drive to Jodhpur, the Blue City. Visit Mehrangarh Fort, Jaswant Thada (white marble cenotaph of Maharaja Jaswant Singh II), and the bustling Clock Tower market.", overnight: "Jodhpur", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-7.png?updatedAt=1773539284444" },
+      { day: 8,  title: "Jodhpur → Ranakpur → Udaipur",    description: "Drive to Udaipur via the 500-year-old Ranakpur Jain Temples — the central Chaumukha Temple has 29 halls and 1,444 uniquely carved pillars, no two alike.", overnight: "Udaipur", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-9.png?updatedAt=1773539337661" },
+      { day: 9,  title: "Udaipur",                         description: "Morning visit to the City Palace, Crystal Gallery, Jagdish Temple, and Saheliyon-ki-Bari. Late afternoon private boat ride on Lake Pichola with views of the Lake Palace and the ghats.", overnight: "Udaipur", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-10.png?updatedAt=1773539469997" },
+      { day: 10, title: "Udaipur → Chittorgarh → Bundi",   description: "Drive to Bundi via Chittorgarh Fort — the Rajput bastion attacked thrice in its history (1303 by Ala-ud-din Khilji, 1533 by Bahadur Shah, 1568 by Akbar) and finally returned to the Rajputs under Jahangir in 1616.", overnight: "Bundi", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-11.png?updatedAt=1773539507149" },
+      { day: 11, title: "Bundi → Jaipur",                  description: "Visit the 12th-century Menal temples and the Shiva temples at Bijolia. Explore Bundi's Taragarh Fort (14th c.) and the Rajput Chattar Mahal palace with its 18th-century paintings. Drive to Jaipur.", overnight: "Jaipur", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-12.png" },
+      { day: 12, title: "Jaipur",                          description: "Guided excursion to Amber Fort and Panna Meena Step Well, then City Palace, Jantar Mantar, and a photo stop at Hawa Mahal.", overnight: "Jaipur", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-13.png?updatedAt=1773539532705" },
+      { day: 13, title: "Jaipur → Fatehpur Sikri → Agra",  description: "Drive to Agra via Fatehpur Sikri, Akbar's red sandstone capital (1569). On arrival visit Agra Fort, where Shah Jahan was imprisoned by his son.", overnight: "Agra", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-14.png?updatedAt=1773539550428" },
+      { day: 14, title: "Agra → Delhi / Depart",           description: "Sunrise visit to the Taj Mahal. After breakfast, drive back to Delhi and transfer to international airport for outbound flight. End of tour.", overnight: "—", image: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/day-15.png?updatedAt=1773539560731" },
+    ],
     inclusions: [
-      "Accommodation in single/twin rooms at selected hotel category or similar",
-      "Daily breakfast",
-      "AC vehicle transfers and sightseeing (Toyota Crysta for 2–3 Pax / Tempo Traveller for 4–6 Pax)",
-      "Cycle rickshaw ride in Old Delhi",
-      "Shared boat ride on Lake Pichola in Udaipur",
-      "GST (Goods & Services Tax) as applicable",
+      "Accommodation in 01 Double Room or similar",
+      "Meals as mentioned",
+      "All transfers and sightseeing by AC Toyota Crysta",
+      "Prevailing monument entrance fees",
+      "Local English / French speaking guides on sightseeing tours (different guides per city)",
+      "Cycle Rickshaw ride in Old Delhi",
+      "Private boat ride on Lake Pichola in Udaipur",
+      "Jeep ride at Amber Fort in Jaipur",
+      "Wi-fi access in the vehicle and unlimited bottled water during travel",
+      "GST as applicable",
     ],
     exclusions: [
-      "Domestic or international airfare",
-      "Monument entrance fees and guide services",
-      "Personal expenses (tips, laundry, beverages, spa, telephone calls)",
-      "Expenses caused by factors beyond control (flight cancellations, roadblocks, vehicle malfunction, natural calamities)",
+      "Any domestic / international airfare",
+      "Personal expenses (tips, laundry, beverages, telephone calls)",
+      "Expenses caused by factors beyond control (flight cancellation, roadblocks, vehicle malfunction)",
       "Medical or evacuation insurance",
       "Travel insurance",
-      "Items not explicitly mentioned in the programme",
     ],
     datesPrices: [
-      "Colourful Rajasthan",
-      "Price Validity OCT 2025 – MAR 2026",
-      "Starting from €950 per person (Standard Hotels, 4–6 Pax, Twin Sharing)",
+      "Colorful Rajasthan",
+      "Price Validity OCT 2026 – MAR 2027",
+      "Price on request — contact our travel desk for a tailored quote",
     ],
     notes: [
       "Blackout Period: Dec 20 – Jan 10 (prices above not valid)",
@@ -790,7 +829,7 @@ export const itineraries: Itinerary[] = [
       { category: "Culture & History", title: "Ascend Amber Fort and explore Panna Meena Step Well" },
       { category: "Culture & History", title: "Sunrise visit to the Taj Mahal" },
     ],
-    heroImage: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/main-bg.png",
+    heroImage: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/main-bg.png?updatedAt=1780099200000",
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/overview.png",
     mapImage: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/map.png",
     coordinates: ITINERARY_MAP_ROUTES["colourful-rajasthan"],
@@ -803,7 +842,7 @@ export const itineraries: Itinerary[] = [
     duration: "10 Days",
     durationDays: 10,
     startingPrice: "€1,310",
-    startingPriceNote: "per person (30 Pax)",
+    startingPriceNote: "per person (30 people)",
     route: "Kolkata → Darjeeling → Pelling → Gangtok → Kalimpong → Kolkata",
     bestTime: "October – March",
     overview: [
@@ -851,8 +890,1109 @@ export const itineraries: Itinerary[] = [
   },
 
   // ==========================================================================
-  // 15. VIBRANT GUJARAT WITH CENTRAL INDIA — 21 Days (NEW)
+  // 8. VIBRANT GUJARAT WITH CENTRAL INDIA
+  // Replaced 2026-05-26 from itineraries/Vibrant Gujrat With Central India.docx
+  // New doc: 20 days (was 18), routes Delhi → Bhuj → Surendra Nagar → Kevadia
+  // → Maheshwar → Mandu → Ujjain → Bhopal → Lucknow → Prayagraj → Ayodhya →
+  // Mumbai (was Ahmedabad → Gondal → Sasan Gir → Diu → Bhopal → Sanchi →
+  // Khajuraho → Bandhavgarh → Jabalpur). NOTE doc hero says 21 Days but
+  // Summary Strip + day-by-day are 20 days — using 20.
+  // IMAGES (2026-05-29): Days 1–7 now use real photos from the ImageKit folder
+  // itineraries/vibrant-gujarat-central-india/day-N.png. NOTE day 5 ↔ day 6 are
+  // intentionally cross-wired: uploaded day-5.png is a pond/sanctuary and
+  // day-6.png is the heritage palace, which match the OPPOSITE days' text, so
+  // Day 5 references day-6.png and Day 6 references day-5.png (per user request).
+  // Days 8–20 use free-licensed Wikimedia Commons photos stored LOCALLY at
+  // /public/images/itineraries/vibrant-gujarat-central-india/day-N.jpg (client had
+  // not uploaded these to ImageKit; see that folder's SOURCES.md for per-image
+  // license + attribution). Swap to ImageKit URLs when the client uploads
+  // day-8..day-20. hero/overview/map still colorful-rajasthan placeholders below.
   // ==========================================================================
-  
+  {
+    slug: "vibrant-gujarat-central-india",
+    title: "Vibrant Gujrat With Central India",
+    subtitle: "Embark on a culturally rich journey across India's spiritual and historical treasures, exploring vibrant Gujarat, majestic Madhya Pradesh, and the holy cities of Prayagraj and Ayodhya with unforgettable experiences throughout.",
+    categories: ["Heritage", "Culture", "Spiritual", "Architecture"],
+    duration: "20 Days",
+    durationDays: 20,
+    startingPrice: "Price on request",
+    startingPriceNote: "Contact for quote",
+    route: "Delhi → Bhuj → Surendra Nagar → Kevadia → Maheshwar → Omkareshwar → Mandu → Ujjain → Bhopal → Lucknow → Prayagraj → Ayodhya → Mumbai",
+    bestTime: "October – March",
+    overview: [
+      "Travel across the heart of India, where bustling cities, desert landscapes, sacred rivers, and centuries-old heritage come together — from Delhi and Bhuj to Mandu, Bhopal, Prayagraj, and the holy city of Ayodhya.",
+      "Discover vibrant local culture, admire stunning architecture, visit revered temples and spiritual landmarks, and soak in unforgettable experiences as you journey through Gujarat, Madhya Pradesh, and Uttar Pradesh at a relaxed and immersive pace.",
+    ],
+    summary: [
+      "White salt desert of the Rann of Kutch with traditional artisan villages and colourful handicrafts",
+      "Statue of Unity at Kevadia with scenic views of the Narmada River",
+      "Riverside ghats and royal heritage of Maheshwar, famous for handloom traditions",
+      "Romantic ruins, palaces, and Afghan architecture of Mandu",
+    ],
+    summaryRight: [
+      "Cultural heritage of Lucknow — Nawabi architecture, bazaars, and renowned cuisine",
+      "Holy Sangam in Prayagraj — confluence of the Ganga, Yamuna, and Saraswati rivers",
+      "Ayodhya — birthplace of Lord Rama, with revered temples, ghats, and the new Ram Mandir",
+      "Sanchi Stupa (UNESCO), Bhimbetka rock shelters, and Udayagiri Caves near Bhopal",
+    ],
+    days: [
+      { day: 1,  title: "Arrive Delhi",                            description: "Upon arrival in Delhi, meet at the airport and transfer to the hotel for an overnight stay.", overnight: "Delhi", image: "https://ik.imagekit.io/libertyindia/itineraries/vibrant-gujarat-central-india/day-1.png" },
+      { day: 2,  title: "Delhi → Bhuj",                            description: "After breakfast, Fly to Bhuj and transfer to your hotel. Overnight in Bhuj.", overnight: "Bhuj", image: "https://ik.imagekit.io/libertyindia/itineraries/vibrant-gujarat-central-india/day-2.png" },
+      { day: 3,  title: "Rann of Kutch",                           description: "After breakfast, take an excursion to Rann of Kutch and explore nearby artisan villages known for traditional crafts, embroidery, and local artistry. Overnight in Bhuj.", overnight: "Bhuj", image: "https://ik.imagekit.io/libertyindia/itineraries/vibrant-gujarat-central-india/day-3.png" },
+      { day: 4,  title: "Bhuj",                                    description: "After breakfast, enjoy a guided cultural tour of Kutch villages around Bhuj, rich in heritage and craftsmanship. Overnight in Bhuj.", overnight: "Bhuj", image: "https://ik.imagekit.io/libertyindia/itineraries/vibrant-gujarat-central-india/day-4.png" },
+      { day: 5,  title: "Bhuj → Surendra Nagar",                   description: "After breakfast, travel to the stately Ambika Niwas Palace and enjoy a peaceful evening at the heritage property. Overnight in Surendra Nagar.", overnight: "Surendra Nagar", image: "https://ik.imagekit.io/libertyindia/itineraries/vibrant-gujarat-central-india/day-6.png" }, // img cross-wired: day-6.png (heritage palace) matches the Ambika Niwas Palace visit
+      { day: 6,  title: "Surendra Nagar → Kevadia",                description: "Morning after breakfast, visit a nearby wildlife sanctuary (Optional). Later start your onward journey to Kevadia. Upon arrival check-in and freshen up. Evening is free for leisure. Overnight in Kevadia.", overnight: "Kevadia", image: "https://ik.imagekit.io/libertyindia/itineraries/vibrant-gujarat-central-india/day-5.png" }, // img cross-wired: day-5.png (garden/pond) matches the wildlife-sanctuary stop
+      { day: 7,  title: "Kevadia → Maheshwar",                     description: "After breakfast, visit to the Statue of Unity. Later, start your onwards journey to Maheshwar. Upon arrival check-in and freshen up. Evening is free for leisure. Overnight stay in Maheshwar.", overnight: "Maheshwar", image: "https://ik.imagekit.io/libertyindia/itineraries/vibrant-gujarat-central-india/day-7.png" },
+      { day: 8,  title: "Maheshwar",                               description: "Start the day with a visit to Omkareshwar, a sacred Jyotirlinga site on an island shaped like 'Om'. Return to Maheshwar to explore its riverside fort, ghats, and witness Maheshwari sari weaving. End the day with a peaceful evening boat ride on the Narmada. Overnight stay in Maheshwar.", overnight: "Maheshwar", image: "/images/itineraries/vibrant-gujarat-central-india/day-8.jpg" },
+      { day: 9,  title: "Maheshwar → Mandu",                       description: "Depart for Mandu, a romantic hilltop citadel rich in Afghan architecture and haunting tales. Reach by late afternoon and enjoy the sunset at Baz Bahadur's Palace or by the Rewa Kund, where stories of love and longing echo through its still waters. Overnight stay in Mandu.", overnight: "Mandu", image: "/images/itineraries/vibrant-gujarat-central-india/day-9.jpg" },
+      { day: 10, title: "Mandu",                                   description: "Spend the day exploring Mandu's timeless charm. Visit the floating Jahaz Mahal, the tilted walls of Hindola Mahal, the grand Jami Masjid, and Hoshang Shah's marble tomb—believed to have inspired the Taj Mahal. End at Roopmati's Pavilion for scenic views and romantic tales. Overnight stay in Mandu.", overnight: "Mandu", image: "/images/itineraries/vibrant-gujarat-central-india/day-10.jpg" },
+      { day: 11, title: "Mandu → Ujjain",                          description: "Drive from Mandu to Ujjain, one of India's most sacred cities. On the way, visit the revered Mahakaleshwar Temple, home to one of the twelve Jyotirlingas. If time allows, you can also visit the 18th-century Jantar Mantar, a historic astronomical observatory. Overnight stay in Ujjain.", overnight: "Ujjain", image: "/images/itineraries/vibrant-gujarat-central-india/day-11.jpg" },
+      { day: 12, title: "Ujjain → Bhopal",                         description: "Start the day exploring Ujjain's key sites, including Kal Bhairav Temple, Harsiddhi Temple, and the historic Ved Shala observatory. After lunch, head to Bhopal, a city rich in culture and dotted with scenic lakes. Overnight stay in Bhopal.", overnight: "Bhopal", image: "/images/itineraries/vibrant-gujarat-central-india/day-12.jpg" },
+      { day: 13, title: "Bhopal",                                  description: "Spend the day visiting Sanchi Stupa, a UNESCO site from Ashoka's era, followed by the historic town of Vidisha and the ancient rock-cut sculptures of Udayagiri Caves. Return to Bhopal by evening. Overnight stay in Bhopal.", overnight: "Bhopal", image: "/images/itineraries/vibrant-gujarat-central-india/day-13.jpg" },
+      { day: 14, title: "Bhopal",                                  description: "Begin with a morning trip to the Bhimbetka Rock Shelters to see ancient cave art, then visit Bhojpur Temple, known for its giant Shiva lingam. Return to Bhopal to explore the State Tribal Museum, the grand Taj-ul-Masjid, and browse the old city bazaars. Overnight stay in Bhopal.", overnight: "Bhopal", image: "/images/itineraries/vibrant-gujarat-central-india/day-14.jpg" },
+      { day: 15, title: "Bhopal → Lucknow",                        description: "After breakfast departure transfer to airport to board the flight to Lucknow, the cultural capital of Uttar Pradesh, known for its Nawabi elegance. Upon arrival meeting at the Airport and transfer to hotel. Evening free for leisure. Overnight in Lucknow.", overnight: "Lucknow", image: "/images/itineraries/vibrant-gujarat-central-india/day-15.jpg" },
+      { day: 16, title: "Lucknow",                                 description: "After breakfast, begin the new year with heritage walks exploring Bara Imambara, Chota Imambara, and indulge in Lucknowi cuisine. Overnight in Lucknow.", overnight: "Lucknow", image: "/images/itineraries/vibrant-gujarat-central-india/day-16.jpg" },
+      { day: 17, title: "Lucknow",                                 description: "After breakfast, Continue exploring the city's colonial landmarks, local bazaars, and museums. Evening free for leisure. Overnight in Lucknow.", overnight: "Lucknow", image: "/images/itineraries/vibrant-gujarat-central-india/day-17.jpg" },
+      { day: 18, title: "Lucknow → Prayagraj",                     description: "After breakfast, drive to Prayagraj (formerly Allahabad), the sacred confluence city of the Ganga, Yamuna, and Saraswati rivers. Overnight in Prayagraj.", overnight: "Prayagraj", image: "/images/itineraries/vibrant-gujarat-central-india/day-18.jpg" },
+      { day: 19, title: "Prayagraj → Ayodhya",                     description: "After breakfast, proceed to the revered town of Ayodhya, believed to be the birthplace of Lord Rama. Evening enjoy the Aarti ceremony at Saryu river. Overnight in Ayodhya.", overnight: "Ayodhya", image: "/images/itineraries/vibrant-gujarat-central-india/day-19.jpg" },
+      { day: 20, title: "Ayodhya → Mumbai",                        description: "After breakfast, visit the grand Ram Mandir and the nearby temples of Hanumangarhi. Conclude your enriching journey with a transfer or flight to Mumbai.", overnight: "—", image: "/images/itineraries/vibrant-gujarat-central-india/day-20.jpg" },
+    ],
+    inclusions: [
+      "Accommodation on Twin/Double sharing room or similar",
+      "Daily breakfast at mentioned hotels; all meals at Rann of Kutch",
+      "All transfers and sightseeing by AC vehicle",
+      "01 boat ride at Prayagraj",
+      "01 rickshaw ride at Ayodhya",
+      "English Speaking local Guides for visits as per the program",
+      "Entrance fees to the monuments as per the program",
+      "GST as applicable",
+    ],
+    exclusions: [
+      "Domestic and international airfare",
+      "Personal expenses (room heater, laundry, etc.)",
+      "Medical expenses",
+      "Expenses caused by factors beyond control (road blockage, accidents, landslides)",
+      "Christmas / New Year season surcharge (23 Dec – 5 Jan)",
+      "Anything not explicitly mentioned in inclusions",
+    ],
+    datesPrices: [
+      "Vibrant Gujrat With Central India",
+      "Price Validity OCT 2025 – MAR 2026",
+      "Price on request — contact our travel desk for a tailored quote",
+    ],
+    notes: [
+      "Blackout Period: Dec 23 – Jan 5 (not available)",
+      "Festival Premium: Extra charges during major festivals",
+      "Weather Clause: Customer bears costs for natural disruptions",
+      "Force Majeure: Company not liable for conditions beyond control",
+    ],
+    signatureExperiences: [
+      // Images web-sourced from Wikimedia Commons (free licenses), stored locally
+      // under /signature/. See SOURCES.md in the image folder for attribution.
+      { category: "Culture & History", title: "Heritage Trail Tour in Bhuj",                       image: "/images/itineraries/vibrant-gujarat-central-india/signature/bhuj-heritage.jpg" },
+      { category: "Culture & History", title: "Appreciate the Dance Form of Kathak in Lucknow",    image: "/images/itineraries/vibrant-gujarat-central-india/signature/kathak.jpg" },
+      { category: "Culture & History", title: "Maheshwari Saree Weaving Tour",                     image: "/images/itineraries/vibrant-gujarat-central-india/signature/maheshwari-weaving.jpg" },
+      { category: "Culture & History", title: "Threads of Lucknow Workshop",                       image: "/images/itineraries/vibrant-gujarat-central-india/signature/chikankari.jpg" },
+      { category: "Culture & History", title: "Cooking Workshop in Lucknow",                       image: "/images/itineraries/vibrant-gujarat-central-india/signature/awadhi-cooking.jpg" },
+      { category: "Culture & History", title: "Shopping with a Concierge in Lucknow",              image: "/images/itineraries/vibrant-gujarat-central-india/signature/lucknow-bazaar.jpg" },
+    ],
+    // hero/overview web-sourced (Wikimedia Commons), stored locally. mapImage is unused by the template.
+    heroImage: "/images/itineraries/vibrant-gujarat-central-india/main-bg.jpg",
+    overviewImage: "/images/itineraries/vibrant-gujarat-central-india/overview.jpg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["vibrant-gujarat-central-india"],
+    // Hotel images are REPRESENTATIVE web-sourced stand-ins (free-licensed photos of the exact
+    // named properties weren't available) — see SOURCES.md. Swap for official hotel photos.
+    suggestedHotels: [
+      { name: "Kutch Safari Resort",   city: "Bhuj",           image: "/images/itineraries/vibrant-gujarat-central-india/hotels/kutch-safari.jpg" },
+      { name: "Ambika Niwas Palace",   city: "Surendra Nagar", image: "/images/itineraries/vibrant-gujarat-central-india/hotels/ambika-niwas.jpg" },
+      { name: "Jehan Numa Palace",     city: "Bhopal",         image: "/images/itineraries/vibrant-gujarat-central-india/hotels/jehan-numa.jpg" },
+      { name: "Renaissance Lucknow",   city: "Lucknow",        image: "/images/itineraries/vibrant-gujarat-central-india/hotels/renaissance-lucknow.jpg" },
+    ],
+  },
+
+  // ==========================================================================
+  // 9. GEMS OF SOUTH INDIA
+  // Images are reused from the Tamil Nadu itinerary as visual placeholders —
+  // swap when Karnataka / Hampi / Goa photography is sourced.
+  // ==========================================================================
+  {
+    slug: "gems-of-south-india",
+    title: "Gems of South India",
+    subtitle: "From Mysuru's royal palaces to Hampi's boulder-strewn ruins and Chikmagalur's coffee hills, this 12-day Karnataka journey ends with two relaxed days on Goa's beaches.",
+    categories: ["Heritage", "Culture", "Architecture", "Nature"],
+    duration: "12 Days",
+    durationDays: 12,
+    startingPrice: "€1,420",
+    startingPriceNote: "per person (2 people)",
+    route: "Bengaluru → Mysuru → Hassan → Chikmagalur → Hampi → Badami → Goa",
+    bestTime: "October – March",
+    overview: [
+      "Karnataka's southern circuit is India's most underrated cultural belt — Hoysala temples carved like jewellery, the granite surreality of Hampi (a UNESCO site that once rivalled Rome), the coffee-scented hills of Chikmagalur, and palatial Mysuru — closing on Goa's Portuguese-Indian coast.",
+      "Less crowded than the Golden Triangle, less wellness-focused than Kerala, this itinerary is for travellers who want India's depth without its density.",
+    ],
+    summary: [
+      "Tipu Sultan's summer palace and Lalbagh gardens in Bengaluru",
+      "Mysuru Palace illuminated at night — 100,000 bulbs",
+      "Hoysala marvels at Belur, Halebidu, and Somnathpur",
+      "Coffee estate stay and plantation walk in Chikmagalur",
+    ],
+    summaryRight: [
+      "Sunrise coracle ride through Hampi's Tungabhadra ruins",
+      "Vittala Temple and the musical stone pillars",
+      "Cave temples of Badami — early Chalukyan rock-cut architecture",
+      "Portuguese churches of Old Goa and two days on Palolem beach",
+    ],
+    days: [
+      { day: 1,  title: "Arrive in Bengaluru",          description: "Arrive at Kempegowda International. Transfer to your hotel. Evening at leisure on MG Road or in Indiranagar.", overnight: "Bengaluru", image: "/images/itineraries/gems-of-south-india/day-1.jpg" },
+      { day: 2,  title: "Bengaluru → Mysuru",           description: "Morning visit to Tipu Sultan's Summer Palace and Lalbagh Botanical Gardens, then drive to Mysuru. Evening Mysuru Palace illumination (Sundays).", overnight: "Mysuru", image: "/images/itineraries/gems-of-south-india/day-2.jpg" },
+      { day: 3,  title: "Exploring Mysuru",             description: "Mysuru Palace, Chamundi Hill, Devaraja Market, and the silk-weaving cooperative. Evening at the music fountain.", overnight: "Mysuru", image: "/images/itineraries/gems-of-south-india/day-3.jpg" },
+      { day: 4,  title: "Mysuru → Hassan",              description: "En route stop at Srirangapatna's Tipu Sultan landmarks. Continue to Hassan, your base for the Hoysala temples.", overnight: "Hassan", image: "/images/itineraries/gems-of-south-india/day-4.jpg" },
+      { day: 5,  title: "Belur, Halebidu & Shravanabelagola", description: "Full-day temple circuit — Chennakeshava at Belur, Hoysaleswara at Halebidu, and the 17m monolithic Bahubali statue at Shravanabelagola.", overnight: "Hassan", image: "/images/itineraries/gems-of-south-india/day-5.jpg" },
+      { day: 6,  title: "Hassan → Chikmagalur",         description: "Drive into the Western Ghats to Chikmagalur, the birthplace of Indian coffee. Check in at a heritage plantation stay.", overnight: "Chikmagalur", image: "/images/itineraries/gems-of-south-india/day-6.jpg" },
+      { day: 7,  title: "Coffee Estates & Mullayanagiri", description: "Plantation walk with a barista-led tasting. Afternoon drive to Mullayanagiri, Karnataka's highest peak, for sunset.", overnight: "Chikmagalur", image: "/images/itineraries/gems-of-south-india/day-7.jpg" },
+      { day: 8,  title: "Chikmagalur → Hampi",          description: "Long drive to Hampi (or overnight train from Bengaluru variant). Evening orientation walk through the bazaar ruins.", overnight: "Hampi", image: "/images/itineraries/gems-of-south-india/day-8.jpg" },
+      { day: 9,  title: "Hampi by Coracle & Foot",       description: "Sunrise coracle ride on the Tungabhadra. Explore the Vittala Temple complex, Royal Enclosure, Queen's Bath, and Lotus Mahal.", overnight: "Hampi", image: "/images/itineraries/gems-of-south-india/day-9.jpg" },
+      { day: 10, title: "Hampi → Badami → Goa",         description: "En route visit to Badami's Chalukyan cave temples and Aihole's early Hindu architecture. Continue to Goa by evening flight or overnight transfer.", overnight: "Goa", image: "/images/itineraries/gems-of-south-india/day-10.jpg" },
+      { day: 11, title: "Old Goa & Beach Day",          description: "Morning tour of Old Goa's Portuguese churches and Fontainhas Latin Quarter. Afternoon at Palolem or Agonda beach.", overnight: "Goa", image: "/images/itineraries/gems-of-south-india/day-11.jpg" },
+      { day: 12, title: "Depart Goa",                   description: "Morning at leisure. Transfer to Dabolim or Mopa airport for onward departure. End of tour.", overnight: "—", image: "/images/itineraries/gems-of-south-india/day-12.jpg" },
+    ],
+    inclusions: [
+      "Twin/Double room accommodation",
+      "Daily breakfast",
+      "AC vehicle transfers and sightseeing",
+      "English-speaking local guides",
+      "Entrance fees and GST",
+      "Coffee estate experience in Chikmagalur",
+      "Coracle ride in Hampi",
+    ],
+    exclusions: [
+      "International and domestic airfare",
+      "Lunch and dinner (unless specified)",
+      "Personal expenses",
+      "Items not explicitly mentioned",
+      "Christmas / New Year surcharge",
+    ],
+    datesPrices: [
+      "Gems of South India",
+      "Price Validity OCT 2025 – MAR 2026",
+      "Airfare: EUR 180 (additional)",
+    ],
+    notes: [
+      "Blackout Period: Dec 23 – Jan 5 (not available)",
+      "Hampi gets very hot March–May; best in Nov–Feb",
+      "Weather Clause: Customer bears costs for natural disruptions",
+      "Force Majeure: Company not liable for conditions beyond control",
+    ],
+    signatureExperiences: [],
+    // Images: local Pexels + Wikimedia Commons (premium, free-license) — see SOURCES.md in the image folder
+    heroImage: "/images/itineraries/gems-of-south-india/main-bg.jpg",
+    overviewImage: "/images/itineraries/gems-of-south-india/overview.jpg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/south-india-tamil-nadu/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["gems-of-south-india"],
+  },
+
+  // ==========================================================================
+  // 10. SAFARI & HERITAGE TRAIL — 12 Days
+  // Imported from itineraries/Safari & Heritage Trail.docx. No price provided
+  // in source; using "Price on request". IMAGES: all containers (days, hero,
+  // overview, signature, hotels) web-sourced from Pexels, stored locally — see
+  // SOURCES.md in the image folder.
+  // ==========================================================================
+  {
+    slug: "safari-and-heritage-trail",
+    title: "Safari & Heritage Trail",
+    subtitle: "Experience a perfect blend of culture, history, and adventure with visits to Delhi and Agra's timeless monuments and thrilling jungle safaris across Bandhavgarh, Kanha, and Pench.",
+    categories: ["Wildlife", "Heritage", "Culture", "Adventure"],
+    duration: "12 Days",
+    durationDays: 12,
+    startingPrice: "Price on request",
+    startingPriceNote: "Contact for quote",
+    route: "Delhi → Bandhavgarh → Kanha → Pench → Agra",
+    bestTime: "October – March",
+    overview: [
+      "From the timeless streets of Delhi and the majestic beauty of the Taj Mahal in Agra to the deep forests of Bandhavgarh, Kanha, and Pench, this journey brings together India's history, culture, and wild heart.",
+      "Walk through grand monuments, feel the thrill of tiger safaris in lush national parks, and soak in the peaceful rhythm of nature and heritage blending together. It's a journey full of stories, sights, and unforgettable moments.",
+    ],
+    summary: [
+      "Visit Delhi's historic landmarks including India Gate, Qutub Minar, and Humayun's Tomb, showcasing centuries of rich heritage",
+      "Witness the sunrise view of the Taj Mahal in Agra, a timeless symbol of love and Mughal architecture",
+      "Embark on thrilling tiger safaris in Bandhavgarh National Park, known for one of the highest tiger densities in India",
+    ],
+    summaryRight: [
+      "Explore the pristine forests of Kanha National Park, the inspiration behind Rudyard Kipling's The Jungle Book",
+      "Experience Pench National Park's rich biodiversity, home to leopards, wild dogs, and diverse birdlife",
+      "Immerse in scenic drives through Central India's countryside, connecting cultural landmarks with untouched wilderness",
+    ],
+    days: [
+      { day: 1,  title: "Arrive Delhi",            description: "Upon arrival in Delhi, meet Liberty representative at the airport and transfer the hotel for an overnight stay.", overnight: "Delhi", image: "/images/itineraries/safari-and-heritage-trail/day-1.jpg" },
+      { day: 2,  title: "Delhi",                   description: "Start the day with a morning visit to Old Delhi, including a bicycle rickshaw ride through the bustling streets and a visit to the famous spice market. In the afternoon, take a panoramic drive through Lutyens' Delhi, admiring colonial-era architecture. Dinner and overnight stay at the hotel.", overnight: "Delhi", image: "/images/itineraries/safari-and-heritage-trail/day-2.jpg" },
+      { day: 3,  title: "Delhi",                   description: "Visit Humayun's Tomb, the serene Sunder Nursery, and the iconic Qutub Minar. Enjoy an optional visit to Nizamuddin Dargah or go shopping. The rest of the day is free for leisure. Dinner and overnight stay in Delhi.", overnight: "Delhi", image: "/images/itineraries/safari-and-heritage-trail/day-3.jpg" },
+      { day: 4,  title: "Delhi → Bandhavgarh",     description: "After an early breakfast, fly to Jabalpur and from there drive to Bandhavgarh. Enjoy a relaxing evening at the hotel, followed by dinner and an overnight stay.", overnight: "Bandhavgarh", image: "/images/itineraries/safari-and-heritage-trail/day-4.jpg" },
+      { day: 5,  title: "Bandhavgarh",             description: "Early morning and afternoon exclusive Jeep Safaris in Bandhavgarh. Relax, enjoy lunch & dinner and an overnight stay included.", overnight: "Bandhavgarh", image: "/images/itineraries/safari-and-heritage-trail/day-5.jpg" },
+      { day: 6,  title: "Bandhavgarh → Kanha",     description: "Early Jeep safari in Bandhavgarh National Park, followed by breakfast at the hotel. Drive to Kanha with a packed lunch. Check-in at the hotel, enjoy dinner, and stay overnight.", overnight: "Kanha", image: "/images/itineraries/safari-and-heritage-trail/day-6.jpg" },
+      { day: 7,  title: "Kanha",                   description: "Enjoy an early morning Jeep Safari in Kanha National Park, then return for breakfast and relax before lunch. Later, head out for an evening Jeep Safari, followed by dinner and an overnight stay at the hotel.", overnight: "Kanha", image: "/images/itineraries/safari-and-heritage-trail/day-7.jpg" },
+      { day: 8,  title: "Kanha → Pench",           description: "Early morning Jeep Safari in Kanha, followed by transfer to Pench. Dinner & overnight stay.", overnight: "Pench", image: "/images/itineraries/safari-and-heritage-trail/day-8.jpg" },
+      { day: 9,  title: "Pench",                   description: "Morning Jeep Safari in Pench National Park, return for breakfast, relax and enjoy lunch. Later, head out for an afternoon Jeep Safari in Pench. Dinner and overnight stay at Pench.", overnight: "Pench", image: "/images/itineraries/safari-and-heritage-trail/day-9.jpg" },
+      { day: 10, title: "Pench → Delhi → Agra",    description: "After an early morning breakfast, transfer to Nagpur for flight to Delhi. Upon arrival in Delhi, transfer to Agra for the night. Overnight stay at the hotel.", overnight: "Agra", image: "/images/itineraries/safari-and-heritage-trail/day-10.jpg" },
+      { day: 11, title: "Agra",                    description: "Begin with an early sunrise visit to the Taj Mahal. Return for breakfast. A morning visit to Itmad-UL Daulah's Tomb and Agra Fort. Overnight stay at the hotel.", overnight: "Agra", image: "/images/itineraries/safari-and-heritage-trail/day-11.jpg" },
+      { day: 12, title: "Agra → Delhi",            description: "After breakfast, depart Agra and proceed to Delhi. Upon arrival, transfer to Delhi airport for your flight back home.", overnight: "—", image: "/images/itineraries/safari-and-heritage-trail/day-12.jpg" },
+    ],
+    inclusions: [
+      "Accommodation on Twin/Double sharing room at the above-mentioned hotels or similar",
+      "Daily breakfast at mentioned hotels. Bandhavgarh, Kanha and Pench include all meals",
+      "01 Lunch at Dharampura Haveli at Delhi",
+      "02 dinners at the hotel in Delhi",
+      "01 Bicycle Rickshaw ride during Old Delhi tour",
+      "03 Exclusive Jeep Safari at Bandhavgarh National Park",
+      "03 Exclusive Jeep Safari at Kanha National Park",
+      "02 Exclusive Jeep Safari at Pench National Park",
+      "All transfers and sightseeing by AC Vehicle as per the program",
+      "English Speaking local Guides for visits as per the program",
+      "Entrance fees to the monuments as per the program",
+      "GST (Goods & Services Tax) as applicable",
+    ],
+    exclusions: [
+      "Domestic and international airfare",
+      "Personal expenses (room heater, laundry, etc.)",
+      "Medical expenses",
+      "Expenses caused by factors beyond control (road blockage, accidents, landslides)",
+      "Christmas / New Year season surcharge (23 Dec – 5 Jan)",
+      "Anything not explicitly mentioned in inclusions",
+    ],
+    datesPrices: [
+      "Safari & Heritage Trail",
+      "Price Validity OCT 2026 – MAR 2027",
+      "Price on request — contact our travel desk for a tailored quote",
+    ],
+    notes: [
+      "Blackout Period: Dec 23 – Jan 5 (not available)",
+      "Festival Premium: Extra charges during major festivals",
+      "Weather Clause: Customer bears costs for natural disruptions",
+      "Force Majeure: Company not liable for conditions beyond control",
+      "Jeep safaris booked first-come-first-served; bookings open 120 days in advance",
+      "National parks are closed for visitors in the afternoon every Wednesday",
+    ],
+    signatureExperiences: [
+      // Images web-sourced from Pexels (premium stock), stored locally under /signature/. See SOURCES.md.
+      { category: "Culture & History", title: "Art Walk in Delhi",                       image: "/images/itineraries/safari-and-heritage-trail/signature/art-walk.jpg" },
+      { category: "Culture & History", title: "Walking tour of Moonlit Square by Night",  image: "/images/itineraries/safari-and-heritage-trail/signature/moonlit-square.jpg" },
+      { category: "Culture & History", title: "Yoga at Sivananda Vedanta Centres",        image: "/images/itineraries/safari-and-heritage-trail/signature/yoga-sivananda.jpg" },
+      { category: "Culture & History", title: "Cooking Workshop",                         image: "/images/itineraries/safari-and-heritage-trail/signature/cooking-workshop.jpg" },
+      { category: "Culture & History", title: "Village walks",                            image: "/images/itineraries/safari-and-heritage-trail/signature/village-walks.jpg" },
+      { category: "Culture & History", title: "Yoga by Taj",                              image: "/images/itineraries/safari-and-heritage-trail/signature/yoga-by-taj.jpg" },
+    ],
+    // IMAGES (2026-05-29): hero/overview + hotels web-sourced from Pexels (premium stock),
+    // stored LOCALLY under /images/itineraries/safari-and-heritage-trail/. See SOURCES.md.
+    // mapImage unused by the template. Swap to ImageKit + official hotel photos later.
+    heroImage: "/images/itineraries/safari-and-heritage-trail/main-bg.jpg",
+    overviewImage: "/images/itineraries/safari-and-heritage-trail/overview.jpg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["safari-and-heritage-trail"],
+    // Hotel images are REPRESENTATIVE premium stand-ins (exact properties not free-licensed) — see SOURCES.md.
+    suggestedHotels: [
+      { name: "The Claridges",            city: "Delhi",       image: "/images/itineraries/safari-and-heritage-trail/hotels/claridges-delhi.jpg" },
+      { name: "Brij Sone Bagh",           city: "Bandhavgarh", image: "/images/itineraries/safari-and-heritage-trail/hotels/brij-bandhavgarh.jpg" },
+      { name: "Outpost 12",               city: "Kanha",       image: "/images/itineraries/safari-and-heritage-trail/hotels/outpost-kanha.jpg" },
+      { name: "ITC Mughal",               city: "Agra",        image: "/images/itineraries/safari-and-heritage-trail/hotels/itc-mughal-agra.jpg" },
+    ],
+  },
+
+  // ==========================================================================
+  // 11. INCREDIBLE NORTH EAST INDIA — 14 Days
+  // NOTE: doc hero lists Bagdogra & Ravangla in route; Summary Strip omits them.
+  // Using Summary Strip values for `route` field; days include all stops.
+  // IMAGES: all sections web-sourced (Pexels; day-5 toy train from Commons), stored
+  // locally under /images/itineraries/incredible-north-east-india/ — see SOURCES.md.
+  // ==========================================================================
+  {
+    slug: "incredible-north-east-india",
+    title: "Incredible North East India",
+    subtitle: "Explore the charm of North East India as you travel through Kolkata, Darjeeling, Pelling, Ravangla, Gangtok, and Kalimpong surrounded by mountains, monasteries, and scenic beauty.",
+    categories: ["Nature", "Culture", "Spiritual", "Adventure"],
+    duration: "14 Days",
+    durationDays: 14,
+    startingPrice: "Price on request",
+    startingPriceNote: "Contact for quote",
+    route: "Kolkata → Bagdogra → Darjeeling → Pelling → Ravangla → Gangtok → Kalimpong → Bagdogra → Delhi",
+    bestTime: "October – May",
+    overview: [
+      "Start your journey in Kolkata and travel through the scenic hills of Darjeeling, Pelling, Ravangla, Gangtok, and Kalimpong, enjoying fresh mountain air and beautiful Himalayan views.",
+      "Discover peaceful monasteries, rolling tea gardens, and charming hill towns while experiencing the rich culture and natural beauty that make North East India truly special.",
+    ],
+    summary: [
+      "Discover Kolkata's heritage charm with its colonial buildings, bustling streets, and cultural landmarks",
+      "Enjoy the scenic toy train ride in Darjeeling through tea gardens and misty hills",
+      "Watch the magical sunrise over Kanchenjunga from Tiger Hill",
+      "Visit peaceful monasteries and enjoy the calm vibe of Gangtok and Ravangla",
+    ],
+    summaryRight: [
+      "Take in stunning valley views and a relaxed atmosphere in Kalimpong",
+      "Explore Pelling for close views of snow-capped Himalayan peaks and ancient monasteries",
+      "Walk through lush green tea estates and meet warm local communities",
+      "Travel through winding mountain roads surrounded by breathtaking Himalayan scenery",
+    ],
+    days: [
+      { day: 1,  title: "Arrive in Kolkata",                  description: "On arrival in Kolkata, transfer to the hotel. (standard check-in time: 1400 hrs). Overnight in Kolkata.", overnight: "Kolkata", image: "/images/itineraries/incredible-north-east-india/day-1.jpg" },
+      { day: 2,  title: "Exploring Kolkata",                  description: "After breakfast, explore colonial Kolkata. Begin at Dalhousie Square, the historic heart of the city, taking in the Raj Bhawan, St. John's Church, Town Hall, the Writers' Building and GPO — grand reminders of eighteenth and nineteenth century British rule, where the East India Company first established its fort and trading warehouses. Continue to the Mullick Ghat Flower Market beneath Howrah Bridge, eastern India's largest, where around 2,000 growers sell vivid blooms and garlands each day. Visit Kumartulli, the 400-year-old artisan village where Bengal's festival idols are sculpted, then admire Howrah Bridge (Rabindra Setu), a cantilever engineering marvel completed in 1943. Wander College Street, the city's beloved book market lined with second-hand stalls and renowned institutions such as Kolkata University and Presidency College. Pause at the legendary Indian Coffee House, or 'Albert Hall', a century-old haunt of writers, artists and students still buzzing with conversation. In the evening, enjoy a relaxing Hooghly River cruise. Overnight in Kolkata.", overnight: "Kolkata", image: "/images/itineraries/incredible-north-east-india/day-2.jpg" },
+      { day: 3,  title: "Kolkata",                            description: "After breakfast, continue exploring Kolkata. Visit the Dakshineswar Kali Temple, built by Rani Rashmoni in 1847 and famed for its association with the mystic Ramakrishna Paramhansa, who achieved his spiritual vision here; its twelve-spired courtyard is ringed by temples to Lord Shiva. See the magnificent Victoria Memorial (closed Mondays), a white-marble monument built between 1906 and 1921, housing paintings, manuscripts and historic treasures. Step inside St. Paul's Cathedral, with its soaring 60m spire, Florentine frescoes and Queen Victoria's gilt altar plate. Explore the Indian Museum (closed Mondays), one of Asia's oldest, founded in 1814 — its galleries of fossils, coins, Gandhara art and meteorites include a 4,000-year-old mummy and an urn said to hold the Buddha's ashes. Finally, visit Mother Teresa House (closed Thursdays), home of the Missionaries of Charity, which today serves the sick, orphaned and destitute across more than 130 countries. Overnight in Kolkata.", overnight: "Kolkata", image: "/images/itineraries/incredible-north-east-india/day-3.jpg" },
+      { day: 4,  title: "Kolkata → Bagdogra → Darjeeling",    description: "After breakfast, transfer to airport for flight to Bagdogra. On arrival in Bagdogra, drive to Darjeeling (03 hrs drive). Darjeeling, standing high in the Himalayas at an altitude of 2134m, 'Dorje Ling' or place of the Thunderbolt, offers breath-taking views of snow-capped mountain peaks, with the Kanchendzonga rising higher than all the others. Often referred to as the 'Queen of the Hills', it remains just as alluring with its tiny waterfalls, little villages and a narrow-gauge railway track. Surrounded by world-famous tea gardens and snow-capped mountains, Darjeeling remains one of the most exotic destinations. Graeme Westlake in his book 'An Introduction to Hill Stations of India' refers to Darjeeling as having 'A view scarcely unrivalled on Earth'. Overnight in Darjeeling.", overnight: "Darjeeling", image: "/images/itineraries/incredible-north-east-india/day-4.jpg" },
+      { day: 5,  title: "Darjeeling",                         description: "Rise early for the drive to Tiger Hill, 13 km from Darjeeling, to watch a breathtaking sunrise paint the Himalayan range — including Kanchenjunga and, on clear days, Everest — in shifting hues of gold. Return for breakfast, then enjoy a ride on the famous Darjeeling Himalayan 'toy train', a UNESCO-listed feat of 1881 engineering whose tiny century-old locomotives still criss-cross the hillside at a gentle pace, full of the sound, smell and romance of a bygone era. Visit Ghoom Monastery, the area's oldest (built 1875), home to a 15-foot image of the Maitreya Buddha. Continue to the Tibetan Self-Help (Refugee) Centre (closed Sundays), established by Tibetan refugees to preserve their crafts, where you can watch carpets, leatherwork, paintings and woodwork being made by hand. Overnight in Darjeeling.", overnight: "Darjeeling", image: "/images/itineraries/incredible-north-east-india/day-5.jpg" },
+      { day: 6,  title: "Darjeeling",                         description: "After breakfast, proceed for city tour. Himalayan Mountaineering Institute / Padmaja Naidu Himalayan Zoological Park (Closed on Thursdays) — the Himalayan Mountaineering Institute was started in Darjeeling when Tenzing Norgay climbed Everest, to give training to learn mountaineering and other adventure sports related to mountaineering. In that Institute one can see equipment used by Mr. Tenzing Norgay and the Everest Museum having complete details on Everest attached to the institute. One can visit Himalayan Zoological Park where one can see Himalayan animals like Snow Leopard, Tibetan Wolf, Tibetan Yak, Himalayan Black Bear and several varieties of birds. Japanese Temple & Peace Pagoda — also known as Nipponzan Myohoji Buddhist Temple, the shrine was built in 1972 and is located 10 minutes away from the Darjeeling town centre, on the hill of Jalapahar. Showcasing classic Japanese style of architecture, this resplendent white building offers visitors a serene and quiet sanctum where they can meditate and seek inner peace. Evening is free to explore Mall Road. Overnight in Darjeeling.", overnight: "Darjeeling", image: "/images/itineraries/incredible-north-east-india/day-6.jpg" },
+      { day: 7,  title: "Darjeeling → Pelling",               description: "After breakfast, drive to Pelling by the shorter route. A laid-back town in West Sikkim set near the foothills of Kanchenjunga, Pelling offers outstanding mountain views and is dotted with scenic spots and ancient monasteries. In the afternoon, walk up to Pemayangtse Monastery — 'The Perfect Sublime Lotus' — perched on a wooded hilltop at 2,085m with sublime views of Kanchenjunga. Built in the late 17th century, it is one of the oldest and most important monasteries of the Nyingma order in Sikkim; historically only its 'Tasang' (pure) monks could anoint the reigning sovereign. Following the Mindroling tradition, the monastery's chief treasure is an intricate wooden replica of Zangdog Palri, the celestial abode of Guru Padmasambhava, created in 1971. Its annual masked Chaam dance is held on the 28th and 29th days of the twelfth month of the Tibetan lunar calendar. Overnight in Pelling.", overnight: "Pelling", image: "/images/itineraries/incredible-north-east-india/day-7.jpg" },
+      { day: 8,  title: "Pelling",                            description: "After breakfast, walk up to Sangachoeling Monastery, set atop a ridge above Pelling. Established in the 17th century by Lama Gyalwa Lhatsun Chempo, it is one of Sikkim's oldest monasteries, reached by a 40-minute climb through forest. Inside are beautifully preserved 17th-century wall paintings, statues and clay sculptures, while the ridge rewards visitors with sweeping views of snow-clad peaks and lush greenery; the building was lovingly restored after a fire. Next, visit the Chenrezig Statue, a 135-foot image of the Buddha of compassion near the Pelling skywalk — consecrated by the Dalai Lama, it is reached by stairs that open onto scenic valley views amid the chanting of monks. Continue to the sacred Khecheopalri Lake, a wish-fulfilling lake revered by Buddhists and others alike. Cradled at the foot of the holy Khachoedpaldri hill, its true name, Sho Dzo Sho, means 'Oh Lady, Sit Here', and it draws pilgrims and believers from across the region. Overnight in Pelling.", overnight: "Pelling", image: "/images/itineraries/incredible-north-east-india/day-8.jpg" },
+      { day: 9,  title: "Pelling → Ravangla → Gangtok",       description: "After breakfast, drive to Gangtok, stopping en route at the Buddha Park of Ravangla (Tathagata Tsal) in South Sikkim. Built between 2006 and 2013 within the centuries-old Rabong monastery complex, the park is centred on a 130-foot statue of the Buddha, consecrated by the 14th Dalai Lama in 2013 to mark the 2,550th anniversary of his birth; the nearby Ralang Monastery is an important Tibetan Buddhist site, and the park forms a stop on the Himalayan Buddhist Circuit. Continue to Gangtok, the Sikkimese capital set at 1,750m. Surrounded by monasteries and orchids, its lively downtown is lined with government buildings adorned with traditional Buddhist symbols, and it serves as the gateway to North Sikkim. The rest of the day is at leisure. Overnight in Gangtok.", overnight: "Gangtok", image: "/images/itineraries/incredible-north-east-india/day-9.jpg" },
+      { day: 10, title: "Gangtok",                            description: "After breakfast, explore Gangtok. Visit the awe-inspiring Rumtek Monastery, the Dharma Chakra Centre and seat of the Gyalwa Karmapa, head of the Kagyu order; behind it stand the Karmae Nalanda Institute of Buddhist Studies and a jewel-studded Golden Stupa holding the relics of the 16th Karmapa. See the Do Drul Chorten, encircled by prayer wheels and flanked by giant statues of the Buddha and Guru Padmasambhava, patron saint of Sikkim. Continue to the Namgyal Institute of Tibetology, established in 1958 amid oak and birch woods, which holds one of the world's finest collections of rare Mahayana Buddhist manuscripts and a shop of Tibetan religious art. Visit the Enchey Monastery, perched on a ridge with sweeping views and built in 1910 on the hermitage of the tantric saint Lama Drutob Karpo, housing monks of the Nyingma order. Finish at the Directorate of Handloom and Handicrafts, where artisans craft carved wooden friezes, bamboo work, hand-woven carpets and the foldable choktse table. Overnight in Gangtok.", overnight: "Gangtok", image: "/images/itineraries/incredible-north-east-india/day-10.jpg" },
+      { day: 11, title: "Gangtok → Kalimpong",                description: "After breakfast, drive to Kalimpong (1,250m), a quiet hill town with a mild climate ideal for its renowned orchids and gladioli. Once part of the Sikkim raja's domain and later Bhutanese, it was annexed to Darjeeling after the 1865 Anglo-Bhutan War and thrived as a wool-trading hub with Tibet until the 1950s; today it is a relaxed retreat. In the afternoon, visit the Zang Dog Palri Fo-Brang Monastery at Durpin Dara, offering panoramic views and adorned with wall paintings and a rare three-dimensional mandala. Explore Kalimpong's celebrated flower nurseries, which export lilies, anthuriums, roses, gerberas, dahlias, gladioli, orchids and cacti. Visit Tharpa Choling Monastery on Tirpai hill, belonging to the Gelug (Yellow Hat) order of the Dalai Lama, and the Thongsa Gumpa, a Bhutanese monastery dating to around 1692 and the oldest in Kalimpong. Overnight in Kalimpong.", overnight: "Kalimpong", image: "/images/itineraries/incredible-north-east-india/day-11.jpg" },
+      { day: 12, title: "Kalimpong → Bagdogra → Delhi",       description: "In time, transfer from Kalimpong to Bagdogra airport for flight to Delhi. On arrival in Delhi, transfer to your hotel. Overnight in Delhi.", overnight: "Delhi", image: "/images/itineraries/incredible-north-east-india/day-12.jpg" },
+      { day: 13, title: "Delhi",                              description: "Post breakfast, enjoy a fascinating exploration of Old Delhi. Drive past the Red Fort (closed Mondays), Shah Jahan's elegant red-sandstone citadel, and the Jama Masjid, India's largest mosque. Enjoy a memorable cycle-rickshaw ride through the narrow, winding lanes of Chandni Chowk, pausing at the Digambar Jain Temple. Then move to New Delhi, designed by Sir Edwin Lutyens: drive past the Rashtrapati Bhawan (Presidential Palace) and secretariat buildings, along the grand Rajpath to India Gate, the World War I memorial arch. Visit Humayun's Tomb, the first substantial example of Mughal architecture in India, built in 1565 by his widow Bega Begam nine years after his death. Continue to the 72-metre Qutab Minar and the ruins of the Quwwat-ul-Islam Mosque, and see Delhi's famous un-corroded 4th-century Iron Pillar. Overnight in Delhi.", overnight: "Delhi", image: "/images/itineraries/incredible-north-east-india/day-13.jpg" },
+      { day: 14, title: "Delhi Departure",                    description: "In time transfer to international airport for onward flight and tour terminates.", overnight: "—", image: "/images/itineraries/incredible-north-east-india/day-14.jpg" },
+    ],
+    inclusions: [
+      "Accommodation in 01 Double Room at the above-mentioned hotels or similar",
+      "Meals as mentioned above",
+      "All transfers and sightseeing by AC Toyota Crysta Car as per the program",
+      "Prevailing Monument Entrance Fees",
+      "Services of Accompanying English-Speaking Guide from Bagdogra to Bagdogra + Local Guides in Kolkata & Delhi",
+      "Private Hooghly River Cruise in Kolkata",
+      "Toy Train Ride in Darjeeling",
+      "Cycle Rickshaw Ride in Old Delhi",
+      "Wi-fi access in the vehicle during traveling",
+      "Unlimited drinking bottled water in the vehicle during traveling",
+      "GST (Goods & Services Tax) as applicable",
+    ],
+    exclusions: [
+      "Any domestic / international airfare",
+      "Personal expenses (tips, laundry, beverages, telephone calls)",
+      "Expenses caused by factors beyond control (flight cancellation, roadblocks, vehicle malfunction)",
+      "Medical or evacuation insurance",
+      "Travel insurance",
+    ],
+    datesPrices: [
+      "Incredible North East India",
+      "Price Validity OCT 2026 – MAY 2027",
+      "Price on request — contact our travel desk for a tailored quote",
+    ],
+    notes: [
+      "Blackout Period: Dec 23 – Jan 5 (not available)",
+      "Festival Premium: Extra charges during major festivals",
+      "Weather Clause: Customer bears costs for natural disruptions",
+      "Force Majeure: Company not liable for conditions beyond control",
+    ],
+    signatureExperiences: [
+      { category: "Culture & History", title: "Yoga Session at Sivananda Yoga Centre, Delhi", image: "/images/itineraries/incredible-north-east-india/signature/yoga.jpg" },
+      { category: "Culture & History", title: "Old Delhi Food & Heritage Walk",               image: "/images/itineraries/incredible-north-east-india/signature/old-delhi-food.jpg" },
+      { category: "Culture & History", title: "Street Art Tour in Delhi Art District",        image: "/images/itineraries/incredible-north-east-india/signature/street-art.jpg" },
+    ],
+    // IMAGES (2026-05-29): hero/overview + hotels web-sourced from Pexels (premium stock),
+    // stored LOCALLY under /images/itineraries/incredible-north-east-india/. See SOURCES.md.
+    // mapImage unused by the template. Swap to ImageKit + official hotel photos later.
+    heroImage: "/images/itineraries/incredible-north-east-india/main-bg.jpg",
+    overviewImage: "/images/itineraries/incredible-north-east-india/overview.jpg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["incredible-north-east-india"],
+    // Hotel images are REPRESENTATIVE premium stand-ins (exact properties not free-licensed) — see SOURCES.md.
+    suggestedHotels: [
+      { name: "Taj Raaj Kutir",        city: "Kolkata",    image: "/images/itineraries/incredible-north-east-india/hotels/taj-raaj-kutir.jpg" },
+      { name: "The Elgin Darjeeling",  city: "Darjeeling", image: "/images/itineraries/incredible-north-east-india/hotels/elgin-darjeeling.jpg" },
+      { name: "Elgin Nor-khill",       city: "Gangtok",    image: "/images/itineraries/incredible-north-east-india/hotels/elgin-norkhill.jpg" },
+      { name: "The Claridges",         city: "Delhi",      image: "/images/itineraries/incredible-north-east-india/hotels/claridges-delhi.jpg" },
+    ],
+  },
+
+  // ==========================================================================
+  // 12. GOLDEN TRIANGLE WITH RANTHAMBORE — 8 Days
+  // Distinct from existing `taj-and-tigers` — same circuit, different source
+  // doc. IMAGES: all sections web-sourced (Pexels), stored locally — see SOURCES.md.
+  // ==========================================================================
+  {
+    slug: "golden-triangle-with-ranthambore",
+    title: "Golden Triangle With Ranthambore",
+    subtitle: "Experience India's Golden Triangle with wildlife adventure: explore Delhi's heritage, Agra's Taj Mahal, Jaipur's royal charm and Ranthambore's thrilling tiger safaris and natural beauty.",
+    categories: ["Heritage", "Culture", "Architecture", "Wildlife"],
+    duration: "8 Days",
+    durationDays: 8,
+    startingPrice: "Price on request",
+    startingPriceNote: "Contact for quote",
+    route: "Delhi → Agra → Jaipur → Ranthambore → Delhi",
+    bestTime: "October – March",
+    overview: [
+      "This journey offers a perfect mix of India's rich history, colourful culture, stunning architecture, and exciting wildlife adventures — creating memories that last a lifetime.",
+      "Stroll through the historic lanes of Delhi, admire the breathtaking beauty of the Taj Mahal in Agra, experience the royal charm of Jaipur, and head into the wild forests of Ranthambore for an unforgettable tiger safari.",
+    ],
+    summary: [
+      "Be part of a Heritage walk through Old Delhi, visiting bustling bazaars, Jama Masjid, and Raj Ghat",
+      "Explore New Delhi's iconic landmarks including India Gate, Humayun's Tomb, and Qutub Minar",
+      "Sunrise visit to the Taj Mahal and tour of the magnificent Agra Fort",
+      "Scenic drive through Rajasthan's countryside en-route to the Pink City of Jaipur",
+    ],
+    summaryRight: [
+      "Guided tour of Amber Fort, City Palace, Hawa Mahal, and Jantar Mantar in Jaipur",
+      "Experience Jaipur's vibrant bazaars, traditional crafts, and authentic Rajasthani cuisine",
+      "Morning & evening jeep safaris in Ranthambore National Park, home to majestic Bengal tigers",
+      "Witness the perfect blend of Mughal grandeur, Rajput royalty, and India's rich wildlife heritage",
+    ],
+    days: [
+      { day: 1, title: "Arrive Delhi",                   description: "On arrival at Delhi International Airport, you'll meet our representative who will assist you and further accompany you to your hotel. Overnight in Delhi.", overnight: "Delhi", image: "/images/itineraries/golden-triangle-with-ranthambore/day-1.jpg" },
+      { day: 2, title: "Exploring Delhi",                description: "Post breakfast, enjoy a fascinating exploration of Old Delhi. Drive past the Red Fort (closed Mondays), Shah Jahan's elegant red-sandstone citadel, and the Jama Masjid, India's largest mosque. Enjoy a memorable cycle-rickshaw ride through the narrow, winding lanes of Chandni Chowk, pausing at the Digambar Jain Temple. Then move to New Delhi, designed by Sir Edwin Lutyens: drive past the Rashtrapati Bhawan (Presidential Palace) and secretariat buildings, along the grand Rajpath to India Gate, the World War I memorial arch. Visit Humayun's Tomb, the first substantial example of Mughal architecture in India, built in 1565 by his widow Bega Begam nine years after his death. Continue to the 72-metre Qutab Minar and the ruins of the Quwwat-ul-Islam Mosque, and see Delhi's famous un-corroded 4th-century Iron Pillar. Overnight in Delhi.", overnight: "Delhi", image: "/images/itineraries/golden-triangle-with-ranthambore/day-2.jpg" },
+      { day: 3, title: "Delhi → Agra",                   description: "After breakfast, depart for Agra by surface and transfer to the hotel. Afterwards, visit the Agra Fort — built 16th century AD, and added upon by 3 generations of Mughal emperors, it is a synthesis of military fortifications with delicate interior details. The Mughal Emperor Shah Jahan was imprisoned by his son here. Later, visit Itmad-ud-Daulla Tomb, often referred to as the 'Baby Taj Mahal' — the tomb of Itimad-ud-daulah is a Mughal mausoleum and often regarded as a copy of the Taj Mahal. This is the first tomb in India made entirely of marble. The tomb was commissioned by Nur Jahan, the wife of Jahangir, for her father Mir Gheyas Beg (later known as Itimad-ud-daulah), who was a minister in the court of Shah Jahan. Overnight in Agra.", overnight: "Agra", image: "/images/itineraries/golden-triangle-with-ranthambore/day-3.jpg" },
+      { day: 4, title: "Agra → Fatehpur Sikri → Jaipur", description: "Early morning, visit the incomparable Taj Mahal at Sunrise (Closed on Fridays). Experience the sublimity of the Taj Mahal — a varying kaleidoscope of solitude, colour and mood. A tribute from a great emperor to the memory of his beloved wife, it was 22 years in the making and is a cerebral experience that defies description. Widely regarded as the earthly replica of paradise, Taj Mahal is likened to 'a vision, a dream, a poem and a wonder'. Breakfast at the hotel. Post breakfast, depart for Jaipur enroute visiting Fatehpur Sikri — an exquisite city built by Akbar the Great in 1569, in red sandstone, with its forts, palaces and mosques, and abandoned after its creation due to political reasons. Continue to Jaipur and check-in at the hotel. Rest of the day is at leisure. Overnight in Jaipur.", overnight: "Jaipur", image: "/images/itineraries/golden-triangle-with-ranthambore/day-4.jpg" },
+      { day: 5, title: "Jaipur",                         description: "After breakfast, drive to the magnificent Amber Fort, the ancient Kachhwaha capital 12 km from Jaipur. Built by Raja Man Singh in the early 17th century and ringed by defensive walls, this superb blend of Hindu and Mughal architecture rises above the old town with mighty gates, ornate halls, temples, pavilions and gardens; a short walk through five gateways leads to the Suraj Pol entrance, with sweeping views over the countryside below. Nearby, visit the eight-storey Panna Meena ka Kund, a 16th-century step well whose criss-crossing staircases and recessed pavilions once served as a community gathering place — and make a fascinating photo stop. In the afternoon, tour the City Palace, the former royal residence, and the Jantar Mantar, an 18th-century stone observatory built by Maharaja Jai Singh. Make a photo stop at the iconic Hawa Mahal, the 'Palace of Winds', and take time to wander Jaipur's vibrant traditional bazaars. Overnight in Jaipur.", overnight: "Jaipur", image: "/images/itineraries/golden-triangle-with-ranthambore/day-5.jpg" },
+      { day: 6, title: "Jaipur → Ranthambore",           description: "After breakfast, depart to Ranthambhore by surface and check-in at the hotel. Ranthambhore National Park is one of the biggest and most renowned national parks in Northern India. Being considered as one of the famous and former hunting grounds of the Maharajas of Jaipur, today the Ranthambhore National Park terrain is a major wildlife tourist attraction spot that has pulled the attention of many wildlife photographers and lovers. Overnight in Ranthambore.", overnight: "Ranthambore", image: "/images/itineraries/golden-triangle-with-ranthambore/day-6.jpg" },
+      { day: 7, title: "Ranthambore",                    description: "Early Morning & Afternoon Private Jeep Safari with English Speaking Naturalist at Ranthambhore National Park. Overnight in Ranthambore.", overnight: "Ranthambore", image: "/images/itineraries/golden-triangle-with-ranthambore/day-7.jpg" },
+      { day: 8, title: "Ranthambore → Delhi",            description: "After breakfast, depart for Jaipur by surface. Reach Delhi and transfer to international airport for an onward flight and tour terminates.", overnight: "—", image: "/images/itineraries/golden-triangle-with-ranthambore/day-8.jpg" },
+    ],
+    inclusions: [
+      "Accommodation in 01 Double Room at the above-mentioned hotels or similar",
+      "Meals as mentioned above",
+      "All transfers and sightseeing by AC Toyota Crysta Car as per the program",
+      "Prevailing Monument Entrance Fees",
+      "Services of Local English / French Speaking Guide on sightseeing tours (different guides in each city)",
+      "Cycle Rickshaw Ride in Old Delhi",
+      "Jeep Ride at Amber Fort in Jaipur",
+      "02 Private Jeep Safaris at Ranthambhore National Park",
+      "Wi-fi access in the vehicle during traveling",
+      "Unlimited drinking bottled water in the vehicle during traveling",
+      "GST (Goods & Services Tax) as applicable",
+    ],
+    exclusions: [
+      "Any domestic / international airfare",
+      "Personal expenses (tips, laundry, beverages, telephone calls)",
+      "Expenses caused by factors beyond control (flight cancellation, roadblocks, vehicle malfunction)",
+      "Medical or evacuation insurance",
+      "Travel insurance",
+    ],
+    datesPrices: [
+      "Golden Triangle With Ranthambore",
+      "Price Validity OCT 2025 – MAR 2026",
+      "Price on request — contact our travel desk for a tailored quote",
+    ],
+    notes: [
+      "Blackout Period: Dec 23 – Jan 5 (not available)",
+      "Festival Premium: Extra charges during major festivals",
+      "Weather Clause: Customer bears costs for natural disruptions",
+      "Force Majeure: Company not liable for conditions beyond control",
+      "Ranthambore Jeep Safari bookings open 120 days in advance, first-come-first-served",
+    ],
+    signatureExperiences: [
+      { category: "Culture & History", title: "Yoga Session at Sivananda Yoga Centre, Delhi", image: "/images/itineraries/golden-triangle-with-ranthambore/signature/yoga.jpg" },
+      { category: "Culture & History", title: "Old Delhi Food & Heritage Walk", image: "/images/itineraries/golden-triangle-with-ranthambore/signature/old-delhi-food.jpg" },
+      { category: "Culture & History", title: "Street Art Tour in Delhi Art District", image: "/images/itineraries/golden-triangle-with-ranthambore/signature/street-art.jpg" },
+      { category: "Culture & History", title: "Food Walk in Agra", image: "/images/itineraries/golden-triangle-with-ranthambore/signature/agra-food.jpg" },
+      { category: "Culture & History", title: "Heritage Walk in Agra", image: "/images/itineraries/golden-triangle-with-ranthambore/signature/agra-heritage.jpg" },
+      { category: "Culture & History", title: "Agra Handicraft Walk", image: "/images/itineraries/golden-triangle-with-ranthambore/signature/agra-handicraft.jpg" },
+      { category: "Culture & History", title: "Cooking Demonstration followed by lunch/dinner in Jaipur", image: "/images/itineraries/golden-triangle-with-ranthambore/signature/jaipur-cooking.jpg" },
+      { category: "Adventure",         title: "Rhythm with Elephants at Dera Amer in Jaipur", image: "/images/itineraries/golden-triangle-with-ranthambore/signature/elephants.jpg" },
+      { category: "Adventure",         title: "Pedal to Heritage (morning cycling tour) in Jaipur", image: "/images/itineraries/golden-triangle-with-ranthambore/signature/cycling.jpg" },
+    ],
+    // IMAGES (2026-05-29): all sections web-sourced from Pexels (premium stock), stored locally
+    // under /images/itineraries/golden-triangle-with-ranthambore/. See SOURCES.md. mapImage unused.
+    heroImage: "/images/itineraries/golden-triangle-with-ranthambore/main-bg.jpg",
+    overviewImage: "/images/itineraries/golden-triangle-with-ranthambore/overview.jpg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["golden-triangle-with-ranthambore"],
+    // Hotel images are REPRESENTATIVE premium stand-ins (exact properties not free-licensed) — see SOURCES.md.
+    suggestedHotels: [
+      { name: "The Claridges",     city: "Delhi",       image: "/images/itineraries/golden-triangle-with-ranthambore/hotels/claridges-delhi.jpg" },
+      { name: "ITC Mughal",        city: "Agra",        image: "/images/itineraries/golden-triangle-with-ranthambore/hotels/itc-mughal-agra.jpg" },
+      { name: "Samode Haveli",     city: "Jaipur",      image: "/images/itineraries/golden-triangle-with-ranthambore/hotels/samode-haveli.jpg" },
+      { name: "TUTC Sawai Shivir", city: "Ranthambore", image: "/images/itineraries/golden-triangle-with-ranthambore/hotels/tutc-sawai-shivir.jpg" },
+    ],
+  },
+
+  // ==========================================================================
+  // 13. ENCHANTING CENTRAL INDIA — 12 Days
+  // NOTE: doc Summary Strip route omits Mandu but day-by-day includes a Mandu
+  // excursion from Maheshwar on Day 8. Faithful to day-by-day.
+  // Hero/overview placeholders from existing vibrant-gujarat-central-india.
+  // ==========================================================================
+  {
+    slug: "enchanting-central-india",
+    title: "Enchanting Central India",
+    subtitle: "Experience the diverse charm of India as you journey from Mumbai to Aurangabad's ancient caves, Burhanpur's forgotten Mughal heritage, the peaceful ghats of Maheshwar, the romantic ruins of Mandu, the spiritual aura of Ujjain, and the cultural heart of Bhopal.",
+    categories: ["Heritage", "Culture", "Spiritual", "Architecture"],
+    duration: "12 Days",
+    durationDays: 12,
+    startingPrice: "Price on request",
+    startingPriceNote: "Contact for quote",
+    route: "Mumbai → Aurangabad → Burhanpur → Maheshwar → Ujjain → Bhopal → Mumbai",
+    bestTime: "October – March",
+    overview: [
+      "From Mumbai's vibrant city life to Aurangabad's ancient caves and Burhanpur's forgotten Mughal heritage, this journey reveals India's fascinating blend of history, culture, architecture, and timeless traditions.",
+      "Explore the riverside beauty of Maheshwar, the romantic ruins of Mandu, the spiritual energy of Ujjain, and the cultural charm of Bhopal on a memorable journey through Central India.",
+    ],
+    summary: [
+      "Soak in the energy of Mumbai as you explore its lively streets, colonial landmarks, and seaside charm",
+      "Step back in time at the magnificent Ajanta & Ellora Caves, famous for their ancient rock-cut art and architecture",
+      "Uncover the lesser-known Mughal history of Burhanpur through its forts, mosques, and royal monuments",
+      "Enjoy peaceful moments by the Narmada River while exploring the beautiful ghats and temples of Maheshwar",
+    ],
+    summaryRight: [
+      "Wander through the romantic ruins and grand palaces of Mandu, surrounded by stunning landscapes",
+      "Experience the spiritual heartbeat of Ujjain with visits to sacred temples and riverside ceremonies",
+      "Discover the cultural soul of Bhopal through its lakes, museums, vibrant bazaars, and historic old city charm",
+    ],
+    days: [
+      { day: 1,  title: "Arrive Mumbai",                          description: "On arrival in Mumbai, you will meet our representative, who will assist you during the check-in at the hotel (standard check-in time is 1400 hrs onwards).", overnight: "Mumbai", image: "/images/itineraries/enchanting-central-india/day-1.jpg" },
+      { day: 2,  title: "Exploring Mumbai",                       description: "Post breakfast, visit Elephanta Caves (Closed on Mondays), which takes you on a boat ride from Mumbai to Elephanta Island, exploring ancient rock-cut temples, intricate sculptures, and the stunning 20-foot Shiva statue, offering a glimpse into India's rich heritage. Later visit Gateway of India, a monument built to commemorate the visit of King George V, built in that whimsical style termed as Indo Saracenic. Drive to the green gardens of Mumbai. Mumbai, as a major metropolis, is now a concrete jungle with just a few parks. Located up on the Malabar Hill are the Kamala Nehru Park and the Hanging Gardens — welcome splashes of green with splendid views of the city. As we drive to the Hanging Gardens, we drive past the Rajabhai Clock Tower, which is situated in the compound of Mumbai University. Also visit Dhobi Ghat, India's largest open-air laundry located in the heart of south Mumbai. Witness Dhobi (person who does laundry) doing their routine job.", overnight: "Mumbai", image: "/images/itineraries/enchanting-central-india/day-2.jpg" },
+      { day: 3,  title: "Mumbai → Aurangabad",                    description: "Early morning, transfer to airport for flight to Aurangabad. On arrival in Aurangabad, check-in at the hotel (check-in time: 1400 hrs). Later, visit Bibi ka Maqbara, a tomb located in Aurangabad, Maharashtra, India. It was commissioned in 1660 by the Mughal emperor Aurangzeb's son Prince Azim Shah in the memory of his loving mother Dilras Banu Begum. It bears a striking resemblance to the Taj Mahal, the mausoleum of Aurangzeb's mother, Mumtaz Mahal. Overnight in Aurangabad.", overnight: "Aurangabad", image: "/images/itineraries/enchanting-central-india/day-3.jpg" },
+      { day: 4,  title: "A day in Aurangabad",                    description: "After breakfast, visit the Ellora Caves (closed Tuesdays), among the finest cave temples in the world. Carved between roughly 350 and 700 AD, these 34 rock-cut caves represent three faiths — Buddhism, Hinduism and Jainism. The crowning glory is the Kailasa Temple (cave 16), a colossal monolithic shrine hewn from solid rock; the Vishvakarma cave combines a Chaitya and Vihara around a seated Buddha, while the Rameswara cave's entrance is adorned with river goddesses and the Dumar Lena cave, dedicated to Shiva, echoes the great shrine at Elephanta. Continue to Daulatabad Fort, an originally Hindu stronghold captured in the 13th century and briefly made the second capital of the Delhi Sultanate. Dominated by a great conical hill and made impregnable by artificial scarping, it commands a natural pass; its 30m Chand Minar, with three circular galleries, served both defensive and religious roles. The evening is free to explore local markets. Overnight in Aurangabad.", overnight: "Aurangabad", image: "/images/itineraries/enchanting-central-india/day-4.jpg" },
+      { day: 5,  title: "Aurangabad → Ajanta → Burhanpur",        description: "After breakfast, depart for Burhanpur, stopping to visit the Ajanta Caves (closed Mondays). Rediscovered by British officers in the 19th century after lying hidden for centuries, these 30 caves carved into the Sahyadri hills tell the story of a glorious past from around 200 BC to 650 AD. Created as secluded retreats for Buddhist monks, the Chaityas and Viharas were seats of learning, each figure carved with little more than hammer and chisel. Ajanta is celebrated above all for its exquisite murals and sculptures, many illustrating Jataka tales of the Buddha's previous lives alongside scenes of royalty, nymphs and everyday life. Among the highlights are the flying apsara of cave 17, the preaching Buddha of cave 16, and the seated Nagaraja with his consort — an unmatched visual treat. Continue to Burhanpur and check in at the hotel. Overnight in Burhanpur.", overnight: "Burhanpur", image: "/images/itineraries/enchanting-central-india/day-5.jpg" },
+      { day: 6,  title: "Burhanpur → Omkareshwar → Maheshwar",    description: "After breakfast, drive to Maheshwar, stopping at Omkareshwar — a sacred island in the Narmada, also known as Mahismati, and home to one of India's twelve revered Jyotirlinga shrines of Lord Shiva. Visit the Mamleshwar Jyotirlinga on the river's south bank, regarded together with Omkareshwar as a single Jyotirlinga. See the 11th-century Kedareshwar Temple, dedicated to a manifestation of Shiva, with intricate architecture and lovely views along the parikrama path. Continue to the Siddhanath Temple, a 13th-century shrine in Brahminic and Indo-Nagara style set on a plateau on Mandhata island — one of Omkareshwar's most striking monuments and a fine example of ancient Indian craftsmanship. Continue to Maheshwar and check in at the hotel. Overnight in Maheshwar.", overnight: "Maheshwar", image: "/images/itineraries/enchanting-central-india/day-6.jpg" },
+      { day: 7,  title: "Maheshwar",                              description: "Arise to a healthy breakfast and then get ready to embark on a full-day sightseeing tour of the town. Home to the finest handloom fabric tradition and centre of handloom textile since the 5th Century, Maheshwar is recognized for its huge production of Maheshwari Sarees, and this makes this popular tourist destination a perfect paradise for shopaholics. You can also buy unique and delicate cotton and silk-blend handloom saris. The city has spiritual importance as it is mentioned in Hindu epics Mahabharata and Ramayana. There are several Shiva Temples in the city and forts as well. Visit the temples and fort during the sightseeing tour. Holkar Fort is a renowned fortress, which is named after Rani Ahilyabai Holkar. Enjoy the scenic view of the city from the top of the fort. Some popular temples of the city are Pandrinath Temple and Jaleshwar Temple where you can visit on the day.", overnight: "Maheshwar", image: "/images/itineraries/enchanting-central-india/day-7.jpg" },
+      { day: 8,  title: "Maheshwar → Mandu → Maheshwar",          description: "After breakfast, enjoy a full-day excursion to Mandu, a romantic hilltop city in stone celebrating the love of poet-prince Baz Bahadur and his consort Rani Roopmati. Set along the Vindhya ranges at 2,000 feet, its monuments blend Afghan boldness with refined craftsmanship. Visit Roopmati's Pavilion, originally an army observation post, from whose terraces the queen could see Baz Bahadur's palace and the Narmada in the plains far below. Marvel at the elegant Jahaz Mahal, a 120-metre 'ship palace' set between two lakes, with open pavilions and water-fronting balconies, and the Hindola Mahal, the 'swinging palace', named for its sloping walls and delicate sandstone trellis work. Explore Baz Bahadur's Palace, with its spacious courtyard and sweeping views, and Hoshang Shah's Tomb — India's first marble edifice, with a finely proportioned dome and lattice work believed to have inspired the builders of the Taj Mahal. Finish at the grand Jami Masjid, modelled on the great mosque of Damascus, with its high plinth, domed porch and richly varied arcades. Overnight in Maheshwar.", overnight: "Maheshwar", image: "/images/itineraries/enchanting-central-india/day-8.jpg" },
+      { day: 9,  title: "Maheshwar → Ujjain",                     description: "After breakfast, drive to Ujjain and check in at the hotel. An ancient city on the banks of the Kshipra River and one of Hinduism's holiest pilgrimage sites, Ujjain is renowned for the Mahakaleshwar Jyotirlinga — one of the twelve most sacred abodes of Shiva. Its presiding lingam is revered as Swayambhu (self-manifested), drawing its power from within rather than from ritual consecration. Visit the Jantar Mantar, an observatory built in 1733 by Maharaja Jai Singh of Jaipur when he governed Malwa; it holds special significance as Indian astronomers traditionally regarded the prime meridian as passing through Ujjain. In the evening, witness the serene aarti ceremony on the steps of Ram Ghat. Overnight in Ujjain.", overnight: "Ujjain", image: "/images/itineraries/enchanting-central-india/day-9.jpg" },
+      { day: 10, title: "Ujjain → Bhopal",                        description: "After breakfast, drive to Bhopal, stopping at the UNESCO-listed Bhimbetka rock shelters and the Bhojpur Temple. Bhimbetka's 600-plus caves, set amid the Vindhya range, sheltered prehistoric man and preserve vivid paintings — some up to 12,000 years old — that chronicle the earliest traces of human life in India. The incomplete Bhojeshwar Temple, dedicated to Shiva, houses a 7.5-foot lingam in its sanctum. Reach Bhopal, a graceful city set on the banks of a vast lake that lends it a calm, timeless charm, even as it has grown into the capital of Madhya Pradesh. Visit the Taj-ul-Masjid, said to be the largest mosque in India, begun under Shah Jehan Begum (1868–1901) and completed only in 1971, notable for its grand inter-arched main hall, broad facade and marble floors. Continue to the open-air Tribal Habitat Museum, an absorbing display of life-size dwellings and interiors representing India's tribal cultures, then drive along the VIP Road for views over the Upper Lake. Overnight in Bhopal.", overnight: "Bhopal", image: "/images/itineraries/enchanting-central-india/day-10.jpg" },
+      { day: 11, title: "Explore Bhopal",                         description: "After breakfast, enjoy an excursion to the UNESCO-listed Sanchi, about 40 km away. This is the oldest Buddhist sanctuary in existence, a hilltop group of stupas, pillars, temples and monasteries dating mostly from the 2nd and 1st centuries BC, which remained a major Buddhist centre until the 12th century AD. The Great Stupa (No. 1), nearly 16m high with a vast hemispherical dome, is encircled by superbly carved gateways (toranas) — the finest known examples of early Buddhist art — where the Buddha is depicted through symbols such as the lotus, the tree, the wheel and the footprints. Nearby stands the elegantly balanced Ashoka Pillar, and a museum below the hill displays its lion capital and sculptures dating to the 3rd century BC. In the afternoon, continue to the Udayagiri Caves, 13 km away — a group of 20 rock-cut Gupta shrines carved into a sandstone hill during the reign of Chandragupta II (382–401 AD), a rich showcase of Gupta art and architecture. Overnight in Bhopal.", overnight: "Bhopal", image: "/images/itineraries/enchanting-central-india/day-11.jpg" },
+      { day: 12, title: "Bhopal → Mumbai",                        description: "Post breakfast, transfer to airport for flight to Mumbai. On arrival in Mumbai, transfer to international airport for onward flight and tour terminates.", overnight: "—", image: "/images/itineraries/enchanting-central-india/day-12.jpg" },
+    ],
+    inclusions: [
+      "Accommodation in 01 Double Room at the above-mentioned hotels or similar",
+      "Meals as mentioned above",
+      "All transfers and sightseeing by AC Toyota Crysta Car as per the program",
+      "Prevailing Monument Entrance Fees",
+      "Services of Local English / French Speaking Guide on sightseeing tours (different guides in each city)",
+      "Return Shared Ferry for Elephanta Caves",
+      "Wi-fi access in the vehicle during traveling",
+      "Unlimited drinking bottled water in the vehicle during traveling",
+      "GST (Goods & Services Tax) as applicable",
+    ],
+    exclusions: [
+      "Any domestic / international airfare",
+      "Personal expenses (tips, laundry, beverages, telephone calls)",
+      "Expenses caused by factors beyond control (flight cancellation, roadblocks, vehicle malfunction)",
+      "Medical or evacuation insurance",
+      "Travel insurance",
+    ],
+    datesPrices: [
+      "Enchanting Central India",
+      "Price Validity OCT 2025 – MAR 2026",
+      "Price on request — contact our travel desk for a tailored quote",
+    ],
+    notes: [
+      "Blackout Period: Dec 23 – Jan 5 (not available)",
+      "Festival Premium: Extra charges during major festivals",
+      "Weather Clause: Customer bears costs for natural disruptions",
+      "Force Majeure: Company not liable for conditions beyond control",
+      "Ajanta Caves closed Mondays; Ellora Caves closed Tuesdays",
+    ],
+    signatureExperiences: [
+      { category: "Culture & History", title: "Bollywood Studio Tour in Mumbai", image: "/images/itineraries/enchanting-central-india/signature/bollywood.jpg" },
+      { category: "Culture & History", title: "Art Deco Tour in Mumbai", image: "/images/itineraries/enchanting-central-india/signature/art-deco.jpg" },
+      { category: "Culture & History", title: "Mumbai By Dawn Tour", image: "/images/itineraries/enchanting-central-india/signature/mumbai-dawn.jpg" },
+    ],
+    // Images: local Pexels + Wikimedia Commons (premium, free-license) — see SOURCES.md in the image folder
+    heroImage: "/images/itineraries/enchanting-central-india/main-bg.jpg",
+    overviewImage: "/images/itineraries/enchanting-central-india/overview.jpg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["enchanting-central-india"],
+    // Hotel images are representative luxury/heritage stand-ins — see SOURCES.md
+    suggestedHotels: [
+      { name: "Trident Nariman Point", city: "Mumbai",     image: "/images/itineraries/enchanting-central-india/hotels/trident-mumbai.jpg" },
+      { name: "Gateway Aurangabad",    city: "Aurangabad", image: "/images/itineraries/enchanting-central-india/hotels/gateway-aurangabad.jpg" },
+      { name: "Ahilya Fort",           city: "Maheshwar",  image: "/images/itineraries/enchanting-central-india/hotels/ahilya-fort.jpg" },
+      { name: "Jehan Numa Palace",     city: "Bhopal",     image: "/images/itineraries/enchanting-central-india/hotels/jehan-numa-bhopal.jpg" },
+    ],
+  },
+
+  // ==========================================================================
+  // 14. ENCHANTING SOUTH INDIA — TAMIL NADU & KERALA — 16 Days
+  // Distinct from existing `unveiling-the-enchanting-south-tamil-nadu` (which
+  // is Tamil Nadu only). This one adds Kerala (Periyar, Alleppey houseboat,
+  // Mararikulam, Kochi). Hero/overview placeholders from existing TN entry.
+  // ==========================================================================
+  {
+    slug: "enchanting-south-india-tamilnadu-kerala",
+    title: "Enchanting South India — Tamil Nadu & Kerala",
+    subtitle: "This South India tour blends culture, architecture, spirituality, nature, and relaxation into one unforgettable experience.",
+    categories: ["Culture", "Heritage", "Architecture", "Spiritual", "Nature", "Wellness"],
+    duration: "16 Days",
+    durationDays: 16,
+    startingPrice: "Price on request",
+    startingPriceNote: "Contact for quote",
+    route: "Chennai → Mahabalipuram → Pondicherry → Tanjore → Chettinad → Madurai → Periyar → Alleppey → Mararikulam → Kochi",
+    bestTime: "October – March",
+    overview: [
+      "Discover the timeless charm of South India on a captivating journey through vibrant cities and cultural treasures — from the heritage streets of Chennai and the ancient shore temples of Mahabalipuram to the French elegance of Pondicherry and the majestic temples of Tanjore and Chidambaram.",
+      "Experience the rich heritage of Chettinad, the spiritual aura of Madurai, the lush wildlife of Periyar, and unwind amidst the serene backwaters of Alleppey and Mararikulam before concluding in the charming coastal city of Kochi.",
+    ],
+    summary: [
+      "Heritage walk of the French town & White town, Pondicherry",
+      "Artisans village tour in Chettinad",
+      "Night ceremony at the Meenakshi Temple",
+      "Spice Plantation Tour, Periyar",
+    ],
+    summaryRight: [
+      "Boat cruise on Lake Periyar in the national park, Periyar",
+      "Overnight Houseboat experience in the backwaters, Alleppey",
+      "Kathakali Dance Performance at a local theatre, Kochi",
+    ],
+    days: [
+      { day: 1,  title: "Arrive Chennai",                         description: "Upon arrival in Chennai, you'll meet our representative who will assist you at the airport. Later, you will transfer to and check-in at the hotel. Remainder of the day is at leisure.", overnight: "Chennai", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-1.jpg" },
+      { day: 2,  title: "Chennai → Mahabalipuram",                description: "After breakfast, drive to Mahabalipuram, an ancient Pallava seaport 58 km south of Chennai set amid natural beauty. Its rock-hewn monuments, weathered by sea and wind, bear testimony to the magnificent heritage of Dravidian art, often depicting charming scenes of everyday life. Begin the guided tour at the great bas-relief of Arjuna's Penance, a vast carved panel showing the descent of the Ganges from the Himalayas amid gods, animals and semi-divine creatures, with fables from the Panchatantra and Arjuna performing penance to win a boon from Shiva. Continue to the Five Rathas, a UNESCO-listed masterpiece of monolithic rock-cut architecture, each shrine carved from a single granite formation and named after the heroes of the Mahabharata. Finish at the glorious Shore Temple, also UNESCO-listed and among the oldest in South India — built in the late 7th century, it stands on the seashore with paved forecourts and weathered walls lined with rows of guardian bulls and deities. Overnight in Mahabalipuram.", overnight: "Mahabalipuram", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-2.jpg" },
+      { day: 3,  title: "Mahabalipuram → Pondicherry",            description: "After breakfast, drive to Pondicherry and check in at the hotel. A French colonial settlement until 1954 and now a Union Territory on the Tamil Nadu coast, Pondicherry preserves its French legacy in the French Quarter — tree-lined streets, mustard-coloured colonial villas and chic boutiques. A seaside promenade runs along the Bay of Bengal, passing landmarks such as the 4m Gandhi Memorial. Take a walk through the French and White Towns, beginning at Baker Street and heading towards the Alliance Française, past pastel and ochre villas and tree-lined boulevards. On Rue Dumas, stop at the Cluny Embroidery Centre, an old colonial building where local women create exquisite French-colonial hand-embroidered furnishings — a lovely spot for a souvenir. End at the Alliance Française, a pristine white villa facing the French Quarter on one side and the sea on the other.", overnight: "Pondicherry", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-3.jpg" },
+      { day: 4,  title: "Pondicherry",                            description: "After breakfast, visit Auroville, founded in 1968 — an experimental township where people of all nationalities live in peace and progressive harmony. Roam around the complex, understand the culture and way of life here. Later, walk through the local markets / beach side.", overnight: "Pondicherry", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-4.jpg" },
+      { day: 5,  title: "Pondicherry → Chidambaram → Darasuram → Tanjore", description: "Post breakfast, depart for Tanjore enroute visiting Chidambaram, where we will visit a remarkable sacred complex characteristic of Dravidian India: the Nataraja Temple where Shiva is worshipped in the form of the dancing god. Visit Darasuram, a small town whose temple is a superb example of Chola architecture with its columns decorated with miniature sculptures. Reach Tanjore and check-in at the hotel. Later, visit the Brihadeeshwara Temple and the Palace, which has a very interesting gallery of ancient bronzes.", overnight: "Tanjore", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-5.jpg" },
+      { day: 6,  title: "Tanjore → Chettinad",                    description: "After breakfast, check-out of the hotel and drive to Chettinad. Upon arrival check-in at the hotel. Chettinad region was inhabited by a community of very rich merchants, the Chattiars, who built extraordinary homes in their own style. The craft tradition is still very much alive in the 74 villages that make up this region. Discover this exceptional and unique heritage in India, between forgotten hamlets, little-known sanctuaries, romantic palaces, sacred woods with paths lined with wonderful terracotta horses, village markets and workshops of artisan-artists (wood carving, weaving, or a factory of earthenware tiles renowned throughout India). Evening, explore the charming village of Karaikudi and you can visit workshops for wood works, silver, textiles etc. Also, visit the palace and the museum.", overnight: "Chettinad", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-6.jpg" },
+      { day: 7,  title: "Chettinad",                              description: "After breakfast, the day is at leisure to explore local villages and artisans.", overnight: "Chettinad", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-7.jpg" },
+      { day: 8,  title: "Chettinad → Madurai",                    description: "After leisurely breakfast, drive to Madurai and check-in at the hotel. The rest of the day is at leisure to explore this marvel town. Madurai, situated on the banks of River Vaigai, this ancient capital of the Pandyan Kings, is a sacred place. In its ancient heyday, Madurai traded with Greece and Rome and was the centre for Tamil poetry and literature. Today, it is symbolized by the iconic Meenakshi temple, visited on morning and evening tours, along with its surrounding bazaars. Other attractions are the noteworthy Tirumala Nayak Palace, and the Temple Tank, which is usually the centre for Madurai's many festivals.", overnight: "Madurai", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-8.jpg" },
+      { day: 9,  title: "Madurai",                                description: "After breakfast, visit the Thirumalai Nayak Palace, built in 1639 in a blend of Dravidian and Islamic styles — its curved dome, raised without girder or rafter, is an architectural marvel. Pass the Mariamman Teppakulam tank with its central mandapam, then visit the magnificent Meenakshi Temple, a superb example of Dravidian art and the focal point around which the city grew. Though it has two main sanctums — one to Shiva, one to Meenakshi — Goddess Meenakshi is the principal deity, perhaps reflecting south India's matrilineal traditions. Towering gopurams adorned with colourful stucco gods and mythological tales, and many sculpted pillared halls, dominate the skyline. In the evening, attend the temple's nightly 9:00 PM ceremony, when the bronze image of Shiva is carried in procession to the chamber of his consort Parvati, accompanied by prayer and temple music.", overnight: "Madurai", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-9.jpg" },
+      { day: 10, title: "Madurai → Periyar",                      description: "After breakfast, drive to Periyar (also known as Thekkady) — one of the world's most fascinating wildlife reserves. The Periyar wildlife sanctuary in Thekkady is spread across 777 sq km of which 360 sq km is thick evergreen forest. Noted for its geomorphology, diversity of wildlife and scenic beauty, the sanctuary was declared a Tiger Reserve in 1978. Enjoy a guided Spice Plantation Tour to the nearby garden where various species of spices and other aromatic plants are cultivated.", overnight: "Periyar", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-10.jpg" },
+      { day: 11, title: "Periyar",                                description: "After breakfast, enjoy a boat cruise on Lake Periyar in the national park, known for its herds of wild elephants, bison, deer, and spectacular birds. The afternoon is free.", overnight: "Periyar", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-11.jpg" },
+      { day: 12, title: "Periyar → Alleppey",                     description: "Post breakfast, you travel to the backwaters at Alleppey, 'Starting point', from where you embark on a houseboat — your floating hotel for the next 24 hours. Lunch on the houseboat. Once on your houseboat, enjoy the lazy countryside. Watch the life that lives along the canals — the heartbeat of existence of the local peoples. The network is used to transport cargo from the interiors and ferry locals between villages; school children run patrols. Stream past slow boats with single sails made of old sacks stitched together, laden with green mounds of coconuts or piles of shells. It is a languid, effortlessly unwinding cruise. Each boat comes with a crew of 4 staff who are your guide, cooks & boatmen. Each houseboat has 2/4 bedrooms, and the houseboats will travel in convoy past the various canals.", overnight: "Houseboat / Alleppey", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-12.jpg" },
+      { day: 13, title: "Alleppey → Mararikulam",                 description: "After breakfast, drive to Mararikulam and check-in at the hotel. Relax at the hotel / beach.", overnight: "Mararikulam", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-13.jpg" },
+      { day: 14, title: "Mararikulam",                            description: "After breakfast, the day is at leisure to relax at the hotel / beach.", overnight: "Mararikulam", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-14.jpg" },
+      { day: 15, title: "Mararikulam → Kochi",                    description: "Morning drive to Kochi. Visit the Mattancherry Dutch Palace (closed Fridays), built by the Portuguese in 1555 and renovated by the Dutch in 1663, where 17th-century murals depict the Ramayana in vivid colour. Continue to the Paradesi Synagogue in Jew Town (closed Fridays, Saturdays and Jewish holidays), a reminder of Kerala's ancient Jewish trade said to date to the time of King Solomon, and St. Francis Church, the oldest European church in India. In the evening, explore Fort Cochin and see the iconic Chinese Fishing Nets along the shore — living symbols of a centuries-old Chinese influence on this coast. End with a Kathakali dance performance at a local theatre — a vigorous classical art form that brings stories from the Mahabharata and Ramayana to life through elaborate costume, vivid natural make-up and expressive facial and hand gestures; arrive early to watch the performers prepare. Overnight in Kochi.", overnight: "Kochi", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-15.jpg" },
+      { day: 16, title: "Depart Kochi",                           description: "After breakfast, transfer to airport for onward flight. End of Tour.", overnight: "—", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/day-16.jpg" },
+    ],
+    inclusions: [
+      "Accommodation in 01 Double Room at the above-mentioned hotels or similar",
+      "Meals as mentioned above",
+      "All transfers and sightseeing by AC Toyota Crysta Car as per the program",
+      "Prevailing Monument Entrance Fees",
+      "Services of Local English / French Speaking Guide on sightseeing tours (different guides in each city)",
+      "Evening Sunset Ceremony at Meenakshi Temple in Madurai",
+      "Spice Plantation Tour in Periyar",
+      "Common Boat Cruise on Lake Periyar",
+      "Kathakali Dance Performance at a local theater in Kochi",
+      "Wi-fi access in the vehicle during traveling",
+      "Unlimited drinking bottled water in the vehicle during traveling",
+      "GST (Goods & Services Tax) as applicable",
+    ],
+    exclusions: [
+      "Any domestic / international airfare",
+      "Personal expenses (tips, laundry, beverages, telephone calls)",
+      "Expenses caused by factors beyond control (flight cancellation, roadblocks, vehicle malfunction)",
+      "Medical or evacuation insurance",
+      "Travel insurance",
+    ],
+    datesPrices: [
+      "Enchanting South India — Tamil Nadu & Kerala",
+      "Price Validity OCT 2025 – MAR 2026",
+      "Price on request — contact our travel desk for a tailored quote",
+    ],
+    notes: [
+      "Blackout Period: Dec 20 – Jan 10 (not available)",
+      "Festival Premium: Extra charges during major festivals",
+      "Weather Clause: Customer bears costs for natural disruptions",
+      "Force Majeure: Company not liable for conditions beyond control",
+      "Mattancherry Palace, Jewish Synagogue closed on Fridays, Saturdays, and Jewish holidays",
+    ],
+    // NOTE: source doc's Signature Experience block was a template-copy of NE
+    // India content (Botanical Garden, Tram Ride, etc) — not relevant to this
+    // South-India itinerary. Left empty pending real entries from the user.
+    signatureExperiences: [],
+    // Images: local Pexels + Wikimedia Commons (premium, free-license) — see SOURCES.md in the image folder
+    heroImage: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/main-bg.jpg",
+    overviewImage: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/overview.jpg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["enchanting-south-india-tamilnadu-kerala"],
+    // Hotel images are representative luxury/heritage stand-ins — see SOURCES.md
+    suggestedHotels: [
+      { name: "Radisson Temple Bay", city: "Mahabalipuram", image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/hotels/radisson-temple-bay.jpg" },
+      { name: "Villa Shanti",        city: "Pondicherry",   image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/hotels/villa-shanti-pondicherry.jpg" },
+      { name: "Cardamom County",     city: "Periyar",       image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/hotels/cardamom-county-periyar.jpg" },
+      { name: "Brunton Boatyard",    city: "Kochi",         image: "/images/itineraries/enchanting-south-india-tamilnadu-kerala/hotels/brunton-boatyard-kochi.jpg" },
+    ],
+  },
+
+  // ==========================================================================
+  // 15. INDIA'S NATURAL & HISTORICAL TREASURES — 15 Days
+  // Combines Central India wildlife (Tadoba, Pench) with Golden Triangle +
+  // Ranthambore. Hero/overview placeholders from taj-and-tigers.
+  // ==========================================================================
+  {
+    slug: "indias-natural-and-historical-treasures",
+    title: "India's Natural & Historical Treasures",
+    subtitle: "Experience the magic of India through exciting jungle safaris, colorful royal cities, historic forts, and the timeless beauty of the Taj Mahal.",
+    categories: ["Wildlife", "Heritage", "Culture", "Adventure"],
+    duration: "15 Days",
+    durationDays: 15,
+    startingPrice: "Price on request",
+    startingPriceNote: "Contact for quote",
+    route: "Delhi → Tadoba → Pench → Delhi → Jaipur → Ranthambore → Agra → Delhi",
+    bestTime: "October – March",
+    overview: [
+      "Travel through the vibrant heart of India, where ancient cities, royal palaces, and tiger-filled jungles come together to create a journey rich in culture, history, and unforgettable wildlife encounters.",
+      "From sunrise safaris in Tadoba and Pench to exploring Jaipur's regal heritage and Agra's iconic wonders, every moment offers a deeper connection to India's wild and timeless spirit.",
+    ],
+    summary: [
+      "In Delhi, explore India's vibrant capital, blending historic monuments with modern city life",
+      "Jungle safaris in Tadoba Tiger Reserve, tracking tigers, leopards, and diverse wildlife in dense forests",
+      "Game drives in Pench National Park, the inspiration behind 'The Jungle Book,' rich with scenic landscapes",
+    ],
+    summaryRight: [
+      "Thrilling safaris in Ranthambore National Park, known for its royal Bengal tigers and ancient fort backdrop",
+      "Discover Jaipur's royal heritage with visits to majestic forts, palaces, and colorful local bazaars",
+      "Explore the timeless beauty of Agra, including the iconic Taj Mahal and Mughal-era monuments",
+    ],
+    days: [
+      { day: 1,  title: "Arrive Delhi",                description: "Upon arrival in Delhi, meet Liberty representative at the airport and transfer to the hotel for an overnight stay. Overnight in Delhi.", overnight: "Delhi", image: "/images/itineraries/indias-natural-and-historical-treasures/day-1.jpg" },
+      { day: 2,  title: "Delhi",                       description: "Start the day with a morning visit to Old Delhi, including a bicycle rickshaw ride through the bustling streets and a visit to the famous spice market. In the afternoon, take a panoramic drive through Lutyens' Delhi, admiring colonial-era architecture. In the afternoon, lunch at Haveli Dharampura. Dinner and overnight stay at the hotel.", overnight: "Delhi", image: "/images/itineraries/indias-natural-and-historical-treasures/day-2.jpg" },
+      { day: 3,  title: "Delhi",                       description: "Visit Humayun's Tomb and the newly opened underground museum, serene Sunder Nursery, and the iconic Qutub Minar. Enjoy an optional visit to Nizamuddin Dargah or go shopping. The rest of the day is free for leisure. Dinner and overnight stay in Delhi.", overnight: "Delhi", image: "/images/itineraries/indias-natural-and-historical-treasures/day-3.jpg" },
+      { day: 4,  title: "Delhi → Tadoba",              description: "Take an early morning flight to Nagpur. Drive to Tadoba. Check into the hotel, have lunch, and enjoy an afternoon Jeep Safari at Tadoba Tiger Reserve. Dinner and overnight stay at the hotel.", overnight: "Tadoba", image: "/images/itineraries/indias-natural-and-historical-treasures/day-4.jpg" },
+      { day: 5,  title: "Tadoba",                      description: "Start with a morning Jeep Safari at Tadoba Tiger Reserve. After breakfast, relax at the hotel. Enjoy lunch and head for another Jeep Safari in the afternoon. Dinner and overnight stay at the hotel.", overnight: "Tadoba", image: "/images/itineraries/indias-natural-and-historical-treasures/day-5.jpg" },
+      { day: 6,  title: "Tadoba → Pench",              description: "After breakfast, depart Tadoba for a scenic drive to Pench. Check into the hotel and have lunch. In the afternoon, embark on a Jeep Safari in Pench. Dinner and overnight stay at the hotel.", overnight: "Pench", image: "/images/itineraries/indias-natural-and-historical-treasures/day-6.jpg" },
+      { day: 7,  title: "Pench",                       description: "Enjoy a morning Jeep Safari in Pench National Park, followed by breakfast, relaxation, lunch, and an afternoon Jeep Safari. End the day with dinner and an overnight stay.", overnight: "Pench", image: "/images/itineraries/indias-natural-and-historical-treasures/day-7.jpg" },
+      { day: 8,  title: "Pench → Delhi",               description: "Begin the day with a morning Jeep Safari in Pench, then breakfast, check-out, lunch, and transfer to Nagpur for a flight to Delhi. Overnight stay at the hotel.", overnight: "Delhi", image: "/images/itineraries/indias-natural-and-historical-treasures/day-8.jpg" },
+      { day: 9,  title: "Delhi → Jaipur",              description: "Following breakfast, depart for Jaipur. Check into the hotel, followed by afternoon visits to City Palace and Jantar Mantar. Overnight stay at the hotel.", overnight: "Jaipur", image: "/images/itineraries/indias-natural-and-historical-treasures/day-9.jpg" },
+      { day: 10, title: "Jaipur",                      description: "Start the day with a morning safari at Jhalana, then visit Amer Fort and Hawa Mahal. Enjoy an afternoon Jeep Safari at Jhalana Leopard Safari Park. Overnight stay at the hotel.", overnight: "Jaipur", image: "/images/itineraries/indias-natural-and-historical-treasures/day-10.jpg" },
+      { day: 11, title: "Jaipur → Ranthambore",        description: "After an early breakfast, drive to Ranthambore. After lunch, go on an afternoon Jeep Safari in Ranthambore National Park. Dinner and overnight stay at the hotel.", overnight: "Ranthambore", image: "/images/itineraries/indias-natural-and-historical-treasures/day-11.jpg" },
+      { day: 12, title: "Ranthambore",                 description: "Start the day with a morning Jeep Safari in Ranthambore. Return for breakfast and relax at the hotel. After lunch, go for another Jeep Safari. Dinner and overnight stay at the hotel.", overnight: "Ranthambore", image: "/images/itineraries/indias-natural-and-historical-treasures/day-12.jpg" },
+      { day: 13, title: "Ranthambore → Agra",          description: "After breakfast, take a train from Sawai Madhopur to Bharatpur. Drive to Agra, stopping at Fatehpur Sikri en route. On arrival, check into the hotel and visit Agra Fort. Overnight stay at the hotel.", overnight: "Agra", image: "/images/itineraries/indias-natural-and-historical-treasures/day-13.jpg" },
+      { day: 14, title: "Agra → Delhi",                description: "Start the day with a sunrise visit to the Taj Mahal, return for breakfast, and later drive to Delhi. Dinner and overnight stay in Delhi.", overnight: "Delhi", image: "/images/itineraries/indias-natural-and-historical-treasures/day-14.jpg" },
+      { day: 15, title: "Departure Delhi",             description: "Conclude your journey with a late-night transfer to the airport for your flight home, taking unforgettable memories with you.", overnight: "—", image: "/images/itineraries/indias-natural-and-historical-treasures/day-15.jpg" },
+    ],
+    inclusions: [
+      "Accommodation on Twin/Double sharing room at the above-mentioned hotels or similar",
+      "Daily breakfast at mentioned hotels. Tadoba, Pench and Ranthambhore include all meals",
+      "01 dinner at the hotel in Delhi",
+      "All transfers and sightseeing by AC Vehicle as per the program",
+      "Ascend to Amer Fort by Jeep in Jaipur",
+      "English Speaking local Guides for visits as per the program",
+      "01 Lunch at Hotel Haveli Dharampura Delhi",
+      "01 Bicycle Rickshaw ride during Old Delhi tour",
+      "03 Exclusive Jeep Safari at Tadoba National Park",
+      "04 Exclusive Jeep Safari at Pench National Park",
+      "02 Exclusive Jeep Safari at Jhalana Leopard Safari Park",
+      "03 Exclusive Jeep Safari at Ranthambhore National Park",
+      "Entrance fees to the monuments as per the program",
+      "GST (Goods & Services Tax) as applicable",
+    ],
+    exclusions: [
+      "Domestic and international airfare",
+      "Personal expenses (room heater, laundry, etc.)",
+      "Medical expenses",
+      "Expenses caused by factors beyond control",
+      "Christmas / New Year season surcharge (23 Dec – 5 Jan)",
+      "Anything not explicitly mentioned in inclusions",
+    ],
+    datesPrices: [
+      "India's Natural & Historical Treasures",
+      "Price Validity OCT 2026 – MAR 2027",
+      "Price on request — contact our travel desk for a tailored quote",
+    ],
+    notes: [
+      "Blackout Period: Dec 23 – Jan 5 (not available)",
+      "Festival Premium: Extra charges during major festivals",
+      "Weather Clause: Customer bears costs for natural disruptions",
+      "Force Majeure: Company not liable for conditions beyond control",
+      "National parks closed for visitors on Wednesday afternoons; mobile smartphones not allowed inside parks",
+    ],
+    signatureExperiences: [
+      { category: "Culture & History", title: "Art Walk in Delhi", image: "/images/itineraries/indias-natural-and-historical-treasures/signature/art-walk.jpg" },
+      { category: "Adventure",         title: "Cycling to Rukhad in Pench", image: "/images/itineraries/indias-natural-and-historical-treasures/signature/cycling-pench.jpg" },
+      { category: "Culture & History", title: "Yoga by Taj in Agra", image: "/images/itineraries/indias-natural-and-historical-treasures/signature/yoga-taj.jpg" },
+      { category: "Adventure",         title: "Boatride in Lrai Lake in Tadoba", image: "/images/itineraries/indias-natural-and-historical-treasures/signature/boat-tadoba.jpg" },
+      { category: "Adventure",         title: "Hot Air Ballooning in Jaipur", image: "/images/itineraries/indias-natural-and-historical-treasures/signature/balloon-jaipur.jpg" },
+      { category: "Culture & History", title: "Puppet Making in Jaipur", image: "/images/itineraries/indias-natural-and-historical-treasures/signature/puppets-jaipur.jpg" },
+    ],
+    // Images: local Pexels + Wikimedia Commons (premium, free-license) — see SOURCES.md in the image folder
+    heroImage: "/images/itineraries/indias-natural-and-historical-treasures/main-bg.jpg",
+    overviewImage: "/images/itineraries/indias-natural-and-historical-treasures/overview.jpg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["indias-natural-and-historical-treasures"],
+    // Hotel images are representative luxury/heritage stand-ins — see SOURCES.md
+    suggestedHotels: [
+      { name: "The Claridges",      city: "Delhi",       image: "/images/itineraries/indias-natural-and-historical-treasures/hotels/claridges-delhi.jpg" },
+      { name: "Jamtara Wilderness", city: "Pench",       image: "/images/itineraries/indias-natural-and-historical-treasures/hotels/jamtara-pench.jpg" },
+      { name: "Samode Haveli",      city: "Jaipur",      image: "/images/itineraries/indias-natural-and-historical-treasures/hotels/samode-haveli-jaipur.jpg" },
+      { name: "ITC Mughal",         city: "Agra",        image: "/images/itineraries/indias-natural-and-historical-treasures/hotels/itc-mughal-agra.jpg" },
+    ],
+  },
+
+  // ==========================================================================
+  // 16. ENCOUNTER WITH THE ROYAL BENGAL TIGER — 11 Days
+  // Hero/overview placeholders from taj-and-tigers.
+  // ==========================================================================
+  {
+    slug: "encounter-with-the-royal-bengal-tiger",
+    title: "Encounter With The Royal Bengal Tiger",
+    subtitle: "A memorable wildlife adventure across India's top national parks, featuring exciting safaris, rich forests, and close encounters with the Royal Bengal Tiger.",
+    categories: ["Wildlife", "Adventure", "Nature"],
+    duration: "11 Days",
+    durationDays: 11,
+    startingPrice: "Price on request",
+    startingPriceNote: "Contact for quote",
+    route: "Delhi → Bandhavgarh → Kanha → Pench → Tadoba → Delhi",
+    bestTime: "October – March",
+    overview: [
+      "Discover the beauty of India's wildlife as you explore Bandhavgarh, Kanha, Pench, and Tadoba, starting from Delhi and travelling through stunning forests and rich natural landscapes.",
+      "This itinerary offers exciting safaris, close wildlife encounters, and memorable moments in the wild, making it perfect for nature lovers and adventure seekers alike.",
+    ],
+    summary: [
+      "Journey through India's top tiger reserves starting from the vibrant city of Delhi",
+      "Morning and evening jungle safaris in Bandhavgarh, Kanha, Pench, and Tadoba",
+      "Close encounters with the majestic Royal Bengal Tiger in its natural habitat",
+      "Experience the beauty of untouched forests, grasslands, and serene jungle landscapes",
+    ],
+    summaryRight: [
+      "Opportunities to enjoy wildlife photography and birdwatching during safaris",
+      "Relaxing stays at wildlife lodges located close to the national parks",
+      "Enjoy scenic drives between destinations with changing natural landscapes throughout the journey",
+      "An unforgettable wildlife adventure for nature lovers and safari enthusiasts",
+    ],
+    days: [
+      { day: 1,  title: "Arrive Delhi",                                  description: "On arrival at Delhi International Airport, you'll meet our representative who will assist you and further accompany you to your hotel. Overnight in Delhi.", overnight: "Delhi", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/day-1.jpg" },
+      { day: 2,  title: "Exploring Delhi",                               description: "Post breakfast, enjoy a fascinating exploration of Old Delhi. Drive past the Red Fort (closed Mondays), Shah Jahan's elegant red-sandstone citadel, and the Jama Masjid, India's largest mosque. Enjoy a memorable cycle-rickshaw ride through the narrow, winding lanes of Chandni Chowk, pausing at the Digambar Jain Temple. Then move to New Delhi, designed by Sir Edwin Lutyens: drive past the Rashtrapati Bhawan (Presidential Palace) and secretariat buildings, along the grand Rajpath to India Gate, the World War I memorial arch. Visit Humayun's Tomb, the first substantial example of Mughal architecture in India, built in 1565 by his widow Bega Begam nine years after his death. Continue to the 72-metre Qutab Minar and the ruins of the Quwwat-ul-Islam Mosque, and see Delhi's famous un-corroded 4th-century Iron Pillar. Overnight in Delhi.", overnight: "Delhi", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/day-2.jpg" },
+      { day: 3,  title: "Delhi → Jabalpur (by flight) → Bandhavgarh",    description: "Post breakfast, transfer to airport for flight to Jabalpur. On arrival in Jabalpur, you'll be transferred to Bandhavgarh. Bandhavgarh National Park is spread at Vindhya hills in Madhya Pradesh. The park consists of a core area of 105 sq km and a buffer area of approximately 400 sq km. Its topography varies between steep ridges, undulating forest and open meadows. Bandhavgarh National Park is known for the Royal Bengal Tigers. The density of the tiger population at Bandhavgarh is the highest known in India. Overnight in Bandhavgarh.", overnight: "Bandhavgarh", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/day-3.jpg" },
+      { day: 4,  title: "Bandhavgarh",                                   description: "Enjoy early morning & afternoon Private Jeep Safari with English Speaking Naturalist at Bandhavgarh National Park. Overnight in Bandhavgarh.", overnight: "Bandhavgarh", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/day-4.jpg" },
+      { day: 5,  title: "Bandhavgarh → Kanha",                           description: "After breakfast, drive to Kanha and check-in at the hotel. The rest of the day is at leisure. Kanha National Park is nestled in the Maikal range of Satpuras in Madhya Pradesh, the heart of India that forms the central Indian highlands. The national park is being popularized as the Tiger reserve and interestingly is being declared as one of the finest wildlife areas in the world. Spreading across two revenue districts, the Mandala and the Kalaghat, Kanha National Park was declared a reserve forest in 1879 and revalued as a wildlife sanctuary in 1933. Its position was further upgraded to a national park in 1955. Overnight in Kanha.", overnight: "Kanha", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/day-5.jpg" },
+      { day: 6,  title: "Kanha",                                         description: "Enjoy early morning & afternoon Private Jeep Safari with English Speaking Naturalist at Kanha National Park. Overnight in Kanha.", overnight: "Kanha", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/day-6.jpg" },
+      { day: 7,  title: "Kanha → Pench",                                 description: "After breakfast, drive to Pench and check-in at the hotel. The rest of the day is at leisure. In the heart of India, Pench National Park, named after the pristine River Pench which flows through the park, is one of the most popular wildlife reserves in India. The park also has its mention in the famous story of 1894, 'The Jungle Book', penned down by the renowned English Author Rudyard Kipling. The story was worldwide applauded, and hence, the national park became one of the popular national parks in the world in the 1970s. Since then, every year oodles of wildlife buffs flock to this place just to spot the famous characters of the book — Akela (the Indian Wolf), Raksha (the female Wolf), Baloo (Sloth Bear), and the vicious Shere Khan (Royal Bengal Tiger). Overnight in Pench.", overnight: "Pench", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/day-7.jpg" },
+      { day: 8,  title: "Pench",                                         description: "Enjoy early morning & afternoon Private Jeep Safari with English Speaking Naturalist at Pench National Park. Overnight in Pench.", overnight: "Pench", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/day-8.jpg" },
+      { day: 9,  title: "Pench → Tadoba",                                description: "After breakfast, drive to Tadoba and check-in at the hotel. The rest of the day is at leisure. Notably Maharashtra's oldest and largest National Park, the 'Tadoba National Park', also known as the 'Tadoba Andhari Tiger Reserve' is one of India's 47 project tiger reserves. It lies in the Chandrapur district of Maharashtra state and is approximately 150 km from Nagpur city. The total area of the tiger reserve is 1,727 Sq.km, which includes the Tadoba National Park, created in the year 1955. The Andhari Wildlife Sanctuary was formed in the year 1986 and was amalgamated with the park in 1995 to establish the present Tadoba Andhari Tiger Reserve. The word 'Tadoba' is derived from the name of God 'Tadoba' or 'Taru', which is praised by local tribal people of this region, and 'Andhari' is derived from the name of the Andhari river that flows in this area. Overnight in Tadoba.", overnight: "Tadoba", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/day-9.jpg" },
+      { day: 10, title: "Tadoba",                                        description: "Enjoy early morning & afternoon Private Jeep Safari with English Speaking Naturalist at Tadoba National Park. Overnight in Tadoba.", overnight: "Tadoba", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/day-10.jpg" },
+      { day: 11, title: "Tadoba → Nagpur → Delhi",                       description: "In time transfer to Nagpur airport (2.5 hrs drive) for flight to Delhi. On arrival in Delhi, connect your flight back home and tour terminates.", overnight: "—", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/day-11.jpg" },
+    ],
+    inclusions: [
+      "Accommodation in 01 Double Room at the above-mentioned hotels or similar",
+      "Meals as mentioned above",
+      "All transfers and sightseeing by AC Toyota Crysta Car as per the program",
+      "Prevailing Monument Entrance Fees",
+      "02 Private Jeep Safaris with English-Speaking Naturalist at Bandhavgarh National Park",
+      "02 Private Jeep Safaris with English-Speaking Naturalist at Kanha National Park",
+      "02 Private Jeep Safaris with English-Speaking Naturalist at Pench National Park",
+      "02 Private Jeep Safaris with English-Speaking Naturalist at Tadoba National Park",
+      "Services of Local English / French Speaking Guide on sightseeing tour in Delhi",
+      "Cycle Rickshaw Ride in Old Delhi",
+      "Wi-fi access in the vehicle during traveling",
+      "Unlimited drinking bottled water in the vehicle during traveling",
+      "GST (Goods & Services Tax) as applicable",
+    ],
+    exclusions: [
+      "Any domestic / international airfare",
+      "Personal expenses (tips, laundry, beverages, telephone calls)",
+      "Expenses caused by factors beyond control",
+      "Medical or evacuation insurance",
+      "Travel insurance",
+    ],
+    datesPrices: [
+      "Encounter With The Royal Bengal Tiger",
+      "Price Validity OCT 2025 – MAR 2026",
+      "Price on request — contact our travel desk for a tailored quote",
+    ],
+    notes: [
+      "Blackout Period: Dec 23 – Jan 5 (not available)",
+      "Festival Premium: Extra charges during major festivals",
+      "Weather Clause: Customer bears costs for natural disruptions",
+      "Force Majeure: Company not liable for conditions beyond control",
+      "Jeep Safari bookings open 120 days in advance, first-come-first-served",
+      "Parks closed for visitors on Wednesday afternoons; mobile smartphones not allowed inside parks",
+    ],
+    signatureExperiences: [
+      { category: "Culture & History", title: "Yoga Session at Sivananda Yoga Centre, Delhi", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/signature/yoga.jpg" },
+      { category: "Culture & History", title: "Old Delhi Food & Heritage Walk", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/signature/old-delhi-food.jpg" },
+      { category: "Culture & History", title: "Street Art Tour in Delhi Art District", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/signature/street-art.jpg" },
+    ],
+    // Images: local Pexels (premium, free-license) — see SOURCES.md in the image folder
+    heroImage: "/images/itineraries/encounter-with-the-royal-bengal-tiger/main-bg.jpg",
+    overviewImage: "/images/itineraries/encounter-with-the-royal-bengal-tiger/overview.jpg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["encounter-with-the-royal-bengal-tiger"],
+    // Hotel images are representative luxury/lodge stand-ins — see SOURCES.md
+    suggestedHotels: [
+      { name: "The Claridges",      city: "Delhi",       image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/hotels/claridges-delhi.jpg" },
+      { name: "Brij Sone Bagh",     city: "Bandhavgarh", image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/hotels/brij-bandhavgarh.jpg" },
+      { name: "Outpost 12",         city: "Kanha",       image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/hotels/outpost-kanha.jpg" },
+      { name: "Waghoba Eco Retreat", city: "Tadoba",      image: "/images/itineraries/encounter-with-the-royal-bengal-tiger/hotels/waghoba-tadoba.jpg" },
+    ],
+  },
+
+  // ==========================================================================
+  // 17. SOUTHERN SPLENDOUR — 14 Days
+  // Karnataka + Goa circuit. Distinct from `gems-of-south-india` (12 days,
+  // covers similar territory but without Kabini/Coorg). All images web-sourced
+  // (Wikimedia Commons), stored locally — see SOURCES.md in the image folder.
+  // ==========================================================================
+  {
+    slug: "southern-splendour",
+    title: "Southern Splendour",
+    subtitle: "Discover the soul of South India through royal palaces, wildlife forests, coffee estates, ancient wonders, and relaxing beaches.",
+    categories: ["Heritage", "Culture", "Nature", "Wildlife"],
+    duration: "14 Days",
+    durationDays: 14,
+    startingPrice: "Price on request",
+    startingPriceNote: "Contact for quote",
+    route: "Bengaluru → Mysore → Kabini → Coorg → Hassan → Chikmagalur → Hampi → Aihole → Goa",
+    bestTime: "October – March",
+    overview: [
+      "Experience the diverse beauty of South India. This journey covers vibrant cities, peaceful forests, historic temples, scenic hill stations, and stunning coastal escapes across Karnataka and Goa.",
+      "From the misty hills of Coorg and Chikmagalur to the timeless ruins of Hampi and relaxing beaches of Goa, every destination offers its own unique charm and cultural richness.",
+    ],
+    summary: [
+      "Admire the regal charm of Mysore with palace visits, vibrant markets, and cultural experiences",
+      "Experience thrilling wildlife safaris in Kabini, surrounded by serene forests and rich natural beauty",
+      "Spend time amidst the misty coffee estates and green hills of beautiful Coorg",
+      "Explore Hassan's architectural treasures, known for their detailed craftsmanship and rich history",
+    ],
+    summaryRight: [
+      "Relax in the cool climate and scenic surroundings of Chikmagalur's rolling hills and plantations",
+      "Step back in time while exploring Hampi's majestic ruins, temples, and royal heritage sites",
+      "Discover the ancient temple town of Aihole, often called the birthplace of temple architecture in India",
+      "End the journey in Goa with relaxing beach days, charming cafes, and stunning coastal sunsets",
+    ],
+    days: [
+      { day: 1,  title: "Arrive Bengaluru → Mysore",              description: "On arrival at Bengaluru International Airport, you'll meet our representative who will assist you and later drive to Mysore. Check-in & rest of the day at hotel. Overnight in Mysore.", overnight: "Mysore", image: "/images/itineraries/southern-splendour/day-1.jpg" },
+      { day: 2,  title: "Mysore",                                 description: "After breakfast, visit Somnathpur, also known as Somnathpura, home to the famous Chennakeshava Temple built by the Hoysala commander, Somnath, in 1268 A.D. — a live example of the heritage and culture of the Hoysala Empire, constructed using soapstone. In the evening, visit Brindavan Gardens — undeniably one of the best terrace gardens in the world. A must sightseeing place of a Mysore tour, Brindavan Garden mesmerizes everyone. It is located about 12 km towards the northwest of the Mysore city. Brindavan Gardens, with illuminated fountains, botanical park, extensive varieties of plants and fulfilled boating, is a place for everyone. Especially famous for its symmetric design and illuminated terrace gardens, Brindavan Gardens was built by Sir Mirza Ismail, the then diwan of Mysore state. He was the brain behind its modelling and conceptualization. Overnight in Mysore.", overnight: "Mysore", image: "/images/itineraries/southern-splendour/day-2.jpg" },
+      { day: 3,  title: "Mysore → Kabini",                        description: "After breakfast, visit the Maharaja's Palace, a sumptuous blend of Hindu and Muslim styles rich with gateways, domes, arches, turrets, colonnades and sculpture. Drive up Chamundi Hill — named after the royal family's patron goddess — to its ancient temple and the 16-foot Nandi (Shiva's bull) carved from a single boulder, with sweeping panoramas over Mysore's lakes, hills and temple turrets. Later, drive to the Kabini reservoir (about 5 hours), adjoining Nagarhole National Park. The Kabini Wildlife Sanctuary is among South India's finest — its dense forests, lakes, valleys and streams home to a rich variety of wildlife, including several endangered species, drawing nature lovers from around the world. Overnight in Kabini.", overnight: "Kabini", image: "/images/itineraries/southern-splendour/day-3.jpg" },
+      { day: 4,  title: "Kabini",                                 description: "Early in the morning, enjoy Jeep Safari with a naturalist guide in the footsteps of the park's fauna: tigers, elephants, gaurs (Indian bison), leopards, fallow deer and a wide variety of birds. Boat trip on the calm waters of the Kabini River — the opportunity to observe wildlife, many birds, perhaps also large mammals coming to drink (elephants, bison, deer etc.). Overnight in Kabini.", overnight: "Kabini", image: "/images/itineraries/southern-splendour/day-4.jpg" },
+      { day: 5,  title: "Kabini → Coorg",                         description: "After breakfast, depart for Coorg (approx. 03 hrs drive). Arrival in the town of Madikeri, perched at an altitude of 1,500 m, capital of the Coorg region and whose landscapes are among the most beautiful in South India. Afternoon of relaxation and walking in the middle of lush nature and coffee and pepper plantation. The rest of the day is at leisure. Overnight in Coorg.", overnight: "Coorg", image: "/images/itineraries/southern-splendour/day-5.jpg" },
+      { day: 6,  title: "Coorg → Shravanabelagola → Hassan",      description: "After breakfast, drive to Hassan visiting Shravanabelagola, a major Jain pilgrimage site in Karnataka, and the colossal and monolithic statue of Bahubali, a saint of Jain mythology, dating from the tenth century. Overnight in Hassan.", overnight: "Hassan", image: "/images/itineraries/southern-splendour/day-6.jpg" },
+      { day: 7,  title: "Hassan → Belur & Halebid → Chikmagalur", description: "After breakfast, drive to Chikmagalur enroute visiting Belur & Halebid. Belur was a flourishing city some 800 years ago under the Hoysala kings. The Belur Temple, also called the Chennakeswara Temple, has typical Hoysala architectural features. Its stone walls are covered with a profusion of intricate carvings, enough to take one's breath away. In fact, legend goes that conquerors once came to Belur to raze the Chennakesava temple but were left overawed by its magnificence! The friezes above the doorways and the star-shaped pedestal show wondrous detail. Halebid — a double-shrine, more impressive than the temple at Belur, constructed a decade after it. The temple here gives one the impression that it was created out of lace rather than of sandstone. Several mythological episodes and legends rendered imaginatively in relief can be traced. An open-air museum in the temple precinct displays treasured articles of sculpture. Reach Chikmagalur and check-in at the hotel. Overnight in Chikmagalur.", overnight: "Chikmagalur", image: "/images/itineraries/southern-splendour/day-7.jpg" },
+      { day: 8,  title: "Chikmagalur → Hampi",                    description: "After breakfast, depart for Hampi by surface enroute visiting Chitradurga Fort, locally known as Elusuttina Kote (meaning the fort of seven circles) and one of the country's strongest hill forts. The fort originally had to have 19 gateways, 38 postern-gates, 35 secret entrances and 4 'invisible' entrances. Many of these have gone out of existence now. The doors were made of strong and thick wooden beams fastened with iron plates. The soaring ramparts are hewn from rock complementing the craggy landscape and were designed so that each line of fortification overlooks others below. Zigzagging pathways slowed down enemy soldiers and prevented the use of battering rams. The doors of the main gateways were, in addition, bristling with iron spikes to ward off elephants. Upon arrival, check-in at the hotel. Overnight in Hampi.", overnight: "Hampi", image: "/images/itineraries/southern-splendour/day-8.jpg" },
+      { day: 9,  title: "Hampi",                                  description: "After breakfast, visit the 15th-century Vijaya Vittala Temple, the grandest of Hampi's monuments, dedicated to Lord Vittala, an incarnation of Vishnu. Its extraordinary stone chariot, towering pillared halls and intricate sculptures are the true embodiment of Hampi's bewitching architecture. Continue to the Virupaksha Temple, believed to be the oldest functioning temple in India — a 7th-century shrine to Lord Virupaksha, a form of Shiva — whose sprawling courtyard, soaring gateway towers and old-style structures draw pilgrims from across the country. Later, explore the Vijayanagar Ruins, the remains of a once-mighty empire rich in wealth, military power and culture. Spread over nearly 26 sq km, they include temples, pavilions, baths and palaces, many still well preserved; the Pampapati temple's tiered pyramidal tower crests above the rest, while the Vittala Temple's 56 pillars each sound a different musical note when tapped. Overnight in Hampi.", overnight: "Hampi", image: "/images/itineraries/southern-splendour/day-9.jpg" },
+      { day: 10, title: "Hampi → Badami → Pattadakal → Aihole",   description: "After breakfast, drive to Aihole, visiting Badami and Pattadakal en route. At Badami, explore the rock-cut cave temples, magnificently sculpted in honour of Vishnu — one is a Jain shrine, reflecting Chalukya tolerance — set within a crown of hills overlooking the Bhutanath Tank. At Pattadakal, where the Chalukyan kings were crowned, ten temples display a fascinating blend of north Indian and Dravidian styles; the Papanatha, Virupaksha and Mallikarjuna temples, carved with scenes from the Ramayana, Mahabharata and Bhagavata Purana, are fine examples of early Chalukyan art. Aihole, founded around 450 AD and considered the cradle of Hindu temple architecture, holds more than seventy temples — thirty within a single enclosure — including the remarkable Durga Temple with its pyramidal roof and exquisite sculptures. Overnight in Aihole.", overnight: "Aihole", image: "/images/itineraries/southern-splendour/day-10.jpg" },
+      { day: 11, title: "Aihole → Goa",                           description: "Post breakfast, drive to Goa. Upon arrival at Goa, check-in at your hotel. Overnight in Goa.", overnight: "Goa", image: "/images/itineraries/southern-splendour/day-11.jpg" },
+      { day: 12, title: "Goa",                                    description: "Post breakfast, visit Old Goa — the cathedral of Bom Jesus, which contains the tomb and the relics of Saint François-Xavier, in charge of the evangelization of the Portuguese colonies of the East in the 16th century; discovery of the convent and the church of Saint-François-d'Assise, with magnificent sculptures in gilded wood and whose astonishing ground is made up of emblazoned tombstones; passage through the remains of the church of Saint-Augustin, dating from the beginning of the 17th century, by the church of San-Cajetan, built on the model of Saint-Pierre-de-Rome, and the church and convent of Santa-Monica, formerly 'royal monastery'. Overnight in Goa.", overnight: "Goa", image: "/images/itineraries/southern-splendour/day-12.jpg" },
+      { day: 13, title: "Goa",                                    description: "After breakfast, full day at leisure / you may relax on the beach. Overnight in Goa.", overnight: "Goa", image: "/images/itineraries/southern-splendour/day-13.jpg" },
+      { day: 14, title: "Depart Goa",                             description: "In time transfer to Goa airport to board your onward flight.", overnight: "—", image: "/images/itineraries/southern-splendour/day-14.jpg" },
+    ],
+    inclusions: [
+      "Accommodation in 01 Double Room at the above-mentioned hotels or similar",
+      "Meals as mentioned above",
+      "All transfers and sightseeing by AC Toyota Crysta Car as per the program",
+      "Prevailing Monument Entrance Fees",
+      "Services of Local English / French Speaking Guide on sightseeing tours (different guides in each city)",
+      "01 Shared Jeep / Canter Safari in Kabini",
+      "01 Shared Boat Safari in Kabini",
+      "Wi-fi access in the vehicle during traveling",
+      "Unlimited drinking bottled water in the vehicle during traveling",
+      "GST (Goods & Services Tax) as applicable",
+    ],
+    exclusions: [
+      "Any domestic / international airfare",
+      "Personal expenses (tips, laundry, beverages, telephone calls)",
+      "Expenses caused by factors beyond control",
+      "Medical or evacuation insurance",
+      "Travel insurance",
+    ],
+    datesPrices: [
+      "Southern Splendour",
+      "Price Validity OCT 2025 – MAR 2026",
+      "Price on request — contact our travel desk for a tailored quote",
+    ],
+    notes: [
+      "Blackout Period: Dec 23 – Jan 5 (not available)",
+      "Festival Premium: Extra charges during major festivals",
+      "Weather Clause: Customer bears costs for natural disruptions",
+      "Force Majeure: Company not liable for conditions beyond control",
+    ],
+    signatureExperiences: [
+      { category: "Culture & History", title: "The Royal Walk, Mysore",                              image: "/images/itineraries/southern-splendour/signature/royal-walk-mysore.jpg" },
+      { category: "Culture & History", title: "The Silk Tour, Mysore",                               image: "/images/itineraries/southern-splendour/signature/mysore-silk.jpg" },
+      { category: "Culture & History", title: "Heritage Walking Tour of Fontainhas & Sao Tome, Goa", image: "/images/itineraries/southern-splendour/signature/fontainhas-goa.jpg" },
+    ],
+    // IMAGES (2026-05-29): all containers web-sourced from Wikimedia Commons (free
+    // licenses), stored LOCALLY under /images/itineraries/southern-splendour/. Client
+    // hadn't uploaded to ImageKit; see that folder's SOURCES.md for attribution.
+    // mapImage unused by the template. Swap to ImageKit + official hotel photos later.
+    heroImage: "/images/itineraries/southern-splendour/main-bg.jpg",
+    overviewImage: "/images/itineraries/southern-splendour/overview.jpg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/south-india-tamil-nadu/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["southern-splendour"],
+    // Hotel images are REPRESENTATIVE web-sourced stand-ins (exact properties not free-licensed) — see SOURCES.md.
+    suggestedHotels: [
+      { name: "Royal Orchid Metropole", city: "Mysore", image: "/images/itineraries/southern-splendour/hotels/royal-orchid-metropole.jpg" },
+      { name: "Kaav Safari Lodge",      city: "Kabini", image: "/images/itineraries/southern-splendour/hotels/kaav-safari-lodge.jpg" },
+      { name: "Heritage Resort",        city: "Hampi",  image: "/images/itineraries/southern-splendour/hotels/heritage-resort-hampi.jpg" },
+      { name: "Taj Holiday Village",    city: "Goa",    image: "/images/itineraries/southern-splendour/hotels/taj-holiday-village-goa.jpg" },
+    ],
+  },
+
+  // ==========================================================================
+  // 18. FOOTSTEPS OF LORD BUDDHA — 15 Days
+  // NOTE: doc Hero route omits Vaishali, Patna, and the Delhi return; Summary
+  // Strip includes them. Using Summary Strip route + day-by-day stops.
+  // Hero/overview placeholders from classical-golden-triangle (closest
+  // northern-circuit placeholder available).
+  // ==========================================================================
+  {
+    slug: "footsteps-of-lord-buddha",
+    title: "On the Footsteps of Lord Buddha",
+    subtitle: "India offers a soulful journey through sacred sites, ancient monasteries, and spiritual landmarks associated with the life and teachings of Lord Buddha.",
+    categories: ["Spiritual", "Culture", "Heritage"],
+    duration: "15 Days",
+    durationDays: 15,
+    startingPrice: "Price on request",
+    startingPriceNote: "Contact for quote",
+    route: "Delhi → Lucknow → Sravasti → Lumbini → Kushinagar → Vaishali → Patna → Rajgir → Nalanda → Bodhgaya → Varanasi → Delhi",
+    bestTime: "October – May",
+    overview: [
+      "The Buddhist Circuit Tour in India takes you on a spiritual journey through some of the country's most sacred places linked to Gautama Buddha's life and teachings. You'll visit important sites like Bodh Gaya, where Buddha reached enlightenment, Sarnath, where he gave his first sermon, and Kushinagar, where he passed away.",
+      "This tour gives you a closer look at Buddhist heritage, culture, and philosophy. People from all over the world join this pilgrimage to find peace, spiritual growth, and a deeper connection to Buddhism's lasting legacy.",
+    ],
+    summary: [
+      "Enjoy Cycle Rickshaw ride in the narrow alleys of Old Delhi",
+      "Boatride on River Ganges, Varanasi",
+      "Yoga & Meditation session in Sarnath, Varanasi",
+    ],
+    summaryRight: [],
+    days: [
+      { day: 1,  title: "Arrive Delhi",                               description: "On arrival at Delhi International Airport, you'll meet our representative who will assist you and further accompany you to your hotel.", overnight: "Delhi", image: "/images/itineraries/footsteps-of-lord-buddha/day-1.jpg" },
+      { day: 2,  title: "Delhi",                                      description: "Post breakfast, enjoy a fascinating exploration of Old Delhi. Drive past the Red Fort (closed Mondays), Shah Jahan's elegant red-sandstone citadel, and the Jama Masjid, India's largest mosque. Enjoy a memorable cycle-rickshaw ride through the narrow, winding lanes of Chandni Chowk, pausing at the Digambar Jain Temple. Then move to New Delhi, designed by Sir Edwin Lutyens: drive past the Rashtrapati Bhawan (Presidential Palace) and secretariat buildings, along the grand Rajpath to India Gate, the World War I memorial arch. Visit Humayun's Tomb, the first substantial example of Mughal architecture in India, built in 1565 by his widow Bega Begam nine years after his death. Continue to the 72-metre Qutab Minar and the ruins of the Quwwat-ul-Islam Mosque, and see Delhi's famous un-corroded 4th-century Iron Pillar.", overnight: "Delhi", image: "/images/itineraries/footsteps-of-lord-buddha/day-2.jpg" },
+      { day: 3,  title: "Delhi → Lucknow",                            description: "Post breakfast, transfer to airport for flight to Lucknow. On arrival in Lucknow, transfer to the hotel. Lucknow, also known as the City of Nawabs, is the capital and the largest city of the Indian state of Uttar Pradesh. It serves as the administrative headquarters of the district and division and continues to be an important centre of governance, commerce, culture, and tourism. It is renowned for its music, poetry, and traditional dance forms and has a rich literary heritage and has produced famous poets and writers. Rest the day at leisure.", overnight: "Lucknow", image: "/images/itineraries/footsteps-of-lord-buddha/day-3.jpg" },
+      { day: 4,  title: "Lucknow",                                    description: "After breakfast, enjoy a guided tour of Lucknow. Begin at the imposing Bara Imambara, the largest Shia congregational hall in the world, famous for its labyrinthine Bhul Bhulaiya maze and intricate stucco work. Continue to the Chota Imambara, renowned for its ornate chandeliers and fine silver work, learning the story of the Nawabs who commissioned them. Pause for a traditional Awadhi lunch (on own) of Lucknowi kebabs, rogan josh and fragrant biryanis. Step back in time at the British Residency, centre of British power during the 1857 uprising, whose evocative ruins recall the colonial era. Explore the State Museum, with its collection of sculptures, weaponry and textiles from the Awadh region, then catch the late-afternoon light on the majestic 18th-century Rumi Darwaza (Turkish Gate). End with Lucknow's celebrated Chikankari embroidery at a local bazaar such as Aminabad, where artisans hand-stitch intricate designs onto sarees, kurtas and souvenirs. Overnight in Lucknow.", overnight: "Lucknow", image: "/images/itineraries/footsteps-of-lord-buddha/day-4.jpg" },
+      { day: 5,  title: "Lucknow → Sravasti",                         description: "After breakfast drive to Sravasti and check in at the hotel. Sravasti is the ancient capital of Kosala Mahajanapada. Visit Sahet-Mahet — Sravasti is famous for the supernatural feats performed by Lord Buddha seated on a lotus.", overnight: "Sravasti", image: "/images/itineraries/footsteps-of-lord-buddha/day-5.jpg" },
+      { day: 6,  title: "Sravasti → Lumbini",                         description: "After having breakfast drive to Lumbini. It is considered as 'the birthplace of Lord Buddha' which was rediscovered in 1890 after being untraced for about 1500 years. While going there, complete Visa/Immigration formalities at India/Nepal border.", overnight: "Lumbini", image: "/images/itineraries/footsteps-of-lord-buddha/day-6.jpg" },
+      { day: 7,  title: "Lumbini",                                    description: "After breakfast, visit Maya Devi Temple, Sacred Garden, Bodhi Tree, Maya Devi Pond, Ashoka Pillar, World Peace Pagoda and International Monasteries & Temples.", overnight: "Lumbini", image: "/images/itineraries/footsteps-of-lord-buddha/day-7.jpg" },
+      { day: 8,  title: "Lumbini → Kushinagar",                       description: "After having breakfast, drive to Kushinagar where Buddha finally attained salvation or passed into Maha Parinirvana. Reach Kushinagar and transfer to the hotel. Visit Mahaparinirvana Temple where Buddha took his last breath and Rambhar Stupa, where he got cremated.", overnight: "Kushinagar", image: "/images/itineraries/footsteps-of-lord-buddha/day-8.jpg" },
+      { day: 9,  title: "Kushinagar → Vaishali → Patna",              description: "After having breakfast drive to Patna (Capital of Bihar state of India) via visit Vaishali. Arrive Patna & transfer to hotel.", overnight: "Patna", image: "/images/itineraries/footsteps-of-lord-buddha/day-9.jpg" },
+      { day: 10, title: "Patna → Rajgir",                             description: "After breakfast visit Patna Museum, Buddh Smriti Park and Golghar. Afterwards, drive to Rajgir and visit the famous Shanti Stupa (peace pagoda). Later check in the hotel.", overnight: "Rajgir", image: "/images/itineraries/footsteps-of-lord-buddha/day-10.jpg" },
+      { day: 11, title: "Rajgir → Nalanda → Bodhgaya",                description: "After breakfast drive towards Bodhgaya (the place of Buddha's Enlightenment & the spiritual home of Buddhists). On the way, visit Nalanda, ancient university of the world.", overnight: "Bodhgaya", image: "/images/itineraries/footsteps-of-lord-buddha/day-11.jpg" },
+      { day: 12, title: "Bodhgaya",                                   description: "After breakfast, visit the Mahabodhi Temple, inscribed as a UNESCO World Heritage Site — the temple is the place where Lord Buddha attained enlightenment. Within the temple complex, you will be taken to the Bodhi Tree under which the Lord gained enlightenment. The site is a major pilgrimage for Buddhists and is thronged by followers of Buddhism from all over the world. From there you will be visiting the Wat Thai Temple. The shrine is unique and the only Thai temple in India.", overnight: "Bodhgaya", image: "/images/itineraries/footsteps-of-lord-buddha/day-12.jpg" },
+      { day: 13, title: "Bodhgaya → Varanasi",                        description: "On arrival in Varanasi, transfer to the hotel. Later in the evening, visit the river Ganges to witness the Evening Aarti Ceremony — a time when residents & priests come together in prayer in dedication to the Holy River Ganges. This is best witnessed sitting in traditional boats by the riverside, facing the banks of the river.", overnight: "Varanasi", image: "/images/itineraries/footsteps-of-lord-buddha/day-13.jpg" },
+      { day: 14, title: "Varanasi",                                   description: "At dawn, return to the Ganges to witness riverside worship. Steps descend the steep bank to the sacred river, and as the morning mist lifts, a silent multitude moves down the ghats — which stretch nearly four miles — to immerse themselves in the holy stream and salute the rising sun, rituals echoing nature worship from India's Aryan age three thousand years ago. From a traditional boat, see the bathing and cremation ghats, then walk the narrow cobbled lanes thronged with pilgrims seeking release from the cycle of rebirth. Later, visit Sarnath, where the Buddha preached his first sermon in the Deer Park; the Dhamek Stupa marks the site of a once-resplendent monastery amid ruins from the Kushan and Gupta periods, beside a newer Mahabodhi Society monastery. Afterwards, explore Varanasi's temples — the Bharat Mata Temple, with its marble relief map of India; Aurangzeb's 17th-century mosque, built over a Hindu temple; the gold-plated Vishwanath (Golden) Temple, raised by Rani Ahalyabai Holkar in 1776; and the Durga Temple, known as the Monkey Temple.", overnight: "Varanasi", image: "/images/itineraries/footsteps-of-lord-buddha/day-14.jpg" },
+      { day: 15, title: "Varanasi → Delhi → Departure",               description: "After breakfast, transfer to the airport for a flight to Delhi. On arrival in Delhi, transfer to Delhi International Airport for your outbound flight and tour terminates. End of Tour.", overnight: "—", image: "/images/itineraries/footsteps-of-lord-buddha/day-15.jpg" },
+    ],
+    inclusions: [
+      "Accommodation in 01 Double Room at the above-mentioned hotels or similar",
+      "Meals as mentioned above",
+      "All transfers and sightseeing by AC Toyota Crysta Car as per the program",
+      "Prevailing Monument Entrance Fees",
+      "Services of Local English / French Speaking Guide on sightseeing tours (different guides in each city)",
+      "Cycle Rickshaw Ride in Old Delhi",
+      "Morning & Evening Boat Ride on River Ganges in Varanasi",
+      "Wi-fi access in the vehicle during traveling",
+      "Unlimited drinking bottled water in the vehicle during traveling",
+      "GST (Goods & Services Tax) as applicable",
+    ],
+    exclusions: [
+      "Any domestic / international airfare",
+      "Personal expenses (tips, laundry, beverages, telephone calls)",
+      "Expenses caused by factors beyond control",
+      "Medical or evacuation insurance",
+      "Travel insurance",
+      "Nepal visa fees and any border immigration costs",
+    ],
+    datesPrices: [
+      "On the Footsteps of Lord Buddha",
+      "Price Validity OCT 2026 – APR 2027",
+      "Price on request — contact our travel desk for a tailored quote",
+    ],
+    notes: [
+      "Blackout Period: Dec 20 – Jan 10 (not available)",
+      "Festival Premium: Extra charges during major festivals",
+      "Weather Clause: Customer bears costs for natural disruptions",
+      "Force Majeure: Company not liable for conditions beyond control",
+      "Tour crosses into Nepal at Lumbini — passport, valid visa, and immigration formalities required at the border",
+    ],
+    // NOTE: source doc's Signature Experience block was a template-copy of NE
+    // India content (Botanical Garden, Tram Ride, etc) — not relevant to this
+    // Buddhist Circuit itinerary. Left empty pending real entries from the user.
+    signatureExperiences: [],
+    // Images: local (Pexels + Wikimedia Commons, free-license) — see SOURCES.md in the image folder
+    heroImage: "/images/itineraries/footsteps-of-lord-buddha/main-bg.jpg",
+    overviewImage: "/images/itineraries/footsteps-of-lord-buddha/overview.jpg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    coordinates: ITINERARY_MAP_ROUTES["footsteps-of-lord-buddha"],
+    // Hotel images are representative luxury stand-ins — see SOURCES.md
+    suggestedHotels: [
+      { name: "The Claridges",           city: "Delhi",    image: "/images/itineraries/footsteps-of-lord-buddha/hotels/claridges-delhi.jpg" },
+      { name: "Taj Mahal Lucknow",       city: "Lucknow",  image: "/images/itineraries/footsteps-of-lord-buddha/hotels/taj-lucknow.jpg" },
+      { name: "Marasa Sarovar Portico",  city: "Bodhgaya", image: "/images/itineraries/footsteps-of-lord-buddha/hotels/marasa-bodhgaya.jpg" },
+      { name: "Amritara Suryauday Haveli", city: "Varanasi", image: "/images/itineraries/footsteps-of-lord-buddha/hotels/suryauday-varanasi.jpg" },
+    ],
+  },
 
 ];

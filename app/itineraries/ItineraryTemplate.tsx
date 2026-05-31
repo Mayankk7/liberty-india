@@ -1,352 +1,40 @@
-"use client";
-
-import { Itinerary } from './itineraries';
-import Footer from '../components/Footer';
-import dynamic from 'next/dynamic';
-
-const IndiaMap = dynamic(() => import('./IndiaMap'), {
-  ssr: false,
-});
-
-const signatureExperiences = [
-  {
-    image: '/images/itineraries/north-east/botanical-garden.svg',
-    category: 'Culture & History',
-    title: 'Walk around Botanical Garden',
-  },
-  {
-    image: '/images/itineraries/north-east/tram-train.png',
-    category: 'Adventure Tour',
-    title: 'Tram Ride',
-  },
-  {
-    image: '/images/itineraries/north-east/mother-teresa.svg',
-    category: 'Culture & History',
-    title: 'Visit Mother Teresas house',
-  },
-  {
-    image: '/images/itineraries/north-east/cooking.svg',
-    category: 'Culture & History',
-    title: 'Cooking Workshop',
-  },
-  {
-    image: '/images/itineraries/north-east/jazz-bar.svg',
-    category: 'Culture & History',
-    title: 'Drink at a jazz Bar',
-  },
-];
-
-import Image from 'next/image';
+import type { Itinerary } from './itineraries';
 import Navbar from '../components/Navbar';
-import { useState } from 'react';
+import Footer from '../components/Footer';
+import HeroSection from './template/HeroSection';
+import TabStrip from './template/TabStrip';
+import OverviewSection from './template/OverviewSection';
+import SummarySection from './template/SummarySection';
+import DaysSection from './template/DaysSection';
+import DetailsSection from './template/DetailsSection';
+import SignatureExperience from './template/SignatureExperience';
+import RelatedItineraries from './template/RelatedItineraries';
+import FloatingExpertButton from './template/FloatingExpertButton';
 
 export default function ItineraryTemplate({ itinerary }: { itinerary: Itinerary }) {
-  const [showItinerary, setShowItinerary] = useState(false);
-  if (!itinerary) return <div className="text-center py-20 text-2xl">Itinerary not found.</div>;
+  if (!itinerary) {
+    return <div className="text-center py-20 text-2xl">Itinerary not found.</div>;
+  }
+
+  // Wellness retreats (e.g. the Kairali Ayurvedic village) are stay-based rather
+  // than day-by-day, so we surface the Overview and skip the itinerary breakdown.
+  // Gated on the PRIMARY category so multi-theme touring itineraries that merely
+  // include "Wellness" among many tags keep their day-by-day plan.
+  const hideDays = itinerary.categories[0] === 'Wellness';
+
   return (
-    <div className="bg-[#FCFAF3] w-screen min-h-screen">
+    <main className="min-h-screen bg-white w-full overflow-x-clip">
       <Navbar variant="white" />
-      {/* Hero Section */}
-      <div className="relative w-screen h-screen min-h-125 flex items-center justify-center">
-        <Image
-          src={itinerary.heroImage}
-          alt={itinerary.title}
-          fill
-          className="object-cover brightness-75"
-          priority
-        />
-        {/* 20% opacity overlay */}
-        <div className="absolute inset-0 bg-black/20 pointer-events-none" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4 gap-6 w-[80vw] md:w-auto left-1/2 -translate-x-1/2" style={{ maxWidth: '100vw' }}>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg tracking-wide leading-tight w-full md:w-auto">{itinerary.title}</h1>
-          <p className="text-lg md:text-xl mb-6 drop-shadow-lg max-w-3xl mx-auto leading-relaxed tracking-wide w-full md:w-auto">{itinerary.subtitle}</p>
-          <div className="text-lg font-semibold mb-8 tracking-wide w-full md:w-auto">{itinerary.duration} | {itinerary.route.replace(/ → /g, ' · ')}</div>
-        </div>
-        {/* Book Button bottom right */}
-        <div className="absolute bottom-8 right-8">
-          <button className="bg-gray-300 text-gray-700 px-8 py-3 rounded-lg text-lg font-semibold opacity-80 cursor-not-allowed" disabled>Book</button>
-        </div>
-      </div>
-
-      {/* Responsive Tabs/Navbar */}
-      <div className="bg-[#F8F6E9] border-b sm:mx-auto border-[#F2EFD9] flex flex-col md:flex-row justify-center gap-4 md:gap-16 py-4 md:py-6 text-base md:text-lg font-medium mb-6 md:mb-8 px-4 md:px-8">
-        <a href="#overview" className="px-6 md:px-20 transition-all duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg hover:scale-105 py-2 md:py-0">Overview</a>
-        <a href="#itinerary" className="px-6 md:px-20 transition-all duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg hover:scale-105 py-2 md:py-0">Itinerary</a>
-        <a className="px-6 md:px-20 cursor-pointer transition-all duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg hover:scale-105 py-2 md:py-0" onClick={e => {
-          e.preventDefault();
-          const section = document.getElementById('details');
-          if (section) section.scrollIntoView({ behavior: 'smooth' });
-        }}>Dates & Prices</a>
-        <a href="#details" className="px-6 md:px-20 transition-all duration-300 hover:bg-[#EF9120] hover:text-white rounded-lg hover:scale-105 py-2 md:py-0">Journey Details</a>
-      </div>
-
-      {/* Overview Section */}
-      <section id="overview" className="w-screen mx-auto flex flex-col md:flex-row gap-8 md:gap-0 py-8 md:py-16 items-center">
-        <div className="w-[80vw] md:w-1/2 flex flex-col items-start pl-4 md:pl-8 px-4 md:px-10">
-          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 tracking-wide px-4 md:px-10">Overview</h2>
-          {itinerary.overview.map((text: string, i: number) => (
-            <p
-              key={i}
-              className="mb-6 md:mb-8 text-base md:text-lg leading-relaxed tracking-wide px-4 md:px-10 py-1 w-full"
-              style={{ fontFamily: 'Merriweather, serif', color: '#424242' }}
-            >
-              {text}
-            </p>
-          ))}
-          {/* Download DOCX button - functional */}
-          {(() => {
-            // Map itinerary slug/title to file name
-            const fileMap: Record<string, string> = {
-              'northeast-india-city-of-joy': 'Northeast India &  The City of Joy.pdf',
-              'kairali-ayurvedic-healing-village': 'Ayurveda - Kairali.docx',
-              'taj-and-tigers': 'Taj-and-Tigers.pdf',
-              'classical-golden-triangle': 'Classical Golden Triangle.docx',
-              'south-india-tamil-nadu': 'Unveiling the Enchanting South – Tamil Nadu & Kerala.docx',
-              'colourful-rajasthan': 'Colourful Rajasthan.docx',
-              // Add more mappings as needed
-            };
-            const fileName = fileMap[itinerary.slug] || fileMap[itinerary.title?.toLowerCase().replace(/\s+/g, '-')];
-            if (fileName) {
-              return (
-                <a
-                  href={`/files/${fileName}`}
-                  download
-                  className="mt-10 mx-4 md:mx-10 py-3 border rounded px-10 bg-[#FCFAF3] hover:bg-[#F8F6E9] text-[#3B3B3B] font-medium text-base inline-block w-full md:w-auto"
-                  style={{ textDecoration: 'none' }}
-                >
-                  DOWNLOAD DOCX
-                </a>
-              );
-            } else {
-              return (
-                <button className="mt-10 mx-4 md:mx-10 py-3 border rounded px-10 bg-[#FCFAF3] text-[#3B3B3B] font-medium text-base opacity-60 cursor-not-allowed w-full md:w-auto" disabled>
-                  DOCX Not Available
-                </button>
-              );
-            }
-          })()}
-        </div>
-        <div className="w-[80vw] md:w-1/2 flex items-center justify-center pr-4 md:pr-8 mt-6 md:mt-0">
-          <Image
-            src={itinerary.overviewImage}
-            alt="Overview"
-            width={0}
-            height={0}
-            sizes="80vw"
-            style={{ width: '80vw', height: '40vh', maxWidth: '600px' }}
-            className="rounded shadow object-cover"
-          />
-        </div>
-      </section>
-
-      {/* Summary Section */}
-      <section className="w-screen py-8 md:py-12 px-0" style={{ background: '#FFFDEC', borderBottom: '4px solid #EF9120' }}>
-        <div className="w-[80vw] md:w-[90vw] mx-auto px-4 md:px-6">
-          <div className="relative flex flex-col md:flex-row md:items-center md:justify-between">
-            <h2
-              className="text-2xl md:text-4xl font-bold mb-6 md:mb-10 tracking-wide pb-2 w-full md:w-auto"
-              style={{
-                borderBottom: showItinerary ? '4px solid #EF9120' : '4px solid transparent',
-                display: 'inline-block',
-                transition: 'border-color 0.2s',
-              }}
-            >
-              Summary
-            </h2>
-            <button
-              className="bg-blue-900 text-white px-4 md:px-6 py-2 rounded text-base mt-4 md:mt-0 md:absolute md:right-0 md:top-0 transition-all duration-200 hover:bg-orange-500 cursor-pointer w-full md:w-auto"
-              style={{ minWidth: '180px', maxWidth: '100vw', transform: 'translateY(0)' }}
-              onClick={() => {
-                setShowItinerary(true);
-                setTimeout(() => {
-                  const section = document.getElementById('itinerary');
-                  if (section) section.scrollIntoView({ behavior: 'smooth' });
-                }, 300);
-              }}
-            >
-              View Day Wise Overview
-            </button>
-          </div>
-          <div className="flex flex-col md:flex-row flex-wrap gap-6 md:gap-12 mb-6 md:mb-10 w-full">
-              <div className="flex flex-col md:flex-row gap-4 md:gap-0 mb-6 md:mb-10 items-center w-full justify-center text-center">
-                <div className="w-full md:w-[20vw] flex flex-col items-start border-b md:border-b-0 md:border-r border-[#E9E4BF] pb-4 md:pb-0 pr-0 md:pr-8">
-                  <div className="font-semibold mb-2 tracking-wide text-base md:text-lg">Duration</div>
-                  <div className="text-base md:text-lg leading-relaxed tracking-wide">{itinerary.duration}</div>
-                </div>
-                <div className="w-full md:w-[60vw] flex flex-col items-center border-b md:border-b-0 md:border-r border-[#E9E4BF] pb-4 md:pb-0 px-0 md:px-16">
-                  <div className="font-semibold mb-2 tracking-wide text-base md:text-lg">Route</div>
-                  <div className="text-base md:text-lg leading-relaxed tracking-wide text-center">
-                    {itinerary.route.split('→').map((r, i, arr) => (
-                      <span key={i} style={{ display: 'inline' }}>
-                        {r.trim()} {i < arr.length - 1 && <span className="text-[#B89B5E]">→</span>}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="w-full md:w-[30vw] flex flex-col items-start px-0 md:px-8">
-                  <div className="font-semibold mb-2 tracking-wide text-base md:text-lg">Best Time</div>
-                  <div className="text-base md:text-lg leading-relaxed tracking-wide">{itinerary.bestTime}</div>
-                </div>
-              </div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-16 rounded p-10" style={{ background: '#FFFDEC', border: '1.5px solid #E9E4BF', boxShadow: '0 0 0 1px #F5F1D6' }}>
-            <ul className="space-y-10 text-base leading-relaxed tracking-wide">
-              {itinerary.summary.map((item: string, i: number) => (
-                <li key={i} className="flex items-start gap-4 border-b last:border-b-0 border-[#F5F1D6] pb-8 cursor-pointer" onClick={async () => {
-                  setShowItinerary(true);
-                  setTimeout(() => {
-                    const section = document.getElementById('itinerary');
-                    if (section) section.scrollIntoView({ behavior: 'smooth' });
-                  }, 300);
-                }}>
-                  <span className="text-lg mt-1" style={{ color: '#B89B5E' }}>✦</span>
-                  <span className="block w-full" style={{ wordBreak: 'break-word', letterSpacing: '0.01em' }}>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <ul className="space-y-10 text-base leading-relaxed tracking-wide">
-              {itinerary.summaryRight.map((item: string, i: number) => (
-                <li key={i} className="flex items-start gap-4 border-b last:border-b-0 border-[#F5F1D6] pb-8 cursor-pointer" onClick={async () => {
-                  setShowItinerary(true);
-                  setTimeout(() => {
-                    const section = document.getElementById('itinerary');
-                    if (section) section.scrollIntoView({ behavior: 'smooth' });
-                  }, 300);
-                }}>
-                  <span className="text-lg mt-1" style={{ color: '#B89B5E' }}>✦</span>
-                  <span className="block w-full" style={{ wordBreak: 'break-word', letterSpacing: '0.01em' }}>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Itinerary Section (conditionally rendered) */}
-      {showItinerary && (
-        <section id="itinerary" className="w-full flex flex-col md:flex-row justify-center items-stretch py-12 px-0 bg-transparent">
-          {/* Map Section Left - Sticky */}
-          <div className="hidden md:flex flex-col justify-start items-start bg-white  shadow border border-[#F8F6E1] min-h-175 max-h-full w-150 max-w-200 pt-10 pl-10 pr-8 pb-8 sticky top-20 h-[calc(100vh-6rem)]">
-            <IndiaMap coordinates={(itinerary.coordinates ?? []).map(stop => ({
-              name: stop.name,
-              lat: stop.lat,
-              lng: stop.lng,
-              modeToNext: stop.modeToNext === 'road' || stop.modeToNext === 'air' ? stop.modeToNext : null,
-            }))} />
-          </div>
-          {/* Itinerary Cards Section Right */}
-          <div className="flex-1 flex flex-col bg-white rounded-r-2xl shadow border border-[#F8F6E1] min-h-175 max-h-full w-full md:w-[44vw] px-0 md:px-8 py-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-10 px-6 md:px-0">Itinerary</h2>
-            <div className="flex flex-col gap-8 w-full">
-              {itinerary.days.map((day) => (
-                <div
-                  key={day.day}
-                  className="w-[85%] bg-white border border-[#B89B5E] rounded-xl shadow-sm overflow-hidden border-b-2 border-b-[#B89B5E] p-8 gap-4 mx-auto transition-transform duration-200 hover:scale-[1.025] hover:shadow-lg cursor-pointer active:scale-[0.98]"
-                  tabIndex={0}
-                  role="button"
-                  aria-label={`Day ${day.day}: ${day.title}`}
-                >
-                  <div className="flex items-center gap-4 mb-2 pb-4 border-b border-[#B89B5E]">
-                    <span className="bg-[#F8F6E1] border border-[#F8F6E1] text-[#3B3B3B] px-5 py-2 rounded font-bold text-lg tracking-wide shadow-sm mr-2 min-w-22.5 text-center">Day {day.day.toString().padStart(2, '0')}</span>
-                    <span className="font-semibold text-lg md:text-xl text-[#3B3B3B]">{day.title}</span>
-                    <span className="ml-auto font-semibold text-base text-[#3B3B3B]">Overnight <span className="font-normal">{day.overnight}</span></span>
-                  </div>
-                  <div className="pt-4 flex flex-col md:flex-row gap-4">
-                    <div className="flex-1 text-gray-700 text-base leading-relaxed whitespace-pre-line px-2 md:px-6 py-2">
-                      {day.description}
-                    </div>
-                    {/* Image Right */}
-                    {day.image && (
-                      <div className="relative w-full md:w-80 aspect-4/3 min-h-55 shrink-0 rounded overflow-hidden">
-                        <Image src={day.image} alt={day.title} fill className="object-cover object-center" />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Inclusions, Dates, Notes Section - Modern Layout with Icons */}
-      <section id="details" className="w-screen py-0 px-0 bg-[#FFFDEC] mt-10 mb-10">
-        <div className="w-full mx-auto flex flex-col md:flex-row gap-24 justify-center items-start px-4 md:px-16">
-          {/* Left Column: Inclusions & Exclusions */}
-          <div className="flex-1 min-w-85 max-w-150 w-full p-0">
-            <h2 className="text-3xl font-bold mb-8" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Inclusions & Offers</h2>
-            <ul className="mb-8 space-y-8 text-sm md:text-base pb-6">
-              {itinerary.inclusions && itinerary.inclusions.map((item, i) => (
-                <li key={i} className="font-normal">{item}</li>
-              ))}
-            </ul>
-            <div className="font-bold mb-3 mt-8 text-xl">What’s Not Included</div>
-            <ul className="space-y-7 text-sm md:text-base pb-6">
-              {itinerary.exclusions && itinerary.exclusions.map((item, i) => (
-                <li key={i} className="font-normal">{item}</li>
-              ))}
-            </ul>
-          </div>
-          {/* Right Column: Dates & Prices and Important Notes */}
-          <div className="flex-1 min-w-85 max-w-150 w-full flex flex-col gap-16">
-            <div>
-              <h2 className="text-3xl font-bold mb-8" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Dates & Prices</h2>
-              <ul className="mb-8 space-y-8 text-base md:text-[1.05rem]">
-                {itinerary.datesPrices && itinerary.datesPrices.map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 font-normal">{item}</li>
-                ))}
-              </ul>
-                {/* Starting Price Display */}
-                {itinerary.startingPrice && (
-                  <div className="mb-4 text-lg font-semibold text-[#B89B5E]">
-                    Starting Price: <span className="font-bold text-[#232323]">{itinerary.startingPrice.toLocaleString()}</span>
-                    {itinerary.startingPriceNote && (
-                      <span className="ml-2 text-base font-normal text-[#B89B5E]">{itinerary.startingPriceNote}</span>
-                    )}
-                  </div>
-                )}
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold mb-8" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Important Notes</h2>
-              <ul className="space-y-7 text-[1.15rem]">
-                {itinerary.notes && itinerary.notes.map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 font-normal">{item}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-    {/* Signature Experience Section */}
-    {/*
-    <section className="w-screen py-20 px-0 bg-white">
-      <div className="w-[70vw] mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 tracking-wide" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Signature Experience</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
-          {signatureExperiences.map((exp, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-start transition-transform duration-300 ease-in-out cursor-pointer hover:scale-[1.04] hover:shadow-lg"
-              style={{ borderRadius: '1rem', boxShadow: '0 2px 8px rgba(185,155,94,0.08)' }}
-            >
-              <div className="w-full aspect-4/5 min-h-80 relative overflow-hidden mb-4 shadow ">
-                <Image
-                  src={exp.image}
-                  alt={exp.title}
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  priority={i < 3}
-                />
-              </div>
-              <div className="text-base md:text-lg text-gray-500 mb-1 font-semibold">{exp.category}</div>
-              <div className="text-xl md:text-2xl font-bold text-[#232323] leading-snug" style={{ fontFamily: 'Merriweather, serif' }}>{exp.title}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section> */}
-    <Footer/>
-    </div>
+      <HeroSection itinerary={itinerary} />
+      <TabStrip hideTabs={hideDays ? ['itinerary'] : []} />
+      <OverviewSection itinerary={itinerary} />
+      <SummarySection itinerary={itinerary} />
+      {!hideDays && <DaysSection itinerary={itinerary} />}
+      <DetailsSection itinerary={itinerary} />
+      <SignatureExperience itinerary={itinerary} />
+      <RelatedItineraries current={itinerary} />
+      <Footer />
+      <FloatingExpertButton itinerary={itinerary} />
+    </main>
   );
 }

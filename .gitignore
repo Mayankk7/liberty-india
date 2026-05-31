@@ -24,6 +24,12 @@
 .DS_Store
 *.pem
 
+# scratch / temp working dir (holds API keys, image candidates — never commit)
+.claude-tmp/
+
+# per-developer local Claude settings (permission allowlist, not shared)
+.claude/settings.local.json
+
 # debug
 npm-debug.log*
 yarn-debug.log*

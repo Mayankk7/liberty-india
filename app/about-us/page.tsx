@@ -29,7 +29,7 @@ export default function AboutUsPage() {
           {/* About Us Text Overlay */}
           <div className="absolute inset-0 flex items-center justify-center">
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-light tracking-wide"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-bold tracking-wide text-shadow-lg"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
               About us
@@ -39,16 +39,14 @@ export default function AboutUsPage() {
       </section>
 
       {/* 20 Years Section with Image Grid */}
-      <section className="w-full pt-12 md:pt-16 lg:pt-20 pb-0" style={{ backgroundColor: '#FDF8E8' }}>
+      <section className="w-full pt-12 md:pt-16 lg:pt-20 pb-0" style={{ backgroundColor: 'rgba(253,243,159,0.3)' }}>
         {/* Heading */}
         <div className="w-[90%] max-w-5xl mx-auto text-center mb-10 md:mb-14">
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-gray-900 leading-tight"
+            className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-[#424242] leading-tight"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
-            20 Years of Pioneering Luxury Experiential
-            <br />
-            Travel in India
+            20 Years of Pioneering Luxury Experiential Travel in India
           </h2>
         </div>
 
@@ -76,15 +74,15 @@ export default function AboutUsPage() {
           </div>
 
           {/* Text Card Overlay - Covering first image and half of second with margins */}
-          <div 
-            className="absolute left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 bg-white px-6 md:px-8 lg:px-10 py-6 md:py-8 lg:py-10 flex items-center z-10 shadow-lg"
-            style={{ width: '42%', height: '60%' }}
+          <div
+            className="absolute left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 bg-white p-8 md:p-10 lg:p-14 z-10 shadow-lg"
+            style={{ width: '42%' }}
           >
             <p
-              className="text-sm md:text-base lg:text-[15px] text-gray-700 leading-loose lg:leading-loose max-w-lg mx-auto"
-              style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+              className="text-sm md:text-base lg:text-lg text-[#424242] font-normal tracking-[0.02em] leading-loose lg:leading-loose"
+              style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
-              Twenty years ago, <strong>Liberty India</strong> was born from a simple vision: craft journeys that connect global travelers to India&apos;s soul. From the grandeur of <strong>Rajasthan&apos;s palaces</strong> to the Serenity of <strong>Kerala backwaters</strong>, we&apos;ve nurtured relationships that unlock authentic moments, becoming the trusted partner for <strong>world-class tour operators</strong> and <strong>luxury advisors</strong> who seek more than holidays. Today, we deliver bespoke experiences across India&apos;s extraordinary destinations, turning client trips into <strong>lifelong stories</strong>.
+              Two decades ago, Liberty India was founded on a singular vision—to craft journeys that connect global travelers with the true soul of India. From the regal grandeur of Rajasthan&apos;s palaces to the serene backwaters of Kerala, we have cultivated enduring relationships that unlock rare, authentic experiences. Today, we are the trusted partner of world-class tour operators and luxury travel advisors seeking journeys that transcend the ordinary. Across India&apos;s most extraordinary destinations, we design bespoke experiences that transform every itinerary into a timeless story.
             </p>
           </div>
         </div>
@@ -102,40 +100,46 @@ export default function AboutUsPage() {
         <div className="absolute inset-0 flex items-center justify-center px-4">
           <div className="bg-white px-10 md:px-16 lg:px-20 xl:px-24 py-10 md:py-14 lg:py-16 text-center max-w-3xl lg:max-w-4xl shadow-lg">
             <h2
-              className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-4 md:mb-6"
+              className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#424242] mb-4 md:mb-6"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
               Our Philosophy
             </h2>
             <p
-              className="text-sm md:text-base text-gray-600 font-medium mb-3 md:mb-4"
+              className="text-base md:text-lg text-[#424242] font-bold mb-3 md:mb-4"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
-              True luxury lives in connections
+              True luxury lies in meaningful connection
             </p>
             <p
-              className="text-sm md:text-base text-gray-600 leading-loose lg:leading-loose"
+              className="text-sm md:text-base text-[#424242] leading-loose lg:leading-loose"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
-              to cultures, landscapes, stories, people. Not thread counts or stars. Liberty&apos;s 20 years in India means experts who understand your desires and our destinations profoundly
+              to India&apos;s cultures, landscapes, stories, and people
+            </p>
+            <p
+              className="text-sm md:text-base text-[#424242] leading-loose lg:leading-loose"
+              style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+            >
+              We believe travel should go beyond the expected, revealing the depth and spirit of a destination through thoughtfully curated, deeply personal experiences.
             </p>
           </div>
         </div>
       </section>
 
       {/* Our Promise Section */}
-      <section className="w-full pt-10 md:pt-14 lg:pt-16 pb-16 md:pb-20" style={{ backgroundColor: '#FDF8E8' }}>
+      <section className="w-full pt-10 md:pt-14 lg:pt-16 pb-16 md:pb-20 bg-white">
         <div className="w-[80%] mx-auto">
           {/* Heading */}
           <div className="text-center mb-8 md:mb-10">
             <h2
-              className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-4"
+              className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#424242] mb-4"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
               Our Promise
             </h2>
             <p
-              className="text-sm md:text-base text-gray-600"
+              className="text-sm md:text-base text-[#424242]"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
               Every journey we orchestrate is built on three pillars
@@ -157,12 +161,12 @@ export default function AboutUsPage() {
               <div className="pt-6 pr-4">
                 <h3
                   className="text-lg md:text-xl font-semibold mb-3 transition-colors duration-300"
-                  style={{ color: '#E07B39', fontFamily: 'var(--font-playfair), Georgia, serif' }}
+                  style={{ color: '#e58021', fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   Authenticity
                 </h3>
                 <p
-                  className="text-sm md:text-base text-gray-600 leading-relaxed"
+                  className="text-sm md:text-base text-[#424242] leading-relaxed"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
                   Real encounters with people, curated to create meaningful exchanges rather than performative tourism
@@ -183,12 +187,12 @@ export default function AboutUsPage() {
               <div className="pt-6 px-4">
                 <h3
                   className="text-lg md:text-xl font-semibold mb-3 transition-colors duration-300"
-                  style={{ color: '#E07B39', fontFamily: 'var(--font-playfair), Georgia, serif' }}
+                  style={{ color: '#e58021', fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   Exclusivity
                 </h3>
                 <p
-                  className="text-sm md:text-base text-gray-600 leading-relaxed"
+                  className="text-sm md:text-base text-[#424242] leading-relaxed"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
                   Access that isn&apos;t available through standard channels—private audiences with artisans, heritage site exclusivity, community experiences reserved for our guests
@@ -209,12 +213,12 @@ export default function AboutUsPage() {
               <div className="pt-6 pl-4">
                 <h3
                   className="text-lg md:text-xl font-semibold mb-3 transition-colors duration-300"
-                  style={{ color: '#E07B39', fontFamily: 'var(--font-playfair), Georgia, serif' }}
+                  style={{ color: '#e58021', fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   Excellence
                 </h3>
                 <p
-                  className="text-sm md:text-base text-gray-600 leading-relaxed"
+                  className="text-sm md:text-base text-[#424242] leading-relaxed"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
                   Impeccable execution across every detail, from perfectly timed hotel transfers to seamlessly orchestrated multi-city journeys
@@ -226,12 +230,12 @@ export default function AboutUsPage() {
       </section>
 
       {/* What Sets Us Apart Section */}
-      <section className="w-full py-16 md:py-20 lg:py-24" style={{ backgroundColor: '#FDF8E8' }}>
+      <section className="w-full py-16 md:py-20 lg:py-24" style={{ backgroundColor: 'rgba(253,243,159,0.2)' }}>
         <div className="w-[80%] mx-auto">
           {/* Heading */}
           <div className="text-center mb-12 md:mb-16">
             <h2
-              className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900"
+              className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#424242]"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
               What Sets Us Apart
@@ -244,13 +248,13 @@ export default function AboutUsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               <div className="bg-white p-8 md:p-10 lg:p-12 flex flex-col justify-center">
                 <h3
-                  className="text-lg md:text-xl font-semibold text-gray-900 mb-3"
+                  className="text-lg md:text-xl font-semibold text-[#424242] mb-3"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   Local Mastery
                 </h3>
                 <p
-                  className="text-sm md:text-base text-gray-600 leading-relaxed"
+                  className="text-sm md:text-base text-[#424242] leading-relaxed"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
                   Deep relationships with hotels, guides, artisans, and communities across India
@@ -278,16 +282,16 @@ export default function AboutUsPage() {
               </div>
               <div className="bg-white p-8 md:p-10 lg:p-12 flex flex-col justify-center order-1 md:order-2">
                 <h3
-                  className="text-lg md:text-xl font-semibold text-gray-900 mb-3"
+                  className="text-lg md:text-xl font-semibold text-[#424242] mb-3"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   Bespoke Curation
                 </h3>
                 <p
-                  className="text-sm md:text-base text-gray-600 leading-relaxed"
+                  className="text-sm md:text-base text-[#424242] leading-relaxed"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
-                  Our expert journey designers craft entirely personalized itineraries, not template journeys
+                  Each experience is thoughtfully curated by our travel specialists to celebrate local culture and heritage, brought to life with refined attention to detail.
                 </p>
               </div>
             </div>
@@ -296,13 +300,13 @@ export default function AboutUsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               <div className="bg-white p-8 md:p-10 lg:p-12 flex flex-col justify-center">
                 <h3
-                  className="text-lg md:text-xl font-semibold text-gray-900 mb-3"
+                  className="text-lg md:text-xl font-semibold text-[#424242] mb-3"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   Ground Operations Excellence
                 </h3>
                 <p
-                  className="text-sm md:text-base text-gray-600 leading-relaxed"
+                  className="text-sm md:text-base text-[#424242] leading-relaxed"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
                   Our own teams manage every aspect of your journey, ensuring consistency and responsiveness
@@ -330,13 +334,13 @@ export default function AboutUsPage() {
               </div>
               <div className="bg-white p-8 md:p-10 lg:p-12 flex flex-col justify-center order-1 md:order-2">
                 <h3
-                  className="text-lg md:text-xl font-semibold text-gray-900 mb-3"
+                  className="text-lg md:text-xl font-semibold text-[#424242] mb-3"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   Sustainable Tourism Leadership
                 </h3>
                 <p
-                  className="text-sm md:text-base text-gray-600 leading-relaxed"
+                  className="text-sm md:text-base text-[#424242] leading-relaxed"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
                   Community partnerships that benefit local economies and preserve heritage for future generations

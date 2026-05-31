@@ -1,9 +1,68 @@
 @import "tailwindcss";
 @import 'leaflet/dist/leaflet.css';
 
+/* Big Caslon CC — licensed local font (public/fonts). Self-hosted so the
+ * site's heading typeface renders for real instead of the Playfair fallback. */
+@font-face {
+  font-family: 'Big Caslon CC';
+  src: url('/fonts/BigCaslonCC-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Big Caslon CC';
+  src: url('/fonts/BigCaslonCC-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Big Caslon CC';
+  src: url('/fonts/BigCaslonCC-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Big Caslon CC';
+  src: url('/fonts/BigCaslonCC-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Big Caslon CC';
+  src: url('/fonts/BigCaslonCC-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Big Caslon CC';
+  src: url('/fonts/BigCaslonCC-BlackItalic.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 @theme {
-  --font-sans: var(--font-merriweather), Georgia, serif;
-  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: 'Segoe UI', system-ui, -apple-system, Roboto, 'Merriweather', Georgia, sans-serif;
+  --font-serif: 'Big Caslon CC', 'Big Caslon', 'BigCaslon', 'Playfair Display', Georgia, serif;
+}
+
+/*
+ * Global typography override.
+ * Most components reference var(--font-playfair) / var(--font-merriweather)
+ * inline (set by next/font). We override those custom properties with
+ * !important so the whole site switches fonts without editing every file.
+ * Big Caslon CC is now self-hosted (see @font-face above / public/fonts);
+ * Playfair Display remains a fallback only. Segoe UI resolves on Windows
+ * and most systems via the system stack.
+ */
+:root {
+  --font-playfair: 'Big Caslon CC', 'Big Caslon', 'BigCaslon', 'Playfair Display', Georgia, serif !important;
+  --font-merriweather: 'Segoe UI', system-ui, -apple-system, Roboto, 'Merriweather', Georgia, sans-serif !important;
 }
 
 /* Custom text shadow utility */
@@ -25,8 +84,82 @@
   }
 }
 
+/* Subtle Ken Burns slow zoom for cinematic slideshow. Range starts above 1.0
+ * so swapping slides never visibly "snaps back" to the rest scale — the
+ * outgoing slide ends at 1.10 and the incoming slide enters already at 1.04. */
+@keyframes kenBurns {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1.10);
+  }
+}
+
 @utility animate-hero-fade-in {
   animation: heroFadeIn 1200ms ease-in-out forwards;
+}
+
+/* Scroll-triggered fade-up — used by <Reveal>. Subtle 16px lift + ease-out
+ * curve modeled on Material's emphasized-decelerate easing. */
+@keyframes revealFadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* No `will-change` here — keeping a hint on every off-screen element
+ * promoted ~35 elements into their own composited layers at first paint,
+ * which made scroll repaint cost balloon. The hint lives only on
+ * `.reveal-in` (active animation) and is cleared by Reveal.tsx onAnimationEnd. */
+@utility reveal-init {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+}
+
+@utility reveal-in {
+  animation: revealFadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-init,
+  .reveal-in {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* Search overlay — staggered row fade-up. Each result row gets an inline
+ * animation-delay so the list cascades in after the card lands. */
+@keyframes searchResultIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.search-result-in {
+  opacity: 0;
+  animation: searchResultIn 360ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-result-in {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
 }
 
 /* Hide scrollbar */
@@ -39,11 +172,9 @@
   display: none;
 }
 
-/* Base styles */
-html {
-  scroll-behavior: smooth;
-}
-
+/* Base styles. Smooth scroll is owned by Lenis (see LenisProvider); the
+ * native `scroll-behavior: smooth` rule was removed to avoid fighting the
+ * inertia loop. */
 body {
   background: #ffffff;
   color: #111827;
@@ -52,15 +183,100 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-playfair), Georgia, serif;
+  letter-spacing: 0.01em; /* 1% tracking for Big Caslon CC headings */
 }
 
 /* Apply Playfair to Tailwind font-serif utility */
 .font-serif {
   font-family: var(--font-playfair), Georgia, serif !important;
+  letter-spacing: 0.01em;
 }
 
 /* Selection color */
 ::selection {
   background: rgba(212, 175, 55, 0.4);
   color: white;
+}
+
+/* Image loading skeleton — soft shimmer shown behind images until they paint
+   (see ImageWithLoader). */
+.li-img-skeleton {
+  background-color: #ece7d6;
+  background-image: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: li-img-shimmer 1.3s ease-in-out infinite;
+}
+@keyframes li-img-shimmer {
+  0% { background-position: 150% 0; }
+  100% { background-position: -50% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .li-img-skeleton { animation: none; }
+}
+
+/* Itinerary map labels — strip Leaflet's default white tooltip box so the
+ * place name sits directly on the map (legibility comes from the text-shadow
+ * set inline on the label span). */
+.leaflet-tooltip.li-map-label {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  white-space: nowrap;
+}
+.leaflet-tooltip.li-map-label::before {
+  display: none; /* remove the little pointer arrow */
+}
+
+/* Itinerary map pins (see IndiaMap pinIcon) */
+.li-map-pin {
+  background: transparent;
+  border: none;
+}
+.li-map-pin-box {
+  position: relative;
+  display: block;
+}
+.li-map-pin-pulse {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  margin-bottom: -7px;
+  border-radius: 50%;
+  opacity: 0.5;
+  pointer-events: none;
+  animation: li-map-pin-pulse 1.6s ease-out infinite;
+}
+@keyframes li-map-pin-pulse {
+  0% { transform: scale(0.5); opacity: 0.5; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .li-map-pin-pulse { animation: none; opacity: 0; }
+}
+
+/* Print / "Download PDF" — clean the page to just the itinerary content. */
+@media print {
+  nav,
+  footer,
+  .li-no-print {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #ffffff !important;
+  }
+  /* Let long sections flow across pages without awkward clipping. */
+  section {
+    break-inside: avoid-page;
+  }
 }

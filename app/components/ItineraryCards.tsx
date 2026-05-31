@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
-
-import Link from 'next/link';
+import ItineraryCard from './ItineraryCard';
+import Reveal from './Reveal';
+import { getItinerariesByCategory, type ItineraryCategory } from '../itineraries/itineraries';
 
 interface ItineraryItem {
   image: string;
@@ -19,15 +19,77 @@ interface ItineraryItem {
 interface ItineraryCardsProps {
   heading: string;
   subheading: string;
-  items: ItineraryItem[];
+  /** Manual card list (e.g. /our-services/* via getExploreItems). */
+  items?: ItineraryItem[];
+  /** When set, cards are auto-derived from the real itineraries tagged with
+   *  this category — used by the /about-india/* sections so each section only
+   *  showcases its own themed journeys (Heritage → Heritage, etc.). */
+  category?: ItineraryCategory;
+  /** Max cards to show in `category` mode (default 3 — one grid row). */
+  limit?: number;
   bgColor?: string;
+  /** Retained for call-site compatibility. Card design is unified site-wide
+   *  via the shared ItineraryCard, so this is a no-op. */
+  variant?: 'default' | 'heritage';
 }
 
-export default function ItineraryCards({ heading, subheading, items, bgColor }: ItineraryCardsProps) {
+/** Normalised shape the card renders from, regardless of source. */
+interface CardData {
+  image: string;
+  alt: string;
+  metaLine: string;
+  title: string;
+  description: string;
+  priceLabel: string;
+  priceValue: string;
+  priceNote: string;
+  duration: string;
+  href?: string;
+}
+
+function fromCategory(category: ItineraryCategory, limit: number): CardData[] {
+  return getItinerariesByCategory(category)
+    .slice(0, limit)
+    .map((it) => {
+      // "€1,420" / "$1,330" → priced; "Price on request" → no label/note.
+      const hasPrice = /\d/.test(it.startingPrice);
+      return {
+        image: it.heroImage,
+        alt: it.title,
+        metaLine: `${category}  |  Best Time  |  ${it.bestTime}`,
+        title: it.title,
+        description: it.subtitle,
+        priceLabel: hasPrice ? 'Starting from' : '',
+        priceValue: it.startingPrice,
+        priceNote: hasPrice ? 'per person' : '',
+        duration: it.duration,
+        href: `/itineraries/${it.slug}`,
+      };
+    });
+}
+
+function fromItems(items: ItineraryItem[]): CardData[] {
+  return items.map((item) => ({
+    image: item.image,
+    alt: item.alt,
+    metaLine: `${item.category}  |  Best Time  |  ${item.bestTime}`,
+    title: item.title,
+    description: item.description,
+    priceLabel: 'Starting from',
+    priceValue: `$${item.price.toLocaleString()}`,
+    priceNote: 'per person',
+    duration: item.duration,
+    href: item.slug ? `/itineraries/${item.slug}` : undefined,
+  }));
+}
+
+export default function ItineraryCards({ heading, subheading, items, category, limit = 3, bgColor }: ItineraryCardsProps) {
+  const cards = category ? fromCategory(category, limit) : fromItems(items ?? []);
+
   return (
     <section className="w-full py-14 md:py-20" style={{ backgroundColor: bgColor || 'white' }}>
       {/* Section Header */}
-      <div className="w-[90%] max-w-5xl mx-auto text-center mb-10 md:mb-14">
+      <Reveal className="w-[90%] max-w-5xl mx-auto text-center mb-10 md:mb-14">
         <h2
           className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.75rem] font-semibold text-gray-900 mb-4 leading-snug whitespace-pre-line"
           style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -40,120 +102,26 @@ export default function ItineraryCards({ heading, subheading, items, bgColor }: 
         >
           {subheading}
         </p>
-      </div>
+      </Reveal>
 
       {/* Cards Grid */}
-      <div className="w-[90%] max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-        {items.map((item, index) => {
-          const card = (
-            <div
-              className="flex flex-col cursor-pointer hover:shadow-xl transition-shadow duration-200"
-              tabIndex={0}
-              role="button"
-              aria-label={item.title + (item.slug ? '' : ' (under development)')}
-            >
-              {/* Image */}
-              <div className="relative w-full aspect-4/5 overflow-hidden rounded-sm">
-                <Image
-                  src={item.image}
-                  alt={item.alt}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Card Content */}
-              <div className="pt-4 flex flex-col flex-1">
-                {/* Category & Best Time */}
-                <div className="flex items-center justify-between mb-3">
-                  <span
-                    className="text-xs md:text-sm text-gray-600"
-                    style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-                  >
-                    {item.category}
-                  </span>
-                  <span
-                    className="text-xs md:text-sm"
-                    style={{
-                      fontFamily: 'var(--font-merriweather), Georgia, serif',
-                      color: '#E07B39',
-                    }}
-                  >
-                    Best Time | {item.bestTime}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3
-                  className="text-lg md:text-xl font-semibold text-gray-900 mb-2"
-                  style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
-                >
-                  {item.title}
-                </h3>
-
-                {/* Description */}
-                <p
-                  className="text-sm text-gray-600 leading-relaxed mb-4 flex-1"
-                  style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-                >
-                  {item.description}
-                </p>
-
-                {/* Price & Duration */}
-                <div className="flex items-center justify-between border-t border-gray-100 pt-3">
-                  <div>
-                    <span
-                      className="text-xs text-gray-500 block"
-                      style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-                    >
-                      Starting from
-                    </span>
-                    <span className="flex items-baseline gap-1">
-                      <span
-                        className="text-lg md:text-xl font-bold"
-                        style={{
-                          fontFamily: 'var(--font-playfair), Georgia, serif',
-                          color: '#E07B39',
-                        }}
-                      >
-                        ${item.price.toLocaleString()}
-                      </span>
-                      <span
-                        className="text-xs text-gray-500"
-                        style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-                      >
-                        per person
-                      </span>
-                    </span>
-                  </div>
-                  <span
-                    className="text-sm text-gray-700 font-medium"
-                    style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-                  >
-                    {item.duration}
-                  </span>
-                </div>
-              </div>
-            </div>
-          );
-          if (item.slug) {
-            return (
-              <Link href={`/itineraries/${item.slug}`} key={index} passHref legacyBehavior>
-                <a style={{ textDecoration: 'none' }}>{card}</a>
-              </Link>
-            );
-          } else {
-            return (
-              <div
-                key={index}
-                onClick={() => window.location.href = '/under-development'}
-                onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/under-development'; }}
-              >
-                {card}
-              </div>
-            );
-          }
-        })}
+      <div className="w-[90%] max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
+        {cards.map((item, index) => (
+          <Reveal key={index} delay={(index % 3) * 80}>
+            <ItineraryCard
+              image={item.image}
+              alt={item.alt}
+              title={item.title}
+              description={item.description}
+              metaLine={item.metaLine}
+              priceLabel={item.priceLabel}
+              priceValue={item.priceValue}
+              priceNote={item.priceNote}
+              duration={item.duration}
+              href={item.href}
+            />
+          </Reveal>
+        ))}
       </div>
     </section>
   );

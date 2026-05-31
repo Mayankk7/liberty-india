@@ -1,7 +1,9 @@
 'use client';
 
 import Image from 'next/image';
+import ImageWithLoader from './ImageWithLoader';
 import Link from 'next/link';
+import Reveal from './Reveal';
 
 export default function AboutIndia() {
   return (
@@ -11,7 +13,7 @@ export default function AboutIndia() {
       aria-labelledby="about-india-heading"
     >
       {/* Background Collage with India Map Overlay */}
-      <div className="relative w-full min-h-150 md:min-h-175 lg:min-h-200 mb-8 md:mb-12 lg:mb-16">
+      <div id="india-map-band" data-navbar-hide className="relative w-full min-h-[400px] sm:min-h-[500px] md:min-h-[640px] lg:min-h-[720px] mb-8 md:mb-12 lg:mb-16">
         {/* Layer 1: Collage covers full background */}
         <div className="absolute left-0 top-0 w-screen h-full z-0">
           <Image
@@ -34,15 +36,18 @@ export default function AboutIndia() {
             priority
           />
         </div>
+
       </div>
 
       {/* India Experience Cards Grid */}
-      <div className="w-full max-w-[70%] mx-auto px-4 md:px-6 lg:px-8 pb-12 md:pb-16 lg:pb-20">
+      <div className="w-[88%] max-w-7xl mx-auto pb-12 md:pb-16 lg:pb-20">
         {/* Row 1: Heritage, Culture, Architecture */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
           {/* Heritage Card */}
-          <Link href="/heritage" className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
-            <Image
+          <Reveal>
+          <Link href="/heritage" className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
+            <ImageWithLoader
+              sizes="(max-width: 768px) 100vw, 33vw"
               src="https://ik.imagekit.io/libertyindia/about-india/home/Heritage.png"
               alt="Heritage - Living Legacies"
               fill
@@ -72,10 +77,13 @@ export default function AboutIndia() {
               </div>
             </div>
           </Link>
+          </Reveal>
 
           {/* Culture Card */}
-          <Link href="/culture" className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
-            <Image
+          <Reveal delay={80}>
+          <Link href="/culture" className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
+            <ImageWithLoader
+              sizes="(max-width: 768px) 100vw, 33vw"
               src="https://ik.imagekit.io/libertyindia/about-india/home/culture.png"
               alt="Culture - The Pulse of India"
               fill
@@ -105,10 +113,13 @@ export default function AboutIndia() {
               </div>
             </div>
           </Link>
+          </Reveal>
 
           {/* Architecture Card */}
-          <Link href="/architecture" className="group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
-            <Image
+          <Reveal delay={160}>
+          <Link href="/architecture" className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
+            <ImageWithLoader
+              sizes="(max-width: 768px) 100vw, 33vw"
               src="https://ik.imagekit.io/libertyindia/about-india/home/Architecture.png"
               alt="Architecture - Monuments Beyond Imagination"
               fill
@@ -138,12 +149,14 @@ export default function AboutIndia() {
               </div>
             </div>
           </Link>
+          </Reveal>
         </div>
 
         {/* Row 2: Nature (larger), Spiritual (smaller) */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-2">
           {/* Nature Card - 3/5 width */}
-          <Link href="/nature" className="md:col-span-3 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
+          <Reveal className="md:col-span-3">
+          <Link href="/nature" className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
             <Image
                 src="https://ik.imagekit.io/libertyindia/about-india/home/nature.png?updatedAt=1773508275329"
                 alt="Nature - Landscapes Without Limits"
@@ -174,9 +187,11 @@ export default function AboutIndia() {
               </div>
             </div>
           </Link>
+          </Reveal>
 
           {/* Spiritual Card - 2/5 width */}
-          <div className="md:col-span-2 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
+          <Reveal className="md:col-span-2" delay={80}>
+          <div className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
             <Link href="/spiritual" className="block w-full h-full">
               <Image
                 src="https://ik.imagekit.io/libertyindia/about-india/home/spiritual.svg"
@@ -209,13 +224,16 @@ export default function AboutIndia() {
               </div>
             </Link>
           </div>
+          </Reveal>
         </div>
 
         {/* Row 3: Wellness (smaller), Wildlife (larger) */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           {/* Wellness Card - 2/5 width */}
-          <Link href="/wellness" className="md:col-span-2 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1" onClick={e => { if (!['/wellness'].includes('/wellness')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
-            <Image
+          <Reveal className="md:col-span-2">
+          <Link href="/wellness" className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block" onClick={e => { if (!['/wellness'].includes('/wellness')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
+            <ImageWithLoader
+              sizes="(max-width: 768px) 100vw, 33vw"
               src="https://ik.imagekit.io/libertyindia/about-india/home/wellness.png"
               alt="Wellness - Ancient Wisdom, Modern Renewal"
               fill
@@ -245,10 +263,13 @@ export default function AboutIndia() {
               </div>
             </div>
           </Link>
+          </Reveal>
 
           {/* Wildlife Card - 3/5 width */}
-          <Link href="/wildlife" className="md:col-span-3 group relative h-72 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1" onClick={e => { if (!['/wildlife'].includes('/wildlife')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
-            <Image
+          <Reveal className="md:col-span-3" delay={80}>
+          <Link href="/wildlife" className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block" onClick={e => { if (!['/wildlife'].includes('/wildlife')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
+            <ImageWithLoader
+              sizes="(max-width: 768px) 100vw, 33vw"
               src="https://ik.imagekit.io/libertyindia/about-india/home/wildlife.png"
               alt="Wildlife - Into the Wild Heart of India"
               fill
@@ -278,11 +299,12 @@ export default function AboutIndia() {
               </div>
             </div>
           </Link>
+          </Reveal>
         </div>
       </div>
 
       {/* Quote Divider Section */}
-      <div className="relative w-full overflow-hidden">
+      <Reveal className="relative w-full overflow-hidden">
         <Image
           src="https://ik.imagekit.io/libertyindia/about-india/section-end.svg"
           alt="Mountain landscape with inspirational quote"
@@ -300,7 +322,7 @@ export default function AboutIndia() {
             &ldquo;Journeys, when crafted with intention,<br />become lifelong memories&rdquo;
           </p>
         </div>
-      </div>
+      </Reveal>
 
       {/* SEO-friendly structured data */}
       <script

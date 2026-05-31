@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import Image from 'next/image';
+import Parallax from './Parallax';
 
 /** Month data for the hero carousel - each month maps to a destination & hero image */
 const MONTHS = [
@@ -26,8 +27,20 @@ export default function HeroCarousel() {
   const [activeIndex, setActiveIndex] = useState(2); // March (index 2) as default
   const [prevIndex, setPrevIndex] = useState(2);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const transitionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const activeMonth = MONTHS[activeIndex];
+
+  // Respect the user's reduced-motion preference (disables auto-advance)
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   // Calculate the visible window of months centered on the active month
   const visibleMonths = useMemo(() => {
@@ -39,31 +52,44 @@ export default function HeroCarousel() {
     return indices;
   }, [activeIndex]);
 
-  // Smooth crossfade transition
-  const handleTransition = useCallback(
-    (newIndex: number) => {
-      if (newIndex === activeIndex || isTransitioning) return;
-      setPrevIndex(activeIndex);
-      setIsTransitioning(true);
-      setActiveIndex(newIndex);
+  // Live refs so the auto-advance interval reads current state without
+  // resetting itself on every activeIndex/isTransitioning change.
+  const activeIndexRef = useRef(activeIndex);
+  const isTransitioningRef = useRef(isTransitioning);
+  useEffect(() => { activeIndexRef.current = activeIndex; }, [activeIndex]);
+  useEffect(() => { isTransitioningRef.current = isTransitioning; }, [isTransitioning]);
 
-      // Allow crossfade to complete
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 1200);
-    },
-    [activeIndex, isTransitioning]
-  );
+  // Smooth crossfade transition — stable reference (uses refs internally).
+  const handleTransition = useCallback((newIndex: number) => {
+    const currentIndex = activeIndexRef.current;
+    if (newIndex === currentIndex || isTransitioningRef.current) return;
+    setPrevIndex(currentIndex);
+    setIsTransitioning(true);
+    setActiveIndex(newIndex);
+
+    // Allow crossfade to complete
+    if (transitionTimer.current) clearTimeout(transitionTimer.current);
+    transitionTimer.current = setTimeout(() => {
+      setIsTransitioning(false);
+    }, 1200);
+  }, []);
+
+  // Clear any pending crossfade timer on unmount
+  useEffect(() => {
+    return () => {
+      if (transitionTimer.current) clearTimeout(transitionTimer.current);
+    };
+  }, []);
 
   const goNext = useCallback(() => {
-    const newIndex = (activeIndex + 1) % MONTHS.length;
+    const newIndex = (activeIndexRef.current + 1) % MONTHS.length;
     handleTransition(newIndex);
-  }, [activeIndex, handleTransition]);
+  }, [handleTransition]);
 
   const goPrev = useCallback(() => {
-    const newIndex = (activeIndex - 1 + MONTHS.length) % MONTHS.length;
+    const newIndex = (activeIndexRef.current - 1 + MONTHS.length) % MONTHS.length;
     handleTransition(newIndex);
-  }, [activeIndex, handleTransition]);
+  }, [handleTransition]);
 
   // Keyboard accessibility
   useEffect(() => {
@@ -75,19 +101,26 @@ export default function HeroCarousel() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [goNext, goPrev]);
 
-  // Periodic auto-advance every 3 seconds
+  // Periodic auto-advance — paused on hover/focus and when the user
+  // prefers reduced motion. The interval only re-arms when pause/motion
+  // state flips; activeIndex changes do NOT reset it (refs above).
   useEffect(() => {
+    if (reducedMotion || isPaused) return;
     const interval = setInterval(() => {
       goNext();
-    }, 3000);
+    }, 6000);
     return () => clearInterval(interval);
-  }, [goNext]);
+  }, [goNext, reducedMotion, isPaused]);
 
   return (
     <section
       className="relative h-screen w-full overflow-hidden bg-[#1a1008]"
       aria-label="Hero carousel - Best time to visit India by month"
       role="region"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={() => setIsPaused(false)}
     >
       {/* Background Images with Crossfade */}
       {/* Previous image (fading out) */}
@@ -105,23 +138,26 @@ export default function HeroCarousel() {
         </div>
       )}
 
-      {/* Current image (fading in) */}
+      {/* Current image (fading in). Parallax stacks on top of the crossfade —
+       * lower speed (0.15) since Ken Burns already provides intra-image motion. */}
       <div
         className={`absolute inset-0 z-2 transition-opacity duration-1000 ease-in-out ${
           isTransitioning ? 'opacity-0 animate-hero-fade-in' : 'opacity-100'
         }`}
       >
-        <Image
-          key={activeMonth.id}
-          src={activeMonth.image}
-          alt={`Travel destination: ${activeMonth.destination} - Best visited in ${activeMonth.name}`}
-          fill
-          priority
-          quality={90}
-          sizes="100vw"
-          className="object-cover object-center"
-          placeholder="empty"
-        />
+        <Parallax speed={0.15} className="absolute inset-0">
+          <Image
+            key={activeMonth.id}
+            src={activeMonth.image}
+            alt={`Travel destination: ${activeMonth.destination} - Best visited in ${activeMonth.name}`}
+            fill
+            priority
+            quality={90}
+            sizes="100vw"
+            className="object-cover object-center"
+            placeholder="empty"
+          />
+        </Parallax>
       </div>
 
       {/* Gradient Overlays */}
@@ -130,33 +166,21 @@ export default function HeroCarousel() {
 
       {/* ===== Center Content ===== */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 pb-40 pt-12">
-        {/* Logo */}
-        <div className="mb-6 md:mb-8">
-          <Image
-            src="https://ik.imagekit.io/libertyindia/hero-section/logo.svg"
-            alt="Liberty India logo"
-            width={90}
-            height={90}
-            className="w-17.5 h-17.5 md:w-22.5 md:h-22.5 lg:w-25 lg:h-25 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] object-contain"
-            priority
-          />
-        </div>
+        {/* Eyebrow Tagline (above headline) */}
+        <p className="relative mb-3 md:mb-4 text-xs md:text-sm lg:text-base text-gray-200 text-center font-normal tracking-[0.1em] uppercase text-shadow-sm" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          Where Ancient Wisdom Meets Modern Luxury
+        </p>
 
         {/* Main Headline */}
         <h1 className="text-[1.75rem] md:text-[2.25rem] lg:text-[2.75rem] xl:text-[3.25rem] font-semibold text-white text-center max-w-4xl leading-[1.15] md:leading-[1.1] text-shadow-lg" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
-          India’s Leading Destination
+          India’s Leading
           <br />
-          Management Company
+          Destination Management Company
         </h1>
 
         {/* Service Line */}
-        <p className="mt-4 md:mt-5 text-[10px] md:text-xs lg:text-sm text-white/80 text-center font-light tracking-[0.25em] uppercase" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
-          MICE&nbsp;&nbsp;|&nbsp;&nbsp;Leisure&nbsp;&nbsp;|&nbsp;&nbsp;Events &amp; Beyond
-        </p>
-
-        {/* Tagline */}
-        <p className="mt-5 md:mt-8 text-xs md:text-sm lg:text-base text-white font-semibold text-center tracking-wide" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
-          Where Ancient Wisdom Meets Modern Luxury
+        <p className="mt-4 md:mt-5 text-[10px] sm:text-xs md:text-sm lg:text-base text-white text-center font-normal tracking-[0.05em] md:tracking-[0.1em] uppercase text-shadow-sm px-2" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          MICE&nbsp;&nbsp;|&nbsp;&nbsp;Leisure&nbsp;&nbsp;|&nbsp;&nbsp;Special Interest Tour&nbsp;&nbsp;|&nbsp;&nbsp;Events &amp; Beyond
         </p>
       </div>
 
@@ -183,7 +207,7 @@ export default function HeroCarousel() {
               </button>
 
               {/* Visible Months */}
-              <div className="flex items-center gap-4 md:gap-6 lg:gap-8">
+              <div className="flex items-center gap-2 sm:gap-4 md:gap-6 lg:gap-8">
                 {visibleMonths.map((mIndex) => {
                   const month = MONTHS[mIndex];
                   const isActive = mIndex === activeIndex;
@@ -219,13 +243,13 @@ export default function HeroCarousel() {
               </button>
             </div>
 
-            {/* Destination Label (right side) */}
+            {/* Destination Label (right side) — hidden on small screens to prevent overflow */}
             <div
-              className={`transition-opacity duration-500 ${
+              className={`hidden sm:block transition-opacity duration-500 ${
                 isTransitioning ? 'opacity-0' : 'opacity-100'
               }`}
             >
-              <p className="text-white/75 text-[10px] md:text-xs font-light tracking-wide text-right" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+              <p className="text-white/75 text-[10px] md:text-xs font-light tracking-wide text-right max-w-[200px] md:max-w-[280px] truncate" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
                 {activeMonth.destination}
               </p>
             </div>

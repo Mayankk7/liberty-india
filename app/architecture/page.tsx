@@ -268,65 +268,14 @@ export default function ArchitecturePage() {
         </section>
 
                      <ItineraryCards
-                       heading={"Explore the Culture\nExperience the Journey"}
-                       subheading="Immerse yourself in India's living traditions with journeys designed for the culturally curious"
+                       heading={"Explore the Architecture\nExperience the Journey"}
+                       subheading="Travel through centuries of history with journeys designed for discerning explorers"
                        bgColor="#FDF39F4D"
-                       items={[
-                         {
-                           image: 'https://ik.imagekit.io/libertyindia/itineraries/north-east/main-bg.svg',
-                           alt: 'Northeast India & The City of Joy',
-                           category: 'Culture',
-                           bestTime: 'October – March',
-                           title: 'Northeast India & The City of Joy',
-                           description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
-                           price: 1330,
-                           duration: '13 Days',
-                           slug: 'northeast-india-city-of-joy',
-                         },
-                         {
-                           image: 'https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/main-bg.png',
-                           alt: 'The Classical Golden Triangle of India',
-                           category: 'Culture',
-                           bestTime: 'October – March',
-                           title: 'The Classical Golden Triangle of India',
-                           description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
-                           price: 1013,
-                           duration: '7 Days',
-                           slug: 'classical-golden-triangle',
-                         },
-                         {
-                           image: 'https://ik.imagekit.io/libertyindia/itineraries/south-india-tamil-nadu/main-bg.png',
-                           alt: 'Unveiling the Enchanting South — Tamil Nadu',
-                           category: 'Culture',
-                           bestTime: 'October – March',
-                           title: 'Unveiling the Enchanting South — Tamil Nadu',
-                           description: 'Discover the magnificent temple architecture, French colonial heritage, and living craft traditions of Tamil Nadu.',
-                           price: 880,
-                           duration: '10 Days',
-                           slug: 'unveiling-the-enchanting-south-tamil-nadu',
-                         },
-                       ]}
+                       category="Architecture"
                      />
              
      
-          {/*
-          <ItineraryCards
-            heading={"Explore the Architecture\nExperience the Journey"}
-            subheading={"Travel through centuries of history with journeys designed for discerning explorers"}
-            bgColor="#FDF8E8"
-            items={getItinerariesByCategory('Architecture').map(it => ({
-              image: it.heroImage,
-              alt: it.title,
-              category: it.categories.join(', '),
-              bestTime: it.bestTime,
-              title: it.title,
-              description: it.subtitle,
-              price: Number(it.startingPrice.replace(/[^\d]/g, '')),
-              duration: it.duration,
-              slug: it.slug
-            }))}
-          />
-          */}
+          
 
       {/* Footer */}
       <Footer />

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from 'next/image';
+import ImageWithLoader from '../components/ImageWithLoader';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ImageTextOverlay from '../components/ImageTextOverlay';
@@ -13,18 +13,19 @@ export default function NaturePage() {
       <Navbar variant="white" />
 
       {/* Hero Section */}
-      <section className="relative w-[102vw] h-[50vh] md:h-[60vh] lg:h-[70vh] left-0 right-0 mx-0">
-        <Image
-          src="https://ik.imagekit.io/libertyindia/about-india/nature/nature-bg.svg"
+      <section className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh] overflow-hidden">
+        <ImageWithLoader
+          src="/images/heroes/nature.jpg"
           alt="Nature Hero"
           fill
+          sizes="100vw"
           className="object-cover object-center"
           priority
         />
         {/* 20% opacity overlay */}
         <div className="absolute inset-0 bg-black/20 pointer-events-none" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-extrabold tracking-wide drop-shadow-lg" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-7xl text-white font-semibold tracking-wide drop-shadow-lg" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Nature
           </h1>
         </div>
@@ -33,16 +34,17 @@ export default function NaturePage() {
       {/* Section Title */}
       <section className="w-full py-12 md:py-16 lg:py-20 bg-[#FDF8E8]">
         <div className="w-full max-w-5xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-gray-900 leading-tight" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
-            The Raw Majesty of India's Landscapes
+          <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-[#424242] leading-tight" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+            The Raw Majesty of India&apos;s Landscapes
           </h2>
         </div>
         {/* Image Grid with Text Card */}
-        <div className="w-full relative h-96 md:h-[420px] lg:h-[500px] xl:h-[560px]">
+        <div className="w-full relative h-96 md:h-[550px] lg:h-[650px] xl:h-[720px]">
           {/* Images Grid */}
           <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0 w-full h-full">
             <div className="relative h-full w-full">
-              <Image
+              <ImageWithLoader
+                sizes="(max-width: 768px) 100vw, 33vw"
                 src="https://ik.imagekit.io/libertyindia/about-india/nature/picture-1.svg"
                 alt="Nature 1"
                 fill
@@ -51,7 +53,8 @@ export default function NaturePage() {
               />
             </div>
             <div className="relative h-full w-full">
-              <Image
+              <ImageWithLoader
+                sizes="(max-width: 768px) 100vw, 33vw"
                 src="https://ik.imagekit.io/libertyindia/about-india/nature/picture-2.svg"
                 alt="Nature 2"
                 fill
@@ -60,7 +63,8 @@ export default function NaturePage() {
               />
             </div>
             <div className="relative h-full w-full">
-              <Image
+              <ImageWithLoader
+                sizes="(max-width: 768px) 100vw, 33vw"
                 src="https://ik.imagekit.io/libertyindia/about-india/nature/picture-3.svg"
                 alt="Nature 3"
                 fill
@@ -70,9 +74,9 @@ export default function NaturePage() {
             </div>
           </div>
           {/* Text Card Overlay */}
-          <div className="absolute left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 bg-white px-6 md:px-8 lg:px-10 py-6 md:py-8 lg:py-10 flex items-center z-10 shadow-lg max-w-2xl" style={{ width: '40%' }}>
-            <p className="text-sm md:text-base lg:text-xl text-gray-700 leading-loose lg:leading-loose" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
-              From the snow-capped peaks of the Himalayas to the tropical shores of Kerala, India encompasses nearly every ecosystem on Earth. Nature in India isn't just scenery—it's a teacher of patience, cycles, and the interconnectedness of all life.
+          <div className="absolute top-6 sm:top-8 md:top-12 lg:top-16 left-4 md:left-8 lg:left-12 w-[85%] md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
+            <p className="text-lg md:text-xl lg:text-[22px] text-[#424242] leading-loose" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+              From the snow-capped peaks of the Himalayas to the palm-fringed backwaters of Kerala, India unfolds as a destination of extraordinary range. Retreat into mist-wrapped mountain sanctuaries for world-class wellness, track tigers through legendary national parks on bespoke safaris, or unwind on secluded shores where the Arabian Sea meets untouched sands—every landscape an invitation to journeys that restore, inspire, and transform.
             </p>
           </div>
         </div>
@@ -81,8 +85,8 @@ export default function NaturePage() {
       {/* Section Footer Text */}
       <section className="w-full pt-2 pb-4 md:pt-3 md:pb-6 lg:pt-4 lg:pb-8 bg-[#FDF8E8] flex items-center justify-center mb-8">
         <div className="w-full max-w-5xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-gray-900 leading-tight" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
-            Liberty India's nature experiences immerse you in
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+            Liberty India&apos;s nature experiences immerse you in
           </h2>
         </div>
       </section>
@@ -93,15 +97,16 @@ export default function NaturePage() {
       {/* Majestic Mountain Realms */}
       <section className="w-full bg-white pt-2 pb-2">
         <div className="w-full max-w-5xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-semibold text-gray-900" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Majestic Mountain Realms
           </h2>
-          <p className="text-xs md:text-sm text-gray-600 mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          <p className="text-xs md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             Journey through some of the world’s most inspiring mountain regions. From the stark, dramatic landscapes of Leh–Ladakh to the lush valleys of Kashmir, experience nature, culture, and adventure at breathtaking altitudes.
           </p>
         </div>
         <ImageTextOverlay
-          startPosition="right"
+          variant="heritage"
+          startPosition="left"
           items={[
             {
               image: 'https://ik.imagekit.io/libertyindia/about-india/nature/leh-ladakh.png',
@@ -124,15 +129,16 @@ export default function NaturePage() {
       {/* Coastal Serenity */}
       <section className="w-full bg-white pt-2 pb-2">
         <div className="w-full max-w-5xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-semibold text-gray-900" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Coastal Serenity
           </h2>
-          <p className="text-xs md:text-sm text-gray-600 mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          <p className="text-xs md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             India’s diverse coastline stretches from vibrant beach hubs to secluded tropical shores, offering sun, culture, and coastal serenity
           </p>
         </div>
         <ImageTextOverlay
-          startPosition="left"
+          variant="heritage"
+          startPosition="right"
           items={[
             {
               image: 'https://ik.imagekit.io/libertyindia/about-india/nature/andaman.svg',
@@ -155,18 +161,19 @@ export default function NaturePage() {
       {/* Timeless Desert Horizons */}
       <section className="w-full bg-white pt-2 pb-2">
         <div className="w-full max-w-5xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-semibold text-gray-900" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Timeless Desert Horizons
           </h2>
-          <p className="text-xs md:text-sm text-gray-600 mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          <p className="text-xs md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             The golden landscapes of India’s desert regions offer royal heritage, vast dunes, and unforgettable cultural experiences
           </p>
         </div>
         <ImageTextOverlay
-          startPosition="right"
+          variant="heritage"
+          startPosition="left"
           items={[
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/nature/jaisalmer.svg',
+              image: '/images/heroes/jaisalmer.jpg',
               alt: 'Jaisalmer',
               title: 'Jaisalmer',
               description:
@@ -186,14 +193,15 @@ export default function NaturePage() {
       {/* Serene Backwater Retreats */}
       <section className="w-full bg-white pt-2 pb-2">
         <div className="w-full max-w-5xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-semibold text-gray-900" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
-            Serene Backwater Retreats
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+            Serene Backwater Escapes
           </h2>
-          <p className="text-xs md:text-sm text-gray-600 mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          <p className="text-xs md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             Serene networks of lagoons and canals lined with lush greenery offer tranquil journeys through South India’s most peaceful landscapes
           </p>
         </div>
         <ImageTextOverlay
+          variant="heritage"
           startPosition="left"
           items={[
             {
@@ -215,44 +223,10 @@ export default function NaturePage() {
       </section>
 
         <ItineraryCards
-          heading={"Explore the Culture\nExperience the Journey"}
-          subheading="Immerse yourself in India's living traditions with journeys designed for the culturally curious"
+          heading={"Explore the Nature\nExperience the Journey"}
+          subheading="Travel through centuries of history with journeys designed for discerning explorers"
           bgColor="#FDF39F4D"
-          items={[
-            {
-              image: 'https://ik.imagekit.io/libertyindia/itineraries/north-east/main-bg.svg',
-              alt: 'Northeast India & The City of Joy',
-              category: 'Culture',
-              bestTime: 'October – March',
-              title: 'Northeast India & The City of Joy',
-              description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
-              price: 1330,
-              duration: '13 Days',
-              slug: 'northeast-india-city-of-joy',
-            },
-            {
-              image: 'https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/main-bg.png',
-              alt: 'The Classical Golden Triangle of India',
-              category: 'Culture',
-              bestTime: 'October – March',
-              title: 'The Classical Golden Triangle of India',
-              description: 'Experience the iconic wonders of India’s Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi’s historic sites, and experience the pink city of Jaipur.',
-              price: 1013,
-              duration: '7 Days',
-              slug: 'classical-golden-triangle',
-            },
-            {
-              image: 'https://ik.imagekit.io/libertyindia/itineraries/south-india-tamil-nadu/main-bg.png',
-              alt: 'Unveiling the Enchanting South — Tamil Nadu',
-              category: 'Culture',
-              bestTime: 'October – March',
-              title: 'Unveiling the Enchanting South — Tamil Nadu',
-              description: 'Discover the magnificent temple architecture, French colonial heritage, and living craft traditions of Tamil Nadu.',
-              price: 880,
-              duration: '10 Days',
-              slug: 'unveiling-the-enchanting-south-tamil-nadu',
-            },
-          ]}
+          category="Nature"
         />
 
 
