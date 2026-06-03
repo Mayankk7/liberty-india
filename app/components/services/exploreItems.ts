@@ -19,7 +19,7 @@ export type ServiceItineraryItem = {
   bestTime: string;
   title: string;
   description: string;
-  price: number;
+  price?: number; // Omit for "Price on request"
   duration: string;
   slug?: string;
 };
@@ -35,9 +35,9 @@ const ITINERARIES: Record<string, ItinerarySource> = {
     bestTime: 'October – March',
     title: 'The Classical Golden Triangle of India',
     description:
-      "India's most celebrated journey — Delhi's Mughal grandeur, the Taj Mahal at sunrise, and the royal heritage of Jaipur in seven unforgettable days.",
+      "India's most celebrated journey — Delhi's Mughal grandeur, the Taj Mahal at sunrise, and the royal heritage of Jaipur in six unforgettable days.",
     price: 1013,
-    duration: '7 Days',
+    duration: '6 Days',
     slug: 'classical-golden-triangle',
   },
   'taj-and-tigers': {
@@ -45,19 +45,18 @@ const ITINERARIES: Record<string, ItinerarySource> = {
     bestTime: 'October – March',
     title: 'Taj & Tigers',
     description:
-      "The Golden Triangle elevated with the wild — combine Delhi, Agra and Jaipur with jeep safaris tracking Bengal tigers in Ranthambhore National Park.",
+      "The Golden Triangle elevated with the wild — combine Delhi, Agra and Jaipur with jeep safaris tracking Bengal tigers in Ranthambore National Park.",
     price: 1406,
     duration: '8 Days',
     slug: 'taj-and-tigers',
   },
   'colourful-rajasthan': {
     category: 'Heritage',
-    bestTime: 'October – March',
+    bestTime: 'October – April',
     title: 'Colourful Rajasthan',
     description:
-      "Painted havelis, golden ramparts and lake palaces — sixteen days through Rajasthan's most vivid forts, deserts and royal cities, ending at the Taj Mahal.",
-    price: 2086,
-    duration: '16 Days',
+      "Painted havelis, golden ramparts and lake palaces — fourteen days through Rajasthan's most vivid forts, deserts and royal cities, ending at the Taj Mahal.",
+    duration: '14 Days',
     slug: 'colourful-rajasthan',
   },
   'unveiling-the-enchanting-south-tamil-nadu': {
@@ -87,7 +86,7 @@ const ITINERARIES: Record<string, ItinerarySource> = {
     description:
       "Restore body, mind and spirit at one of India's most respected Ayurvedic retreats — daily yoga, personalised therapies and wholesome cuisine in Kerala's Pala forests.",
     price: 1230,
-    duration: '7 Nights',
+    duration: '7 / 14 / 21 Nights',
     slug: 'kairali-ayurvedic-healing-village',
   },
   'northeast-india-sojourn': {

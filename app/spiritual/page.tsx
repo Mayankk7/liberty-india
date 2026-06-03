@@ -82,7 +82,7 @@ export default function SpiritualPage() {
                 {/* Text Card Overlay */}
                 <div className="absolute top-6 sm:top-8 md:top-12 lg:top-16 left-4 md:left-8 lg:left-12 w-[85%] md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
                   <p className="text-lg md:text-xl lg:text-[22px] text-[#424242] leading-loose" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
-                    An ancient way of life connecting the everyday with the divine, India&apos;s spiritual heritage centers on self-realization, karma, and inner peace. Guided by Yoga, Vedanta, Buddhism, and Bhakti traditions, it invites discerning travelers to embrace compassion, unity, and the timeless pursuit of Moksha through transformative retreats and sacred pilgrimages.
+                    An ancient way of life connecting the everyday with the divine, India&apos;s spiritual heritage centres on self-realisation, karma, and inner peace. Guided by Yoga, Vedanta, Buddhism, and Bhakti traditions, it invites discerning travellers to embrace compassion, unity, and the timeless pursuit of Moksha through transformative retreats and sacred pilgrimages.
                   </p>
                 </div>
               </div>
@@ -183,7 +183,7 @@ export default function SpiritualPage() {
 
 
         <ItineraryCards
-          heading={"Explore the Spiritual\nExperience the Journey"}
+          heading={"Explore the Spiritual.\nExperience the Journey."}
           subheading="Travel through centuries of history with journeys designed for discerning explorers"
           bgColor="#FDF39F4D"
           category="Spiritual"

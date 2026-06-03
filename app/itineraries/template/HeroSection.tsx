@@ -11,9 +11,10 @@ import type { Itinerary } from '../itineraries';
  */
 function shortRoute(route: string): string {
   const parts = route.split('→').map((p) => p.trim()).filter(Boolean);
-  if (parts.length <= 3) return parts.join(' · ');
-  // First stop, and a couple of representative interior stops.
-  return [parts[0], parts[Math.floor(parts.length / 2)], parts[parts.length - 1]].join(' · ');
+  // Show every stop for short/medium routes (so e.g. the Golden Triangle keeps
+  // Agra in "Delhi · Agra · Jaipur · Delhi"). Only long routes are summarised.
+  if (parts.length <= 5) return parts.join(' · ');
+  return [parts[0], parts[1], '…', parts[parts.length - 1]].join(' · ');
 }
 
 export default function HeroSection({ itinerary }: { itinerary: Itinerary }) {

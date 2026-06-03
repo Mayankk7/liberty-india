@@ -96,7 +96,7 @@ function ExpertCta({ onOpen }: { onOpen: () => void }) {
           className="mt-2 text-sm md:text-[15px] text-[#424242] font-light leading-relaxed"
           style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
         >
-          A Liberty India specialist will plan this journey around you — flexible dates, custom pacing, your preferred style.
+          A Liberty India specialist will tailor this itinerary to your client — flexible dates, custom pricing and preferred style.
         </p>
       </div>
 

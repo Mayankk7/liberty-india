@@ -157,6 +157,80 @@ repointed.
 > then **Done**, **Files**, **Next**. Older sessions archived in
 > `SESSION_LOG_ARCHIVE.md`.
 
+### 2026-06-04 (session 31) — Website-review pass: consistency, B2B repositioning, broken-link & dead-end fixes
+**Done:** Worked the full client website-review punch list. Build clean 45/45.
+- **Currency → € sitewide:** `ItineraryCards.tsx` service-card path rendered `$` (theme pages were
+  already €). Now `€`; also added a price-less path (`price?` optional) → "Price on request".
+  `Journeys.tsx` fallback `$`→`€`.
+- **Colourful Rajasthan reconciled:** title + datesPrices "Colorful"→"Colourful" (UK);
+  `exploreItems` 16 Days→14, €2,086→Price on request (price omitted), Oct–Mar→Oct–Apr,
+  "sixteen days"→"fourteen days" — all now match the detail page.
+- **Ranthambhore→Ranthambore** everywhere (replace_all in `itineraries.ts` + `exploreItems`).
+- **Gujarat:** card title "Vibrant Gujrat"→"Vibrant Gujarat" (title + datesPrices).
+- **Kairali duration aligned:** service card 7 Nights → "7 / 14 / 21 Nights" (matches carousel).
+- **Golden Triangle:** duration 7→6 Days (only 6 days authored; synced `exploreItems`); removed the
+  duplicated "commissioned by Empress Nur Jahan" clause (Day 3 — fixed in both itineraries that had it);
+  route header was dropping Agra — `HeroSection.shortRoute` now shows every stop for routes ≤5
+  ("Delhi · Agra · Jaipur · Delhi").
+- **Service pages:** Meetings strapline "Business by Day…"→"Business Meets Inspiration" (matches home);
+  Sports strapline →"Where Sport Meets Culture" (distinct from Incentives' "…Transformations");
+  Special Interest body copy rewritten (journey *of a* lifetime / repaired From…to… list / expert-led);
+  Cruise & Sports Explore blocks given page-specific headings + honest subheads (no more pasted
+  "centuries of history"); all block-using service + about-india pages now have relevant subheads.
+- **CustomizedPrograms form (B2B):** lede→"Share your brief…", "Travel Plans"→"Brief / requirements",
+  "Submit"→"Send brief".
+- **Contact block (Footer, copy-only — logic/fields untouched):** heading→"We build the ground
+  programme behind yours", sub→"Tell us what your clients or delegates need…", form eyebrow→
+  "Request a proposal", heading→"Tell us about your programme", button→"Request a proposal",
+  dropdown "Incentive Programs"→"Incentives" (value kept), removed dead "Event Production" option.
+- **Itinerary CTA (B2B):** DetailsSection + ExpertInquiryModal →"…will tailor this itinerary to your
+  client — flexible dates, custom pricing and preferred style."
+- **Home hero/intro (B2B):** AboutUs intro rewritten for tour operators/advisors/corporate buyers
+  (+ terminal period); hero service line "Special Interest Tour"→"Tours" (plural); JSON-LD + layout
+  meta "specializing"→"specialising".
+- **Nav/footer labels unified:** footer "Tours"→"Journeys", "Services"→"Our Services",
+  "Special Interest"→"Special Interest Tours".
+- **Broken /contact-us rebuilt:** was a dead stub (no nav/footer, dead form). Now renders Navbar +
+  intro band + Footer (working /api/contact form). Both nav & footer "Contact Us" now point to
+  `/#contact`.
+- **Social icons hidden** (all linked to "#") — removed with a restore-when-live comment.
+- **Event Production dead-end:** removed from home Services grid (row of 4→3) and contact dropdown
+  (page still just redirects to /under-development).
+- **About Us page:** "three pillars"→"three pillars:"; merged the fragmented philosophy line into one
+  sentence; removed the lone trailing period on "Bespoke Curation" (matches the no-period cards);
+  "global travelers"→"travellers".
+- **Heritage page:** heading "Explore the Heritage\nExperience the Journey" → adds periods to both;
+  completed the cut-off lead-in. Applied the period pattern to all 7 about-india headings.
+- **Dialect (UK):** premium-leisure "specialize/traveler"→"specialise/traveller"; spiritual
+  "centers/self-realization/travelers"→UK; itineraries Maheshwar "recognized"→"recognised".
+**Files:** `app/components/{ItineraryCards,Journeys,AboutUs,Services,Footer,HeroCarousel}.tsx`,
+`app/components/services/{exploreItems.ts,CustomizedPrograms,TaglineStrip(read-only)}`,
+`app/our-services/{meetings-conferences,incentives(read),sports-tourism,cruise-handling,
+special-interest,premium-leisure,education-tours}/page.tsx`,
+`app/itineraries/itineraries.ts`, `app/itineraries/template/{HeroSection,DetailsSection,
+ExpertInquiryModal}.tsx`, `app/{about-us,contact-us,heritage,wildlife,culture,architecture,
+wellness,nature,spiritual}/page.tsx`, `app/layout.tsx`, `CLAUDE.md`.
+**Next:** User reviews on dev. (a) Currency € everywhere incl. service cards; Rajasthan card now
+"14 Days / Price on request". (b) Golden Triangle hero route shows Agra; "6 Days". (c) Service
+straplines/subheads page-specific; Meetings matches home. (d) Footer/nav labels consistent;
+/contact-us renders a real page; both Contact links land on the form; no social icons; no Event
+Production in grid/dropdown. (e) B2B copy on home intro, contact block, itinerary CTA, customized-
+programs form. **Still open (not in this review):** no social proof/credentials yet (client to
+supply certifications — "Check with Team India"); `CustomizedPrograms` form still has no onSubmit;
+`/event-prod` page itself still unbuilt (now unlinked); `to-be-added.json` staging file still has
+old "Ranthambhore"/"Colorful" (not imported, non-live).
+
+**Follow-up (same day, 2nd review round):** Caught items the first pass missed —
+(1) **Northeast India & The City of Joy had the wrong subtitle** (pasted Golden-Triangle blurb)
+*and* a `$1,330` price — this drives the Culture/Nature/Wildlife category cards + journeys index via
+`fromCategory`, so one source fix corrects all. New subtitle = the real NE blurb; price → €1,330
+(was the only remaining `$`-denominated `startingPrice` in the data). (2) More US spellings → UK:
+culture "Festival of Colors/colored"→"Colours/coloured"; wellness "optimizing"→"optimising",
+"Customized/Personalized"→"Customised/Personalised"; CustomizedPrograms heading+alt
+"Customized"→"Customised"; wildlife "splendor"→"splendour"; architecture "valor"→"valour";
+itineraries "local theater"→"theatre". Journeys index + Contact Us pull the same source / Footer
+form, so both now render corrected. Build still clean 45/45.
+
 ### 2026-05-29 (session 30) — UX fixes: hero spacing, navbar smooth-scroll, About-India category filtering, expert button, day-card images
 **Done:** Five frontend fixes. Build clean 43/43.
 1. **Hero letter-spacing** (`HeroCarousel.tsx`) — tagline `tracking-[0.28em]→[0.1em]`; service line

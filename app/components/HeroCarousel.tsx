@@ -180,7 +180,7 @@ export default function HeroCarousel() {
 
         {/* Service Line */}
         <p className="mt-4 md:mt-5 text-[10px] sm:text-xs md:text-sm lg:text-base text-white text-center font-normal tracking-[0.05em] md:tracking-[0.1em] uppercase text-shadow-sm px-2" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
-          MICE&nbsp;&nbsp;|&nbsp;&nbsp;Leisure&nbsp;&nbsp;|&nbsp;&nbsp;Special Interest Tour&nbsp;&nbsp;|&nbsp;&nbsp;Events &amp; Beyond
+          MICE&nbsp;&nbsp;|&nbsp;&nbsp;Leisure&nbsp;&nbsp;|&nbsp;&nbsp;Special Interest Tours&nbsp;&nbsp;|&nbsp;&nbsp;Events &amp; Beyond
         </p>
       </div>
 

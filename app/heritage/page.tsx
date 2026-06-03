@@ -92,7 +92,7 @@ export default function HeritagePage() {
             className="text-xl md:text-2xl lg:text-3xl font-bold text-[#424242]"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
-            Liberty India&apos;s heritage journeys connect you with
+            Liberty India&apos;s heritage journeys connect you with the soul of the subcontinent — its temples, forts, and living traditions.
           </p>
         </div>
       </section>
@@ -373,7 +373,7 @@ export default function HeritagePage() {
 
       {/* Heritage Itineraries Section */}
       <ItineraryCards
-        heading={"Explore the Heritage\nExperience the Journey"}
+        heading={"Explore the Heritage.\nExperience the Journey."}
         subheading="Travel through centuries of history with journeys designed for discerning explorers"
         bgColor="#FDF39F4D"
         category="Heritage"

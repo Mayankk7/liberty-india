@@ -49,9 +49,12 @@ const s = StyleSheet.create({
 
   dayCard: { borderWidth: 1, borderColor: C.line, borderRadius: 6, padding: 11, marginBottom: 8, backgroundColor: '#fffdf8' },
   dayHead: { flexDirection: 'row', alignItems: 'center', marginBottom: 6 },
-  dayBadge: { backgroundColor: C.cream, borderColor: C.line, borderWidth: 1, borderRadius: 4, paddingHorizontal: 6, paddingVertical: 2.5, fontSize: 8.5, color: C.ink, fontFamily: 'Helvetica-Bold', marginRight: 9 },
-  dayTitle: { fontSize: 10.5, fontFamily: 'Helvetica-Bold', color: C.ink, flex: 1 },
-  dayOvernight: { fontSize: 8.5, color: C.muted },
+  // Badge is a View (not a bordered Text) so it stays vertically centred against
+  // the title instead of dropping its baseline.
+  dayBadge: { backgroundColor: C.cream, borderColor: C.line, borderWidth: 1, borderRadius: 4, paddingHorizontal: 6, paddingVertical: 3, marginRight: 9 },
+  dayBadgeText: { fontSize: 8.5, color: C.ink, fontFamily: 'Helvetica-Bold', letterSpacing: 0.5, lineHeight: 1 },
+  dayTitle: { fontSize: 10.5, fontFamily: 'Helvetica-Bold', color: C.ink, flex: 1, paddingRight: 8 },
+  dayOvernight: { fontSize: 8.5, color: C.muted, flexShrink: 0, textAlign: 'right' },
   dayDesc: { fontSize: 9.5, lineHeight: 1.5, color: C.body },
 
   detailRow: { flexDirection: 'row', marginBottom: 4 },
@@ -156,7 +159,9 @@ export function ItineraryPdfDocument({ itinerary, heroSrc, overviewSrc, mapSrc }
           {itinerary.days.map((d) => (
             <View key={d.day} style={s.dayCard} wrap={false}>
               <View style={s.dayHead}>
-                <Text style={s.dayBadge}>DAY {String(d.day).padStart(2, '0')}</Text>
+                <View style={s.dayBadge}>
+                  <Text style={s.dayBadgeText}>DAY {String(d.day).padStart(2, '0')}</Text>
+                </View>
                 <Text style={s.dayTitle}>{d.title}</Text>
                 {d.overnight && d.overnight !== '—' ? <Text style={s.dayOvernight}>Overnight: {d.overnight}</Text> : null}
               </View>

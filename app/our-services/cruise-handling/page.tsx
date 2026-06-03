@@ -4,7 +4,7 @@ import SectionOverview from '../../components/services/SectionOverview';
 import ServiceHero from '../../components/services/ServiceHero';
 import TaglineStrip from '../../components/services/TaglineStrip';
 import ItineraryCards from '../../components/ItineraryCards';
-import { getExploreItems, EXPLORE_HEADING, EXPLORE_SUBHEADING, EXPLORE_BG } from '../../components/services/exploreItems';
+import { getExploreItems, EXPLORE_BG } from '../../components/services/exploreItems';
 
 const overviewImages = [
   'https://ik.imagekit.io/libertyindia/services/cruise/p1.png?tr=w-1920,q-80,f-auto',
@@ -27,8 +27,8 @@ export default function CruiseHandlingPage() {
       <TaglineStrip text="Seamless Integration of River & Coastal Voyages" />
       <SectionOverview images={overviewImages} description={overviewDescription} />
       <ItineraryCards
-        heading={EXPLORE_HEADING}
-        subheading={EXPLORE_SUBHEADING}
+        heading="Journeys to Pair With Your Cruise"
+        subheading="River and coastal itineraries our team operates alongside your port calls."
         items={getExploreItems('cruise')}
         bgColor={EXPLORE_BG}
       />

@@ -64,7 +64,7 @@ export default function AboutUs() {
             className="text-sm md:text-base text-gray-700 font-normal leading-relaxed max-w-3xl mb-8 md:mb-10"
             style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
           >
-            We design bespoke journeys across India for discerning global travellers — defined by authentic encounters, privileged access, and seamless execution. Every experience reflects a deep understanding of place, culture, and heritage, crafted with care and delivered with quiet excellence
+            We design and operate bespoke India programmes for tour operators, travel advisors and corporate buyers — built on authentic access, on-ground precision, and seamless execution. Every experience reflects a deep understanding of place, culture, and heritage, crafted with care and delivered with quiet excellence.
           </p>
 
           {/* CTA Button */}
@@ -104,7 +104,7 @@ export default function AboutUs() {
             '@type': 'Organization',
             name: 'Liberty India',
             description:
-              'Liberty India is a premier Destination Management Company specializing in bespoke journeys across India for discerning global travellers.',
+              'Liberty India is a premier Destination Management Company specialising in bespoke India programmes for tour operators, travel advisors and corporate buyers.',
             url: 'https://libertyindia.com',
             logo: 'https://ik.imagekit.io/libertyindia/about-us/logo.svg',
             sameAs: [],

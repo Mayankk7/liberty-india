@@ -22,8 +22,16 @@ export default function DaysSection({ itinerary }: { itinerary: Itinerary }) {
         name: s.name,
         lat: s.lat,
         lng: s.lng,
+        // Keep every transport mode (road/air/rail/water) so the map can show
+        // the matching car / flight / train / boat icon on each leg. (Previously
+        // rail + water were dropped to null.)
         modeToNext:
-          s.modeToNext === 'road' || s.modeToNext === 'air' ? s.modeToNext : null,
+          s.modeToNext === 'road' ||
+          s.modeToNext === 'air' ||
+          s.modeToNext === 'rail' ||
+          s.modeToNext === 'water'
+            ? s.modeToNext
+            : null,
       })),
     [itinerary.coordinates]
   );

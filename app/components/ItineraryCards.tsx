@@ -11,7 +11,7 @@ interface ItineraryItem {
   bestTime: string;
   title: string;
   description: string;
-  price: number;
+  price?: number; // Omit for "Price on request"
   duration: string;
   slug?: string; // Optional slug for linking
 }
@@ -69,18 +69,23 @@ function fromCategory(category: ItineraryCategory, limit: number): CardData[] {
 }
 
 function fromItems(items: ItineraryItem[]): CardData[] {
-  return items.map((item) => ({
-    image: item.image,
-    alt: item.alt,
-    metaLine: `${item.category}  |  Best Time  |  ${item.bestTime}`,
-    title: item.title,
-    description: item.description,
-    priceLabel: 'Starting from',
-    priceValue: `$${item.price.toLocaleString()}`,
-    priceNote: 'per person',
-    duration: item.duration,
-    href: item.slug ? `/itineraries/${item.slug}` : undefined,
-  }));
+  return items.map((item) => {
+    // Numeric price → "€1,013" (sitewide currency is the euro); a missing
+    // price means the trip is quoted on request.
+    const hasPrice = typeof item.price === 'number';
+    return {
+      image: item.image,
+      alt: item.alt,
+      metaLine: `${item.category}  |  Best Time  |  ${item.bestTime}`,
+      title: item.title,
+      description: item.description,
+      priceLabel: hasPrice ? 'Starting from' : '',
+      priceValue: hasPrice ? `€${item.price!.toLocaleString()}` : 'Price on request',
+      priceNote: hasPrice ? 'per person' : '',
+      duration: item.duration,
+      href: item.slug ? `/itineraries/${item.slug}` : undefined,
+    };
+  });
 }
 
 export default function ItineraryCards({ heading, subheading, items, category, limit = 3, bgColor }: ItineraryCardsProps) {

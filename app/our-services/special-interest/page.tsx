@@ -4,7 +4,7 @@ import SectionOverview from '../../components/services/SectionOverview';
 import ServiceHero from '../../components/services/ServiceHero';
 import TaglineStrip from '../../components/services/TaglineStrip';
 import ItineraryCards from '../../components/ItineraryCards';
-import { getExploreItems, EXPLORE_HEADING, EXPLORE_SUBHEADING, EXPLORE_BG } from '../../components/services/exploreItems';
+import { getExploreItems, EXPLORE_HEADING, EXPLORE_BG } from '../../components/services/exploreItems';
 
 const overviewImages = [
   'https://ik.imagekit.io/libertyindia/services/special-interest/p1.png?tr=w-1920,q-80,f-auto',
@@ -17,7 +17,7 @@ const overviewImages = [
 ];
 
 const overviewDescription =
-  "For those who wish to explore India with purpose and depth, our Special Interest Tours offer a more immersive and soul-awakening journey for lifetime. Built around individual passions, these journeys go beyond sightseeing—inviting you into the heart of India's culture, traditions, and landscapes. From private culinary trails and sacred pilgrimages to yogic retreats, and textile explorations. Every experience is expert led, with authenticity, and seamless attention to detail.";
+  "For those who wish to explore India with purpose and depth, our Special Interest Tours offer a more immersive and soul-awakening journey of a lifetime. Built around individual passions, these journeys go beyond sightseeing — inviting you into the heart of India's culture, traditions, and landscapes. From private culinary trails and sacred pilgrimages to yogic retreats and textile explorations, every experience is expert-led, authentic, and crafted with seamless attention to detail.";
 
 export default function SpecialInterestPage() {
   return (
@@ -31,7 +31,7 @@ export default function SpecialInterestPage() {
       <SectionOverview images={overviewImages} description={overviewDescription} />
       <ItineraryCards
         heading={EXPLORE_HEADING}
-        subheading={EXPLORE_SUBHEADING}
+        subheading="Passion-led journeys — wellness, wildlife, cuisine and culture, explored in depth."
         items={getExploreItems('special-interest')}
         bgColor={EXPLORE_BG}
       />

@@ -82,7 +82,7 @@ export default function WellnessPage() {
         {/* Text Card Overlay */}
         <div className="absolute top-6 sm:top-8 md:top-12 lg:top-16 left-4 md:left-8 lg:left-12 w-[85%] md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
           <p className="text-lg md:text-xl lg:text-[22px] text-[#424242] leading-loose" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
-            India gave the world Yoga and Ayurveda–sophisticated systems of wellness developed over millennia. These aren&apos;t trends; they&apos;re complete frameworks for living in harmony with natural rhythms, preventing disease, and optimizing human potential.
+            India gave the world Yoga and Ayurveda–sophisticated systems of wellness developed over millennia. These aren&apos;t trends; they&apos;re complete frameworks for living in harmony with natural rhythms, preventing disease, and optimising human potential.
           </p>
         </div>
       </div>
@@ -112,7 +112,7 @@ export default function WellnessPage() {
       <section className="relative w-full bg-white py-0 mb-6">
         <Image
           src="https://ik.imagekit.io/libertyindia/about-india/wellness/experiences.png"
-          alt="Ayurveda Retreat Experiences — Ayurvedic Consultations, Customized Treatment Programs, Lifestyle Counselling, Herbal Medicine, and Diet & Nutrition"
+          alt="Ayurveda Retreat Experiences — Ayurvedic Consultations, Customised Treatment Programs, Lifestyle Counselling, Herbal Medicine, and Diet & Nutrition"
           width={5760}
           height={2837}
           className="hidden md:block w-full h-auto"
@@ -127,8 +127,8 @@ export default function WellnessPage() {
                 body: 'Individual assessment by experienced Ayurvedic practitioners',
               },
               {
-                title: 'Customized Treatment Programs',
-                body: 'Personalized therapies based on your constitution (Vata, Pitta, Kapha)',
+                title: 'Customised Treatment Programs',
+                body: 'Personalised therapies based on your constitution (Vata, Pitta, Kapha)',
               },
               {
                 title: 'Lifestyle Counselling',
@@ -228,8 +228,8 @@ export default function WellnessPage() {
       </section>
 
       <ItineraryCards
-        heading={"Explore the Wellness\nExperience the Journey"}
-        subheading="Travel through centuries of history with journeys designed for discerning explorers"
+        heading={"Explore the Wellness.\nExperience the Journey."}
+        subheading="Restore body and mind with Ayurvedic and yoga journeys designed for the wellness seeker."
         bgColor="#FDF39F4D"
         category="Wellness"
       />

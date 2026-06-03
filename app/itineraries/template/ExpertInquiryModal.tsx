@@ -178,7 +178,7 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
             className="absolute bottom-7 left-7 right-7 text-white/90 text-sm leading-relaxed"
             style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
           >
-            A Liberty India specialist will craft this journey around you — flexible dates, custom pacing, your preferred style.
+            A Liberty India specialist will tailor this itinerary to your client — flexible dates, custom pricing and preferred style.
           </p>
         </div>
 

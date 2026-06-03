@@ -63,14 +63,6 @@ const services: Service[] = [
     href: '/our-services/special-interest',
   },
   {
-    id: 'event-prod',
-    title: 'Event Production & Content',
-    subtitle: 'Stories, Brought to Life',
-    description: 'On-ground execution and cinematic content creation.',
-    image: 'https://ik.imagekit.io/libertyindia/services/event-prod.png',
-    href: '/event-prod',
-  },
-  {
     id: 'sports-tourism',
     title: 'Sports Tourism',
     subtitle: 'Where Sport Meets Culture',
@@ -208,12 +200,12 @@ export default function Services() {
           <Reveal delay={160}><ServiceCard service={byId('special-interest')} size="md" className="h-[360px] md:h-[460px]" /></Reveal>
         </div>
 
-        {/* Row of 4 — equal height to the row of 3 */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2">
-          <Reveal><ServiceCard service={byId('sports-tourism')} size="md" className="h-[260px] sm:h-[320px] md:h-[460px]" /></Reveal>
-          <Reveal delay={80}><ServiceCard service={byId('education-tours')} size="md" className="h-[260px] sm:h-[320px] md:h-[460px]" /></Reveal>
-          <Reveal delay={160}><ServiceCard service={byId('cruise-handling')} size="md" className="h-[260px] sm:h-[320px] md:h-[460px]" /></Reveal>
-          <Reveal delay={240}><ServiceCard service={byId('event-prod')} size="md" className="h-[260px] sm:h-[320px] md:h-[460px]" /></Reveal>
+        {/* Row of 3 — equal height to the row above. (Event Production &
+            Content is intentionally omitted until its page exists.) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+          <Reveal><ServiceCard service={byId('sports-tourism')} size="md" className="h-[360px] md:h-[460px]" /></Reveal>
+          <Reveal delay={80}><ServiceCard service={byId('education-tours')} size="md" className="h-[360px] md:h-[460px]" /></Reveal>
+          <Reveal delay={160}><ServiceCard service={byId('cruise-handling')} size="md" className="h-[360px] md:h-[460px]" /></Reveal>
         </div>
       </div>
     </section>

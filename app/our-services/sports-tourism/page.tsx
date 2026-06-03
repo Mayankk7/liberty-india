@@ -4,7 +4,7 @@ import SectionOverview from '../../components/services/SectionOverview';
 import ServiceHero from '../../components/services/ServiceHero';
 import TaglineStrip from '../../components/services/TaglineStrip';
 import ItineraryCards from '../../components/ItineraryCards';
-import { getExploreItems, EXPLORE_HEADING, EXPLORE_SUBHEADING, EXPLORE_BG } from '../../components/services/exploreItems';
+import { getExploreItems, EXPLORE_BG } from '../../components/services/exploreItems';
 
 const overviewImages = [
   'https://ik.imagekit.io/libertyindia/services/sports/p1.png?tr=w-1920,q-80,f-auto',
@@ -24,11 +24,11 @@ export default function SportsTourismPage() {
         title="Sports Tourism"
         imageSrc="https://ik.imagekit.io/libertyindia/services/sports/sports-bg.png?updatedAt=1779259307588"
       />
-      <TaglineStrip text="Celebrating Excellence Through Transformation" />
+      <TaglineStrip text="Where Sport Meets Culture" />
       <SectionOverview images={overviewImages} description={overviewDescription} />
       <ItineraryCards
-        heading={EXPLORE_HEADING}
-        subheading={EXPLORE_SUBHEADING}
+        heading="Journeys to Pair With the Action"
+        subheading="Adventure and cultural itineraries to extend any sporting visit to India."
         items={getExploreItems('sports')}
         bgColor={EXPLORE_BG}
       />

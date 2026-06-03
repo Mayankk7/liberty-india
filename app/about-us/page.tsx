@@ -82,7 +82,7 @@ export default function AboutUsPage() {
               className="text-sm md:text-base lg:text-lg text-[#424242] font-normal tracking-[0.02em] leading-loose lg:leading-loose"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
-              Two decades ago, Liberty India was founded on a singular vision—to craft journeys that connect global travelers with the true soul of India. From the regal grandeur of Rajasthan&apos;s palaces to the serene backwaters of Kerala, we have cultivated enduring relationships that unlock rare, authentic experiences. Today, we are the trusted partner of world-class tour operators and luxury travel advisors seeking journeys that transcend the ordinary. Across India&apos;s most extraordinary destinations, we design bespoke experiences that transform every itinerary into a timeless story.
+              Two decades ago, Liberty India was founded on a singular vision—to craft journeys that connect global travellers with the true soul of India. From the regal grandeur of Rajasthan&apos;s palaces to the serene backwaters of Kerala, we have cultivated enduring relationships that unlock rare, authentic experiences. Today, we are the trusted partner of world-class tour operators and luxury travel advisors seeking journeys that transcend the ordinary. Across India&apos;s most extraordinary destinations, we design bespoke experiences that transform every itinerary into a timeless story.
             </p>
           </div>
         </div>
@@ -109,13 +109,7 @@ export default function AboutUsPage() {
               className="text-base md:text-lg text-[#424242] font-bold mb-3 md:mb-4"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
-              True luxury lies in meaningful connection
-            </p>
-            <p
-              className="text-sm md:text-base text-[#424242] leading-loose lg:leading-loose"
-              style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-            >
-              to India&apos;s cultures, landscapes, stories, and people
+              True luxury lies in meaningful connection to India&apos;s cultures, landscapes, stories, and people.
             </p>
             <p
               className="text-sm md:text-base text-[#424242] leading-loose lg:leading-loose"
@@ -142,7 +136,7 @@ export default function AboutUsPage() {
               className="text-sm md:text-base text-[#424242]"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
-              Every journey we orchestrate is built on three pillars
+              Every journey we orchestrate is built on three pillars:
             </p>
           </div>
 
@@ -291,7 +285,7 @@ export default function AboutUsPage() {
                   className="text-sm md:text-base text-[#424242] leading-relaxed"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
-                  Each experience is thoughtfully curated by our travel specialists to celebrate local culture and heritage, brought to life with refined attention to detail.
+                  Each experience is thoughtfully curated by our travel specialists to celebrate local culture and heritage, brought to life with refined attention to detail
                 </p>
               </div>
             </div>

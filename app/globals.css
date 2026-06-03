@@ -264,6 +264,23 @@ h1, h2, h3, h4, h5, h6 {
   .li-map-pin-pulse { animation: none; opacity: 0; }
 }
 
+/* Itinerary map vehicle icon (see IndiaMap vehicleIcon) — neutralise Leaflet's
+   default white square div-icon, then draw a round white chip for the glyph. */
+.li-mode-badge {
+  background: transparent;
+  border: none;
+}
+.li-mode-badge-box {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1.5px solid #15803d;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
+}
+
 /* Print / "Download PDF" — clean the page to just the itinerary content. */
 @media print {
   nav,

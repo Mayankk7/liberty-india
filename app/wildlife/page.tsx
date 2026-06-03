@@ -83,7 +83,7 @@ export default function WildlifePage() {
           {/* Text Card Overlay */}
           <div className="absolute top-6 sm:top-8 md:top-12 lg:top-16 left-4 md:left-8 lg:left-12 w-[85%] md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
             <p className="text-lg md:text-xl lg:text-[22px] text-[#424242] leading-loose" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
-              India, a premier global biodiversity hotspot, hosts 7-8% of the world&apos;s plant and animal species—including 423 mammals and over 1,200 birds—across just 2.4% of Earth&apos;s land. From Himalayan alpine forests to desert scrub and tropical rainforests, its protected realms of 900+ national parks and sanctuaries safeguard icons like the Royal Bengal Tiger, One-horned Rhinoceros, Asian Elephant, and both tigers and lions found nowhere else, inviting luxury safaris amid untamed splendor.
+              India, a premier global biodiversity hotspot, hosts 7-8% of the world&apos;s plant and animal species—including 423 mammals and over 1,200 birds—across just 2.4% of Earth&apos;s land. From Himalayan alpine forests to desert scrub and tropical rainforests, its protected realms of 900+ national parks and sanctuaries safeguard icons like the Royal Bengal Tiger, One-horned Rhinoceros, Asian Elephant, and both tigers and lions found nowhere else, inviting luxury safaris amid untamed splendour.
             </p>
           </div>
         </div>
@@ -133,8 +133,8 @@ export default function WildlifePage() {
       </div>
 
       <ItineraryCards
-        heading={"Explore the Wildlife\nExperience the Journey"}
-        subheading="Travel through centuries of history with journeys designed for discerning explorers"
+        heading={"Explore the Wildlife.\nExperience the Journey."}
+        subheading="Track tigers, rhinos and rare birdlife with journeys designed for wildlife enthusiasts."
         bgColor="#FDF39F4D"
         category="Wildlife"
       />

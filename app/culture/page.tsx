@@ -171,11 +171,11 @@ export default function CulturePage() {
             },
             {
               image: 'https://ik.imagekit.io/libertyindia/about-india/culture/holi.svg',
-              alt: 'Holi - Festival of Colors',
+              alt: 'Holi - Festival of Colours',
               title: 'Holi',
               subtitle: 'March',
               description:
-                'The Festival of Colors, a joyous celebration involving colored powder, bonfires, and communal gatherings (Pan-India)',
+                'The Festival of Colours, a joyous celebration involving coloured powder, bonfires, and communal gatherings (Pan-India)',
             },
           ]}
         />
@@ -303,7 +303,7 @@ export default function CulturePage() {
 
       {/* Culture Itineraries Section */}
         <ItineraryCards
-          heading={"Explore the Culture\nExperience the Journey"}
+          heading={"Explore the Culture.\nExperience the Journey."}
           subheading="Immerse yourself in India's living traditions with journeys designed for the culturally curious"
           bgColor="#FDF39F4D"
           category="Culture"

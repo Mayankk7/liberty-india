@@ -28,7 +28,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: 'Liberty India | India\'s Leading Destination Management Company | DMC & MICE',
   description:
-    'Liberty India is India\'s premier Destination Management Company (DMC) specializing in MICE, Leisure travel, Events & Beyond. Experience where ancient wisdom meets modern luxury across India\'s most iconic destinations.',
+    'Liberty India is India\'s premier Destination Management Company (DMC) specialising in MICE, Leisure travel, Events & Beyond. Experience where ancient wisdom meets modern luxury across India\'s most iconic destinations.',
   keywords: [
     'Liberty India',
     'India DMC',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     siteName: 'Liberty India',
     title: 'Liberty India | India\'s Leading DMC & MICE Company',
     description:
-      'India\'s premier Destination Management Company specializing in MICE, Leisure travel, Events & Beyond. Where ancient wisdom meets modern luxury.',
+      'India\'s premier Destination Management Company specialising in MICE, Leisure travel, Events & Beyond. Where ancient wisdom meets modern luxury.',
     images: [
       {
         url: '/images/home-section/mar.jpg',
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Liberty India | India\'s Leading DMC & MICE Company',
     description:
-      'India\'s premier Destination Management Company specializing in MICE, Leisure travel, Events & Beyond.',
+      'India\'s premier Destination Management Company specialising in MICE, Leisure travel, Events & Beyond.',
     images: ['/images/home-section/mar.jpg'],
   },
   robots: {
@@ -100,7 +100,7 @@ const jsonLd = {
   '@type': 'TravelAgency',
   name: 'Liberty India',
   description:
-    "India's Leading Destination Management Company specializing in MICE, Leisure, Events & Beyond.",
+    "India's Leading Destination Management Company specialising in MICE, Leisure, Events & Beyond.",
   url: 'https://libertyindia.com',
   image: 'https://libertyindia.com/images/home-section/mar.jpg',
   address: {

@@ -93,7 +93,9 @@ export interface MapStop {
   name: string;
   lat: number;
   lng: number;
-  modeToNext?: "road" | "air" | "rail";
+  /** Transport used to reach the NEXT stop — drives the leg icon on the map
+   *  (road → car, air → flight, rail → train, water → boat). */
+  modeToNext?: "road" | "air" | "rail" | "water";
 }
 
 // Keyed by itinerary slug
@@ -123,12 +125,12 @@ export const ITINERARY_MAP_ROUTES: Record<string, MapStop[]> = {
     { name: "Delhi", lat: 28.6139, lng: 77.209 },
   ],
 
-  // 7. Taj & Tigers (Golden Triangle with Ranthambhore)
+  // 7. Taj & Tigers (Golden Triangle with Ranthambore)
   "taj-and-tigers": [
     { name: "Delhi", lat: 28.6139, lng: 77.209, modeToNext: "road" },
     { name: "Agra", lat: 27.1767, lng: 78.0081, modeToNext: "road" },
     { name: "Jaipur", lat: 26.9124, lng: 75.7873, modeToNext: "road" },
-    { name: "Ranthambhore", lat: 26.0173, lng: 76.5026, modeToNext: "road" },
+    { name: "Ranthambore", lat: 26.0173, lng: 76.5026, modeToNext: "road" },
     { name: "Delhi", lat: 28.6139, lng: 77.209 },
   ],
 
@@ -316,11 +318,11 @@ export const itineraries: Itinerary[] = [
   {
     slug: "northeast-india-city-of-joy",
     title: "Northeast India & The City of Joy",
-    subtitle: "Experience the iconic wonders of India's Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi's historic sites, and experience the pink city of Jaipur.",
+    subtitle: "From colonial Kolkata to the wild grasslands of Kaziranga, the river island of Majuli, and the mist-laced hills of Meghalaya — India at its most poetic and untamed.",
     categories: ["Culture", "Nature", "Wildlife"],
     duration: "13 Days",
     durationDays: 13,
-    startingPrice: "$1,330",
+    startingPrice: "€1,330",
     startingPriceNote: "per person (2 people)",
     route: "Kolkata → Dibrugarh → Jorhat → Kaziranga → Shillong → Guwahati",
     bestTime: "October – March",
@@ -490,8 +492,8 @@ export const itineraries: Itinerary[] = [
     title: "The Classical Golden Triangle of India",
     subtitle: "Experience the iconic wonders of India's Golden Triangle. Visit the Taj Mahal at sunrise, explore Delhi's historic sites, and experience the pink city of Jaipur.",
     categories: ["Heritage", "Culture", "Architecture"],
-    duration: "7 Days",
-    durationDays: 7,
+    duration: "6 Days",
+    durationDays: 6,
     startingPrice: "€1,013",
     startingPriceNote: "per person (2 people)",
     route: "Delhi → Agra → Jaipur → Delhi",
@@ -515,7 +517,7 @@ export const itineraries: Itinerary[] = [
     days: [
       { day: 1, title: "Arrive in Delhi", description: "Arrive at Delhi International Airport, where you'll be met by our representative and transferred to your hotel. Settle in and rest after your journey. The evening is at leisure to begin soaking in the energy of India's capital city.", overnight: "Delhi", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-1.webp" },
       { day: 2, title: "Exploring Delhi", description: "Begin with a fascinating tour of Old Delhi. Drive past the Red Fort and Jama Masjid, India's largest mosque, then enjoy a cycle rickshaw ride through the narrow, bustling lanes of Chandni Chowk. Visit the Digambar Jain Temple along the way. In the afternoon, explore New Delhi's grand landmarks. Drive past Rashtrapati Bhawan, Rajpath, and India Gate, then visit Humayun's Tomb, a masterpiece of Mughal architecture, and Qutub Minar with its ancient Iron Pillar dating to the 4th century AD.", overnight: "Delhi", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-2.png" },
-      { day: 3, title: "Delhi → Agra", description: "After breakfast, depart for Agra (approx. 4 hours). On arrival, visit Agra Fort, a magnificent 16th-century fortress blending military strength with refined Mughal interiors, where Emperor Shah Jahan was famously imprisoned by his own son. Later, explore the Itmad-ud-Daula Tomb, often called the Baby Taj Mahal. This delicate marble mausoleum, commissioned by Empress Nur Jahan, is the first tomb in India built entirely of marble, commissioned by Empress Nur Jahan for her father.", overnight: "Agra", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-3.png" },
+      { day: 3, title: "Delhi → Agra", description: "After breakfast, depart for Agra (approx. 4 hours). On arrival, visit Agra Fort, a magnificent 16th-century fortress blending military strength with refined Mughal interiors, where Emperor Shah Jahan was famously imprisoned by his own son. Later, explore the Itmad-ud-Daula Tomb, often called the Baby Taj Mahal. This delicate marble mausoleum is the first tomb in India built entirely of marble, commissioned by Empress Nur Jahan for her father.", overnight: "Agra", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-3.png" },
       { day: 4, title: "Agra → Fatehpur Sikri → Jaipur", description: "Rise early to witness the Taj Mahal at sunrise—a sublime experience of shifting light and colour across one of the world's most celebrated monuments. After breakfast, depart for Jaipur (approx. 6 hours), stopping en route at Fatehpur Sikri, the exquisite red sandstone city built by Akbar the Great in 1569 and mysteriously abandoned shortly after. Arrive in Jaipur and enjoy the rest of the day at leisure.", overnight: "Jaipur", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-4.png" },
       { day: 5, title: "Exploring Jaipur", description: "Begin with a guided excursion to the magnificent Amber Fort, the ancient capital of the Kachawaha clan. Ascend through five defensive gates to discover ornate halls, temples, and sweeping views. Nearby, visit the intriguing Panna Meena Step Well, an eight-storey 16th-century marvel with criss-crossing staircases. In the afternoon, tour the City Palace, the Jantar Mantar stone observatory, and stop for photographs at the iconic Hawa Mahal, the Palace of Winds. End the day wandering through Jaipur's colourful traditional markets.", overnight: "Jaipur", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-5.png" },
       { day: 6, title: "Depart Jaipur → Delhi", description: "After a leisurely morning, transfer from Jaipur to Delhi International Airport (approx. 5 hours) to connect with your onward flight. End of tour.", overnight: "—", image: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/day-6.png" },
@@ -573,16 +575,16 @@ export const itineraries: Itinerary[] = [
   {
     slug: "taj-and-tigers",
     title: "Taj & Tigers",
-    subtitle: "Experience the iconic wonders of India's Golden Triangle combined with thrilling wildlife safaris. Visit the Taj Mahal at sunrise, explore Delhi's historic sites, discover the pink city of Jaipur, and track tigers in Ranthambhore National Park.",
+    subtitle: "Experience the iconic wonders of India's Golden Triangle combined with thrilling wildlife safaris. Visit the Taj Mahal at sunrise, explore Delhi's historic sites, discover the pink city of Jaipur, and track tigers in Ranthambore National Park.",
     categories: ["Heritage", "Culture", "Wildlife", "Adventure"],
     duration: "8 Days",
     durationDays: 8,
     startingPrice: "€1,406",
     startingPriceNote: "per person (2 people)",
-    route: "Delhi → Agra → Jaipur → Ranthambhore → Delhi",
+    route: "Delhi → Agra → Jaipur → Ranthambore → Delhi",
     bestTime: "October – March",
     overview: [
-      "From the bustling lanes of Old Delhi and the grandeur of Mughal monuments to the ethereal beauty of the Taj Mahal, the vibrant royal heritage of Jaipur, and the wild landscapes of Ranthambhore, this journey combines India's most celebrated cultural circuit with one of its finest wildlife experiences.",
+      "From the bustling lanes of Old Delhi and the grandeur of Mughal monuments to the ethereal beauty of the Taj Mahal, the vibrant royal heritage of Jaipur, and the wild landscapes of Ranthambore, this journey combines India's most celebrated cultural circuit with one of its finest wildlife experiences.",
       "Ride cycle rickshaws through centuries-old bazaars, witness the Taj Mahal bathed in sunrise light, explore magnificent forts and palaces, wander through colourful markets, and embark on jeep safaris in search of the elusive Bengal tiger. This is India's Golden Triangle—elevated with a touch of the wild.",
     ],
     summary: [
@@ -595,24 +597,24 @@ export const itineraries: Itinerary[] = [
       "Ascend the magnificent Amber Fort and discover the mystery of Panna Meena Step Well",
       "Visit the City Palace, Jantar Mantar observatory, and the iconic Hawa Mahal in Jaipur",
       "Explore Humayun's Tomb and the ancient Qutub Minar complex in Delhi",
-      "Morning and afternoon private jeep safaris in Ranthambhore National Park, tracking Bengal tigers",
+      "Morning and afternoon private jeep safaris in Ranthambore National Park, tracking Bengal tigers",
     ],
     days: [
       { day: 1, title: "Arrive in Delhi", description: "Arrive at Delhi International Airport, where you'll be met by our representative and transferred to your hotel. Settle in and enjoy the rest of the day at leisure, taking in the energy of India's capital city.", overnight: "Delhi", image: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/day-01.webp" },
       { day: 2, title: "Exploring Delhi", description: "Begin with a tour of Old Delhi. Drive past the Red Fort and Jama Masjid, then enjoy a cycle rickshaw ride through the narrow, bustling lanes of Chandni Chowk. Visit the Digambar Jain Temple along the way. In the afternoon, explore New Delhi's grand landmarks. Drive past Rashtrapati Bhawan, Rajpath, and India Gate, then visit Humayun's Tomb, a masterpiece of Mughal architecture, and Qutub Minar with its ancient Iron Pillar dating to the 4th century AD.", overnight: "Delhi", image: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/day-02.png" },
-      { day: 3, title: "Delhi → Agra", description: "After breakfast, depart for Agra (approx. 4 hours). On arrival, visit Agra Fort, a magnificent 16th-century fortress blending military strength with refined Mughal interiors, where Emperor Shah Jahan was famously imprisoned by his own son. Later, explore the Itmad-ud-Daula Tomb, often called the Baby Taj Mahal. This delicate marble mausoleum, commissioned by Empress Nur Jahan, is the first tomb in India built entirely of marble, commissioned by Empress Nur Jahan for her father.", overnight: "Agra", image: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/day-03.png" },
+      { day: 3, title: "Delhi → Agra", description: "After breakfast, depart for Agra (approx. 4 hours). On arrival, visit Agra Fort, a magnificent 16th-century fortress blending military strength with refined Mughal interiors, where Emperor Shah Jahan was famously imprisoned by his own son. Later, explore the Itmad-ud-Daula Tomb, often called the Baby Taj Mahal. This delicate marble mausoleum is the first tomb in India built entirely of marble, commissioned by Empress Nur Jahan for her father.", overnight: "Agra", image: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/day-03.png" },
       { day: 4, title: "Agra → Fatehpur Sikri → Jaipur", description: "Rise early to witness the Taj Mahal at sunrise—a sublime experience of shifting light and colour across one of the world's most celebrated monuments. After breakfast, depart for Jaipur (approx. 6 hours), stopping en route at Fatehpur Sikri, the exquisite red sandstone city built by Akbar the Great in 1569 and mysteriously abandoned shortly after. Arrive in Jaipur and enjoy the rest of the day at leisure.", overnight: "Jaipur", image: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/day-04.png" },
       { day: 5, title: "Exploring Jaipur", description: "Begin with a guided excursion to the magnificent Amber Fort, the ancient capital of the Kachawaha clan. Ascend through five defensive gates to discover ornate halls, temples, and sweeping views. Nearby, visit the intriguing Panna Meena Step Well, an eight-storey 16th-century marvel with criss-crossing staircases. In the afternoon, tour the City Palace, the Jantar Mantar stone observatory, and stop for photographs at the iconic Hawa Mahal, the Palace of Winds. End the day wandering through Jaipur's colourful traditional markets.", overnight: "Jaipur", image: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/day-05.png" },
-      { day: 6, title: "Jaipur → Ranthambhore", description: "After breakfast, depart for Ranthambhore National Park (approx. 3.5 hours), one of the biggest and most renowned national parks in Northern India, and a former hunting ground of the Maharajas of Jaipur. Check in at your hotel and enjoy the rest of the day at leisure, preparing for the next day's wildlife adventures.", overnight: "Ranthambhore", image: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/day-06.png" },
-      { day: 7, title: "Ranthambhore Safari", description: "Embark on an early morning jeep safari with an English-speaking naturalist, tracking Bengal tigers, leopards, sloth bears, and diverse birdlife through the park's dramatic landscape of dry deciduous forests and ancient ruins. In the afternoon, set out on a second safari, offering another chance to encounter Ranthambhore's extraordinary wildlife in the golden light of the late day.", overnight: "Ranthambhore", image: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/day-07.png" },
-      { day: 8, title: "Ranthambhore → Delhi", description: "After breakfast, depart for Delhi (approx. 6 hours). On arrival, transfer to Delhi International Airport for your onward flight. End of tour.", overnight: "—", image: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/day-08.png" },
+      { day: 6, title: "Jaipur → Ranthambore", description: "After breakfast, depart for Ranthambore National Park (approx. 3.5 hours), one of the biggest and most renowned national parks in Northern India, and a former hunting ground of the Maharajas of Jaipur. Check in at your hotel and enjoy the rest of the day at leisure, preparing for the next day's wildlife adventures.", overnight: "Ranthambore", image: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/day-06.png" },
+      { day: 7, title: "Ranthambore Safari", description: "Embark on an early morning jeep safari with an English-speaking naturalist, tracking Bengal tigers, leopards, sloth bears, and diverse birdlife through the park's dramatic landscape of dry deciduous forests and ancient ruins. In the afternoon, set out on a second safari, offering another chance to encounter Ranthambore's extraordinary wildlife in the golden light of the late day.", overnight: "Ranthambore", image: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/day-07.png" },
+      { day: 8, title: "Ranthambore → Delhi", description: "After breakfast, depart for Delhi (approx. 6 hours). On arrival, transfer to Delhi International Airport for your onward flight. End of tour.", overnight: "—", image: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/day-08.png" },
     ],
     inclusions: [
       "Accommodation in single/twin rooms at selected hotel category or similar",
-      "Daily breakfast; full board at Ranthambhore",
+      "Daily breakfast; full board at Ranthambore",
       "AC vehicle transfers and sightseeing (Toyota Crysta for 2–3 people / Tempo Traveller for 4–6 people)",
       "Cycle rickshaw ride in Old Delhi",
-      "Two shared jeep safaris in Ranthambhore National Park",
+      "Two shared jeep safaris in Ranthambore National Park",
       "GST (Goods & Services Tax) as applicable",
     ],
     exclusions: [
@@ -624,7 +626,7 @@ export const itineraries: Itinerary[] = [
       "Items not explicitly mentioned in the programme",
     ],
     datesPrices: [
-      "Golden Triangle with Ranthambhore",
+      "Golden Triangle with Ranthambore",
       "Price Validity OCT 2025 – MAR 2026",
       "Starting from €690 per person (Standard Hotels, 4–6 people, Twin Sharing)",
     ],
@@ -634,7 +636,7 @@ export const itineraries: Itinerary[] = [
       "Weather Clause: Customer bears costs for natural disruptions",
       "Force Majeure: Company not liable for conditions beyond control",
       "Red Fort (Delhi) is closed on Mondays; Taj Mahal (Agra) is closed on Fridays",
-      "Ranthambhore National Park is closed during monsoon season (July–September); safari zones are allocated by the park authority",
+      "Ranthambore National Park is closed during monsoon season (July–September); safari zones are allocated by the park authority",
     ],
     signatureExperiences: [
       { category: "Culture & History", title: "Cycle rickshaw ride through Old Delhi's Chandni Chowk" },
@@ -642,7 +644,7 @@ export const itineraries: Itinerary[] = [
       { category: "Culture & History", title: "Explore the abandoned city of Fatehpur Sikri" },
       { category: "Adventure Tour", title: "Ascend Amber Fort and discover Panna Meena Step Well" },
       { category: "Culture & History", title: "Wander through Jaipur's vibrant traditional markets" },
-      { category: "Adventure Tour", title: "Jeep safaris tracking Bengal tigers in Ranthambhore" },
+      { category: "Adventure Tour", title: "Jeep safaris tracking Bengal tigers in Ranthambore" },
     ],
     heroImage: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/main-bg.webp",
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/overview.png",
@@ -749,7 +751,7 @@ export const itineraries: Itinerary[] = [
   // image URLs preserved as placeholders for the new days too.
   {
     slug: "colourful-rajasthan",
-    title: "Colorful Rajasthan",
+    title: "Colourful Rajasthan",
     subtitle: "Experience the land of Kings, its majestic forts and opulent palaces as this immersive journey takes you through a bygone era of royal grandeur and architectural brilliance.",
     categories: ["Heritage", "Culture", "Architecture"],
     duration: "14 Days",
@@ -810,7 +812,7 @@ export const itineraries: Itinerary[] = [
       "Travel insurance",
     ],
     datesPrices: [
-      "Colorful Rajasthan",
+      "Colourful Rajasthan",
       "Price Validity OCT 2026 – MAR 2027",
       "Price on request — contact our travel desk for a tailored quote",
     ],
@@ -910,7 +912,7 @@ export const itineraries: Itinerary[] = [
   // ==========================================================================
   {
     slug: "vibrant-gujarat-central-india",
-    title: "Vibrant Gujrat With Central India",
+    title: "Vibrant Gujarat With Central India",
     subtitle: "Embark on a culturally rich journey across India's spiritual and historical treasures, exploring vibrant Gujarat, majestic Madhya Pradesh, and the holy cities of Prayagraj and Ayodhya with unforgettable experiences throughout.",
     categories: ["Heritage", "Culture", "Spiritual", "Architecture"],
     duration: "20 Days",
@@ -976,7 +978,7 @@ export const itineraries: Itinerary[] = [
       "Anything not explicitly mentioned in inclusions",
     ],
     datesPrices: [
-      "Vibrant Gujrat With Central India",
+      "Vibrant Gujarat With Central India",
       "Price Validity OCT 2025 – MAR 2026",
       "Price on request — contact our travel desk for a tailored quote",
     ],
@@ -1338,8 +1340,8 @@ export const itineraries: Itinerary[] = [
       { day: 3, title: "Delhi → Agra",                   description: "After breakfast, depart for Agra by surface and transfer to the hotel. Afterwards, visit the Agra Fort — built 16th century AD, and added upon by 3 generations of Mughal emperors, it is a synthesis of military fortifications with delicate interior details. The Mughal Emperor Shah Jahan was imprisoned by his son here. Later, visit Itmad-ud-Daulla Tomb, often referred to as the 'Baby Taj Mahal' — the tomb of Itimad-ud-daulah is a Mughal mausoleum and often regarded as a copy of the Taj Mahal. This is the first tomb in India made entirely of marble. The tomb was commissioned by Nur Jahan, the wife of Jahangir, for her father Mir Gheyas Beg (later known as Itimad-ud-daulah), who was a minister in the court of Shah Jahan. Overnight in Agra.", overnight: "Agra", image: "/images/itineraries/golden-triangle-with-ranthambore/day-3.jpg" },
       { day: 4, title: "Agra → Fatehpur Sikri → Jaipur", description: "Early morning, visit the incomparable Taj Mahal at Sunrise (Closed on Fridays). Experience the sublimity of the Taj Mahal — a varying kaleidoscope of solitude, colour and mood. A tribute from a great emperor to the memory of his beloved wife, it was 22 years in the making and is a cerebral experience that defies description. Widely regarded as the earthly replica of paradise, Taj Mahal is likened to 'a vision, a dream, a poem and a wonder'. Breakfast at the hotel. Post breakfast, depart for Jaipur enroute visiting Fatehpur Sikri — an exquisite city built by Akbar the Great in 1569, in red sandstone, with its forts, palaces and mosques, and abandoned after its creation due to political reasons. Continue to Jaipur and check-in at the hotel. Rest of the day is at leisure. Overnight in Jaipur.", overnight: "Jaipur", image: "/images/itineraries/golden-triangle-with-ranthambore/day-4.jpg" },
       { day: 5, title: "Jaipur",                         description: "After breakfast, drive to the magnificent Amber Fort, the ancient Kachhwaha capital 12 km from Jaipur. Built by Raja Man Singh in the early 17th century and ringed by defensive walls, this superb blend of Hindu and Mughal architecture rises above the old town with mighty gates, ornate halls, temples, pavilions and gardens; a short walk through five gateways leads to the Suraj Pol entrance, with sweeping views over the countryside below. Nearby, visit the eight-storey Panna Meena ka Kund, a 16th-century step well whose criss-crossing staircases and recessed pavilions once served as a community gathering place — and make a fascinating photo stop. In the afternoon, tour the City Palace, the former royal residence, and the Jantar Mantar, an 18th-century stone observatory built by Maharaja Jai Singh. Make a photo stop at the iconic Hawa Mahal, the 'Palace of Winds', and take time to wander Jaipur's vibrant traditional bazaars. Overnight in Jaipur.", overnight: "Jaipur", image: "/images/itineraries/golden-triangle-with-ranthambore/day-5.jpg" },
-      { day: 6, title: "Jaipur → Ranthambore",           description: "After breakfast, depart to Ranthambhore by surface and check-in at the hotel. Ranthambhore National Park is one of the biggest and most renowned national parks in Northern India. Being considered as one of the famous and former hunting grounds of the Maharajas of Jaipur, today the Ranthambhore National Park terrain is a major wildlife tourist attraction spot that has pulled the attention of many wildlife photographers and lovers. Overnight in Ranthambore.", overnight: "Ranthambore", image: "/images/itineraries/golden-triangle-with-ranthambore/day-6.jpg" },
-      { day: 7, title: "Ranthambore",                    description: "Early Morning & Afternoon Private Jeep Safari with English Speaking Naturalist at Ranthambhore National Park. Overnight in Ranthambore.", overnight: "Ranthambore", image: "/images/itineraries/golden-triangle-with-ranthambore/day-7.jpg" },
+      { day: 6, title: "Jaipur → Ranthambore",           description: "After breakfast, depart to Ranthambore by surface and check-in at the hotel. Ranthambore National Park is one of the biggest and most renowned national parks in Northern India. Being considered as one of the famous and former hunting grounds of the Maharajas of Jaipur, today the Ranthambore National Park terrain is a major wildlife tourist attraction spot that has pulled the attention of many wildlife photographers and lovers. Overnight in Ranthambore.", overnight: "Ranthambore", image: "/images/itineraries/golden-triangle-with-ranthambore/day-6.jpg" },
+      { day: 7, title: "Ranthambore",                    description: "Early Morning & Afternoon Private Jeep Safari with English Speaking Naturalist at Ranthambore National Park. Overnight in Ranthambore.", overnight: "Ranthambore", image: "/images/itineraries/golden-triangle-with-ranthambore/day-7.jpg" },
       { day: 8, title: "Ranthambore → Delhi",            description: "After breakfast, depart for Jaipur by surface. Reach Delhi and transfer to international airport for an onward flight and tour terminates.", overnight: "—", image: "/images/itineraries/golden-triangle-with-ranthambore/day-8.jpg" },
     ],
     inclusions: [
@@ -1350,7 +1352,7 @@ export const itineraries: Itinerary[] = [
       "Services of Local English / French Speaking Guide on sightseeing tours (different guides in each city)",
       "Cycle Rickshaw Ride in Old Delhi",
       "Jeep Ride at Amber Fort in Jaipur",
-      "02 Private Jeep Safaris at Ranthambhore National Park",
+      "02 Private Jeep Safaris at Ranthambore National Park",
       "Wi-fi access in the vehicle during traveling",
       "Unlimited drinking bottled water in the vehicle during traveling",
       "GST (Goods & Services Tax) as applicable",
@@ -1439,7 +1441,7 @@ export const itineraries: Itinerary[] = [
       { day: 4,  title: "A day in Aurangabad",                    description: "After breakfast, visit the Ellora Caves (closed Tuesdays), among the finest cave temples in the world. Carved between roughly 350 and 700 AD, these 34 rock-cut caves represent three faiths — Buddhism, Hinduism and Jainism. The crowning glory is the Kailasa Temple (cave 16), a colossal monolithic shrine hewn from solid rock; the Vishvakarma cave combines a Chaitya and Vihara around a seated Buddha, while the Rameswara cave's entrance is adorned with river goddesses and the Dumar Lena cave, dedicated to Shiva, echoes the great shrine at Elephanta. Continue to Daulatabad Fort, an originally Hindu stronghold captured in the 13th century and briefly made the second capital of the Delhi Sultanate. Dominated by a great conical hill and made impregnable by artificial scarping, it commands a natural pass; its 30m Chand Minar, with three circular galleries, served both defensive and religious roles. The evening is free to explore local markets. Overnight in Aurangabad.", overnight: "Aurangabad", image: "/images/itineraries/enchanting-central-india/day-4.jpg" },
       { day: 5,  title: "Aurangabad → Ajanta → Burhanpur",        description: "After breakfast, depart for Burhanpur, stopping to visit the Ajanta Caves (closed Mondays). Rediscovered by British officers in the 19th century after lying hidden for centuries, these 30 caves carved into the Sahyadri hills tell the story of a glorious past from around 200 BC to 650 AD. Created as secluded retreats for Buddhist monks, the Chaityas and Viharas were seats of learning, each figure carved with little more than hammer and chisel. Ajanta is celebrated above all for its exquisite murals and sculptures, many illustrating Jataka tales of the Buddha's previous lives alongside scenes of royalty, nymphs and everyday life. Among the highlights are the flying apsara of cave 17, the preaching Buddha of cave 16, and the seated Nagaraja with his consort — an unmatched visual treat. Continue to Burhanpur and check in at the hotel. Overnight in Burhanpur.", overnight: "Burhanpur", image: "/images/itineraries/enchanting-central-india/day-5.jpg" },
       { day: 6,  title: "Burhanpur → Omkareshwar → Maheshwar",    description: "After breakfast, drive to Maheshwar, stopping at Omkareshwar — a sacred island in the Narmada, also known as Mahismati, and home to one of India's twelve revered Jyotirlinga shrines of Lord Shiva. Visit the Mamleshwar Jyotirlinga on the river's south bank, regarded together with Omkareshwar as a single Jyotirlinga. See the 11th-century Kedareshwar Temple, dedicated to a manifestation of Shiva, with intricate architecture and lovely views along the parikrama path. Continue to the Siddhanath Temple, a 13th-century shrine in Brahminic and Indo-Nagara style set on a plateau on Mandhata island — one of Omkareshwar's most striking monuments and a fine example of ancient Indian craftsmanship. Continue to Maheshwar and check in at the hotel. Overnight in Maheshwar.", overnight: "Maheshwar", image: "/images/itineraries/enchanting-central-india/day-6.jpg" },
-      { day: 7,  title: "Maheshwar",                              description: "Arise to a healthy breakfast and then get ready to embark on a full-day sightseeing tour of the town. Home to the finest handloom fabric tradition and centre of handloom textile since the 5th Century, Maheshwar is recognized for its huge production of Maheshwari Sarees, and this makes this popular tourist destination a perfect paradise for shopaholics. You can also buy unique and delicate cotton and silk-blend handloom saris. The city has spiritual importance as it is mentioned in Hindu epics Mahabharata and Ramayana. There are several Shiva Temples in the city and forts as well. Visit the temples and fort during the sightseeing tour. Holkar Fort is a renowned fortress, which is named after Rani Ahilyabai Holkar. Enjoy the scenic view of the city from the top of the fort. Some popular temples of the city are Pandrinath Temple and Jaleshwar Temple where you can visit on the day.", overnight: "Maheshwar", image: "/images/itineraries/enchanting-central-india/day-7.jpg" },
+      { day: 7,  title: "Maheshwar",                              description: "Arise to a healthy breakfast and then get ready to embark on a full-day sightseeing tour of the town. Home to the finest handloom fabric tradition and centre of handloom textile since the 5th Century, Maheshwar is recognised for its huge production of Maheshwari Sarees, and this makes this popular tourist destination a perfect paradise for shopaholics. You can also buy unique and delicate cotton and silk-blend handloom saris. The city has spiritual importance as it is mentioned in Hindu epics Mahabharata and Ramayana. There are several Shiva Temples in the city and forts as well. Visit the temples and fort during the sightseeing tour. Holkar Fort is a renowned fortress, which is named after Rani Ahilyabai Holkar. Enjoy the scenic view of the city from the top of the fort. Some popular temples of the city are Pandrinath Temple and Jaleshwar Temple where you can visit on the day.", overnight: "Maheshwar", image: "/images/itineraries/enchanting-central-india/day-7.jpg" },
       { day: 8,  title: "Maheshwar → Mandu → Maheshwar",          description: "After breakfast, enjoy a full-day excursion to Mandu, a romantic hilltop city in stone celebrating the love of poet-prince Baz Bahadur and his consort Rani Roopmati. Set along the Vindhya ranges at 2,000 feet, its monuments blend Afghan boldness with refined craftsmanship. Visit Roopmati's Pavilion, originally an army observation post, from whose terraces the queen could see Baz Bahadur's palace and the Narmada in the plains far below. Marvel at the elegant Jahaz Mahal, a 120-metre 'ship palace' set between two lakes, with open pavilions and water-fronting balconies, and the Hindola Mahal, the 'swinging palace', named for its sloping walls and delicate sandstone trellis work. Explore Baz Bahadur's Palace, with its spacious courtyard and sweeping views, and Hoshang Shah's Tomb — India's first marble edifice, with a finely proportioned dome and lattice work believed to have inspired the builders of the Taj Mahal. Finish at the grand Jami Masjid, modelled on the great mosque of Damascus, with its high plinth, domed porch and richly varied arcades. Overnight in Maheshwar.", overnight: "Maheshwar", image: "/images/itineraries/enchanting-central-india/day-8.jpg" },
       { day: 9,  title: "Maheshwar → Ujjain",                     description: "After breakfast, drive to Ujjain and check in at the hotel. An ancient city on the banks of the Kshipra River and one of Hinduism's holiest pilgrimage sites, Ujjain is renowned for the Mahakaleshwar Jyotirlinga — one of the twelve most sacred abodes of Shiva. Its presiding lingam is revered as Swayambhu (self-manifested), drawing its power from within rather than from ritual consecration. Visit the Jantar Mantar, an observatory built in 1733 by Maharaja Jai Singh of Jaipur when he governed Malwa; it holds special significance as Indian astronomers traditionally regarded the prime meridian as passing through Ujjain. In the evening, witness the serene aarti ceremony on the steps of Ram Ghat. Overnight in Ujjain.", overnight: "Ujjain", image: "/images/itineraries/enchanting-central-india/day-9.jpg" },
       { day: 10, title: "Ujjain → Bhopal",                        description: "After breakfast, drive to Bhopal, stopping at the UNESCO-listed Bhimbetka rock shelters and the Bhojpur Temple. Bhimbetka's 600-plus caves, set amid the Vindhya range, sheltered prehistoric man and preserve vivid paintings — some up to 12,000 years old — that chronicle the earliest traces of human life in India. The incomplete Bhojeshwar Temple, dedicated to Shiva, houses a 7.5-foot lingam in its sanctum. Reach Bhopal, a graceful city set on the banks of a vast lake that lends it a calm, timeless charm, even as it has grown into the capital of Madhya Pradesh. Visit the Taj-ul-Masjid, said to be the largest mosque in India, begun under Shah Jehan Begum (1868–1901) and completed only in 1971, notable for its grand inter-arched main hall, broad facade and marble floors. Continue to the open-air Tribal Habitat Museum, an absorbing display of life-size dwellings and interiors representing India's tribal cultures, then drive along the VIP Road for views over the Upper Lake. Overnight in Bhopal.", overnight: "Bhopal", image: "/images/itineraries/enchanting-central-india/day-10.jpg" },
@@ -1554,7 +1556,7 @@ export const itineraries: Itinerary[] = [
       "Evening Sunset Ceremony at Meenakshi Temple in Madurai",
       "Spice Plantation Tour in Periyar",
       "Common Boat Cruise on Lake Periyar",
-      "Kathakali Dance Performance at a local theater in Kochi",
+      "Kathakali Dance Performance at a local theatre in Kochi",
       "Wi-fi access in the vehicle during traveling",
       "Unlimited drinking bottled water in the vehicle during traveling",
       "GST (Goods & Services Tax) as applicable",
@@ -1645,7 +1647,7 @@ export const itineraries: Itinerary[] = [
     ],
     inclusions: [
       "Accommodation on Twin/Double sharing room at the above-mentioned hotels or similar",
-      "Daily breakfast at mentioned hotels. Tadoba, Pench and Ranthambhore include all meals",
+      "Daily breakfast at mentioned hotels. Tadoba, Pench and Ranthambore include all meals",
       "01 dinner at the hotel in Delhi",
       "All transfers and sightseeing by AC Vehicle as per the program",
       "Ascend to Amer Fort by Jeep in Jaipur",
@@ -1655,7 +1657,7 @@ export const itineraries: Itinerary[] = [
       "03 Exclusive Jeep Safari at Tadoba National Park",
       "04 Exclusive Jeep Safari at Pench National Park",
       "02 Exclusive Jeep Safari at Jhalana Leopard Safari Park",
-      "03 Exclusive Jeep Safari at Ranthambhore National Park",
+      "03 Exclusive Jeep Safari at Ranthambore National Park",
       "Entrance fees to the monuments as per the program",
       "GST (Goods & Services Tax) as applicable",
     ],

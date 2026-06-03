@@ -4,7 +4,7 @@ import SectionOverview from '../../components/services/SectionOverview';
 import ServiceHero from '../../components/services/ServiceHero';
 import TaglineStrip from '../../components/services/TaglineStrip';
 import ItineraryCards from '../../components/ItineraryCards';
-import { getExploreItems, EXPLORE_HEADING, EXPLORE_SUBHEADING, EXPLORE_BG } from '../../components/services/exploreItems';
+import { getExploreItems, EXPLORE_HEADING, EXPLORE_BG } from '../../components/services/exploreItems';
 
 const overviewImages = [
   'https://ik.imagekit.io/libertyindia/services/education-tours/p1.png?tr=w-1920,q-80,f-auto',
@@ -31,7 +31,7 @@ export default function EducationToursPage() {
       <SectionOverview images={overviewImages} description={overviewDescription} />
       <ItineraryCards
         heading={EXPLORE_HEADING}
-        subheading={EXPLORE_SUBHEADING}
+        subheading="Heritage- and culture-rich journeys designed for student and faculty groups."
         items={getExploreItems('education-tours')}
         bgColor={EXPLORE_BG}
       />

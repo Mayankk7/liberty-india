@@ -223,8 +223,8 @@ export default function NaturePage() {
       </section>
 
         <ItineraryCards
-          heading={"Explore the Nature\nExperience the Journey"}
-          subheading="Travel through centuries of history with journeys designed for discerning explorers"
+          heading={"Explore the Nature.\nExperience the Journey."}
+          subheading="Discover India's landscapes — mountains, backwaters and forests — with journeys designed for nature lovers."
           bgColor="#FDF39F4D"
           category="Nature"
         />

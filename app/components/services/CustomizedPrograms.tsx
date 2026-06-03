@@ -12,7 +12,7 @@ export default function CustomizedPrograms({ imageSrc, imageAlt }: CustomizedPro
       <div className="w-full md:w-1/2 relative min-h-[400px] md:min-h-0 md:h-full">
         <Image
           src={imageSrc}
-          alt={imageAlt ?? 'Customized Programs'}
+          alt={imageAlt ?? 'Customised Programs'}
           fill
           className="object-cover object-center"
           priority={false}
@@ -35,7 +35,7 @@ export default function CustomizedPrograms({ imageSrc, imageAlt }: CustomizedPro
             className="text-[30px] md:text-[36px] font-normal mb-4 text-[#424242] leading-[1.1]"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
-            Customized Programs
+            Customised Programs
           </h2>
 
           {/* Thin brand accent rule */}
@@ -43,7 +43,7 @@ export default function CustomizedPrograms({ imageSrc, imageAlt }: CustomizedPro
 
           {/* Lede */}
           <p className="text-[14.5px] text-[#424242]/70 mb-7 leading-relaxed">
-            Leave your details and our team will curate a program designed exclusively for you.
+            Share your brief and our team will design a tailored programme for your group.
           </p>
 
           <form className="space-y-5 w-full">
@@ -114,7 +114,7 @@ export default function CustomizedPrograms({ imageSrc, imageAlt }: CustomizedPro
                 className="block text-[10px] uppercase tracking-[0.22em] text-[#424242]/60 mb-1.5"
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
               >
-                Travel Plans
+                Brief / requirements
               </label>
               <textarea
                 id="cp-plans"
@@ -144,7 +144,7 @@ export default function CustomizedPrograms({ imageSrc, imageAlt }: CustomizedPro
               className="group inline-flex items-center gap-2.5 px-10 py-3.5 bg-[#E07B39] text-white text-[12px] tracking-[0.32em] uppercase font-medium hover:bg-[#c66a2f] focus:outline-none focus:ring-2 focus:ring-[#E07B39] focus:ring-offset-2 transition-all mt-2"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
-              Submit
+              Send brief
               <span aria-hidden className="inline-block transition-transform group-hover:translate-x-1">
                 &rarr;
               </span>

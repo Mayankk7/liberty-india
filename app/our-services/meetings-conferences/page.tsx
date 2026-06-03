@@ -31,7 +31,7 @@ export default function MeetingsConferencesPage() {
         title="Meetings & Conferences"
         imageSrc="https://ik.imagekit.io/libertyindia/services/meetings/meetings-bg.png"
       />
-      <TaglineStrip text="Business by Day, Inspiration by Night" />
+      <TaglineStrip text="Business Meets Inspiration" />
       <SectionOverview images={overviewImages} description={overviewDescription} />
       <CustomizedPrograms imageSrc="https://ik.imagekit.io/libertyindia/services/meetings/program.svg" />
       <Footer />

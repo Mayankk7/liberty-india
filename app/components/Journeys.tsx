@@ -106,7 +106,7 @@ export default function Journeys() {
                   metaLine={metaLine}
                   priceLabel="Starting From"
                   priceValue={
-                    matchingItinerary?.startingPrice ?? `$${journey.price.toLocaleString()}`
+                    matchingItinerary?.startingPrice ?? `€${journey.price.toLocaleString()}`
                   }
                   priceNote={matchingItinerary?.startingPriceNote ?? 'per person'}
                   duration={journey.duration}

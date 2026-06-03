@@ -1,58 +1,52 @@
-"use client";
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
-import { useState } from "react";
+export const metadata = {
+  title: 'Contact Us | Liberty India',
+  description:
+    "Request a proposal from Liberty India — India's destination management partner for MICE, luxury leisure and curated journeys. Tell us about your programme and our team will handle India end to end.",
+};
 
-export default function ContactUs() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("Contact form submission is currently unavailable.");
-  };
-
+/**
+ * /contact-us renders the full site chrome and routes the visitor straight to
+ * the working enquiry form, which lives in the Footer (`id="contact"`, wired to
+ * /api/contact). The top-nav and footer "Contact Us" links both point to
+ * /#contact, so this page exists mainly for direct hits and SEO — it must not be
+ * a dead stub.
+ */
+export default function ContactUsPage() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#FCFAF3] px-4 py-12">
-      <h1 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center">Contact Us</h1>
-      <form className="w-full max-w-sm md:max-w-md bg-white rounded shadow p-6 md:p-8 flex flex-col gap-5 md:gap-6" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={form.name}
-          onChange={handleChange}
-          className="border border-gray-300 rounded px-4 py-2.5 text-base md:text-lg"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          value={form.email}
-          onChange={handleChange}
-          className="border border-gray-300 rounded px-4 py-2.5 text-base md:text-lg"
-          required
-        />
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          value={form.message}
-          onChange={handleChange}
-          className="border border-gray-300 rounded px-4 py-2.5 text-base md:text-lg min-h-[120px]"
-          required
-        />
-        <button
-          type="submit"
-          className="bg-[#E07B39] text-white font-semibold rounded px-6 py-3 text-base md:text-lg hover:bg-orange-600 transition-all"
-        >
-          Send Message
-        </button>
-        {status && <div className="text-center text-sm mt-2">{status}</div>}
-      </form>
-    </div>
+    <main className="min-h-screen bg-white">
+      <Navbar variant="white" />
+
+      {/* Intro band above the contact form */}
+      <section className="w-full bg-[#FDF8E8] pt-28 md:pt-32 pb-12 md:pb-16">
+        <div className="w-[90%] max-w-3xl mx-auto text-center">
+          <p
+            className="text-xs sm:text-sm font-semibold uppercase tracking-[0.22em] text-[#E07B39] mb-3"
+            style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+          >
+            Contact us today
+          </p>
+          <h1
+            className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#424242] mb-4 leading-[1.15]"
+            style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+          >
+            Let&apos;s build your next India programme
+          </h1>
+          <p
+            className="text-sm md:text-base text-[#424242]/80 leading-relaxed max-w-xl mx-auto"
+            style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+          >
+            Tell us what your clients or delegates need, and our team will handle
+            India end to end. Share your brief using the form below and a Liberty
+            India specialist will respond with a tailored proposal.
+          </p>
+        </div>
+      </section>
+
+      {/* Footer carries the working enquiry form (id="contact") + site footer */}
+      <Footer />
+    </main>
   );
 }

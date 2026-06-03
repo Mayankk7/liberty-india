@@ -212,7 +212,7 @@ export default function ArchitecturePage() {
               Rajput Architecture
             </h2>
             <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
-              The grand forts and palaces of Amber and Chittorgarh embody Rajput valor and artistry, featuring ornate courtyards, fortified walls, and breathtaking hilltop settings.
+              The grand forts and palaces of Amber and Chittorgarh embody Rajput valour and artistry, featuring ornate courtyards, fortified walls, and breathtaking hilltop settings.
             </p>
           </div>
           <ImageTextOverlay
@@ -268,8 +268,8 @@ export default function ArchitecturePage() {
         </section>
 
                      <ItineraryCards
-                       heading={"Explore the Architecture\nExperience the Journey"}
-                       subheading="Travel through centuries of history with journeys designed for discerning explorers"
+                       heading={"Explore the Architecture.\nExperience the Journey."}
+                       subheading="Marvel at temples, forts and Mughal masterpieces with journeys designed for the architecturally curious."
                        bgColor="#FDF39F4D"
                        category="Architecture"
                      />

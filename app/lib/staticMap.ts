@@ -23,11 +23,24 @@ function escapeXml(s: string): string {
     .replace(/'/g, '&#39;');
 }
 
+export type TransportMode = 'road' | 'air' | 'rail' | 'water';
+
 export interface MapStop {
   name: string;
   lat: number;
   lng: number;
+  /** Mode used to reach the NEXT stop — drives the leg's line style. */
+  modeToNext?: TransportMode | null;
 }
+
+const ROUTE_COLOR = '#d2b48c'; // tan
+const TIE_COLOR = '#7a5b34'; // darker brown for railway ties
+const MODE_LABEL: Record<TransportMode, string> = {
+  road: 'Road',
+  air: 'Flight',
+  rail: 'Train',
+  water: 'Boat',
+};
 
 export async function renderRouteMap(
   coords: MapStop[],
@@ -116,7 +129,28 @@ export async function renderRouteMap(
 
   // Route + markers overlay.
   const pts = coords.map((c) => ({ name: c.name, x: lon2px(c.lng, zoom) - minX, y: lat2px(c.lat, zoom) - minY }));
-  const path = pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+
+  // Each leg's line style encodes the transport mode used to reach the next
+  // stop: road solid · air dotted · rail a track (tan bed + brown ties) · water
+  // dash-dot. Drawn segment-by-segment rather than as one continuous path.
+  const legs = pts
+    .slice(0, -1)
+    .map((p, i) => {
+      const q = pts[i + 1];
+      const d = `M${p.x.toFixed(1)},${p.y.toFixed(1)}L${q.x.toFixed(1)},${q.y.toFixed(1)}`;
+      const mode = coords[i].modeToNext ?? 'road';
+      if (mode === 'rail') {
+        return (
+          `<path d="${d}" fill="none" stroke="${ROUTE_COLOR}" stroke-width="5" stroke-linecap="butt"/>` +
+          `<path d="${d}" fill="none" stroke="${TIE_COLOR}" stroke-width="5" stroke-dasharray="2,6" stroke-linecap="butt"/>`
+        );
+      }
+      const dash =
+        mode === 'air' ? ' stroke-dasharray="1,8"' : mode === 'water' ? ' stroke-dasharray="1,7,9,7"' : '';
+      return `<path d="${d}" fill="none" stroke="${ROUTE_COLOR}" stroke-width="3.8"${dash} stroke-linejoin="round" stroke-linecap="round"/>`;
+    })
+    .join('');
+
   const dots = pts
     .map((p, i) => {
       const last = i === pts.length - 1;
@@ -133,7 +167,49 @@ export async function renderRouteMap(
         )}</text>`,
     )
     .join('');
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><path d="${path}" fill="none" stroke="#15803D" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.92"/>${dots}${labels}</svg>`;
+
+  // Legend — only the modes this route actually uses, with a sample line each.
+  const usedModes = (['road', 'air', 'rail', 'water'] as TransportMode[]).filter((m) =>
+    coords.slice(0, -1).some((c) => (c.modeToNext ?? 'road') === m),
+  );
+  let legend = '';
+  if (usedModes.length > 0) {
+    const rowH = 16;
+    const padX = 9;
+    const padY = 8;
+    const boxW = 96;
+    const boxH = padY * 2 + usedModes.length * rowH;
+    const bx = 8;
+    const by = H - boxH - 8;
+    const sampleX1 = bx + padX;
+    const sampleX2 = sampleX1 + 22;
+    const textX = sampleX2 + 7;
+    const rows = usedModes
+      .map((m, i) => {
+        const cy = by + padY + i * rowH + rowH / 2;
+        const ln = `M${sampleX1},${cy.toFixed(1)}L${sampleX2},${cy.toFixed(1)}`;
+        let sample: string;
+        if (m === 'rail') {
+          sample =
+            `<path d="${ln}" stroke="${ROUTE_COLOR}" stroke-width="4.5" stroke-linecap="butt"/>` +
+            `<path d="${ln}" stroke="${TIE_COLOR}" stroke-width="4.5" stroke-dasharray="2,5" stroke-linecap="butt"/>`;
+        } else {
+          const dash =
+            m === 'air' ? ' stroke-dasharray="1,7"' : m === 'water' ? ' stroke-dasharray="1,6,8,6"' : '';
+          sample = `<path d="${ln}" stroke="${ROUTE_COLOR}" stroke-width="3.4"${dash} stroke-linecap="round"/>`;
+        }
+        return (
+          sample +
+          `<text x="${textX}" y="${(cy + 3.5).toFixed(1)}" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#3f3f3f">${MODE_LABEL[m]}</text>`
+        );
+      })
+      .join('');
+    legend =
+      `<rect x="${bx}" y="${by}" width="${boxW}" height="${boxH}" rx="6" fill="#ffffff" fill-opacity="0.9" stroke="#e9e4bf"/>` +
+      rows;
+  }
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${legs}${dots}${labels}${legend}</svg>`;
 
   return sharp(cropped).composite([{ input: Buffer.from(svg), top: 0, left: 0 }]).png().toBuffer();
 }
