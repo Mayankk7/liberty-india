@@ -65,10 +65,9 @@ const s = StyleSheet.create({
   footerText: { fontSize: 7.5, color: C.muted },
 });
 
+// Full route, every stop — no summarisation (client request); long routes wrap.
 function shortRoute(route: string): string {
-  const parts = route.split('→').map((p) => p.trim()).filter(Boolean);
-  if (parts.length <= 4) return parts.join('  •  ');
-  return [parts[0], parts[Math.floor(parts.length / 2)], parts[parts.length - 1]].join('  •  ');
+  return route.split('→').map((p) => p.trim()).filter(Boolean).join('  •  ');
 }
 
 export interface PdfProps {

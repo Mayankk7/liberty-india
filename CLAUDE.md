@@ -156,6 +156,24 @@ repointed.
 > then **Done**, **Files**, **Next**. Older sessions archived in
 > `SESSION_LOG_ARCHIVE.md`.
 
+### 2026-06-10 (session 38d) — "N Nights N+1 Days" durations sitewide + full hero route (no dots)
+**Done:** Two global itinerary changes. Build clean 45/45.
+1. **Durations now show nights + days** ("13 Days" → "12 Nights 13 Days") across **all 17**
+   day-based itineraries in `itineraries.ts` + the 6 `exploreItems.ts` cards (regex script,
+   nights = days − 1). Kairali stays "7 / 14 / 21 Nights" (already nights-based, 3 options).
+   Safe everywhere: all filtering/sorting uses numeric `durationDays`; the `duration` string is
+   display-only (cards, hero, Summary stat chip, navbar search, PDF strip).
+2. **Hero route never abbreviates** (`HeroSection.tsx`): `shortRoute` truncated >5-stop routes to
+   "first · second · … · last" (East India's 6-stop route showed dots) → renamed `fullRoute`,
+   always joins every stop with "·"; long routes wrap. Same fix in the **PDF**
+   (`ItineraryPdfDocument.tsx` `shortRoute` silently dropped middle stops → now all stops).
+   SummarySection route chip already wraps fully (session 35).
+**Files:** `app/itineraries/itineraries.ts`, `app/components/services/exploreItems.ts`,
+`app/itineraries/template/HeroSection.tsx`, `app/itineraries/pdf/ItineraryPdfDocument.tsx`,
+`CLAUDE.md`.
+**Next:** User reviews on dev — any itinerary hero shows "12 Nights 13 Days | full route"; journey/
+category/service cards show the new duration; East India hero shows all 6 stops, no "…".
+
 ### 2026-06-10 (session 38c) — Itinerary renamed: "Northeast India & The City of Joy" → "East India"
 **Done:** Display-name rename in both data sources: `itineraries.ts` (`title` + `datesPrices[0]` +
 block comment) and `exploreItems.ts` (service-card title). Propagates everywhere titles render

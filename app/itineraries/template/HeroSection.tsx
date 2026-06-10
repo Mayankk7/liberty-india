@@ -5,16 +5,11 @@ import type { Itinerary } from '../itineraries';
  * Hero — matches Figma 1:31369. Full-bleed image, centered title + subtitle +
  * a single "Duration | route" line. No CTA buttons, eyebrow tags or chevrons.
  *
- * The `route` field is a long stop-by-stop string; Figma shows the regional
- * summary instead (e.g. "Kolkata · Assam · Meghalaya"). We derive a short
- * version: first stop + the deduplicated region after the first arrow.
+ * Every stop in the route is shown — no "…" summarisation (client request:
+ * dots must never appear in the route). Long routes wrap to extra lines.
  */
-function shortRoute(route: string): string {
-  const parts = route.split('→').map((p) => p.trim()).filter(Boolean);
-  // Show every stop for short/medium routes (so e.g. the Golden Triangle keeps
-  // Agra in "Delhi · Agra · Jaipur · Delhi"). Only long routes are summarised.
-  if (parts.length <= 5) return parts.join(' · ');
-  return [parts[0], parts[1], '…', parts[parts.length - 1]].join(' · ');
+function fullRoute(route: string): string {
+  return route.split('→').map((p) => p.trim()).filter(Boolean).join(' · ');
 }
 
 export default function HeroSection({ itinerary }: { itinerary: Itinerary }) {
@@ -51,7 +46,7 @@ export default function HeroSection({ itinerary }: { itinerary: Itinerary }) {
         >
           {itinerary.duration}
           <span className="mx-3 text-white/60">|</span>
-          {shortRoute(itinerary.route)}
+          {fullRoute(itinerary.route)}
         </p>
       </div>
     </section>

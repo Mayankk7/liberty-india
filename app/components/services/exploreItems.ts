@@ -37,7 +37,7 @@ const ITINERARIES: Record<string, ItinerarySource> = {
     description:
       "India's most celebrated journey — Delhi's Mughal grandeur, the Taj Mahal at sunrise, and the royal heritage of Jaipur in six unforgettable days.",
     price: 1013,
-    duration: '6 Days',
+    duration: '5 Nights 6 Days',
     slug: 'classical-golden-triangle',
   },
   'taj-and-tigers': {
@@ -47,7 +47,7 @@ const ITINERARIES: Record<string, ItinerarySource> = {
     description:
       "The Golden Triangle elevated with the wild — combine Delhi, Agra and Jaipur with jeep safaris tracking Bengal tigers in Ranthambore National Park.",
     price: 1406,
-    duration: '8 Days',
+    duration: '7 Nights 8 Days',
     slug: 'taj-and-tigers',
   },
   'colourful-rajasthan': {
@@ -56,7 +56,7 @@ const ITINERARIES: Record<string, ItinerarySource> = {
     title: 'Colourful Rajasthan',
     description:
       "Painted havelis, golden ramparts and lake palaces — fourteen days through Rajasthan's most vivid forts, deserts and royal cities, ending at the Taj Mahal.",
-    duration: '14 Days',
+    duration: '13 Nights 14 Days',
     slug: 'colourful-rajasthan',
   },
   'unveiling-the-enchanting-south-tamil-nadu': {
@@ -66,7 +66,7 @@ const ITINERARIES: Record<string, ItinerarySource> = {
     description:
       "From Mahabalipuram's rock-cut wonders and Pondicherry's French quarter to the Chola temples of Tanjore and Madurai's Meenakshi sanctum.",
     price: 880,
-    duration: '10 Days',
+    duration: '9 Nights 10 Days',
     slug: 'unveiling-the-enchanting-south-tamil-nadu',
   },
   'northeast-india-city-of-joy': {
@@ -76,7 +76,7 @@ const ITINERARIES: Record<string, ItinerarySource> = {
     description:
       "From colonial Kolkata to the wild grasslands of Kaziranga, the river island of Majuli, and the mist-laced hills of Meghalaya — India at its most poetic and untamed.",
     price: 1330,
-    duration: '13 Days',
+    duration: '12 Nights 13 Days',
     slug: 'northeast-india-city-of-joy',
   },
   'kairali-ayurvedic-healing-village': {
@@ -96,7 +96,7 @@ const ITINERARIES: Record<string, ItinerarySource> = {
     description:
       "Ten Himalayan days from Kolkata through Darjeeling's tea gardens, Sikkim's monasteries and Kalimpong's orchid-filled hills.",
     price: 1310,
-    duration: '10 Days',
+    duration: '9 Nights 10 Days',
     slug: 'northeast-india-sojourn',
   },
 };
