@@ -156,6 +156,15 @@ repointed.
 > then **Done**, **Files**, **Next**. Older sessions archived in
 > `SESSION_LOG_ARCHIVE.md`.
 
+### 2026-06-10 (session 38f) — Title finalised: "East India & The City of Joy"
+**Done:** Client follow-up ("rename it to East India city of joy") — title is now
+**"East India & The City of Joy"** ("&The" styled to match the original branding / "Taj & Tigers"
+convention) in `itineraries.ts` (title + datesPrices[0] + comment) and `exploreItems.ts`. Slug stays
+`eastindia` (38e). Build clean 45/45.
+**Files:** `app/itineraries/itineraries.ts`, `app/components/services/exploreItems.ts`, `CLAUDE.md`.
+**Next:** User confirms the title casing — if they want literally "East India City of Joy" (no "&The"),
+it's a 3-string swap.
+
 ### 2026-06-10 (session 38e) — East India slug renamed: `northeast-india-city-of-joy` → `eastindia`
 **Done:** Follow-up to the 38c title rename — URL now `/itineraries/eastindia`. Replaced the slug in
 all 4 code references: `itineraries.ts` (slug field + `ITINERARY_MAP_ROUTES` key + coordinates
