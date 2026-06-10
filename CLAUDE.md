@@ -156,6 +156,18 @@ repointed.
 > then **Done**, **Files**, **Next**. Older sessions archived in
 > `SESSION_LOG_ARCHIVE.md`.
 
+### 2026-06-10 (session 38e) — East India slug renamed: `northeast-india-city-of-joy` → `eastindia`
+**Done:** Follow-up to the 38c title rename — URL now `/itineraries/eastindia`. Replaced the slug in
+all 4 code references: `itineraries.ts` (slug field + `ITINERARY_MAP_ROUTES` key + coordinates
+lookup), `exploreItems.ts` (record key, slug, 4 section lists), `journeys/filters.ts` (region map
+key), `fileMap.ts` (download key). Added a **permanent redirect** old → new in `next.config.ts`
+(old slug is live on deployed production). ImageKit `north-east/` image URLs unaffected (absolute
+paths, not slug-derived). Build clean 45/45 — route list shows `/itineraries/eastindia`.
+**Files:** `app/itineraries/itineraries.ts`, `app/components/services/exploreItems.ts`,
+`app/journeys/filters.ts`, `app/itineraries/template/fileMap.ts`, `next.config.ts`, `CLAUDE.md`.
+**Next:** User verifies `/itineraries/eastindia` renders and the old URL redirects (dev). Note slug
+deviates from the site's hyphenated convention (`east-india`) per the client's literal request.
+
 ### 2026-06-10 (session 38d) — "N Nights N+1 Days" durations sitewide + full hero route (no dots)
 **Done:** Two global itinerary changes. Build clean 45/45.
 1. **Durations now show nights + days** ("13 Days" → "12 Nights 13 Days") across **all 17**

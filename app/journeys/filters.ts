@@ -22,7 +22,7 @@ export const EMPTY_FILTERS: Filters = {
 
 /** Manual slug → region map. Routes are too freeform to parse reliably. */
 const REGION_BY_SLUG: Record<string, Region> = {
-  'northeast-india-city-of-joy': 'Northeastern',
+  'eastindia': 'Northeastern',
   'northeast-india-sojourn': 'Northeastern',
   'kairali-ayurvedic-healing-village': 'Southern',
   'unveiling-the-enchanting-south-tamil-nadu': 'Southern',

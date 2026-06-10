@@ -69,7 +69,7 @@ const ITINERARIES: Record<string, ItinerarySource> = {
     duration: '9 Nights 10 Days',
     slug: 'unveiling-the-enchanting-south-tamil-nadu',
   },
-  'northeast-india-city-of-joy': {
+  'eastindia': {
     category: 'Culture & Nature',
     bestTime: 'October – March',
     title: 'East India',
@@ -77,7 +77,7 @@ const ITINERARIES: Record<string, ItinerarySource> = {
       "From colonial Kolkata to the wild grasslands of Kaziranga, the river island of Majuli, and the mist-laced hills of Meghalaya — India at its most poetic and untamed.",
     price: 1330,
     duration: '12 Nights 13 Days',
-    slug: 'northeast-india-city-of-joy',
+    slug: 'eastindia',
   },
   'kairali-ayurvedic-healing-village': {
     category: 'Wellness',
@@ -109,11 +109,11 @@ const SECTION_LISTS: Record<string, string[]> = {
     'taj-and-tigers',
     'colourful-rajasthan',
     'unveiling-the-enchanting-south-tamil-nadu',
-    'northeast-india-city-of-joy',
+    'eastindia',
     'kairali-ayurvedic-healing-village',
   ],
   cruise: [
-    'northeast-india-city-of-joy',
+    'eastindia',
     'kairali-ayurvedic-healing-village',
     'unveiling-the-enchanting-south-tamil-nadu',
     'northeast-india-sojourn',
@@ -128,14 +128,14 @@ const SECTION_LISTS: Record<string, string[]> = {
   ],
   sports: [
     'taj-and-tigers',
-    'northeast-india-city-of-joy',
+    'eastindia',
     'northeast-india-sojourn',
   ],
   'education-tours': [
     'classical-golden-triangle',
     'unveiling-the-enchanting-south-tamil-nadu',
     'colourful-rajasthan',
-    'northeast-india-city-of-joy',
+    'eastindia',
     'taj-and-tigers',
     'kairali-ayurvedic-healing-village',
   ],

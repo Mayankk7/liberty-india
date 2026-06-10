@@ -106,7 +106,7 @@ export interface MapStop {
 // Keyed by itinerary slug
 export const ITINERARY_MAP_ROUTES: Record<string, MapStop[]> = {
   // 1. Northeast India & The City of Joy
-  "northeast-india-city-of-joy": [
+  "eastindia": [
     { name: "Kolkata", lat: 22.5726, lng: 88.3639, modeToNext: "air" },
     { name: "Dibrugarh", lat: 27.4728, lng: 94.912, modeToNext: "road" },
     { name: "Jorhat", lat: 26.7509, lng: 94.2037, modeToNext: "road" },
@@ -321,7 +321,7 @@ export const itineraries: Itinerary[] = [
   // 1. EAST INDIA (formerly "Northeast India & The City of Joy" — slug kept)
   // ==========================================================================
   {
-    slug: "northeast-india-city-of-joy",
+    slug: "eastindia",
     title: "East India",
     subtitle: "From colonial Kolkata to the wild grasslands of Kaziranga, the river island of Majuli, and the mist-laced hills of Meghalaya — India at its most poetic and untamed.",
     categories: ["Culture", "Nature", "Wildlife"],
@@ -395,7 +395,7 @@ export const itineraries: Itinerary[] = [
       heroImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/main-bg.svg",
       overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/overview.svg",
       mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
-      coordinates: ITINERARY_MAP_ROUTES["northeast-india-city-of-joy"],
+      coordinates: ITINERARY_MAP_ROUTES["eastindia"],
       suggestedHotels: [
         { name: "The Oberoi Grand",     city: "Kolkata",   image: "https://ik.imagekit.io/libertyindia/itineraries/north-east/day-2.svg" },
         { name: "Wild Mahseer",         city: "Dibrugarh", image: "https://ik.imagekit.io/libertyindia/itineraries/north-east/day-4.svg" },
