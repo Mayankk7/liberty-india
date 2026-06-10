@@ -136,7 +136,6 @@ repointed.
   `/our-services/*` pattern.
 - ⚠️ **Wellness Ayurveda overlay** (session 11) — verify on dev that
   `experiences.png` doesn't have cards baked in (would duplicate the overlay).
-- ⚠️ **P1-7:** Jan/Feb hero use the same image — needs a January asset uploaded.
 - **Pre-existing lint debt:** unescaped entities, PageLoader `require`,
   HeroCarousel setState-in-effect, stray unused imports. Not introduced by
   recent work — separate cleanup pass if desired.
@@ -156,6 +155,16 @@ repointed.
 > Newest on top. Keep entries short: `### YYYY-MM-DD (session N) — summary`
 > then **Done**, **Files**, **Next**. Older sessions archived in
 > `SESSION_LOG_ARCHIVE.md`.
+
+### 2026-06-10 (session 38b) — January hero image wired (P1-7 closed)
+**Done:** Client uploaded `hero-section/jan.png` to ImageKit (verified 200, ~2.6MB JPEG; visually
+checked — decorated buffalo-cart race, dust, festival regalia). Jan slide in `HeroCarousel.tsx`
+now uses it instead of sharing `feb.png` → **P1-7 closed** (removed from Known open items).
+Build clean 45/45. **Flag for client:** the photo's decorated buffalo *cart* race reads more like
+Bali's Makepung (or Karnataka's Kambala) than Tamil Nadu Jallikattu (bull-taming, no carts) — if
+exactness matters, swap the asset on ImageKit (same path, no code change needed).
+**Files:** `app/components/HeroCarousel.tsx`, `CLAUDE.md`.
+**Next:** User reviews Jan slide on dev (home hero ‹ back twice from March).
 
 ### 2026-06-10 (session 38) — Hero year + Pan India, travellers copy, heritage line break, social icons back, silkier card hover
 **Done:** Six client changes. Build clean 45/45.

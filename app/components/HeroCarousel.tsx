@@ -6,7 +6,7 @@ import Parallax from './Parallax';
 
 /** Month data for the hero carousel - each month maps to a destination & hero image */
 const MONTHS = [
-  { id: 'jan', name: 'Jan', image: 'https://ik.imagekit.io/libertyindia/hero-section/feb.png', destination: 'Jallikattu, Tamil Nadu' },
+  { id: 'jan', name: 'Jan', image: 'https://ik.imagekit.io/libertyindia/hero-section/jan.png', destination: 'Jallikattu, Tamil Nadu' },
   { id: 'feb', name: 'Feb', image: 'https://ik.imagekit.io/libertyindia/hero-section/feb.png', destination: 'Surajkund Crafts & Folk Festival, Haryana' },
   { id: 'mar', name: 'Mar', image: 'https://ik.imagekit.io/libertyindia/hero-section/march.png', destination: 'Pan India' },
   { id: 'apr', name: 'Apr', image: 'https://ik.imagekit.io/libertyindia/hero-section/april.png', destination: 'Baisakhi Rural Games & Wrestling, Punjab' },
