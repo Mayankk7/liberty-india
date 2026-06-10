@@ -38,3 +38,11 @@ The entries below supersede the original lines for the same files.
 ## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
 - main-bg.jpg — Taj Mahal symmetric frontal, blue sky — Pexels photo 18722577 by Kowshi L — https://www.pexels.com/photo/taj-mahal-in-india-18722577/
 - overview.jpg — Elephants ascending to Amber Fort, Jaipur — Pexels photo 33448400 by MD Shaikh — https://www.pexels.com/photo/elephants-at-amer-fort-in-jaipur-india-33448400/
+
+
+## Session 38 — image audit fixes (hotels + mislabeled/low-res day images)
+
+| File | Subject / reason | License | Author | Source |
+|---|---|---|---|---|
+| hotels/samode-haveli*.jpg | **Samode Haveli, Jaipur — exact property** (courtyard restaurant) | CC BY-SA 4.0 | Pcrtravel | https://commons.wikimedia.org/wiki/File:Samode_Haveli_Jaipur.jpg |
+| hotels/itc-mughal-agra.jpg | Heritage hotel courtyard w/ Mughal-style arch + gardens — **representative stand-in** for ITC Mughal | Pexels | The Visionary Vows | https://www.pexels.com/photo/indian-architectural-courtyard-33485959/ |

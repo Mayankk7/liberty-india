@@ -165,6 +165,54 @@ convention) in `itineraries.ts` (title + datesPrices[0] + comment) and `exploreI
 **Next:** User confirms the title casing — if they want literally "East India City of Joy" (no "&The"),
 it's a 3-string swap.
 
+### 2026-06-10 (session 38g) — Complete image audit: East India page rebuilt + sitewide hotel/day fixes
+**Done:** Client reported wrong Suggested-Hotels pictures on East India → full audit of **all 364
+image refs** across 18 itineraries (inventory script `.claude-tmp/inventory.mjs`; 0 missing files,
+0 broken URLs; findings log `.claude-tmp/image-audit-38.md`). Build clean 45/45.
+1. **East India hotels (the reported bug):** the 3 hotel cards literally reused day-2/4/7 scenery
+   SVGs. Now: Oberoi Grand = **exact property** (Commons), Wild Mahseer + Diphlu = flagged
+   representative stand-ins → `public/images/itineraries/eastindia/hotels/`.
+2. **East India page rebuilt:** ALL refs were client SVG wrappers on ImageKit, 3–23MB each (~89MB/
+   page — Next passes SVGs through unoptimized). 10 of 15 had WRONG subjects (Thai longtails for
+   Majuli ferry, zoo rhino, Sri-Lanka falls for Nohkalikai, Laos karst for Dawki, Chinese town for
+   Kamakhya, European valley for Guwahati, Munnar for overview, Bali terraces + Thai tea for flat
+   Assam, Ranthambore waterhole for Kaziranga). Correct ones (Hooghly bridge, Victoria ×2, buffalo,
+   ridge road) extracted from the SVGs and re-encoded; wrong ones re-sourced (Pexels/Commons —
+   Majuli mask artist, Kamakhya, real Nohkalikai, Dawki, wild Kaziranga rhino, Assam tea ×2,
+   Brahmaputra, Saraighat, living-root-bridge overview). Signature botanical-garden was **Mae Fah
+   Luang Garden, Thailand** → Great Banyan (Kolkata); jazz-bar/cooking recompressed (13MB/5MB→<200KB).
+   Page now ~2.5MB total.
+3. **Hotel fixes sitewide (audited all 44 unique files):** replaced — ITC Mughal (was a Moroccan
+   riad / Suryagarh / Kerala resort ×5 paths → one arch-courtyard rep), Samode Haveli (was
+   Patwon-ki-Haveli monument / Suryagarh ×5 → **exact Samode Haveli** Commons), Claridges
+   consolidated to the one credible file (was CGI render/gold kitsch/modern grey ×5 paths),
+   **Elgin Nor-Khill was a SWISS ALPS hotel** → Mayfair Gangtok rep ×2, Elgin Darjeeling (was a
+   Munnar block) → **exact Elgin** ×2, Raaj Kutir (was Kochi-style) → Itachuna Rajbari rep ×2,
+   Trident (was a budget pension room) → **exact Trident tower** (watermark cropped), Outpost 12
+   (was European pine glamping ×2) → Forest Hills Tala rep, Heritage Hampi (was tourist-on-rock
+   scenery ×2) → bungalow resort rep, Kaav (was plain reservoir) → lakeside lodge, Suryauday (was
+   Suryagarh dup) → Varanasi ghats, Renaissance Lucknow (blurry night phone pic) → Taj Vivanta rep,
+   Kutch Safari (was a WILD-ASS HERD photo) → Thar tent camp; jehan-numa-ECI + brij-encounter =
+   same-property copies for consistency.
+4. **Day fixes (audited all 74 remote ImageKit images + Commons-era locals):** T&T day-5 (Fatehpur
+   Sikri shown for Jaipur day → City Palace), sojourn day-3 (watermarked dreamstime ropeway →
+   Dali Monastery Darjeeling) + day-5 (hero dup → Pemayangtse), unveiling hero+day-10 (off-route
+   Marudamalai, dup → Brihadeeswarar sunrise + Kapaleeshwarar) + day-6/7 (very low-res → sharp
+   Chettinad mansion + Kumbakonam carver), colourful-rajasthan day-5 (AI-looking camels → real Sam
+   dunes) + day-10/11 (Deogarh Mahal shown for BOTH Chittorgarh and Bundi days → real Chittorgarh
+   Fort + Bundi Chitrashala) + day-3 (low-res → Shekhawat Haveli), gujarat day-6 (225px pond for
+   wild-ass-sanctuary day → the wild-ass photo that had been misused as the Kutch hotel).
+   Clean: classical-GT (8/8), kairali (9/9 genuine property photos), gujarat 1-4,7.
+5. All Pexels IDs cross-checked against every SOURCES.md (2 dup collisions caught and avoided);
+   16 SOURCES.md updated + eastindia SOURCES.md rewritten.
+**Files:** `app/itineraries/itineraries.ts` (eastindia all image refs → local; 12 day-slot URL
+fixes), ~60 image files under `public/images/`, 17 SOURCES.md, `CLAUDE.md`.
+**Flag for client:** gujarat day-5 (Ambika Niwas aerial) carries the photographer's watermark
+(©Saful…) — it's their own upload; ask for the original. Hotel stand-ins are flagged
+*representative* in SOURCES.md — swap when client supplies real photography.
+**Next:** Review on dev — `/itineraries/eastindia` (hotels + all days + fast load), the fixed day
+slots above, and any Suggested Hotels row (Samode/Elgin/Trident now exact properties).
+
 ### 2026-06-10 (session 38e) — East India slug renamed: `northeast-india-city-of-joy` → `eastindia`
 **Done:** Follow-up to the 38c title rename — URL now `/itineraries/eastindia`. Replaced the slug in
 all 4 code references: `itineraries.ts` (slug field + `ITINERARY_MAP_ROUTES` key + coordinates

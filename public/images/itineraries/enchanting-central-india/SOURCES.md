@@ -33,3 +33,11 @@ Stored locally; swap to ImageKit URLs when the client uploads (paths mirror thes
 ## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
 - main-bg.jpg — Ellora rock-cut temple courtyard, golden light — Pexels photo 4882665 by Sanjay Indiresh — https://www.pexels.com/photo/gray-concrete-building-under-cloudy-sky-4882665/
 - overview.jpg — Maheshwar ghat chhatri on the Narmada — Pexels photo 5972824 by shravan khare — https://www.pexels.com/photo/people-on-the-port-5972824/
+
+
+## Session 38 — image audit fixes (hotels + mislabeled/low-res day images)
+
+| File | Subject / reason | License | Author | Source |
+|---|---|---|---|---|
+| hotels/trident-mumbai.jpg | **Trident Nariman Point tower — exact property** (bottom watermark cropped) — replaces a budget seaside pension room | CC BY 3.0 | Udaykumar PR | https://commons.wikimedia.org/wiki/File:Nariman_Point,_Mumbai,_Maharashtra_400021,_India_-_panoramio_(48).jpg |
+| hotels/jehan-numa-bhopal.jpg | Copied from vibrant-gujarat-central-india jehan-numa.jpg (Noor-us-Sabah Bhopal representative — same property, one image; replaces a Suryagarh Jaisalmer courtyard) | — | — | see vibrant-gujarat SOURCES |

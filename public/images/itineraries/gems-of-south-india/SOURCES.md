@@ -33,3 +33,10 @@ Stored locally; swap to ImageKit on client upload.
 ## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
 - main-bg.jpg — Mysore Palace and gardens under monsoon sky — Pexels photo 34962788 by Sachin Shettigar — https://www.pexels.com/photo/majestic-mysore-palace-with-gardens-in-karnataka-34962788/
 - overview.jpg — Green hills of Chikmagalur — Pexels photo 11532473 by Satheesh Sankaran — https://www.pexels.com/photo/green-mountains-under-cloudy-sky-11532473/
+
+
+## Session 38 — image audit fixes (hotels + mislabeled/low-res day images)
+
+| File | Subject / reason | License | Author | Source |
+|---|---|---|---|---|
+| hotels/heritage-resort-hampi.jpg | Thatched-bungalow resort — **representative stand-in** for Heritage Resort Hampi (replaces tourist-on-Matanga-hill scenery) | Pexels | urtimud.89 | https://www.pexels.com/photo/rustic-beachfront-bungalows-surrounded-by-palms-32262441/ |

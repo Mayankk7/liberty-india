@@ -43,3 +43,11 @@ The entries below supersede the original lines for the same files.
 ## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
 - main-bg.jpg — Great Buddha statue, Bodh Gaya — Pexels photo 7792726 by RAJESH KUMAR    VERMA — https://www.pexels.com/photo/tourists-walking-near-the-great-buddha-statue-7792726/
 - overview.jpg — Golden hour on the Varanasi ghats, Ganges panorama — Pexels photo 34741303 by Arto Suraj — https://www.pexels.com/photo/golden-hour-on-the-ghats-of-varanasi-india-34741303/
+
+
+## Session 38 — image audit fixes (hotels + mislabeled/low-res day images)
+
+| File | Subject / reason | License | Author | Source |
+|---|---|---|---|---|
+| hotels/claridges-delhi.jpg | Luxury hotel suite turndown — **representative stand-in** for The Claridges (consolidated from classical-golden-triangle; replaces prior CGI/off-brand interiors) | Pexels | cottonbro studio (via classical-GT file) | see classical-golden-triangle SOURCES |
+| hotels/suryauday-varanasi.jpg | Varanasi ghats at sunset — **representative stand-in** for Amritara Suryauday Haveli (replaces a Jaisalmer courtyard duplicated across 2 hotels) | Pexels | Rachel Claire | https://www.pexels.com/photo/waterfont-houses-in-dwarka-india-8112524/ |

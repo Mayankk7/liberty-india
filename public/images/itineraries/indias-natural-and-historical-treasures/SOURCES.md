@@ -46,3 +46,12 @@ The entries below supersede the original lines for the same files.
 ## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
 - main-bg.jpg — Hawa Mahal full frontal, Jaipur — Pexels photo 19867647 by vijesh vijayan — https://www.pexels.com/photo/red-facade-of-hawa-mahal-in-jaipu-19867647/
 - overview.jpg — Bengal tiger side profile in pale grassland — Pexels photo 14907418 by GVN Santhosh — https://www.pexels.com/photo/brown-tiger-on-brown-grass-14907418/
+
+
+## Session 38 — image audit fixes (hotels + mislabeled/low-res day images)
+
+| File | Subject / reason | License | Author | Source |
+|---|---|---|---|---|
+| hotels/samode-haveli-jaipur.jpg | **Samode Haveli, Jaipur — exact property** (courtyard restaurant) | CC BY-SA 4.0 | Pcrtravel | https://commons.wikimedia.org/wiki/File:Samode_Haveli_Jaipur.jpg |
+| hotels/itc-mughal-agra.jpg | Heritage hotel courtyard w/ Mughal-style arch + gardens — **representative stand-in** for ITC Mughal | Pexels | The Visionary Vows | https://www.pexels.com/photo/indian-architectural-courtyard-33485959/ |
+| hotels/claridges-delhi.jpg | Luxury hotel suite turndown — **representative stand-in** for The Claridges (consolidated from classical-golden-triangle; replaces prior CGI/off-brand interiors) | Pexels | cottonbro studio (via classical-GT file) | see classical-golden-triangle SOURCES |

@@ -40,3 +40,12 @@ The entries below supersede the original lines for the same files.
 ## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
 - main-bg.jpg — Bengal tiger close-up in natural forest habitat — Pexels photo 37885575 by Magda Ehlers — https://www.pexels.com/photo/close-up-of-a-majestic-bengal-tiger-in-nature-37885575/
 - overview.jpg — Chital stag close-up in lush foliage — Pexels photo 13257014 by Sathish Kumar — https://www.pexels.com/photo/close-up-shot-of-a-deer-13257014/
+
+
+## Session 38 — image audit fixes (hotels + mislabeled/low-res day images)
+
+| File | Subject / reason | License | Author | Source |
+|---|---|---|---|---|
+| hotels/claridges-delhi.jpg | Luxury hotel suite turndown — **representative stand-in** for The Claridges (consolidated from classical-golden-triangle; replaces prior CGI/off-brand interiors) | Pexels | cottonbro studio (via classical-GT file) | see classical-golden-triangle SOURCES |
+| hotels/outpost-kanha.jpg | Wooden jungle-cottage bedroom, Forest Hills Tala (Bandhavgarh) — **representative stand-in** for Outpost 12, Kanha | Pexels | Forest Hills at Tala | https://www.pexels.com/photo/bedroom-in-wooden-cottage-23325566/ |
+| hotels/brij-bandhavgarh.jpg | Indian luxury safari-tent interior (copied from safari-and-heritage-trail — same property; replaces an African-style lodge deck) | — | — | see safari-and-heritage-trail SOURCES |

@@ -56,3 +56,12 @@ This Photo was taken by Timothy A. Gonsalves.  Feel free to use my photos, bu ·
 ## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
 - main-bg.jpg — Camel cart crossing the white Rann of Kutch — Pexels photo 34568381 by santosh bhagat — https://www.pexels.com/photo/camel-cart-on-rann-of-kutch-desert-landscape-34568381/
 - overview.jpg — Statue of Unity over the Narmada (landscape) — Wikimedia Commons "File:Statue of Unity 2.jpg" · CC BY-SA 4.0 · Basavaraj M · https://commons.wikimedia.org/wiki/File%3AStatue_of_Unity_2.jpg
+
+
+## Session 38 — image audit fixes (hotels + mislabeled/low-res day images)
+
+| File | Subject / reason | License | Author | Source |
+|---|---|---|---|---|
+| day-6.jpg | Indian wild asses, Little Rann of Kutch — moved here from hotels/kutch-safari.jpg (right subject for the sanctuary day; was a 225px garden pond) | — | — | client-era asset, origin unknown |
+| hotels/kutch-safari.jpg | Desert tent camp with camel caravan, Thar — **representative stand-in** for Kutch Safari Resort (replaces the wild-ass herd photo) | Pexels | Prince Desert Camp | https://www.pexels.com/photo/people-riding-on-camels-on-a-desert-9497619/ |
+| hotels/renaissance-lucknow.jpg | Taj Vivanta (Vivanta by Taj), Lucknow — **representative stand-in** for Renaissance Lucknow (replaces a blurry night phone photo) | CC BY-SA 3.0 | Harshvardhansonkar | https://commons.wikimedia.org/wiki/File:Taj_Vivanta_Hotel,_Lucknow.jpg |

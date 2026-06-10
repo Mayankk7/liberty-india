@@ -47,3 +47,11 @@ The entries below supersede the original lines for the same files.
 ## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
 - main-bg.jpg — Hampi hilltop pavilion and boulders at sunrise — Pexels photo 37626185 by Roman Saienko — https://www.pexels.com/photo/ancient-stone-ruins-in-hampi-karnataka-37626185/
 - overview.jpg — Misty Western Ghats peak — Pexels photo 9411180 by Kavin Narain — https://www.pexels.com/photo/green-mountain-under-white-clouds-9411180/
+
+
+## Session 38 — image audit fixes (hotels + mislabeled/low-res day images)
+
+| File | Subject / reason | License | Author | Source |
+|---|---|---|---|---|
+| hotels/heritage-resort-hampi.jpg | Thatched-bungalow resort — **representative stand-in** for Heritage Resort Hampi (replaces tourist-on-Matanga-hill scenery) | Pexels | urtimud.89 | https://www.pexels.com/photo/rustic-beachfront-bungalows-surrounded-by-palms-32262441/ |
+| hotels/kaav-safari-lodge.jpg | Lakeside lodge pavilion, Ranthambore — **representative stand-in** for Kaav Safari Lodge, Kabini (replaces plain reservoir scenery with no building) | Pexels | Sayan Samanta | https://www.pexels.com/photo/a-picturesque-hunting-lodge-by-a-tranquil-lake-36076418/ |

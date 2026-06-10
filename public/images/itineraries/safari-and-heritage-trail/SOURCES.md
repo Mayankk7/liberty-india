@@ -43,3 +43,12 @@ The entries below supersede the original lines for the same files.
 ## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
 - main-bg.jpg — Bengal tiger stalking through golden grass — Pexels photo 5513468 by Supriyo Ghoshal — https://www.pexels.com/photo/wild-tiger-seeking-prey-in-high-grass-5513468/
 - overview.jpg — Taj Mahal frontal with reflecting pool at sunrise — Pexels photo 14533217 by Nguyen Hien — https://www.pexels.com/photo/the-taj-mahal-in-india-14533217/
+
+
+## Session 38 — image audit fixes (hotels + mislabeled/low-res day images)
+
+| File | Subject / reason | License | Author | Source |
+|---|---|---|---|---|
+| hotels/itc-mughal-agra.jpg | Heritage hotel courtyard w/ Mughal-style arch + gardens — **representative stand-in** for ITC Mughal | Pexels | The Visionary Vows | https://www.pexels.com/photo/indian-architectural-courtyard-33485959/ |
+| hotels/claridges-delhi.jpg | Luxury hotel suite turndown — **representative stand-in** for The Claridges (consolidated from classical-golden-triangle; replaces prior CGI/off-brand interiors) | Pexels | cottonbro studio (via classical-GT file) | see classical-golden-triangle SOURCES |
+| hotels/outpost-kanha.jpg | Wooden jungle-cottage bedroom, Forest Hills Tala (Bandhavgarh) — **representative stand-in** for Outpost 12, Kanha | Pexels | Forest Hills at Tala | https://www.pexels.com/photo/bedroom-in-wooden-cottage-23325566/ |

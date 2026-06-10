@@ -38,3 +38,13 @@ The entries below supersede the original lines for the same files.
 ## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
 - main-bg.jpg — Kanchenjunga range at pastel dawn — Pexels photo 30778935 by Rohit Sharma — https://www.pexels.com/photo/sunrise-over-kanchenjunga-mountain-range-30778935/
 - overview.jpg — Buddhist prayer flags against misty hills — Pexels photo 5220716 by Nishant Aneja — https://www.pexels.com/photo/buddhist-prayer-flags-5220716/
+
+
+## Session 38 — image audit fixes (hotels + mislabeled/low-res day images)
+
+| File | Subject / reason | License | Author | Source |
+|---|---|---|---|---|
+| hotels/claridges-delhi.jpg | Luxury hotel suite turndown — **representative stand-in** for The Claridges (consolidated from classical-golden-triangle; replaces prior CGI/off-brand interiors) | Pexels | cottonbro studio (via classical-GT file) | see classical-golden-triangle SOURCES |
+| hotels/elgin-darjeeling.jpg | **The Elgin, Darjeeling — exact property** (colonial-era mansion) | CC BY-SA 2.0 | Adam Jones | https://commons.wikimedia.org/wiki/File:Colonial-Era_Hotel_Elgin_-_Darjeeling_-_West_Bengal_-_India_(12406988513).jpg |
+| hotels/elgin-norkhill.jpg | Mayfair Resort & Spa, Gangtok — **representative stand-in** for Elgin Nor-Khill (replaces a Swiss Alps hotel!) | CC BY-SA 4.0 | Yakrita | https://commons.wikimedia.org/wiki/File:Mayfair_resort_and_spa,_Gangtok.jpg |
+| hotels/taj-raaj-kutir.jpg | Itachuna Rajbari, Bengal — **representative stand-in** for Taj Raaj Kutir (rajbari style; replaces a Kochi-style waterfront) | CC BY-SA 4.0 | Kinjal bose 78 | https://commons.wikimedia.org/wiki/File:Itachuna_rajbari.jpg |
