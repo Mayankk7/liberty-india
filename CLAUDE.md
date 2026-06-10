@@ -157,6 +157,16 @@ repointed.
 > then **Done**, **Files**, **Next**. Older sessions archived in
 > `SESSION_LOG_ARCHIVE.md`.
 
+### 2026-06-10 (session 37) — Suggested Hotels: full hotel names visible
+**Done:** Hotel-name span in the Suggested Hotels cards (`DaysSection.tsx`) had `truncate`, so long
+names ("Fateh Prakash Palace", "The Elgin Mount Pandim", …) were cut with an ellipsis. Removed
+`truncate` → name now wraps to multiple lines (`leading-snug`); card footer row switched
+`items-center` → `items-baseline` so the city label aligns with the first line of a wrapped name.
+Only renderer of `suggestedHotels` — applies to all 17 itineraries that show the section. Build
+clean 45/45.
+**Files:** `app/itineraries/template/DaysSection.tsx`, `CLAUDE.md`.
+**Next:** User spot-checks a long-named hotel on dev (e.g. colourful-rajasthan, northeast-india-sojourn).
+
 ### 2026-06-10 (session 36) — Expert-form redesign + modal scroll fix, Suggested Hotels everywhere, premium hovers, hero/card/overview image pass
 **Done:** Four client tasks, all verified end-to-end (build 45/45; Playwright temp-install since
 removed: 32 runtime assertions + screenshots, **0 console errors**; package.json/lock untouched).

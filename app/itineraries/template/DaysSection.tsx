@@ -304,9 +304,9 @@ export default function DaysSection({ itinerary }: { itinerary: Itinerary }) {
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
                       />
                     </div>
-                    <div className="px-4 py-3 flex items-center justify-between gap-3">
+                    <div className="px-4 py-3 flex items-baseline justify-between gap-3">
                       <span
-                        className="text-base md:text-lg font-semibold text-[#141313] truncate"
+                        className="text-base md:text-lg font-semibold text-[#141313] leading-snug"
                         style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                       >
                         {hotel.name}
