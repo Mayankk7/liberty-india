@@ -81,6 +81,10 @@ interface Coordinate {
   modeToNext: TransportMode | null;
 }
 
+/** Guards Leaflet from ever receiving a NaN/undefined LatLng (which throws). */
+const isFiniteCoord = (c?: Coordinate): c is Coordinate =>
+  !!c && Number.isFinite(c.lat) && Number.isFinite(c.lng);
+
 interface IndiaMapProps {
   coordinates: Coordinate[];
   /** Index of the stop the traveller is at on the day currently in view. */
@@ -126,11 +130,24 @@ function FollowActive({
   }, [map]);
 
   useEffect(() => {
-    if (coordinates.length === 0) return;
+    // Only ever hand Leaflet stops with real, finite coordinates — anything
+    // else makes `L.latLng` throw "Invalid LatLng object: (NaN, NaN)".
+    const valid = coordinates.filter(isFiniteCoord);
+    if (valid.length === 0) return;
+
+    // Leaflet derives the target centre/zoom from the map's pixel size. The
+    // sticky / lazily-mounted map can still be 0×0 on first paint, and that
+    // maths then yields NaN. Skip until the container has a real size; a later
+    // scroll/resize re-runs this with a valid size.
+    const sized = () => {
+      const s = map.getSize();
+      return s.x > 0 && s.y > 0;
+    };
 
     if (activeIndex == null) {
+      if (!sized()) return;
       map.fitBounds(
-        L.latLngBounds(coordinates.map((c) => [c.lat, c.lng] as [number, number])),
+        L.latLngBounds(valid.map((c) => [c.lat, c.lng] as [number, number])),
         { padding: [40, 40] }
       );
       return;
@@ -140,22 +157,30 @@ function FollowActive({
     // changes into a single smooth move to where they come to rest, instead of
     // a stack of interrupted fly animations (the cause of the jitter).
     const timer = setTimeout(() => {
+      if (!sized()) return;
       const i = Math.max(0, Math.min(activeIndex, coordinates.length - 1));
       const to = coordinates[i];
       const from = coordinates[Math.max(0, i - 1)];
-      const sameSpot = from.lat === to.lat && from.lng === to.lng;
+      if (!isFiniteCoord(to)) return;
+      const fromOk = isFiniteCoord(from);
+      const sameSpot = fromOk && from.lat === to.lat && from.lng === to.lng;
       const ease = { duration: 1.4, easeLinearity: 0.22 } as const;
 
-      if (i === 0 || sameSpot) {
-        map.flyTo([to.lat, to.lng], 6.5, ease);
-      } else {
-        map.flyToBounds(
-          L.latLngBounds([
-            [from.lat, from.lng],
-            [to.lat, to.lng],
-          ]),
-          { padding: [80, 80], maxZoom: 7.5, ...ease }
-        );
+      try {
+        if (i === 0 || sameSpot || !fromOk) {
+          map.flyTo([to.lat, to.lng], 6.5, ease);
+        } else {
+          map.flyToBounds(
+            L.latLngBounds([
+              [from.lat, from.lng],
+              [to.lat, to.lng],
+            ]),
+            { padding: [80, 80], maxZoom: 7.5, ...ease }
+          );
+        }
+      } catch {
+        // Final guard — never let a transient Leaflet edge case bubble up as
+        // an unhandled runtime error.
       }
     }, 200);
     return () => clearTimeout(timer);
@@ -164,7 +189,7 @@ function FollowActive({
 }
 
 export default function IndiaMap({ coordinates, activeIndex }: IndiaMapProps) {
-  const safeCoordinates = Array.isArray(coordinates) ? coordinates : [];
+  const safeCoordinates = (Array.isArray(coordinates) ? coordinates : []).filter(isFiniteCoord);
 
   // Resolve the highlighted stop (defaults to the final stop when no day is
   // active, i.e. the whole route reads as completed).

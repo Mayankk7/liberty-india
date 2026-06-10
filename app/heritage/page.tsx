@@ -126,8 +126,7 @@ export default function HeritagePage() {
               alt="Ancient Temple Architecture"
               width={1600}
               height={900}
-              className="w-full h-auto"
-              style={{ objectFit: 'cover' }}
+              className="w-full h-[340px] sm:h-[420px] md:h-auto object-cover"
             />
           </div>
 

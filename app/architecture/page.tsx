@@ -15,7 +15,7 @@ export default function ArchitecturePage() {
 
       {/* Hero Section with Architecture Image */}
       <section className="relative w-full pt-16">
-        <div className="relative w-[102vw] h-[50vh] md:h-[60vh] lg:h-[70vh]">
+        <div className="relative w-full lg:w-[102vw] h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
             src="https://ik.imagekit.io/libertyindia/about-india/architecture/architecture-bg.svg"
             alt="Architecture of India - Amber Fort"

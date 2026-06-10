@@ -154,6 +154,7 @@ export function getExploreItems(folderSlug: string): ServiceItineraryItem[] {
 }
 
 export const EXPLORE_HEADING = 'Explore Programs';
-export const EXPLORE_SUBHEADING =
-  'Travel through centuries of history with journeys designed for discerning explorers';
+// NOTE: each service page passes its own page-specific Explore subhead (per the
+// client review). No shared/generic subhead constant — a pasted generic line
+// ("Travel through centuries of history…") was the exact issue they flagged.
 export const EXPLORE_BG = '#FDF39F4D';
