@@ -157,6 +157,34 @@ repointed.
 > then **Done**, **Files**, **Next**. Older sessions archived in
 > `SESSION_LOG_ARCHIVE.md`.
 
+### 2026-06-10 (session 38) — Hero year + Pan India, travellers copy, heritage line break, social icons back, silkier card hover
+**Done:** Six client changes. Build clean 45/45.
+1. **Hero month strip shows "2026"** (`HeroCarousel.tsx`): static year label at the left edge of
+   the tablist pill (white/70, merriweather, `border-r` divider) — reads `2026 │ ‹ Apr May Jun … ›`.
+   Hardcoded per request (not `getFullYear()`).
+2. **AboutUs intro is B2C too** (`AboutUs.tsx`): audience list now "tour operators, travel
+   advisors, corporate buyers and travellers" — in both the visible paragraph and the JSON-LD
+   Organization description.
+3. **March hero label** (`HeroCarousel.tsx`): "Auli, Uttarakhand" → "Pan India" (user confirmed
+   literal text, not "Holi, Pan India").
+4. **Heritage cream-band line break** (`heritage/page.tsx`): `<br className="hidden md:inline">`
+   before "subcontinent" so ≥768px renders "…soul of the / subcontinent — its temples, forts, and
+   living traditions."; mobile keeps natural wrap.
+5. **Social icons restored** (`Footer.tsx`): Instagram/Facebook/LinkedIn row back in Col 1 (original
+   first-commit SVGs, restyled white/60→white), `href="#"` placeholders + TODO comment — user will
+   supply live profile URLs later (these were removed in session 31 as dead links; explicit ask).
+6. **Silkier card hover** (`globals.css`): `.card-lift` 400→550ms, `.card-zoom` 600→900ms, easing
+   → `cubic-bezier(0.16,1,0.3,1)` (gentler tail). Same transform-only/::after-shadow architecture;
+   reduced-motion block untouched. Covers Services + AboutIndia + Journeys (ItineraryCard) — every
+   home card.
+**Files:** `app/components/{HeroCarousel,AboutUs,Footer}.tsx`, `app/heritage/page.tsx`,
+`app/globals.css`, `CLAUDE.md`.
+**Next:** User reviews on dev — (a) "2026" in the hero pill desktop + mobile; (b) March slide says
+"Pan India"; (c) AboutUs paragraph includes "and travellers"; (d) /heritage band breaks before
+"subcontinent" on desktop; (e) footer social icons render (links dead by design until URLs arrive);
+(f) home card hovers feel slower/softer. **Open:** swap the `#` social hrefs for live profile URLs
+when the client supplies them.
+
 ### 2026-06-10 (session 37) — Suggested Hotels: full hotel names visible
 **Done:** Hotel-name span in the Suggested Hotels cards (`DaysSection.tsx`) had `truncate`, so long
 names ("Fateh Prakash Palace", "The Elgin Mount Pandim", …) were cut with an ellipsis. Removed

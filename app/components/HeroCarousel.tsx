@@ -8,7 +8,7 @@ import Parallax from './Parallax';
 const MONTHS = [
   { id: 'jan', name: 'Jan', image: 'https://ik.imagekit.io/libertyindia/hero-section/feb.png', destination: 'Jallikattu, Tamil Nadu' },
   { id: 'feb', name: 'Feb', image: 'https://ik.imagekit.io/libertyindia/hero-section/feb.png', destination: 'Surajkund Crafts & Folk Festival, Haryana' },
-  { id: 'mar', name: 'Mar', image: 'https://ik.imagekit.io/libertyindia/hero-section/march.png', destination: 'Auli, Uttarakhand' },
+  { id: 'mar', name: 'Mar', image: 'https://ik.imagekit.io/libertyindia/hero-section/march.png', destination: 'Pan India' },
   { id: 'apr', name: 'Apr', image: 'https://ik.imagekit.io/libertyindia/hero-section/april.png', destination: 'Baisakhi Rural Games & Wrestling, Punjab' },
   { id: 'may', name: 'May', image: 'https://ik.imagekit.io/libertyindia/hero-section/may.jpg', destination: 'Thrissur Pooram, Kerala' },
   { id: 'jun', name: 'Jun', image: 'https://ik.imagekit.io/libertyindia/hero-section/june.png', destination: 'Hemis Festival, Ladakh' },
@@ -195,6 +195,14 @@ export default function HeroCarousel() {
               aria-label="Select travel month"
               style={{ backgroundColor: 'rgba(73, 73, 73, 0.5)' }}
             >
+              {/* Year label */}
+              <span
+                className="text-white/70 text-[10px] md:text-xs tracking-[0.12em] font-light pr-2 md:pr-3 mr-0.5 md:mr-1 border-r border-white/25 select-none"
+                style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+              >
+                2026
+              </span>
+
               {/* Previous Arrow */}
               <button
                 onClick={goPrev}

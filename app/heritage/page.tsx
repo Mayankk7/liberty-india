@@ -92,7 +92,9 @@ export default function HeritagePage() {
             className="text-xl md:text-2xl lg:text-3xl font-bold text-[#424242]"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
-            Liberty India&apos;s heritage journeys connect you with the soul of the subcontinent — its temples, forts, and living traditions.
+            Liberty India&apos;s heritage journeys connect you with the soul of the{' '}
+            <br className="hidden md:inline" />
+            subcontinent — its temples, forts, and living traditions.
           </p>
         </div>
       </section>
