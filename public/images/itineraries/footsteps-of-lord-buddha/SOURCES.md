@@ -33,3 +33,9 @@ is intentionally left empty pending the client's own entries.
 | hotels/taj-lucknow.jpg | Heritage hotel lobby, Lucknow _(representative)_ | Pexels | Abhishek Navlakha | https://www.pexels.com/photo/elegant-heritage-hotel-lobby-in-bikaner-india-33803739/ |
 | hotels/marasa-bodhgaya.jpg | Resort with pool & gardens, Bodhgaya _(representative)_ | Pexels | Abhishek Navlakha | https://www.pexels.com/photo/lush-green-gardens-in-kumbhalgarh-resort-30607268/ |
 | hotels/suryauday-varanasi.jpg | Heritage haveli courtyard, Varanasi _(representative)_ | Pexels | Abhishek Navlakha | https://www.pexels.com/photo/luxury-heritage-hotel-courtyard-in-jaisalmer-33726143/ |
+
+
+## Session 35 replacements (image audit — premium pass)
+The entries below supersede the original lines for the same files.
+- day-1.jpg — REPLACED (session 35): Pexels photo 18533987 by Harsh Sahu — https://www.pexels.com/photo/sri-bangla-sahib-gurudwara-in-new-delhi-18533987/ (A serene view of Gurudwara Bangla Sahib with a child observing its ref)
+- day-2.jpg — REPLACED (session 35): Pexels photo 3559738 by Bhavesh Jain — https://www.pexels.com/photo/rickshaws-and-people-on-street-in-delhi-india-3559738/ (Dynamic street scene in Delhi with rickshaws and pedestrians at golden)

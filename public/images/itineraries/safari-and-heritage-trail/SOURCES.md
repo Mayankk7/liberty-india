@@ -33,3 +33,9 @@ named properties weren't available) — replace with official hotel photography.
 | hotels/brij-bandhavgarh.jpg | Brij Sone Bagh, Bandhavgarh _(representative)_ | Pexels | Prince Desert Camp | https://www.pexels.com/photo/bedroom-interior-in-glamping-tent-9497611/ |
 | hotels/outpost-kanha.jpg | Outpost 12, Kanha _(representative)_ | Pexels | Anastasia  Shuraeva | https://www.pexels.com/photo/white-tents-in-the-forest-4989094/ |
 | hotels/itc-mughal-agra.jpg | ITC Mughal, Agra _(representative)_ | Pexels | Akshay Mr | https://www.pexels.com/photo/swimming-pool-near-a-villa-12414221/ |
+
+
+## Session 35 replacements (image audit — premium pass)
+The entries below supersede the original lines for the same files.
+- day-4.jpg — REPLACED (session 35): Pexels photo 27040537 by Sayan Samanta — https://www.pexels.com/photo/lake-and-grassland-in-countryside-27040537/ (Tranquil view of Bandhogarh's fields, lake, and hills in India.)
+- day-5.jpg — REPLACED (session 35): Pexels photo 17374914 by Shoyab Khan — https://www.pexels.com/photo/tiger-in-forest-17374914/ (A stunning Bengal Tiger walking through the lush forest of Kanha, Indi)

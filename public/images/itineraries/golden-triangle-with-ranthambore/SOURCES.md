@@ -29,3 +29,8 @@ luxury stand-ins — replace with official hotel photography.
 | hotels/itc-mughal-agra.jpg | ITC Mughal, Agra _(representative)_ | Pexels | Zakaria HANIF | https://www.pexels.com/photo/courtyard-with-a-pool-in-riad-maktoub-hotel-ajt-bin-haddu-morocco-10573397/ |
 | hotels/samode-haveli.jpg | Samode Haveli, Jaipur _(representative)_ | Pexels | Harsh  Kukadiya | https://www.pexels.com/photo/architectural-details-of-historic-jaisalmer-haveli-37415397/ |
 | hotels/tutc-sawai-shivir.jpg | TUTC Sawai Shivir, Ranthambore _(representative)_ | Pexels | Prince Desert Camp | https://www.pexels.com/photo/aerial-view-of-land-with-buildings-9491014/ |
+
+
+## Session 35 replacements (image audit — premium pass)
+The entries below supersede the original lines for the same files.
+- day-4.jpg — REPLACED (session 35): Pexels photo 19149609 by AXP Photography — https://www.pexels.com/photo/view-of-the-taj-mahal-at-sunset-agra-india-19149609/ (A breathtaking view of the Taj Mahal framed by an arch with a bird in )

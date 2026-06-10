@@ -32,8 +32,10 @@ export default function SummarySection({ itinerary }: { itinerary: Itinerary }) 
           </a>
         </div>
 
-        {/* Stats chips — horizontal row with thin dividers between */}
-        <div className="grid grid-cols-1 md:grid-cols-[auto_auto_auto_auto_auto] md:justify-start items-stretch gap-3 md:gap-0 mb-8 md:mb-10">
+        {/* Stats chips — horizontal row with thin dividers between. The Route
+            track is flexible (minmax(0,1fr)) so a long stop-by-stop route can
+            use the remaining row width and wrap instead of truncating. */}
+        <div className="grid grid-cols-1 md:grid-cols-[auto_auto_minmax(0,1fr)_auto_auto] md:justify-start items-stretch gap-3 md:gap-0 mb-8 md:mb-10">
           <StatChip label="Duration" value={itinerary.duration} />
           <ChipDivider />
           <StatChip label="Route" value={itinerary.route} grow />
@@ -64,12 +66,13 @@ function ChipDivider() {
 function StatChip({ label, value, grow = false }: { label: string; value: string; grow?: boolean }) {
   return (
     <div
-      className={`bg-[#FFFDEB] rounded-[10px] px-5 md:px-6 py-3.5 md:py-4 flex items-center ${grow ? 'min-w-0 max-w-full md:max-w-[30rem]' : ''}`}
+      className={`bg-[#FFFDEB] rounded-[10px] px-5 md:px-6 py-3.5 md:py-4 flex items-center ${grow ? 'min-w-0 max-w-full' : ''}`}
       style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
     >
+      {/* The value must never truncate — long routes wrap onto extra lines. */}
       <span className="flex items-baseline gap-2 md:gap-3 min-w-0 text-[#424242] text-sm md:text-base tracking-[0.02em] leading-[1.6]">
         <span className="font-bold whitespace-nowrap">{label}</span>
-        <span className="font-light truncate min-w-0">{value}</span>
+        <span className="font-light min-w-0 whitespace-normal break-words">{value}</span>
       </span>
     </div>
   );

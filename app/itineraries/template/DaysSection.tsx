@@ -3,9 +3,74 @@
 import ImageWithLoader from '../../components/ImageWithLoader';
 import dynamic from 'next/dynamic';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { Itinerary } from '../itineraries';
+import type { Itinerary, Meal } from '../itineraries';
 
 const IndiaMap = dynamic(() => import('../IndiaMap'), { ssr: false });
+
+// ── Meal chips ───────────────────────────────────────────────────────────────
+// Pill badges showing the meals included on a day (breakfast / lunch / dinner).
+// Icons are inline SVGs in the site's stroked style (lucide-style paths).
+const MEAL_META: Record<Meal, { label: string; path: React.ReactNode }> = {
+  breakfast: {
+    label: 'Breakfast',
+    // Coffee cup
+    path: (
+      <>
+        <path d="M10 2v2" />
+        <path d="M14 2v2" />
+        <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" />
+        <path d="M6 2v2" />
+      </>
+    ),
+  },
+  lunch: {
+    label: 'Lunch',
+    // Fork & knife
+    path: (
+      <>
+        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+        <path d="M7 2v20" />
+        <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+      </>
+    ),
+  },
+  dinner: {
+    label: 'Dinner',
+    // Crescent moon
+    path: <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />,
+  },
+};
+
+const MEAL_ORDER: Meal[] = ['breakfast', 'lunch', 'dinner'];
+
+function MealChips({ meals }: { meals?: Meal[] }) {
+  if (!meals || meals.length === 0) return null;
+  const shown = MEAL_ORDER.filter((m) => meals.includes(m));
+  return (
+    <div className="flex flex-wrap gap-2 mt-3">
+      {shown.map((meal) => (
+        <span
+          key={meal}
+          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F8F6E1] border border-[#E9E4BF] text-[12px] tracking-[0.02em] text-[#424242]"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-3.5 h-3.5 text-[#E07B39]"
+          >
+            {MEAL_META[meal].path}
+          </svg>
+          {MEAL_META[meal].label}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 /**
  * Itinerary section — matches Figma. Sticky map column on the left, day-by-day
@@ -18,7 +83,9 @@ const IndiaMap = dynamic(() => import('../IndiaMap'), { ssr: false });
 export default function DaysSection({ itinerary }: { itinerary: Itinerary }) {
   const stops = useMemo(
     () =>
-      (itinerary.coordinates ?? []).map((s) => ({
+      (itinerary.coordinates ?? [])
+        .filter((s) => s && Number.isFinite(s.lat) && Number.isFinite(s.lng))
+        .map((s) => ({
         name: s.name,
         lat: s.lat,
         lng: s.lng,
@@ -126,13 +193,11 @@ export default function DaysSection({ itinerary }: { itinerary: Itinerary }) {
   return (
     <section id="itinerary" className="w-full bg-white scroll-mt-20 pt-10 md:pt-14 pb-12 md:pb-16">
       <div className="w-[92%] max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-6 lg:gap-8 items-start">
-        {/* Sticky map */}
-        <div className="hidden lg:block sticky top-24 self-start w-full">
-          <div className="bg-white border-2 border-[#E9E4BF] rounded-lg overflow-hidden">
-            <div className="h-[calc(100vh-12rem)] min-h-[420px] max-h-[600px]">
-              <IndiaMap coordinates={stops} activeIndex={activeStop} />
-            </div>
-          </div>
+        {/* Sticky map — fills the whole column edge to edge: full width, full
+            viewport height below the sticky offset (top-24 = 6rem + 1rem
+            breathing room at the bottom), no frame or inner padding. */}
+        <div className="hidden lg:block sticky top-24 self-start w-full h-[calc(100vh-7rem)] min-h-[420px] rounded-lg overflow-hidden">
+          <IndiaMap coordinates={stops} activeIndex={activeStop} />
         </div>
 
         {/* Day cards column — cream panel */}
@@ -170,9 +235,14 @@ export default function DaysSection({ itinerary }: { itinerary: Itinerary }) {
                 </header>
 
                 <div className="flex flex-col md:flex-row gap-4 md:gap-0 p-4 md:p-0">
-                  <p className="flex-1 md:py-4 md:px-5 text-[14px] md:text-[15px] leading-[1.7] text-[#424242] font-light">
-                    {day.description}
-                  </p>
+                  <div className="flex-1 min-w-0 md:py-4 md:px-5">
+                    {/* line-clamp is a layout safeguard only — content is
+                        authored to ≤100 words, so it shouldn't trigger. */}
+                    <p className="text-[14px] md:text-[15px] leading-[1.7] text-[#424242] font-light md:line-clamp-[10]">
+                      {day.description}
+                    </p>
+                    <MealChips meals={day.meals} />
+                  </div>
                   {day.image && (
                     <div className="relative w-full md:w-44 lg:w-52 aspect-[4/3] self-center shrink-0 overflow-hidden md:my-4 md:mr-4 md:rounded-[8px]">
                       <ImageWithLoader

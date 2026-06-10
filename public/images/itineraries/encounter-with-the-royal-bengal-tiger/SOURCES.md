@@ -29,3 +29,10 @@ closest premium wilderness match available and are flagged _(representative)_.
 | hotels/brij-bandhavgarh.jpg | Bush / safari lodge, Bandhavgarh _(representative)_ | Pexels | Magda Ehlers | https://www.pexels.com/photo/luxury-outdoor-patio-at-modern-safari-lodge-37790193/ |
 | hotels/outpost-kanha.jpg | Forest tented camp, Kanha _(representative)_ | Pexels | Katie Tran | https://www.pexels.com/photo/sunlit-serenity-28123902/ |
 | hotels/waghoba-tadoba.jpg | Jungle eco-resort, Tadoba _(representative)_ | Pexels | Tom Fisk | https://www.pexels.com/photo/aerial-view-of-jungle-villas-in-bali-indonesia-35767558/ |
+
+
+## Session 35 replacements (image audit — premium pass)
+The entries below supersede the original lines for the same files.
+- day-1.jpg — REPLACED (session 35): Pexels photo 14094276 by Vishal Adhikari — https://www.pexels.com/photo/facade-of-the-lahori-gate-in-red-fort-in-delhi-india-14094276/ (Front view of the historic Red Fort in New Delhi, featuring its iconic)
+- day-2.jpg — REPLACED (session 35): Pexels photo 20083843 by Ranjeet  Chauhan — https://www.pexels.com/photo/jama-masjid-in-delhi-india-20083843/ (A stunning view of Jama Masjid in Delhi at dusk, showcasing Mughal arc)
+- day-3.jpg — REPLACED (session 35): Pexels photo 29193466 by Bharath Kumar  Venkatesh — https://www.pexels.com/photo/bengal-tiger-resting-in-bandhavgarh-forest-29193466/ (Majestic Bengal tiger resting amidst greenery in Bandhavgarh National )

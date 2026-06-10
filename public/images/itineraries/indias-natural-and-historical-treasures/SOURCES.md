@@ -35,3 +35,10 @@ Ranthambore, Encounter with the Royal Bengal Tiger, and Safari & Heritage Trail.
 | hotels/jamtara-pench.jpg | Jamtara Wilderness, Pench (representative) | Pexels | Reto Wiezel | https://www.pexels.com/photo/bungalows-in-a-desert-resort-18611231/ |
 | hotels/samode-haveli-jaipur.jpg | Samode Haveli, Jaipur (representative) | Pexels | Abhishek  Navlakha | https://www.pexels.com/photo/luxury-heritage-courtyard-in-jaisalmer-india-33681488/ |
 | hotels/itc-mughal-agra.jpg | ITC Mughal, Agra (representative) | Pexels | Abhishek  Navlakha | https://www.pexels.com/photo/majestic-suryagarh-palace-in-jaisalmer-india-33689321/ |
+
+
+## Session 35 replacements (image audit — premium pass)
+The entries below supersede the original lines for the same files.
+- day-14.jpg — REPLACED (session 35): Pexels photo 28119116 by Teysa Tugadi — https://www.pexels.com/photo/the-taj-mahal-is-a-beautiful-building-in-india-28119116/ (Stunning view of the grand entrance gate to the Taj Mahal, showcasing )
+- day-1.jpg — REPLACED (session 35): Pexels photo 5548401 by Yogendra  Singh — https://www.pexels.com/photo/reflection-of-building-on-water-pond-5548401/ (A serene reflection of Rashtrapati Bhavan in a water pond during a vib)
+- day-3.jpg — REPLACED (session 35): Pexels photo 20045037 by Ranjeet  Chauhan — https://www.pexels.com/photo/sunder-nursery-central-park-in-delhi-india-20045037/ (A picturesque view of Sunder Nursery's iconic garden and architecture )

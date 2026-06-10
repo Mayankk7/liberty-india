@@ -40,3 +40,15 @@ named property weren't available) — swap for official hotel photography when a
 | hotels/ambika-niwas.jpg | Vijay Vilas Palace, Mandvi (heritage palace) _(representative)_ | CC BY-SA 4.0 | Deepank Ranka | https://commons.wikimedia.org/wiki/File:Vijay_Vilas_Palace_Mandvi_02.jpg |
 | hotels/jehan-numa.jpg | Noor-us-Sabah Palace heritage hotel, Bhopal _(representative)_ | CC BY-SA 3.0 | BijuJohn | https://commons.wikimedia.org/wiki/File:NoorUsSabahPalaceHeritageHotel-Bhopal.jpg |
 | hotels/renaissance-lucknow.jpg | Vivanta by Taj, Lucknow _(representative)_ | CC BY-SA 3.0 | Animesh Gupta | https://commons.wikimedia.org/wiki/File:Hotel_Vivanta_By_Taj,_Lucknow_at_Night.jpg |
+
+
+## Session 35 replacements (image audit — premium pass)
+The entries below supersede the original lines for the same files.
+- day-9.jpg — REPLACED (session 35): Wikimedia Commons "File:Roopmati 3.jpg" · CC BY-SA 4.0 · Rangan Datta Wiki · https://commons.wikimedia.org/wiki/File%3ARoopmati_3.jpg
+- day-11.jpg — REPLACED (session 35): Wikimedia Commons "File:Mahakaleshwar Temple, Ujjain.jpg" · CC BY-SA 4.0 · Ashverse · https://commons.wikimedia.org/wiki/File%3AMahakaleshwar_Temple%2C_Ujjain.jpg
+- day-12.jpg — REPLACED (session 35): Pexels photo 7916657 by Harshit Nema — https://www.pexels.com/photo/a-dramatic-sunset-over-a-body-of-water-7916657/ (Tranquil sunset reflecting over Bhopal Lake in India, capturing nature)
+- day-15.jpg — REPLACED (session 35): Wikimedia Commons "File:Rumi darwaza night.jpg" · CC BY-SA 4.0 · Mrityunjaipathak · https://commons.wikimedia.org/wiki/File%3ARumi_darwaza_night.jpg
+- day-18.jpg — REPLACED (session 35): Wikimedia Commons "File:Boat Pilgrims Triveni Sangam Allahabad Jan24 A7C 08513.jpg" · CC BY-SA 4.0 · 
+
+
+This Photo was taken by Timothy A. Gonsalves.  Feel free to use my photos, bu · https://commons.wikimedia.org/wiki/File%3ABoat_Pilgrims_Triveni_Sangam_Allahabad_Jan24_A7C_08513.jpg

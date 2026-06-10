@@ -157,6 +157,130 @@ repointed.
 > then **Done**, **Files**, **Next**. Older sessions archived in
 > `SESSION_LOG_ARCHIVE.md`.
 
+### 2026-06-10 (session 35) — Itinerary pages: route un-truncation, full-column map, meal chips, ≤100-word days, 23-image premium pass
+**Done:** Five global itinerary-page improvements (all 18 itineraries / 217 days). Build clean 45/45;
+Playwright check (dev-only, since uninstalled): 3 itineraries × 1280px+390px → **0 console/page errors**.
+1. **Route truncation** (`SummarySection.tsx`): Route stat-chip value had `truncate` + `md:max-w-[30rem]`
+   → now wraps (`whitespace-normal break-words`); stats grid Route track → `minmax(0,1fr)`. Verified with
+   the 20-day Gujarat route (13 stops, wraps to 2 lines desktop, full route visible mobile). Hero
+   `shortRoute()` summarisation untouched (deliberate Figma design).
+2. **Map fills left column** (`DaysSection.tsx`): collapsed the bordered wrapper (removed `border-2`
+   frame, white bg, `max-h-[600px]`) → single sticky container `top-24 h-[calc(100vh-7rem)]
+   min-h-[420px] rounded-lg overflow-hidden` with `IndiaMap` direct child. Sticky-follow preserved; no
+   grey tiles/NaN (session-34 guards hold).
+3. **Meal chips (data-driven):** `ItineraryDay.meals?: ("breakfast"|"lunch"|"dinner")[]` + `MealChips`
+   in DaysSection — pill chips (`bg-[#F8F6E1]` border `#E9E4BF`), inline lucide-style SVG icons
+   (coffee/utensils/moon) in brand orange, rendered under the description; nothing renders when no
+   meals. Populated **all 217 days** from each itinerary's inclusions board basis (+ explicit day-text
+   meals like the dunes dinner/houseboat lunch; arrival day 1 = none unless board covers dinner;
+   16 days correctly have no chips). "(on own)" meals excluded (e.g. buddha d4 Awadhi lunch).
+4. **Description cap:** rewrote the **45 days >100 words** (7 itineraries — incredible-NE 11, ECI 9,
+   ESI-TN-Kerala 7, southern 7, GT-Ranthambore 4, encounter 4, buddha 3) to ~70–92 words, UK English,
+   landmarks preserved; audit now max 92w / 0 over 100. UI safeguard: `md:line-clamp-[10]` on the
+   day-card description.
+5. **Image audit + premium pass:** visually audited **all 142 local day images**; replaced **22**
+   (+kept guj d17 — no better source): 5 exact cross-itinerary dups (INHT d1/d3, encounter d1/d2,
+   buddha d1/d2 shared files with NE/safari/GT-R), wrong-region/country subjects (safari d4 Himalayan
+   prayer flags → Bandhavgarh fort hill; NE d9 Bhutan Buddha → real Ravangla Buddha Park), scaffolded/
+   hazy Tajs (GT-R d4 → Taj-through-crimson-arch; INHT d14 → great gate), zoo-ish safari d5 → wild
+   tiger in autumn sal forest, weak Commons-era picks (gujarat d9/11/12/15/18, southern d2/4/6/8/12/13
+   → Roopmati terrace, night Mahakaleshwar, Bhojtal sunset, night Rumi Darwaza, Sangam pilgrim boat,
+   Somnathpur through-mandapa, clean Gommateshwara, monsoon Chitradurga, clean Bom Jesus, tusker,
+   Palolem). Pipeline: Pexels (`PEXELS_API_KEY` in `.env`) + Commons for niche monuments → sharp
+   1280px → every candidate visually verified (several re-source rounds) → overwrote same `day-N.jpg`
+   paths (zero data churn) → appended "Session 35 replacements" to each folder's `SOURCES.md`.
+   Strong Commons-era keepers documented in `.claude-tmp/image-audit-log.md`.
+**Files:** `app/itineraries/template/SummarySection.tsx`, `app/itineraries/template/DaysSection.tsx`,
+`app/itineraries/itineraries.ts` (meals on 201 days + 45 rewrites + `Meal` type), 23 images + 8
+`SOURCES.md` under `public/images/itineraries/`, `CLAUDE.md`.
+**Next:** User reviews on dev — (a) Summary route wraps fully on long itineraries; (b) map edge-to-edge
+sticky; (c) meal chips per day (none on arrival days); (d) uniform day cards; (e) the 22 new images.
+Open: guj d17 Residency would benefit from a client photo; meal data is editorial (derived from
+inclusions) — client should sanity-check board basis per itinerary before launch.
+
+### 2026-06-09 (session 34) — Fix itinerary-map runtime crash (NaN LatLng) + Heritage "Dravidian" mobile card
+**Done:** Client review flagged a recurring dev error ("3 Issues") + odd blue blocks on Heritage.
+- **Runtime error `Invalid LatLng object: (NaN, NaN)`** (`IndiaMap.tsx` `FollowActive`): root cause
+  was Leaflet computing centre/zoom from a **0×0 map** — the lazily-mounted/sticky map fires its
+  `flyTo`/`flyToBounds` at 200ms, *before* the `invalidateSize` fix at 250ms, so zoom-from-bounds
+  maths yields NaN. Added a `map.getSize()` guard (skip until sized), `isFiniteCoord` validation of
+  every stop before handing Leaflet a LatLng, and a try/catch net; `safeCoordinates` now filters
+  non-finite stops, and `DaysSection` filters them before computing day→stop indices. Coordinate
+  *data* was clean — this was the zero-size timing bug. Verified with Playwright: scrolling
+  `/itineraries/classical-golden-triangle` through every day at 390px **and** 1280px → **0** console/
+  page errors (was throwing before).
+- **Heritage "Dravidian Temples of South India" card** (`heritage/page.tsx`): its image
+  (`Ancient_Temple_Architecture.png`, wide 16:9) was `w-full h-auto`, so on mobile it collapsed to a
+  short strip *shorter than the overlapping white card* — the card floated with only thin blue-sky
+  slivers of image showing (the "blue box"). Fixed: `h-[340px] sm:h-[420px] md:h-auto object-cover`
+  so mobile/tablet show a proper-height image with the card overlapping it; desktop (`md:h-auto`)
+  unchanged. The other Heritage temple images (Northern Nagara/Vesara/Taj/Red Fort) load fine — their
+  blue is just sky in the source photos (the Nagara SVG is a saturated-blue-sky asset); not broken,
+  no code bug, would need new assets to change.
+**Files:** `app/itineraries/IndiaMap.tsx`, `app/itineraries/template/DaysSection.tsx`,
+`app/heritage/page.tsx`, `CLAUDE.md`. Build clean 45/45; Playwright (dev-only) uninstalled, temp
+scan/shots removed.
+**Next:** User reviews on dev — itinerary pages should no longer show the "Invalid LatLng" error
+badge; Heritage "Dravidian" card on mobile now shows the temple image properly. If they want the
+very-blue Northern Nagara temple image toned down, that's an asset swap on ImageKit.
+
+### 2026-06-09 (session 33) — Mobile horizontal-overflow fix (diagnosed with Playwright)
+**Done:** Fixed the mobile horizontal scroll / off-screen content; desktop untouched.
+Diagnosed at runtime with a temporary Playwright scan (dev-only dep, since uninstalled;
+gitignored `.claude-tmp/overflow-scan.mjs`) that loaded all 19 routes at 360/375/390/768
+and flagged elements crossing the viewport edge while their parent stayed within it,
+keyed on real page overflow (`documentElement.scrollWidth > innerWidth`, not just bounding
+boxes clipped by an ancestor `overflow-hidden`). **Only two routes truly overflowed:**
+- **`/architecture`** (all widths incl. 768): hero `<div>` was `w-[102vw]` (2vw wider than
+  the screen). → `w-full lg:w-[102vw]` so mobile/tablet fit while desktop (≥1024/1280) keeps
+  the exact prior style. `app/architecture/page.tsx:18`.
+- **`/journeys`** (360/375): the search `<input>` (intrinsic ~200px) sat in a `flex-1`
+  container with default `min-width:auto`, so it couldn't shrink and pushed the
+  search-button + mobile "Filters" button past the edge. → added `min-w-0` to the search
+  container and the input. `app/journeys/JourneyFinder.tsx:60,67`.
+Everything else the scanner flagged (Footer `scale-x-[1.03]` bg image, ServiceHero
+`absolute inset-0` parallax layers, culture `scale-[1.25]` zoom, itinerary TabStrip) has a
+wide bounding box but `scrollWidth == innerWidth` — clipped by a component-level
+`overflow-hidden`, so no real scroll; left untouched (changing them risks altering desktop).
+Re-scan after fixes: `/architecture` + `/journeys` clean at 360/375/390/768; `/architecture`
+@1280 still `w-[102vw]` (desktop unchanged). Screenshots at 390px (home/architecture/
+journeys/cruise) + 1280px (architecture) visually confirmed. Build clean 45/45; Playwright
+uninstalled (package.json/lock restored); temp scan/shots removed.
+**Files:** `app/architecture/page.tsx`, `app/journeys/JourneyFinder.tsx`, `CLAUDE.md`.
+**Next:** `<body>` already has `overflow-x-hidden` (`layout.tsx:137`); `<html>` does not. If
+the client still reports scroll on a specific page on real iOS Safari (where body-only
+overflow-x-hidden is less reliable), the safe next step is `overflow-x:hidden` on `html` in
+`globals.css` — deferred for now since the runtime scan shows no remaining real overflow and
+it could interact with Lenis.
+
+### 2026-06-09 (session 32) — Client website-review: full re-verification (already implemented) + housekeeping
+**Done:** User re-shared the "Liberty India: Website Review" PDF asking to make any
+remaining fixes. Ran a complete line-by-line re-verification of **every** PDF row against
+the current tree (3 Explore audits + greps + direct reads of Navbar/Footer/Services/
+exploreItems/AboutUs/about-us/CustomizedPrograms/special-interest + the Golden Triangle,
+Kairali & Colourful Rajasthan blocks in itineraries.ts). **Result: every actionable item
+is already implemented** (session 31 + its follow-up covered them) — currency €, Colourful
+Rajasthan reconciled, Kairali "7/14/21 Nights", Northeast canonical slugs (no `/north-east`
+route/link exists), Gujarat/Ranthambore spelling, page-specific Explore subheads, distinct
+straplines, Special-Interest copy, Event-Production removed, /contact-us rebuilt + both
+Contact links → `/#contact`, nav labels unified, dropdown "Incentives", social icons hidden,
+"quiet excellence" period, About-Us punctuation/colon, Heritage heading/lead-in, GT
+route(Agra)/6 Days/Day-3 dedupe, UK dialect, all 4 B2B copy blocks. Two safe housekeeping
+edits only: removed the dead `EXPLORE_SUBHEADING` generic constant (the exact "pasted
+subhead" phrase the client flagged — imported by nothing) from `exploreItems.ts`; fixed a
+stray section comment typo/old-spelling in `itineraries.ts` ("GOLDEN TRIANGLE WITH
+RANTHAMBHOREprice" → "TAJ & TIGERS (Golden Triangle with Ranthambore)"). Build clean 45/45.
+**Deliberately NOT changed:** Colourful Rajasthan *image folder* path
+`…/colorful-rajasthan/…` (internal ImageKit asset path, not a user-facing cross-link —
+renaming would 404 images); orphan `to-be-added.json` (dormant, unimported).
+**Files:** `app/components/services/exploreItems.ts`, `app/itineraries/itineraries.ts`,
+`CLAUDE.md`.
+**Next:** Two genuinely-open items remain, both needing input — (1) **"No proof / credentials"**
+strategic item: needs client-supplied certifications (IATA/licensing/insurance/awards) — "Check
+with Team India"; can scaffold a placeholder trust block on request. (2) The fixes are committed
+locally but **never deployed** (no-push rule) — production still shows the old copy, which is
+likely why the client still "sees" the issues. Deploying requires user sign-off.
+
 ### 2026-06-04 (session 31) — Website-review pass: consistency, B2B repositioning, broken-link & dead-end fixes
 **Done:** Worked the full client website-review punch list. Build clean 45/45.
 - **Currency → € sitewide:** `ItineraryCards.tsx` service-card path rendered `$` (theme pages were

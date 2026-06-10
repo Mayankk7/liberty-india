@@ -29,3 +29,8 @@ Web-sourced (mostly **Pexels**, free for commercial use; **day-5** Darjeeling to
 | hotels/elgin-darjeeling.jpg | The Elgin, Darjeeling _(representative)_ | Pexels | Erik Chistov | https://www.pexels.com/photo/man-looking-at-the-white-building-on-the-mountain-12893060/ |
 | hotels/elgin-norkhill.jpg | Elgin Nor-khill, Gangtok _(representative)_ | Pexels | Alexandru MnM | https://www.pexels.com/photo/snow-covered-luxury-hotel-in-alpine-mountains-30151209/ |
 | hotels/claridges-delhi.jpg | The Claridges, Delhi _(representative)_ | Pexels | Quang Nguyen Vinh | https://www.pexels.com/photo/marble-foyer-of-luxurious-hotel-14011664/ |
+
+
+## Session 35 replacements (image audit — premium pass)
+The entries below supersede the original lines for the same files.
+- day-9.jpg — REPLACED (session 35): Wikimedia Commons "File:Large Gautama Buddha statue in Buddha Park of Ravangla, Sikkim.jpg" · CC BY-SA 4.0 · Subhrajyoti07 · https://commons.wikimedia.org/wiki/File%3ALarge_Gautama_Buddha_statue_in_Buddha_Park_of_Ravangla%2C_Sikkim.jpg
