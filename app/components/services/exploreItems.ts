@@ -72,7 +72,7 @@ const ITINERARIES: Record<string, ItinerarySource> = {
   'northeast-india-city-of-joy': {
     category: 'Culture & Nature',
     bestTime: 'October – March',
-    title: 'Northeast India & The City of Joy',
+    title: 'East India',
     description:
       "From colonial Kolkata to the wild grasslands of Kaziranga, the river island of Majuli, and the mist-laced hills of Meghalaya — India at its most poetic and untamed.",
     price: 1330,

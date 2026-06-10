@@ -156,6 +156,18 @@ repointed.
 > then **Done**, **Files**, **Next**. Older sessions archived in
 > `SESSION_LOG_ARCHIVE.md`.
 
+### 2026-06-10 (session 38c) — Itinerary renamed: "Northeast India & The City of Joy" → "East India"
+**Done:** Display-name rename in both data sources: `itineraries.ts` (`title` + `datesPrices[0]` +
+block comment) and `exploreItems.ts` (service-card title). Propagates everywhere titles render
+(detail page, journey cards, category cards, search, download modal). **Deliberately kept:** slug
+`northeast-india-city-of-joy` (URL + ImageKit `north-east/` day images), `fileMap.ts` PDF filename
+(points at the real download asset), overview prose ("famously known as The City of Joy" — describes
+Kolkata, still accurate), and the separate "Northeast India Sojourn" itinerary. Build clean 45/45.
+**Files:** `app/itineraries/itineraries.ts`, `app/components/services/exploreItems.ts`, `CLAUDE.md`.
+**Next:** User checks `/itineraries/northeast-india-city-of-joy` + journeys/category cards show
+"East India". Note: the downloadable PDF is still the old client doc titled "Northeast India & The
+City of Joy" — client should supply a renamed PDF if they want the download to match.
+
 ### 2026-06-10 (session 38b) — January hero image wired (P1-7 closed)
 **Done:** Client uploaded `hero-section/jan.png` to ImageKit (verified 200, ~2.6MB JPEG; visually
 checked — decorated buffalo-cart race, dust, festival regalia). Jan slide in `HeroCarousel.tsx`

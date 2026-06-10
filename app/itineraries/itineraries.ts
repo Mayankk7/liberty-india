@@ -318,11 +318,11 @@ export const ITINERARY_MAP_ROUTES: Record<string, MapStop[]> = {
 export const itineraries: Itinerary[] = [
 
   // ==========================================================================
-  // 1. NORTHEAST INDIA & THE CITY OF JOY
+  // 1. EAST INDIA (formerly "Northeast India & The City of Joy" — slug kept)
   // ==========================================================================
   {
     slug: "northeast-india-city-of-joy",
-    title: "Northeast India & The City of Joy",
+    title: "East India",
     subtitle: "From colonial Kolkata to the wild grasslands of Kaziranga, the river island of Majuli, and the mist-laced hills of Meghalaya — India at its most poetic and untamed.",
     categories: ["Culture", "Nature", "Wildlife"],
     duration: "13 Days",
@@ -375,7 +375,7 @@ export const itineraries: Itinerary[] = [
       "Items not explicitly mentioned",
     ],
     datesPrices: [
-      "Northeast India & The City of Joy",
+      "East India",
       "Price Validity OCT 2025 – MAR 2026",
     ],
     notes: [
