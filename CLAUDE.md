@@ -165,6 +165,23 @@ convention) in `itineraries.ts` (title + datesPrices[0] + comment) and `exploreI
 **Next:** User confirms the title casing — if they want literally "East India City of Joy" (no "&The"),
 it's a 3-string swap.
 
+### 2026-06-10 (session 38i) — ImageKit migration phase 2: code repointed, locals deleted
+**Done:** Client uploaded the staging folder — it landed at
+`ik.imagekit.io/libertyindia/images/imagekit-upload/…` (inside an `images` folder, not the
+library root as planned — harmless, code just points at the real location). Probed **all 301
+URLs → 0 failures**, then swapped every quoted `"/images/…` ref in `itineraries.ts` (exactly 301)
+to `https://ik.imagekit.io/libertyindia/images/imagekit-upload/…`. Inventory re-run: 364/364 refs
+remote, 0 failing HEAD. Deleted the 301 migrated files from `public/images/` (kept all 17
+SOURCES.md license manifests + unreferenced `tram-ride.jpg`); removed `imagekit-upload/` staging.
+PDF route verified safe (its `toDataUri` fetches http URLs, falls back to fs for local — line
+30/35 of `api/itinerary-pdf/route.ts`). Build clean 45/45.
+**Files:** `app/itineraries/itineraries.ts` (301 URL swaps), 301 deletions under `public/images/`,
+`CLAUDE.md`.
+**Next:** User reviews itinerary pages on dev (images now served by ImageKit CDN). NOTE: the
+`images/imagekit-upload/` prefix is ugly but functional — if the client ever MOVES those folders
+in the ImageKit dashboard, all 301 URLs change and the code must be re-swapped; advise leaving
+them where they are.
+
 ### 2026-06-10 (session 38h) — ImageKit migration phase 1: upload staging folder built
 **Done:** Client wants all repo-hosted images moved to ImageKit. Built **`imagekit-upload/`**
 (gitignored) at repo root: all **301 local images** referenced by `itineraries.ts` (58.4MB, 42
