@@ -160,7 +160,9 @@ repointed.
 **Done:** Two global itinerary changes. Build clean 45/45.
 1. **Durations now show nights + days** ("13 Days" → "12 Nights 13 Days") across **all 17**
    day-based itineraries in `itineraries.ts` + the 6 `exploreItems.ts` cards (regex script,
-   nights = days − 1). Kairali stays "7 / 14 / 21 Nights" (already nights-based, 3 options).
+   nights = days − 1). Kairali (follow-up ask): "7 / 14 / 21 Nights" → "7 Nights 8 Days" in both
+   files (overview prose still mentions the 7/14/21-night package options; the €1,230 price line
+   stays "(7 Nights, Deluxe Villa…)"; `durationDays: 7` untouched — only display changed).
    Safe everywhere: all filtering/sorting uses numeric `durationDays`; the `duration` string is
    display-only (cards, hero, Summary stat chip, navbar search, PDF strip).
 2. **Hero route never abbreviates** (`HeroSection.tsx`): `shortRoute` truncated >5-stop routes to

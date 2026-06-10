@@ -411,7 +411,7 @@ export const itineraries: Itinerary[] = [
     title: "Kairali Ayurvedic Healing Village",
     subtitle: "Reconnect with ancient wellness traditions in the serene forests of Kerala. Experience authentic Ayurvedic therapies, daily yoga, and holistic healing at one of India's most celebrated retreat centres.",
     categories: ["Wellness", "Nature", "Spiritual"],
-    duration: "7 / 14 / 21 Nights",
+    duration: "7 Nights 8 Days",
     durationDays: 7,
     startingPrice: "€1,230",
     startingPriceNote: "per person (2 people)",

@@ -86,7 +86,7 @@ const ITINERARIES: Record<string, ItinerarySource> = {
     description:
       "Restore body, mind and spirit at one of India's most respected Ayurvedic retreats — daily yoga, personalised therapies and wholesome cuisine in Kerala's Pala forests.",
     price: 1230,
-    duration: '7 / 14 / 21 Nights',
+    duration: '7 Nights 8 Days',
     slug: 'kairali-ayurvedic-healing-village',
   },
   'northeast-india-sojourn': {
