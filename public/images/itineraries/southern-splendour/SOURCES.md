@@ -43,3 +43,7 @@ The entries below supersede the original lines for the same files.
 - day-6.jpg — REPLACED (session 35): Wikimedia Commons "File:Shravanabelagola Bahubali wideframe.jpg" · CC BY-SA 3.0 · Ananth H V · https://commons.wikimedia.org/wiki/File%3AShravanabelagola_Bahubali_wideframe.jpg
 - day-8.jpg — REPLACED (session 35): Wikimedia Commons "File:Chitradurga Fort or Chitradoorg from the Ancient times.jpg" · CC BY-SA 4.0 · Ramjaiswal75 · https://commons.wikimedia.org/wiki/File%3AChitradurga_Fort_or_Chitradoorg_from_the_Ancient_times.jpg
 - day-12.jpg — REPLACED (session 35): Wikimedia Commons "File:Front Elevation of Basilica of Bom Jesus.jpg" · CC BY-SA 4.0 · iMahesh · https://commons.wikimedia.org/wiki/File%3AFront_Elevation_of_Basilica_of_Bom_Jesus.jpg
+
+## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
+- main-bg.jpg — Hampi hilltop pavilion and boulders at sunrise — Pexels photo 37626185 by Roman Saienko — https://www.pexels.com/photo/ancient-stone-ruins-in-hampi-karnataka-37626185/
+- overview.jpg — Misty Western Ghats peak — Pexels photo 9411180 by Kavin Narain — https://www.pexels.com/photo/green-mountain-under-white-clouds-9411180/

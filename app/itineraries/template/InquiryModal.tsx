@@ -127,14 +127,18 @@ export default function InquiryModal({ open, onClose, itinerary }: Props) {
 
   return (
     <div
+      data-lenis-prevent
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/45 backdrop-blur-sm"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="inquiry-title"
     >
+      {/* data-lenis-prevent releases the wheel from the global smooth-scroll
+          loop so this pane scrolls its own content, not the page behind. */}
       <div
-        className="relative w-full max-w-lg bg-white rounded-[14px] border border-[#E9E4BF] shadow-2xl max-h-[92vh] overflow-y-auto"
+        data-lenis-prevent
+        className="relative w-full max-w-lg bg-white rounded-[14px] border border-[#E9E4BF] shadow-2xl max-h-[92vh] overflow-y-auto overscroll-contain"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close */}
@@ -150,43 +154,41 @@ export default function InquiryModal({ open, onClose, itinerary }: Props) {
           </svg>
         </button>
 
-        <div className="p-6 md:p-8">
+        <div className="p-7 md:p-10">
           {/* Header */}
           <p
-            className="text-[10px] md:text-xs tracking-[0.3em] uppercase text-[#E07B39] mb-2"
+            className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-[#E07B39] mb-3"
             style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
           >
             We&rsquo;d love to help
           </p>
           <h2
             id="inquiry-title"
-            className="text-2xl md:text-3xl font-semibold text-[#141313] leading-tight"
+            className="text-[28px] md:text-[34px] font-semibold text-[#141313] leading-tight"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
             Speak to an Expert
           </h2>
           <p
-            className="mt-2 text-sm md:text-[15px] text-[#424242] font-light leading-relaxed"
+            className="mt-3 text-sm md:text-[15px] text-[#424242]/80 font-light leading-relaxed"
             style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
           >
             Tell us about your trip — a Liberty India specialist will reach out within 24 hours.
           </p>
 
-          {/* Itinerary context chip */}
-          <div
-            className="mt-5 inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#FFFDEC] border border-[#E9E4BF]"
+          {/* Itinerary context — quiet editorial line */}
+          <p
+            className="mt-4 text-[13px] text-[#424242]/70"
             style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
           >
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[#E07B39] font-semibold">
-              Enquiring about
-            </span>
-            <span className="text-sm text-[#141313] font-medium">{itinerary.title}</span>
-          </div>
+            <span className="uppercase tracking-[0.18em] text-[11px] text-[#E07B39]">Enquiring about</span>
+            <span className="text-[#141313]"> — {itinerary.title}</span>
+          </p>
 
           {status === 'sent' ? (
             <SuccessState onClose={onClose} />
           ) : (
-            <form onSubmit={onSubmit} className="mt-6 space-y-4">
+            <form onSubmit={onSubmit} className="mt-8 space-y-7">
               {serverError && (
                 <div className="px-4 py-3 rounded-md bg-red-50 border border-red-200 text-sm text-red-700">
                   {serverError}
@@ -205,7 +207,7 @@ export default function InquiryModal({ open, onClose, itinerary }: Props) {
                 {errors.name && <FieldError>{errors.name}</FieldError>}
               </Field>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-7">
                 <Field label="Email" required>
                   <input
                     type="email"
@@ -231,7 +233,7 @@ export default function InquiryModal({ open, onClose, itinerary }: Props) {
                 </Field>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-7">
                 <Field label="Preferred Travel Month">
                   <select
                     value={form.month}
@@ -252,7 +254,6 @@ export default function InquiryModal({ open, onClose, itinerary }: Props) {
                     value={form.travellers}
                     onChange={(e) => update('travellers', e.target.value)}
                     className={inputCls(undefined)}
-                    placeholder="e.g. 2"
                   />
                 </Field>
               </div>
@@ -261,22 +262,22 @@ export default function InquiryModal({ open, onClose, itinerary }: Props) {
                 <textarea
                   value={form.message}
                   onChange={(e) => update('message', e.target.value)}
-                  className={`${inputCls(undefined)} min-h-[100px] resize-y`}
-                  placeholder="Anything we should know about your trip…"
+                  className={`${inputCls(undefined)} min-h-[88px] h-auto resize-y pt-2`}
                 />
               </Field>
 
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="w-full mt-2 inline-flex items-center justify-center px-7 py-3.5 rounded-[10px] bg-[#E07B39] hover:bg-[#c66a2f] disabled:opacity-60 disabled:cursor-not-allowed text-white text-base tracking-[0.02em] transition-colors"
+                className="group w-full mt-2 inline-flex items-center justify-center gap-3 h-[52px] bg-black hover:bg-white border border-black disabled:opacity-60 disabled:cursor-not-allowed text-white hover:text-black text-[12px] tracking-[0.22em] uppercase transition-colors duration-300"
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
               >
                 {status === 'sending' ? 'Sending…' : 'Send Inquiry'}
+                <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
               </button>
 
               <p
-                className="text-xs text-[#424242]/70 text-center"
+                className="text-[11px] text-[#424242]/60 text-center leading-relaxed"
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
               >
                 We&rsquo;ll never share your details. By submitting, you agree to be contacted by Liberty India.
@@ -292,9 +293,9 @@ export default function InquiryModal({ open, onClose, itinerary }: Props) {
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
 function inputCls(error?: string) {
-  return `w-full px-4 py-3 rounded-[8px] bg-[#FFFDEC] border ${
+  return `w-full h-11 px-0 bg-transparent border-0 border-b ${
     error ? 'border-red-400' : 'border-[#E9E4BF]'
-  } text-[#141313] placeholder:text-[#424242]/50 outline-none focus:border-[#E07B39] focus:bg-white transition-colors`;
+  } text-[#141313] text-[15px] outline-none focus:border-[#E07B39] transition-colors duration-300 rounded-none`;
 }
 
 function Field({
@@ -309,7 +310,7 @@ function Field({
   return (
     <label className="block">
       <span
-        className="block text-xs md:text-sm text-[#424242] mb-1.5 tracking-[0.02em]"
+        className="block text-[11px] text-[#424242]/60 mb-1 tracking-[0.18em] uppercase"
         style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
       >
         {label}
@@ -347,7 +348,7 @@ function SuccessState({ onClose }: { onClose: () => void }) {
       <button
         type="button"
         onClick={onClose}
-        className="mt-6 inline-flex items-center justify-center px-6 py-2.5 rounded-[10px] border border-[#E9E4BF] text-[#424242] hover:bg-[#FFFDEC] transition-colors"
+        className="mt-7 inline-flex items-center justify-center px-10 h-[46px] border border-black text-black hover:bg-black hover:text-white text-[12px] tracking-[0.22em] uppercase transition-colors duration-300"
         style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
       >
         Close

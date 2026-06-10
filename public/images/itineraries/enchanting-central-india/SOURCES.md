@@ -29,3 +29,7 @@ Stored locally; swap to ImageKit URLs when the client uploads (paths mirror thes
 | hotels/gateway-aurangabad.jpg | Gateway Aurangabad (representative) | Pexels | Abhishek  Navlakha | https://www.pexels.com/photo/luxurious-resort-overlooking-lush-hills-in-rajasthan-30607269/ |
 | hotels/ahilya-fort.jpg | Ahilya Fort, Maheshwar (representative) | Pexels | Pramod  Tiwari | https://www.pexels.com/photo/stunning-view-of-neemrana-fort-in-rajasthan-33797751/ |
 | hotels/jehan-numa-bhopal.jpg | Jehan Numa Palace, Bhopal (representative) | Pexels | Abhishek  Navlakha | https://www.pexels.com/photo/luxury-heritage-hotel-courtyard-in-jaisalmer-33726143/ |
+
+## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
+- main-bg.jpg — Ellora rock-cut temple courtyard, golden light — Pexels photo 4882665 by Sanjay Indiresh — https://www.pexels.com/photo/gray-concrete-building-under-cloudy-sky-4882665/
+- overview.jpg — Maheshwar ghat chhatri on the Narmada — Pexels photo 5972824 by shravan khare — https://www.pexels.com/photo/people-on-the-port-5972824/

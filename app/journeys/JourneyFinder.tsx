@@ -57,14 +57,14 @@ export default function JourneyFinder() {
         <div className="flex flex-col lg:flex-row items-stretch gap-2 lg:gap-0 bg-white border border-[#e5e0d6] rounded-3xl lg:rounded-full p-2 shadow-sm">
           {/* Search + mobile toggle row */}
           <div className="flex items-center gap-2 lg:contents">
-            <div className="flex items-center flex-1 px-4 py-2 lg:border-r lg:border-[#ece6d8]">
+            <div className="flex items-center flex-1 min-w-0 px-4 py-2 lg:border-r lg:border-[#ece6d8]">
               <input
                 type="text"
                 value={filters.q}
                 onChange={(e) => updateFilters({ ...filters, q: e.target.value })}
                 placeholder="Type here…"
                 aria-label="Search journeys"
-                className="flex-1 bg-transparent outline-none text-sm md:text-[15px] text-[#424242] placeholder:text-[#8d8d8d]"
+                className="flex-1 min-w-0 bg-transparent outline-none text-sm md:text-[15px] text-[#424242] placeholder:text-[#8d8d8d]"
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
               />
               <button
@@ -164,7 +164,7 @@ function CardForItinerary({ it }: { it: Itinerary }) {
   const isPrivate = getWayToTravel(it) === 'Private Group';
   return (
     <ItineraryCard
-      image={it.overviewImage || it.heroImage}
+      image={it.heroImage || it.overviewImage}
       alt={it.title}
       title={it.title}
       description={it.subtitle}

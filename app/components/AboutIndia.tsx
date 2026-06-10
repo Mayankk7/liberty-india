@@ -45,15 +45,20 @@ export default function AboutIndia() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
           {/* Heritage Card */}
           <Reveal>
-          <Link href="/heritage" className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
-            <ImageWithLoader
-              sizes="(max-width: 768px) 100vw, 33vw"
-              src="https://ik.imagekit.io/libertyindia/about-india/home/Heritage.png"
-              alt="Heritage - Living Legacies"
-              fill
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 transition-opacity duration-500 group-hover:from-black/50 group-hover:to-black/70" />
+          <Link href="/heritage" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block">
+            <div className="absolute inset-0 rounded-lg overflow-hidden">
+              <ImageWithLoader
+                sizes="(max-width: 768px) 100vw, 33vw"
+                src="https://ik.imagekit.io/libertyindia/about-india/home/Heritage.png"
+                alt="Heritage - Living Legacies"
+                fill
+                className="object-cover card-zoom"
+              />
+            </div>
+            {/* Two stacked gradients crossfaded via opacity — animating the
+                gradient stops themselves snaps (they aren't transitionable). */}
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/30 via-transparent to-black/40" />
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/50 via-transparent to-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
             <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6">
               <h3
                 className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg"
@@ -61,7 +66,7 @@ export default function AboutIndia() {
               >
                 Heritage
               </h3>
-              <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+              <div className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
                 <p
                   className="text-lg md:text-xl font-medium text-white mb-1 drop-shadow-md"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -81,15 +86,20 @@ export default function AboutIndia() {
 
           {/* Culture Card */}
           <Reveal delay={80}>
-          <Link href="/culture" className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
-            <ImageWithLoader
-              sizes="(max-width: 768px) 100vw, 33vw"
-              src="https://ik.imagekit.io/libertyindia/about-india/home/culture.png"
-              alt="Culture - The Pulse of India"
-              fill
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 transition-opacity duration-500 group-hover:from-black/50 group-hover:to-black/70" />
+          <Link href="/culture" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block">
+            <div className="absolute inset-0 rounded-lg overflow-hidden">
+              <ImageWithLoader
+                sizes="(max-width: 768px) 100vw, 33vw"
+                src="https://ik.imagekit.io/libertyindia/about-india/home/culture.png"
+                alt="Culture - The Pulse of India"
+                fill
+                className="object-cover card-zoom"
+              />
+            </div>
+            {/* Two stacked gradients crossfaded via opacity — animating the
+                gradient stops themselves snaps (they aren't transitionable). */}
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/30 via-transparent to-black/40" />
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/50 via-transparent to-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
             <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6">
               <h3
                 className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg"
@@ -97,7 +107,7 @@ export default function AboutIndia() {
               >
                 Culture
               </h3>
-              <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+              <div className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
                 <p
                   className="text-lg md:text-xl font-medium text-white mb-1 drop-shadow-md"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -117,15 +127,20 @@ export default function AboutIndia() {
 
           {/* Architecture Card */}
           <Reveal delay={160}>
-          <Link href="/architecture" className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
-            <ImageWithLoader
-              sizes="(max-width: 768px) 100vw, 33vw"
-              src="https://ik.imagekit.io/libertyindia/about-india/home/Architecture.png"
-              alt="Architecture - Monuments Beyond Imagination"
-              fill
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 transition-opacity duration-500 group-hover:from-black/50 group-hover:to-black/70" />
+          <Link href="/architecture" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block">
+            <div className="absolute inset-0 rounded-lg overflow-hidden">
+              <ImageWithLoader
+                sizes="(max-width: 768px) 100vw, 33vw"
+                src="https://ik.imagekit.io/libertyindia/about-india/home/Architecture.png"
+                alt="Architecture - Monuments Beyond Imagination"
+                fill
+                className="object-cover card-zoom"
+              />
+            </div>
+            {/* Two stacked gradients crossfaded via opacity — animating the
+                gradient stops themselves snaps (they aren't transitionable). */}
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/30 via-transparent to-black/40" />
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/50 via-transparent to-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
             <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6">
               <h3
                 className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg"
@@ -133,7 +148,7 @@ export default function AboutIndia() {
               >
                 Architecture
               </h3>
-              <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+              <div className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
                 <p
                   className="text-lg md:text-xl font-medium text-white mb-1 drop-shadow-md"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -156,14 +171,19 @@ export default function AboutIndia() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-2">
           {/* Nature Card - 3/5 width */}
           <Reveal className="md:col-span-3">
-          <Link href="/nature" className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block">
-            <Image
-                src="https://ik.imagekit.io/libertyindia/about-india/home/nature.png?updatedAt=1773508275329"
-                alt="Nature - Landscapes Without Limits"
-                fill
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-              />
-            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 transition-opacity duration-500 group-hover:from-black/50 group-hover:to-black/70" />
+          <Link href="/nature" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block">
+            <div className="absolute inset-0 rounded-lg overflow-hidden">
+              <Image
+                  src="https://ik.imagekit.io/libertyindia/about-india/home/nature.png?updatedAt=1773508275329"
+                  alt="Nature - Landscapes Without Limits"
+                  fill
+                  className="object-cover card-zoom"
+                />
+            </div>
+            {/* Two stacked gradients crossfaded via opacity — animating the
+                gradient stops themselves snaps (they aren't transitionable). */}
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/30 via-transparent to-black/40" />
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/50 via-transparent to-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
             <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6">
               <h3
                 className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg"
@@ -171,7 +191,7 @@ export default function AboutIndia() {
               >
                 Nature
               </h3>
-              <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+              <div className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
                 <p
                   className="text-lg md:text-xl font-medium text-white mb-1 drop-shadow-md"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -191,15 +211,20 @@ export default function AboutIndia() {
 
           {/* Spiritual Card - 2/5 width */}
           <Reveal className="md:col-span-2" delay={80}>
-          <div className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1">
+          <div className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg">
             <Link href="/spiritual" className="block w-full h-full">
-              <Image
-                src="https://ik.imagekit.io/libertyindia/about-india/home/spiritual.svg"
-                alt="Spiritual - Paths of Inner Discovery"
-                fill
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 transition-opacity duration-500 group-hover:from-black/50 group-hover:to-black/70" />
+              <div className="absolute inset-0 rounded-lg overflow-hidden">
+                <Image
+                  src="https://ik.imagekit.io/libertyindia/about-india/home/spiritual.svg"
+                  alt="Spiritual - Paths of Inner Discovery"
+                  fill
+                  className="object-cover card-zoom"
+                />
+              </div>
+              {/* Two stacked gradients crossfaded via opacity — animating the
+                gradient stops themselves snaps (they aren't transitionable). */}
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/30 via-transparent to-black/40" />
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/50 via-transparent to-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
               <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6">
                 <h3
                   className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg"
@@ -207,7 +232,7 @@ export default function AboutIndia() {
                 >
                   Spiritual
                 </h3>
-                <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                <div className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
                   <p
                     className="text-lg md:text-xl font-medium text-white mb-1 drop-shadow-md"
                     style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -231,15 +256,20 @@ export default function AboutIndia() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           {/* Wellness Card - 2/5 width */}
           <Reveal className="md:col-span-2">
-          <Link href="/wellness" className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block" onClick={e => { if (!['/wellness'].includes('/wellness')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
-            <ImageWithLoader
-              sizes="(max-width: 768px) 100vw, 33vw"
-              src="https://ik.imagekit.io/libertyindia/about-india/home/wellness.png"
-              alt="Wellness - Ancient Wisdom, Modern Renewal"
-              fill
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 transition-opacity duration-500 group-hover:from-black/50 group-hover:to-black/70" />
+          <Link href="/wellness" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block" onClick={e => { if (!['/wellness'].includes('/wellness')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
+            <div className="absolute inset-0 rounded-lg overflow-hidden">
+              <ImageWithLoader
+                sizes="(max-width: 768px) 100vw, 33vw"
+                src="https://ik.imagekit.io/libertyindia/about-india/home/wellness.png"
+                alt="Wellness - Ancient Wisdom, Modern Renewal"
+                fill
+                className="object-cover card-zoom"
+              />
+            </div>
+            {/* Two stacked gradients crossfaded via opacity — animating the
+                gradient stops themselves snaps (they aren't transitionable). */}
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/30 via-transparent to-black/40" />
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/50 via-transparent to-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
             <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6">
               <h3
                 className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg"
@@ -247,7 +277,7 @@ export default function AboutIndia() {
               >
                 Wellness
               </h3>
-              <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+              <div className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
                 <p
                   className="text-lg md:text-xl font-medium text-white mb-1 drop-shadow-md"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -267,15 +297,20 @@ export default function AboutIndia() {
 
           {/* Wildlife Card - 3/5 width */}
           <Reveal className="md:col-span-3" delay={80}>
-          <Link href="/wildlife" className="group relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg hover:shadow-2xl hover:-translate-y-1 block" onClick={e => { if (!['/wildlife'].includes('/wildlife')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
-            <ImageWithLoader
-              sizes="(max-width: 768px) 100vw, 33vw"
-              src="https://ik.imagekit.io/libertyindia/about-india/home/wildlife.png"
-              alt="Wildlife - Into the Wild Heart of India"
-              fill
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 transition-opacity duration-500 group-hover:from-black/50 group-hover:to-black/70" />
+          <Link href="/wildlife" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block" onClick={e => { if (!['/wildlife'].includes('/wildlife')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
+            <div className="absolute inset-0 rounded-lg overflow-hidden">
+              <ImageWithLoader
+                sizes="(max-width: 768px) 100vw, 33vw"
+                src="https://ik.imagekit.io/libertyindia/about-india/home/wildlife.png"
+                alt="Wildlife - Into the Wild Heart of India"
+                fill
+                className="object-cover card-zoom"
+              />
+            </div>
+            {/* Two stacked gradients crossfaded via opacity — animating the
+                gradient stops themselves snaps (they aren't transitionable). */}
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/30 via-transparent to-black/40" />
+            <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/50 via-transparent to-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
             <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6">
               <h3
                 className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg"
@@ -283,7 +318,7 @@ export default function AboutIndia() {
               >
                 Wildlife
               </h3>
-              <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+              <div className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
                 <p
                   className="text-lg md:text-xl font-medium text-white mb-1 drop-shadow-md"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}

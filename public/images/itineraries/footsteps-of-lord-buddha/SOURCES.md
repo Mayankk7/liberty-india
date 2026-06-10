@@ -39,3 +39,7 @@ is intentionally left empty pending the client's own entries.
 The entries below supersede the original lines for the same files.
 - day-1.jpg — REPLACED (session 35): Pexels photo 18533987 by Harsh Sahu — https://www.pexels.com/photo/sri-bangla-sahib-gurudwara-in-new-delhi-18533987/ (A serene view of Gurudwara Bangla Sahib with a child observing its ref)
 - day-2.jpg — REPLACED (session 35): Pexels photo 3559738 by Bhavesh Jain — https://www.pexels.com/photo/rickshaws-and-people-on-street-in-delhi-india-3559738/ (Dynamic street scene in Delhi with rickshaws and pedestrians at golden)
+
+## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
+- main-bg.jpg — Great Buddha statue, Bodh Gaya — Pexels photo 7792726 by RAJESH KUMAR    VERMA — https://www.pexels.com/photo/tourists-walking-near-the-great-buddha-statue-7792726/
+- overview.jpg — Golden hour on the Varanasi ghats, Ganges panorama — Pexels photo 34741303 by Arto Suraj — https://www.pexels.com/photo/golden-hour-on-the-ghats-of-varanasi-india-34741303/

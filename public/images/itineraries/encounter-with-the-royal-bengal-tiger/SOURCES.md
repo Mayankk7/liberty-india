@@ -36,3 +36,7 @@ The entries below supersede the original lines for the same files.
 - day-1.jpg — REPLACED (session 35): Pexels photo 14094276 by Vishal Adhikari — https://www.pexels.com/photo/facade-of-the-lahori-gate-in-red-fort-in-delhi-india-14094276/ (Front view of the historic Red Fort in New Delhi, featuring its iconic)
 - day-2.jpg — REPLACED (session 35): Pexels photo 20083843 by Ranjeet  Chauhan — https://www.pexels.com/photo/jama-masjid-in-delhi-india-20083843/ (A stunning view of Jama Masjid in Delhi at dusk, showcasing Mughal arc)
 - day-3.jpg — REPLACED (session 35): Pexels photo 29193466 by Bharath Kumar  Venkatesh — https://www.pexels.com/photo/bengal-tiger-resting-in-bandhavgarh-forest-29193466/ (Majestic Bengal tiger resting amidst greenery in Bandhavgarh National )
+
+## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
+- main-bg.jpg — Bengal tiger close-up in natural forest habitat — Pexels photo 37885575 by Magda Ehlers — https://www.pexels.com/photo/close-up-of-a-majestic-bengal-tiger-in-nature-37885575/
+- overview.jpg — Chital stag close-up in lush foliage — Pexels photo 13257014 by Sathish Kumar — https://www.pexels.com/photo/close-up-shot-of-a-deer-13257014/

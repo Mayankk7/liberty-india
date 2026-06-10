@@ -36,6 +36,10 @@ const INITIAL: FormState = {
  * ExpertInquiryModal — split-pane "Start Your Journey Today" inquiry form
  * launched from the floating bottom-right CTA on itinerary detail pages.
  * Posts to /api/inquiry by mapping fields into the existing payload shape.
+ *
+ * Scroll: the body is locked while open, and `data-lenis-prevent` releases
+ * the wheel/touch from the global Lenis smooth-scroll loop so the form pane
+ * scrolls its own content instead of the page behind the backdrop.
  */
 export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) {
   const [form, setForm] = useState<FormState>(INITIAL);
@@ -136,29 +140,28 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
 
   return (
     <div
+      data-lenis-prevent
       className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-6 bg-black/70 backdrop-blur-md"
       role="dialog"
       aria-modal="true"
       aria-labelledby="expert-inquiry-title"
     >
-      <div
-        className="relative w-full max-w-[960px] bg-white rounded-[16px] shadow-2xl overflow-hidden max-h-[92vh] grid grid-cols-1 md:grid-cols-[4fr_6fr]"
-      >
+      <div className="relative w-full max-w-[980px] bg-white rounded-[16px] shadow-2xl overflow-hidden max-h-[92vh] grid grid-cols-1 md:grid-cols-[4fr_6fr]">
         {/* Close */}
         <button
           type="button"
           onClick={onClose}
           aria-label="Close inquiry form"
-          className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full flex items-center justify-center bg-white/85 text-[#424242] hover:bg-white shadow-sm transition-colors"
+          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full flex items-center justify-center bg-white/85 text-[#424242] hover:bg-white shadow-sm transition-colors"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
             <line x1="6" y1="6" x2="18" y2="18" />
             <line x1="18" y1="6" x2="6" y2="18" />
           </svg>
         </button>
 
         {/* Left pane — hero image with "Enquire" overlay (desktop only) */}
-        <div className="relative hidden md:block min-h-[540px]">
+        <div className="relative hidden md:block min-h-[560px]">
           <Image
             src={itinerary.heroImage || '/images/hero-carousel/hero-1.png'}
             alt={itinerary.title}
@@ -167,53 +170,56 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
             sizes="(max-width: 768px) 0vw, 420px"
             priority={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/15 to-black/45" aria-hidden="true" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/55" aria-hidden="true" />
           <p
-            className="absolute top-6 left-7 text-white text-2xl tracking-[0.06em]"
-            style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+            className="absolute top-8 left-9 text-white text-[13px] uppercase tracking-[0.32em]"
+            style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
           >
             Enquire
           </p>
-          <p
-            className="absolute bottom-7 left-7 right-7 text-white/90 text-sm leading-relaxed"
-            style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-          >
-            A Liberty India specialist will tailor this itinerary to your client — flexible dates, custom pricing and preferred style.
-          </p>
+          <div className="absolute bottom-9 left-9 right-9">
+            <p
+              className="text-white text-2xl leading-snug mb-3"
+              style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+            >
+              {itinerary.title}
+            </p>
+            <p
+              className="text-white/85 text-[13px] leading-relaxed font-light"
+              style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+            >
+              A Liberty India specialist will tailor this itinerary to your client — flexible dates, custom pricing and preferred style.
+            </p>
+          </div>
         </div>
 
-        {/* Right pane — form */}
-        <div className="overflow-y-auto max-h-[92vh] p-6 md:p-9 lg:p-10">
+        {/* Right pane — form (scrolls its own content; released from Lenis) */}
+        <div data-lenis-prevent className="overflow-y-auto overscroll-contain max-h-[92vh] p-7 md:p-11 lg:p-12">
           {status === 'sent' ? (
             <SuccessState onClose={onClose} />
           ) : (
             <>
               <p
-                className="text-[10px] md:text-xs tracking-[0.3em] uppercase text-[#E07B39] mb-2"
+                className="text-[10px] md:text-[11px] tracking-[0.32em] uppercase text-[#E07B39] mb-3"
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
               >
                 Guest Information
               </p>
               <h2
                 id="expert-inquiry-title"
-                className="text-[22px] md:text-[26px] lg:text-[30px] font-semibold text-[#141313] leading-tight"
+                className="text-[24px] md:text-[28px] lg:text-[32px] font-semibold text-[#141313] leading-tight"
                 style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
               >
                 Start Your Journey Today
               </h2>
-
-              {/* Itinerary chip */}
-              <div
-                className="mt-3 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFFDEC] border border-[#E9E4BF]"
+              <p
+                className="mt-2.5 text-[13px] text-[#424242]/75 font-light md:hidden"
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
               >
-                <span className="text-[10px] uppercase tracking-[0.2em] text-[#E07B39] font-semibold">
-                  Enquiring about
-                </span>
-                <span className="text-sm text-[#141313] font-medium">{itinerary.title}</span>
-              </div>
+                Enquiring about <span className="text-[#141313]">{itinerary.title}</span>
+              </p>
 
-              <form onSubmit={onSubmit} className="mt-6 space-y-5">
+              <form onSubmit={onSubmit} className="mt-8 md:mt-10 space-y-7">
                 {serverError && (
                   <div className="px-4 py-3 rounded-md bg-red-50 border border-red-200 text-sm text-red-700">
                     {serverError}
@@ -221,7 +227,7 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
                 )}
 
                 {/* Row 1: First / Last */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-7">
                   <Field label="First Name" required>
                     <input
                       type="text"
@@ -248,7 +254,7 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
                 </div>
 
                 {/* Row 2: Phone / Email */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-7">
                   <Field label="Phone Number" required>
                     <input
                       type="tel"
@@ -256,7 +262,6 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
                       onChange={(e) => update('phone', e.target.value)}
                       className={inputCls(errors.phone)}
                       autoComplete="tel"
-                      placeholder="+91 …"
                       required
                     />
                     {errors.phone && <FieldError>{errors.phone}</FieldError>}
@@ -276,21 +281,17 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
                 </div>
 
                 {/* Travel plans */}
-                <Field label="Tell us more about your travel plans">
+                <Field label="Tell us about your travel plans">
                   <textarea
                     value={form.travelPlans}
                     onChange={(e) => update('travelPlans', e.target.value)}
-                    className={`${inputCls(undefined)} min-h-[100px] resize-y`}
-                    placeholder="Dates, style, party size, anything we should know…"
+                    className={`${inputCls(undefined)} h-auto min-h-[88px] pt-2.5 resize-none leading-relaxed`}
                   />
                 </Field>
 
-                {/* Soft divider before consent + submit */}
-                <div className="h-px bg-[#E9E4BF]/60" aria-hidden="true" />
-
-                {/* Checkboxes */}
-                <div className="space-y-3">
-                  <label className="flex items-start gap-3 text-[13px] text-[#424242] leading-snug cursor-pointer">
+                {/* Consent */}
+                <div className="pt-1 space-y-3.5">
+                  <label className="flex items-start gap-3 text-[12.5px] text-[#424242]/85 leading-snug cursor-pointer">
                     <input
                       type="checkbox"
                       checked={form.privacy}
@@ -298,13 +299,13 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
                       className="accent-[#E07B39] mt-0.5 h-4 w-4 shrink-0 cursor-pointer"
                     />
                     <span style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
-                      I accept the <span className="underline">Privacy Policy</span>
+                      I accept the <span className="underline underline-offset-2">Privacy Policy</span>
                       <span className="text-[#E07B39] ml-0.5">*</span>
                     </span>
                   </label>
                   {errors.privacy && <FieldError>{errors.privacy}</FieldError>}
 
-                  <label className="flex items-start gap-3 text-[13px] text-[#424242] leading-snug cursor-pointer">
+                  <label className="flex items-start gap-3 text-[12.5px] text-[#424242]/85 leading-snug cursor-pointer">
                     <input
                       type="checkbox"
                       checked={form.marketing}
@@ -312,26 +313,26 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
                       className="accent-[#E07B39] mt-0.5 h-4 w-4 shrink-0 cursor-pointer"
                     />
                     <span style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
-                      Yes! I would like to receive news, updates and offers from Liberty India.
+                      I would like to receive news, updates and offers from Liberty India.
                     </span>
                   </label>
                 </div>
 
-                {/* Submit — pure B&W */}
+                {/* Submit */}
                 <button
                   type="submit"
                   disabled={status === 'sending'}
-                  className="group w-full mt-1 py-4 bg-black hover:bg-white border border-black disabled:opacity-60 disabled:cursor-not-allowed text-white hover:text-black text-[13px] md:text-[14px] font-semibold tracking-[0.2em] uppercase rounded-none shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition-colors duration-300 cursor-pointer flex items-center justify-center gap-2"
+                  className="group w-full h-[52px] mt-1 bg-black hover:bg-white border border-black disabled:opacity-60 disabled:cursor-not-allowed text-white hover:text-black text-[13px] font-semibold tracking-[0.22em] uppercase transition-colors duration-300 cursor-pointer flex items-center justify-center gap-2.5"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
                   <span>{status === 'sending' ? 'Sending…' : 'Speak to an Expert'}</span>
                   {status !== 'sending' && (
-                    <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    <span aria-hidden="true" className="inline-block transition-transform duration-300 ease-out group-hover:translate-x-1.5">→</span>
                   )}
                 </button>
 
                 <p
-                  className="text-[11px] text-[#424242]/70 leading-relaxed text-center"
+                  className="text-[11px] text-[#424242]/60 leading-relaxed text-center"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
                   We&rsquo;ll never share your details. By submitting, you agree to be contacted by Liberty India about your enquiry.
@@ -347,10 +348,11 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
+/** Editorial underline field — no boxes, hairline rule, warm focus accent. */
 function inputCls(error?: string) {
-  return `w-full px-4 py-3 rounded-[8px] bg-[#FFFDEC] border ${
+  return `w-full h-11 px-0 bg-transparent border-0 border-b ${
     error ? 'border-red-400' : 'border-[#E9E4BF]'
-  } text-[#141313] placeholder:text-[#424242]/50 outline-none focus:border-[#E07B39] focus:bg-white transition-colors text-[15px]`;
+  } text-[#141313] text-[15px] outline-none focus:border-[#E07B39] transition-colors duration-300 rounded-none`;
 }
 
 function Field({
@@ -365,7 +367,7 @@ function Field({
   return (
     <label className="block">
       <span
-        className="block text-[12px] text-[#424242]/85 mb-2 tracking-[0.06em] uppercase font-medium"
+        className="block text-[11px] text-[#424242]/60 mb-1 tracking-[0.18em] uppercase"
         style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
       >
         {label}
@@ -377,13 +379,13 @@ function Field({
 }
 
 function FieldError({ children }: { children: React.ReactNode }) {
-  return <p className="mt-1 text-xs text-red-600">{children}</p>;
+  return <p className="mt-1.5 text-xs text-red-600">{children}</p>;
 }
 
 function SuccessState({ onClose }: { onClose: () => void }) {
   return (
-    <div className="text-center py-10 md:py-16">
-      <div className="inline-flex w-16 h-16 rounded-full bg-[#FFFDEC] border border-[#E9E4BF] items-center justify-center text-[#E07B39] mb-5">
+    <div className="text-center py-12 md:py-20">
+      <div className="inline-flex w-16 h-16 rounded-full bg-[#FFFDEC] border border-[#E9E4BF] items-center justify-center text-[#E07B39] mb-6">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
           <polyline points="4 12 10 18 20 6" />
         </svg>
@@ -395,7 +397,7 @@ function SuccessState({ onClose }: { onClose: () => void }) {
         Inquiry sent.
       </h3>
       <p
-        className="mt-3 text-sm md:text-[15px] text-[#424242] font-light max-w-sm mx-auto leading-relaxed"
+        className="mt-3.5 text-sm md:text-[15px] text-[#424242] font-light max-w-sm mx-auto leading-relaxed"
         style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
       >
         Thank you. A confirmation has been sent to your inbox, and a Liberty India specialist will be in touch within 24 hours.
@@ -403,7 +405,7 @@ function SuccessState({ onClose }: { onClose: () => void }) {
       <button
         type="button"
         onClick={onClose}
-        className="mt-7 inline-flex items-center justify-center px-6 py-2.5 rounded-[10px] border border-[#E9E4BF] text-[#424242] hover:bg-[#FFFDEC] transition-colors"
+        className="mt-8 inline-flex items-center justify-center h-11 px-8 border border-[#141313] text-[#141313] hover:bg-black hover:text-white text-[12px] font-semibold tracking-[0.18em] uppercase transition-colors duration-300"
         style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
       >
         Close

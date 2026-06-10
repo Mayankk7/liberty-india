@@ -43,7 +43,7 @@ export default function ItineraryCard({
 }: ItineraryCardProps) {
   const card = (
     <div
-      className="group rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-gray-100 flex flex-col h-full"
+      className="group rounded-lg overflow-hidden shadow-sm cursor-pointer border border-gray-100 flex flex-col h-full"
       style={{ backgroundColor: bgColor ?? '#ffffff' }}
     >
       {/* Image */}
@@ -52,10 +52,10 @@ export default function ItineraryCard({
           src={image}
           alt={alt}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          className="object-cover card-zoom"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
         {badge && (
           <span
             className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-[#424242] text-[11px] md:text-xs font-medium tracking-wide px-3 py-1.5 rounded-full shadow-sm"
@@ -122,9 +122,11 @@ export default function ItineraryCard({
     </div>
   );
 
+  // The lift + deepening shadow live on the wrapper: the card itself is
+  // overflow-hidden (image clip), which would clip the ::after shadow layer.
   if (href) {
     return (
-      <Link href={href} className="h-full block" style={{ textDecoration: 'none' }}>
+      <Link href={href} className="card-lift rounded-lg h-full block" style={{ textDecoration: 'none' }}>
         {card}
       </Link>
     );
@@ -132,7 +134,7 @@ export default function ItineraryCard({
 
   return (
     <div
-      className="h-full"
+      className="card-lift rounded-lg h-full"
       role="button"
       tabIndex={0}
       aria-label={`${title} (under development)`}

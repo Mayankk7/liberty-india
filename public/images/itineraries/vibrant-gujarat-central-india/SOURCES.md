@@ -52,3 +52,7 @@ The entries below supersede the original lines for the same files.
 
 
 This Photo was taken by Timothy A. Gonsalves.  Feel free to use my photos, bu · https://commons.wikimedia.org/wiki/File%3ABoat_Pilgrims_Triveni_Sangam_Allahabad_Jan24_A7C_08513.jpg
+
+## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
+- main-bg.jpg — Camel cart crossing the white Rann of Kutch — Pexels photo 34568381 by santosh bhagat — https://www.pexels.com/photo/camel-cart-on-rann-of-kutch-desert-landscape-34568381/
+- overview.jpg — Statue of Unity over the Narmada (landscape) — Wikimedia Commons "File:Statue of Unity 2.jpg" · CC BY-SA 4.0 · Basavaraj M · https://commons.wikimedia.org/wiki/File%3AStatue_of_Unity_2.jpg

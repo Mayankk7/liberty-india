@@ -157,6 +157,67 @@ repointed.
 > then **Done**, **Files**, **Next**. Older sessions archived in
 > `SESSION_LOG_ARCHIVE.md`.
 
+### 2026-06-10 (session 36) — Expert-form redesign + modal scroll fix, Suggested Hotels everywhere, premium hovers, hero/card/overview image pass
+**Done:** Four client tasks, all verified end-to-end (build 45/45; Playwright temp-install since
+removed: 32 runtime assertions + screenshots, **0 console errors**; package.json/lock untouched).
+1. **Both "Speak to an Expert" modals redesigned + scroll bug fixed.** Root cause of background
+   scroll: Lenis owns wheel events globally — body `overflow:hidden` alone doesn't stop it. Added the
+   repo's own `data-lenis-prevent` (per IndiaMap/Navbar) to backdrop + pane of `ExpertInquiryModal`
+   (floating button) **and** `InquiryModal` (DetailsSection CTA), plus `overscroll-contain` +
+   `max-h-[92vh] overflow-y-auto`. Playwright: wheel over the open modal at 1280/390 → `window.scrollY`
+   unchanged on both modals. Editorial redesign applied to BOTH (they're both titled "Speak to an
+   Expert" — one old-style would look broken): underline fields (transparent bg, `border-b #E9E4BF`,
+   focus `#E07B39`), 11px tracking-[0.18em] uppercase labels, chip → quiet "Enquiring about — title"
+   line, `space-y-7`/`gap-x-8` rhythm, black h-[52px] letter-spaced uppercase CTA w/ arrow nudge,
+   retypeset success state. Logic/payload/validation untouched on both.
+2. **Suggested Hotels in every itinerary.** Git history proves hotels were NEVER removed (12
+   itineraries unchanged since first commit) — the gap was 6 itineraries that never had data. Authored
+   `suggestedHotels` from the client docx "Suggested Hotels" city tables (Deluxe column):
+   classical-golden-triangle (3, GT-R set), taj-and-tigers (4, GT-R set), colourful-rajasthan
+   (Narendra Bhawan / Fort Rajwada / Fateh Prakash Palace / Samode Haveli), northeast-india-sojourn
+   (Raaj Kutir / Elgin Darjeeling / **Elgin Mt. Pandim Pelling** / Elgin Nor-khill),
+   unveiling-TN (Radisson Temple Bay / Villa Shanti / Chidambara Vilas / Heritage Madurai),
+   gems-of-south-india (Metropole / Hoysala Village Hassan / Heritage Hampi / Taj Holiday Village).
+   Same-property images copied from sibling folders; 7 new ones sourced (Commons exact-property first,
+   Pexels representative stand-ins flagged in SOURCES.md). **Flags:** kairali = N/A by design (the
+   retreat IS the hotel; Wellness-primary hides DaysSection); city-of-joy keeps its original 3.
+   Verified: "Suggested Hotels" renders on 17/18 slugs, absent on kairali; all images on disk.
+3. **Premium hover language** (`globals.css` + `ItineraryCard` + `Services` + `AboutIndia`): new
+   `.card-lift` (transform-only −6px lift, 400ms `cubic-bezier(0.22,1,0.36,1)`, pre-rendered `::after`
+   shadow faded via opacity — never animates box-shadow) and `.card-zoom` (image scale 1.04, 600ms,
+   `will-change` only during hover; reduced-motion handled). Replaced every `transition-all` +
+   `hover:shadow-*` on the three card components. Because `.card-lift`'s ::after shadow dies under
+   `overflow-hidden`, lift lives on the wrapper and image clipping moved to an inner
+   `absolute inset-0 rounded-lg overflow-hidden` layer (Services/AboutIndia); AboutIndia's
+   gradient-stop hover (untransitionable) → two stacked gradients crossfaded via opacity. Verified:
+   computed `transform: matrix(1,0,0,1,0,-6)` on hover.
+4. **Hero/card/overview premium pass — 22 images replaced** across the 11 non-ImageKit itineraries
+   (guj, gems, safari, incredible-NE, GT-R, ECI, ESI-TN&K, INHT, encounter, southern-splendour,
+   buddha). **Hero = card** enforced structurally: `JourneyFinder.tsx` card image `overviewImage ||
+   heroImage` → `heroImage || overviewImage` (every other card surface already used heroImage).
+   Pipeline: Pexels (3 rounds) + Commons (Statue of Unity, Madurai Meenakshi), sharp → 1920w heroes /
+   1280w overviews, **every candidate visually reviewed** (~67 viewed): caught 4 exact-ID dups vs
+   existing day images (gtr-hero=safari d11, gtr-ov-c2=GT-R d7, gtr-ov-c1=INHT d12, enc-hero=ENC d3,
+   esi-ov=ESI d8 — confirmed by grepping Pexels IDs across all SOURCES.md), wrong monuments (Pexels
+   "Statue of Unity"→Dandi March statues; "Taj-ul-Masjid"→Colombo mosques), off-route temples
+   (Rameswaram/Srirangam for ESI), scaffolding, B&W, zoo shots. Overview container is `aspect-[16/11]`
+   → portrait candidates rejected. Overwrote `main-bg.jpg`/`overview.jpg` in place (paths uniform, zero
+   data churn); 11 SOURCES.md got a session-36 section w/ full attribution. Highlights: GT-R = blue-sky
+   symmetric Taj, guj = camel cart on the white Rann + landscape Statue of Unity, safari = stalking
+   tiger, ESI = aerial palm-canopy backwaters + signposted Meenakshi South Gopuram.
+**Files:** `app/itineraries/template/{ExpertInquiryModal,InquiryModal}.tsx`, `app/globals.css`,
+`app/components/{ItineraryCard,Services,AboutIndia}.tsx`, `app/itineraries/itineraries.ts`,
+`app/journeys/JourneyFinder.tsx`, 22 hero/overview jpg overwrites + 23 new hotel images + 17
+SOURCES.md across `public/images/itineraries/`, `CLAUDE.md`. Also committed the until-now-uncommitted
+session-32–34 fixes (IndiaMap NaN guards, architecture `w-[102vw]`, heritage Dravidian card,
+exploreItems dead constant) as a separate commit.
+**Next:** User reviews on dev — (a) both expert modals (desktop + mobile): premium underline look,
+background no longer scrolls; (b) every itinerary except Kairali shows Suggested Hotels (hotel photos
+are representative stand-ins where flagged — swap when client supplies real photography); (c) hover
+the home Services/About-India cards + journey cards: smooth lift+zoom, no shadow jank; (d) the 11
+replaced heroes/cards/overviews (journeys grid + detail pages). Magnific MCP was available but not
+needed — Pexels/Commons covered all 22 slots at target resolution.
+
 ### 2026-06-10 (session 35) — Itinerary pages: route un-truncation, full-column map, meal chips, ≤100-word days, 23-image premium pass
 **Done:** Five global itinerary-page improvements (all 18 itineraries / 217 days). Build clean 45/45;
 Playwright check (dev-only, since uninstalled): 3 itineraries × 1280px+390px → **0 console/page errors**.

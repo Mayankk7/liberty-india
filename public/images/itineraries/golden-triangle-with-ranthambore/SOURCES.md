@@ -34,3 +34,7 @@ luxury stand-ins — replace with official hotel photography.
 ## Session 35 replacements (image audit — premium pass)
 The entries below supersede the original lines for the same files.
 - day-4.jpg — REPLACED (session 35): Pexels photo 19149609 by AXP Photography — https://www.pexels.com/photo/view-of-the-taj-mahal-at-sunset-agra-india-19149609/ (A breathtaking view of the Taj Mahal framed by an arch with a bird in )
+
+## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
+- main-bg.jpg — Taj Mahal symmetric frontal, blue sky — Pexels photo 18722577 by Kowshi L — https://www.pexels.com/photo/taj-mahal-in-india-18722577/
+- overview.jpg — Elephants ascending to Amber Fort, Jaipur — Pexels photo 33448400 by MD Shaikh — https://www.pexels.com/photo/elephants-at-amer-fort-in-jaipur-india-33448400/

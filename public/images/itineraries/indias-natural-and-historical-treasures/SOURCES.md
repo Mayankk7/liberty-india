@@ -42,3 +42,7 @@ The entries below supersede the original lines for the same files.
 - day-14.jpg — REPLACED (session 35): Pexels photo 28119116 by Teysa Tugadi — https://www.pexels.com/photo/the-taj-mahal-is-a-beautiful-building-in-india-28119116/ (Stunning view of the grand entrance gate to the Taj Mahal, showcasing )
 - day-1.jpg — REPLACED (session 35): Pexels photo 5548401 by Yogendra  Singh — https://www.pexels.com/photo/reflection-of-building-on-water-pond-5548401/ (A serene reflection of Rashtrapati Bhavan in a water pond during a vib)
 - day-3.jpg — REPLACED (session 35): Pexels photo 20045037 by Ranjeet  Chauhan — https://www.pexels.com/photo/sunder-nursery-central-park-in-delhi-india-20045037/ (A picturesque view of Sunder Nursery's iconic garden and architecture )
+
+## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
+- main-bg.jpg — Hawa Mahal full frontal, Jaipur — Pexels photo 19867647 by vijesh vijayan — https://www.pexels.com/photo/red-facade-of-hawa-mahal-in-jaipu-19867647/
+- overview.jpg — Bengal tiger side profile in pale grassland — Pexels photo 14907418 by GVN Santhosh — https://www.pexels.com/photo/brown-tiger-on-brown-grass-14907418/

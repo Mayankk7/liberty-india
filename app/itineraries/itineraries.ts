@@ -567,6 +567,13 @@ export const itineraries: Itinerary[] = [
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/overview.png",
     mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
     coordinates: ITINERARY_MAP_ROUTES["classical-golden-triangle"],
+    // Hotels per the client's Golden Triangle docx city table (Deluxe column);
+    // images shared with golden-triangle-with-ranthambore (same properties).
+    suggestedHotels: [
+      { name: "The Claridges", city: "Delhi", image: "/images/itineraries/classical-golden-triangle/hotels/claridges-delhi.jpg" },
+      { name: "ITC Mughal", city: "Agra", image: "/images/itineraries/classical-golden-triangle/hotels/itc-mughal-agra.jpg" },
+      { name: "Samode Haveli", city: "Jaipur", image: "/images/itineraries/classical-golden-triangle/hotels/samode-haveli.jpg" },
+    ],
   },
 
   // ==========================================================================
@@ -655,6 +662,14 @@ export const itineraries: Itinerary[] = [
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/overview.png",
     mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
     coordinates: ITINERARY_MAP_ROUTES["taj-and-tigers"],
+    // Same route as Golden Triangle with Ranthambore — the client docx city
+    // table applies; images shared with that itinerary (same properties).
+    suggestedHotels: [
+      { name: "The Claridges", city: "Delhi", image: "/images/itineraries/taj-and-tigers/hotels/claridges-delhi.jpg" },
+      { name: "ITC Mughal", city: "Agra", image: "/images/itineraries/taj-and-tigers/hotels/itc-mughal-agra.jpg" },
+      { name: "Samode Haveli", city: "Jaipur", image: "/images/itineraries/taj-and-tigers/hotels/samode-haveli.jpg" },
+      { name: "TUTC Sawai Shivir", city: "Ranthambore", image: "/images/itineraries/taj-and-tigers/hotels/tutc-sawai-shivir.jpg" },
+    ],
   },
 
   // ==========================================================================
@@ -740,6 +755,14 @@ export const itineraries: Itinerary[] = [
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/south-india-tamil-nadu/overview.png",
     mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
     coordinates: ITINERARY_MAP_ROUTES["unveiling-the-enchanting-south-tamil-nadu"],
+    // Cities shared with Enchanting Tamil Nadu & Kerala — hotels per that
+    // docx city table (Deluxe column).
+    suggestedHotels: [
+      { name: "Radisson Temple Bay", city: "Mahabalipuram", image: "/images/itineraries/unveiling-the-enchanting-south-tamil-nadu/hotels/radisson-temple-bay.jpg" },
+      { name: "Villa Shanti", city: "Pondicherry", image: "/images/itineraries/unveiling-the-enchanting-south-tamil-nadu/hotels/villa-shanti-pondicherry.jpg" },
+      { name: "Chidambara Vilas", city: "Chettinad", image: "/images/itineraries/unveiling-the-enchanting-south-tamil-nadu/hotels/chidambara-vilas.jpg" },
+      { name: "Heritage Madurai", city: "Madurai", image: "/images/itineraries/unveiling-the-enchanting-south-tamil-nadu/hotels/heritage-madurai.jpg" },
+    ],
   },
 
   // ==========================================================================
@@ -840,6 +863,14 @@ export const itineraries: Itinerary[] = [
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/overview.png",
     mapImage: "https://ik.imagekit.io/libertyindia/itineraries/colorful-rajasthan/map.png",
     coordinates: ITINERARY_MAP_ROUTES["colourful-rajasthan"],
+    // From the Colorful Rajasthan docx city table (Deluxe column), spread
+    // across the route's signature stays.
+    suggestedHotels: [
+      { name: "Narendra Bhawan", city: "Bikaner", image: "/images/itineraries/colourful-rajasthan/hotels/narendra-bhawan.jpg" },
+      { name: "Fort Rajwada", city: "Jaisalmer", image: "/images/itineraries/colourful-rajasthan/hotels/fort-rajwada.jpg" },
+      { name: "Fateh Prakash Palace", city: "Udaipur", image: "/images/itineraries/colourful-rajasthan/hotels/fateh-prakash-palace.jpg" },
+      { name: "Samode Haveli", city: "Jaipur", image: "/images/itineraries/colourful-rajasthan/hotels/samode-haveli.jpg" },
+    ],
   },
   {
     slug: "northeast-india-sojourn",
@@ -894,6 +925,14 @@ export const itineraries: Itinerary[] = [
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/northeast-india-sojourn/overview.png",
     mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
     coordinates: ITINERARY_MAP_ROUTES["northeast-india-sojourn"],
+    // Cities shared with Incredible North East India — hotels per that docx
+    // city table (Deluxe column); shared images for the shared properties.
+    suggestedHotels: [
+      { name: "Taj Raaj Kutir", city: "Kolkata", image: "/images/itineraries/northeast-india-sojourn/hotels/taj-raaj-kutir.jpg" },
+      { name: "The Elgin Darjeeling", city: "Darjeeling", image: "/images/itineraries/northeast-india-sojourn/hotels/elgin-darjeeling.jpg" },
+      { name: "Elgin Mt. Pandim", city: "Pelling", image: "/images/itineraries/northeast-india-sojourn/hotels/elgin-mt-pandim.jpg" },
+      { name: "Elgin Nor-khill", city: "Gangtok", image: "/images/itineraries/northeast-india-sojourn/hotels/elgin-norkhill.jpg" },
+    ],
   },
 
   // ==========================================================================
@@ -1097,6 +1136,14 @@ export const itineraries: Itinerary[] = [
     overviewImage: "/images/itineraries/gems-of-south-india/overview.jpg",
     mapImage: "https://ik.imagekit.io/libertyindia/itineraries/south-india-tamil-nadu/map.svg",
     coordinates: ITINERARY_MAP_ROUTES["gems-of-south-india"],
+    // Cities shared with Southern Splendour — hotels per that docx city
+    // table (Deluxe column); shared images for the shared properties.
+    suggestedHotels: [
+      { name: "Royal Orchid Metropole", city: "Mysore", image: "/images/itineraries/gems-of-south-india/hotels/royal-orchid-metropole.jpg" },
+      { name: "Hoysala Village", city: "Hassan", image: "/images/itineraries/gems-of-south-india/hotels/hoysala-village.jpg" },
+      { name: "Heritage Resort", city: "Hampi", image: "/images/itineraries/gems-of-south-india/hotels/heritage-resort-hampi.jpg" },
+      { name: "Taj Holiday Village", city: "Goa", image: "/images/itineraries/gems-of-south-india/hotels/taj-holiday-village-goa.jpg" },
+    ],
   },
 
   // ==========================================================================

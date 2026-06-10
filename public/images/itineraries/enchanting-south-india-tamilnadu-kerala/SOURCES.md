@@ -30,3 +30,7 @@ Stored locally; swap to ImageKit URLs when the client uploads (paths mirror thes
 | hotels/villa-shanti-pondicherry.jpg | Villa Shanti, Pondicherry (representative) | Pexels | ZHIGANG MENG | https://www.pexels.com/photo/charming-courtyard-with-vintage-shuttered-windows-31262576/ |
 | hotels/cardamom-county-periyar.jpg | Cardamom County, Periyar (representative) | Pexels | Siraj Nazar | https://www.pexels.com/photo/birds-eye-view-of-munnar-india-12035356/ |
 | hotels/brunton-boatyard-kochi.jpg | Brunton Boatyard, Kochi (representative) | Pexels | Renjith Tomy Pkm | https://www.pexels.com/photo/brunton-boatyard-fort-kochi-india-14973045/ |
+
+## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
+- main-bg.jpg — Aerial Kerala backwaters through palm canopy — Pexels photo 19743480 by Swastik Arora — https://www.pexels.com/photo/the-backwaters-of-kerala-refer-to-a-network-of-interconnected-lakes-rivers-canals-and-lagoons-that-run-parallel-to-the-arabian-sea-coast-19743480/
+- overview.jpg — Meenakshi Amman Temple South Gopuram, Madurai — Wikimedia Commons "File:S-TN-34 Meenakshi Amman Temple South Gopuram enriched with delicate Stucco works.jpg" · CC BY-SA 4.0 · MADHURANTHAKAN JAGADEESAN · https://commons.wikimedia.org/wiki/File%3AS-TN-34_Meenakshi_Amman_Temple_South_Gopuram_enriched_with_delicate_Stucco_works.jpg

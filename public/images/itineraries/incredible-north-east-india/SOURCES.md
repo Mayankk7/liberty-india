@@ -34,3 +34,7 @@ Web-sourced (mostly **Pexels**, free for commercial use; **day-5** Darjeeling to
 ## Session 35 replacements (image audit — premium pass)
 The entries below supersede the original lines for the same files.
 - day-9.jpg — REPLACED (session 35): Wikimedia Commons "File:Large Gautama Buddha statue in Buddha Park of Ravangla, Sikkim.jpg" · CC BY-SA 4.0 · Subhrajyoti07 · https://commons.wikimedia.org/wiki/File%3ALarge_Gautama_Buddha_statue_in_Buddha_Park_of_Ravangla%2C_Sikkim.jpg
+
+## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
+- main-bg.jpg — Kanchenjunga range at pastel dawn — Pexels photo 30778935 by Rohit Sharma — https://www.pexels.com/photo/sunrise-over-kanchenjunga-mountain-range-30778935/
+- overview.jpg — Buddhist prayer flags against misty hills — Pexels photo 5220716 by Nishant Aneja — https://www.pexels.com/photo/buddhist-prayer-flags-5220716/

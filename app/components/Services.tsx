@@ -99,8 +99,11 @@ function ServiceCard({
   };
 
   return (
+    // .card-lift carries the lift + ::after shadow, so the root must NOT be
+    // overflow-hidden (it would clip the shadow) — the image zoom is clipped
+    // by its own inner wrapper instead.
     <div
-      className={`group relative rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1 ${className}`}
+      className={`group card-lift relative rounded-lg cursor-pointer ${className}`}
       onClick={go}
       tabIndex={0}
       role="button"
@@ -112,14 +115,16 @@ function ServiceCard({
       }}
       aria-label={service.title}
     >
-      <ImageWithLoader
-        src={service.image}
-        alt={service.title}
-        fill
-        sizes="(max-width: 768px) 100vw, 50vw"
-        className="object-cover object-center w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
-      />
-      <div className="absolute inset-0 bg-linear-to-b from-black/50 via-transparent to-black/60" />
+      <div className="absolute inset-0 rounded-lg overflow-hidden">
+        <ImageWithLoader
+          src={service.image}
+          alt={service.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover object-center w-full h-full card-zoom"
+        />
+      </div>
+      <div className="absolute inset-0 rounded-lg bg-linear-to-b from-black/50 via-transparent to-black/60" />
       <div className="absolute inset-0 flex flex-col justify-between items-center text-center p-5 md:p-6 pt-6 md:pt-8 pb-6 md:pb-8">
         <h3
           className={`${titleClass} font-semibold text-white drop-shadow-lg`}
@@ -127,7 +132,7 @@ function ServiceCard({
         >
           {service.title}
         </h3>
-        <div className="transition-transform duration-500 group-hover:-translate-y-1">
+        <div className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
           <p
             className={`${subtitleClass} font-medium text-white mb-1 drop-shadow-md`}
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}

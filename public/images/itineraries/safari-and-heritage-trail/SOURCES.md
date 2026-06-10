@@ -39,3 +39,7 @@ named properties weren't available) — replace with official hotel photography.
 The entries below supersede the original lines for the same files.
 - day-4.jpg — REPLACED (session 35): Pexels photo 27040537 by Sayan Samanta — https://www.pexels.com/photo/lake-and-grassland-in-countryside-27040537/ (Tranquil view of Bandhogarh's fields, lake, and hills in India.)
 - day-5.jpg — REPLACED (session 35): Pexels photo 17374914 by Shoyab Khan — https://www.pexels.com/photo/tiger-in-forest-17374914/ (A stunning Bengal Tiger walking through the lush forest of Kanha, Indi)
+
+## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
+- main-bg.jpg — Bengal tiger stalking through golden grass — Pexels photo 5513468 by Supriyo Ghoshal — https://www.pexels.com/photo/wild-tiger-seeking-prey-in-high-grass-5513468/
+- overview.jpg — Taj Mahal frontal with reflecting pool at sunrise — Pexels photo 14533217 by Nguyen Hien — https://www.pexels.com/photo/the-taj-mahal-in-india-14533217/

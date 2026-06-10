@@ -24,3 +24,12 @@ Stored locally; swap to ImageKit on client upload.
 | day-12.jpg | Agonda Beach, Goa | Pexels | J  Singh | https://www.pexels.com/photo/chairs-and-nipa-huts-10898929/ |
 | main-bg.jpg | Mysore Palace (hero) | Pexels | CR7Rameshh | https://www.pexels.com/photo/towers-of-mysore-palace-20149224/ |
 | overview.jpg | Western Ghats coffee country, Chikmagalur (overview) | Pexels | Harsh Chikhalia | https://www.pexels.com/photo/green-field-on-hillside-in-foggy-weather-in-rural-zone-3848200/ |
+
+
+## hotels/ (added session 36 — Suggested Hotels from the client Southern Splendour docx city table)
+- royal-orchid-metropole.jpg / heritage-resort-hampi.jpg / taj-holiday-village-goa.jpg — *(representative)*, copied from southern-splendour/hotels/ (same properties; see that SOURCES.md)
+- hoysala-village.jpg — Hoysala Village Resort, Hassan *(representative garden cottages)* — Pexels photo 29777213 by aksinfo7 universe — https://www.pexels.com/photo/charming-red-brick-bungalows-in-serene-garden-setting-29777213/
+
+## hero + overview (REPLACED session 36 — wholesale premium pass; hero = journey-card image site-wide)
+- main-bg.jpg — Mysore Palace and gardens under monsoon sky — Pexels photo 34962788 by Sachin Shettigar — https://www.pexels.com/photo/majestic-mysore-palace-with-gardens-in-karnataka-34962788/
+- overview.jpg — Green hills of Chikmagalur — Pexels photo 11532473 by Satheesh Sankaran — https://www.pexels.com/photo/green-mountains-under-cloudy-sky-11532473/
