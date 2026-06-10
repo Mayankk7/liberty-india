@@ -165,6 +165,20 @@ convention) in `itineraries.ts` (title + datesPrices[0] + comment) and `exploreI
 **Next:** User confirms the title casing — if they want literally "East India City of Joy" (no "&The"),
 it's a 3-string swap.
 
+### 2026-06-10 (session 38h) — ImageKit migration phase 1: upload staging folder built
+**Done:** Client wants all repo-hosted images moved to ImageKit. Built **`imagekit-upload/`**
+(gitignored) at repo root: all **301 local images** referenced by `itineraries.ts` (58.4MB, 42
+folders), copied preserving the exact ImageKit structure (`itineraries/<slug>/…`,
+`signature-experience/northeast-india/…`) + `UPLOAD-MANIFEST.md` listing every file's expected
+final URL. No collisions with existing ImageKit folders (different filenames/extensions;
+`eastindia/` is new). Scripts: `.claude-tmp/build-upload-folder.mjs` (+ inventory). No app-code
+changes.
+**Files:** `.gitignore` (+imagekit-upload/), `CLAUDE.md`. (Staging folder itself not committed.)
+**Next — waiting on client/user:** upload the CONTENTS of `imagekit-upload/` (the two folders)
+into the ROOT of the ImageKit media library (drag-drop preserves structure). Then **phase 2**:
+probe all manifest URLs (200), script-swap every local `/images/…` ref in `itineraries.ts` to
+the ImageKit URL, delete the local originals (keep SOURCES.md) + `imagekit-upload/`, build, commit.
+
 ### 2026-06-10 (session 38g) — Complete image audit: East India page rebuilt + sitewide hotel/day fixes
 **Done:** Client reported wrong Suggested-Hotels pictures on East India → full audit of **all 364
 image refs** across 18 itineraries (inventory script `.claude-tmp/inventory.mjs`; 0 missing files,

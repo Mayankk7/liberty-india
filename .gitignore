@@ -27,6 +27,9 @@
 # scratch / temp working dir (holds API keys, image candidates — never commit)
 .claude-tmp/
 
+# ImageKit upload staging (duplicate copies of public/images/* for client upload)
+imagekit-upload/
+
 # per-developer local Claude settings (permission allowlist, not shared)
 .claude/settings.local.json
 
