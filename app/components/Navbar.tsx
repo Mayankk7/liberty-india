@@ -163,6 +163,26 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
     // Otherwise <Link> navigates; arriving on '/' with a hash triggers the effect below.
   }
 
+  // While the mobile menu overlay is open, freeze the page behind it. Lenis
+  // owns scroll in this project, so body `overflow:hidden` alone leaks wheel/
+  // touch through to the page — pause Lenis too (same reason the modals use
+  // `data-lenis-prevent`). ESC also closes the menu.
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    lenis?.stop();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      lenis?.start();
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [mobileMenuOpen, lenis]);
+
   // Arriving on the homepage with a hash (e.g. /about-us → "Our Services"):
   // smooth-scroll to that section once it has mounted.
   useEffect(() => {
@@ -186,6 +206,97 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
           onClick={closeSearch}
           className="fixed inset-0 z-40 bg-black/30 backdrop-blur-[2px] transition-opacity duration-300"
         />
+      )}
+
+      {/* Mobile Menu Overlay — rendered as a sibling of <nav>, NOT a child.
+          The nav always carries a `translate-y-*` class, and a non-`none`
+          translate makes it the containing block for `position:fixed`
+          descendants — which would shrink this `inset-0` overlay to the
+          navbar-bar height and leave the page (white on most routes) showing
+          around it. Sitting at the fragment level keeps it viewport-sized. */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-[60] flex flex-col bg-[#141313]/95 backdrop-blur-xl animate-hero-fade-in">
+          {/* Header — mirrors the navbar top row (logo left, close right) */}
+          <div className="flex items-center justify-between border-b border-white/10 px-8 py-2 md:py-2.5">
+            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="shrink-0">
+              <Image
+                src="https://ik.imagekit.io/libertyindia/hero-section/logo.svg"
+                alt="Liberty India"
+                width={100}
+                height={100}
+                className="w-11 h-11"
+              />
+            </Link>
+            <button
+              aria-label="Close menu"
+              onClick={() => setMobileMenuOpen(false)}
+              className="-mr-2 p-2 text-white/80 hover:text-white transition-colors"
+            >
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Nav links — editorial, left-aligned, hairline dividers, staggered in */}
+          <div className="flex flex-1 flex-col justify-center px-8">
+            {NAV_ITEMS.map((item, i) => {
+              const active = pathname === item.href;
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, item.href); }}
+                  className="search-result-in group flex items-center justify-between border-b border-white/10 py-4"
+                  style={{ animationDelay: `${i * 55 + 60}ms` }}
+                >
+                  <span
+                    className={`text-[1.65rem] leading-tight tracking-wide transition-colors ${
+                      active ? 'text-[#EF9120]' : 'text-white/90 group-hover:text-white'
+                    }`}
+                    style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+                  >
+                    {item.label}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className={`text-lg transition-all duration-300 ${
+                      active
+                        ? 'text-[#EF9120] opacity-100'
+                        : 'text-white/30 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100'
+                    }`}
+                  >
+                    →
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Footer — search pill + tagline */}
+          <div className="px-8 pb-10 pt-2">
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setSearchOpen(true);
+              }}
+              className="search-result-in flex w-full items-center gap-3 rounded-full border border-white/15 bg-white/5 px-5 py-3.5 text-white/70 transition-colors hover:border-[#EF9120]/50 hover:text-white"
+              style={{ animationDelay: `${NAV_ITEMS.length * 55 + 60}ms`, fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+            >
+              <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+              </svg>
+              <span className="text-[15px]">Search journeys</span>
+            </button>
+            <p
+              className="mt-6 text-center text-[10px] uppercase tracking-[0.28em] text-white/35"
+              style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+            >
+              Where Ancient Wisdom Meets Modern Luxury
+            </p>
+          </div>
+        </div>
       )}
 
       <nav
@@ -369,49 +480,6 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
           </div>
         </div>
 
-        {/* Mobile Menu Overlay */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 z-50 bg-black/95 backdrop-blur-md">
-            <div className="flex justify-end p-6">
-              <button
-                aria-label="Close menu"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-white p-2"
-              >
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div className="flex flex-col items-center gap-8 pt-12">
-              {NAV_ITEMS.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, item.href); }}
-                  className="text-xl text-white/90 font-normal tracking-widest uppercase hover:text-white transition-colors"
-                  style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setSearchOpen(true);
-                }}
-                className="mt-2 inline-flex items-center gap-3 text-xl text-white/90 font-normal tracking-widest uppercase hover:text-white transition-colors"
-                style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
-                </svg>
-                Search
-              </button>
-            </div>
-          </div>
-        )}
       </nav>
     </>
   );

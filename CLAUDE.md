@@ -156,6 +156,40 @@ repointed.
 > then **Done**, **Files**, **Next**. Older sessions archived in
 > `SESSION_LOG_ARCHIVE.md`.
 
+### 2026-06-13 (session 39) — Mobile navbar overlay restyle + scroll lock
+**Done:** Client flagged the mobile hamburger menu "layout/styling looks off". Redesigned the
+overlay in `Navbar.tsx` (the `mobileMenuOpen` block): was a bare `justify-end` close button + a
+loose centered stack of `uppercase tracking-widest` merriweather links. Now a structured 3-row
+flex column — (1) **header** mirroring the navbar top row: white logo left + close button right,
+hairline `border-b border-white/10`, matching `px-8 py-2` rhythm; (2) **nav** vertically centred,
+left-aligned **editorial serif** links (Big Caslon via `--font-playfair`, `1.65rem`) with
+per-row hairline dividers, a `→` that slides in on hover, current-route highlighted `#EF9120`
+(via `pathname === href` — hash items stay neutral), and a staggered fade-in reusing the existing
+`search-result-in` utility (`animationDelay i*55+60ms`); (3) **footer** a styled pill "Search
+journeys" (border + `bg-white/5`, opens the search overlay) above the small-caps tagline "Where
+Ancient Wisdom Meets Modern Luxury". Backdrop `bg-[#141313]/95 backdrop-blur-xl` + `animate-hero-
+fade-in`, bumped to `z-[60]`. Also added a **scroll-lock effect**: while the menu is open it
+`lenis.stop()`s + sets `body overflow:hidden` (Lenis owns scroll, so body-overflow alone leaks
+through — same reason the modals use `data-lenis-prevent`) and binds ESC-to-close; all restored on
+unmount. Build clean 45/45.
+**Follow-up (same session) — white-bg bug:** Client: "the bg color is white in the navbar in mobile
+view." Root cause = the overlay was rendered **inside** `<nav>`, which always carries a
+`translate-y-*` class; a non-`none` translate makes the nav the containing block for `position:fixed`
+descendants, so the overlay's `inset-0` sized to the navbar **bar** (~60px) instead of the viewport —
+leaving the page (white on every `variant="white"` route) showing around the clipped dark panel.
+Fix: moved the overlay out to sit as a **sibling of `<nav>`** at the fragment level (same as the
+search scrim already does), so `inset-0` is viewport-relative and the dark backdrop fills the screen.
+Pure relocation — markup unchanged. Build clean 45/45 (note: had to clear a 100%-full C: drive +
+redirect build TEMP to D: to get the build to run — env issue, not code).
+**Files:** `app/components/Navbar.tsx`, `CLAUDE.md`.
+**Next:** User reviews on dev at mobile width (<1024px) — open the hamburger on a `variant="white"`
+page (e.g. an itinerary or /journeys): the menu now fills the screen with the dark backdrop (no
+white showing through), logo+close header, serif links cascade in with active-route accent, search
+pill + tagline at the bottom, page behind no longer scrolls. ESC / tapping a link closes it.
+**Env note:** C: drive was full (0 B free); freed npm-cache + Windows Temp. Stale `.next` was 6.5 GB
+on D: — deleted, rebuilds clean. `D:\tmp-build` left behind (harness blocked its removal); safe to
+delete manually.
+
 ### 2026-06-10 (session 38f) — Title finalised: "East India & The City of Joy"
 **Done:** Client follow-up ("rename it to East India city of joy") — title is now
 **"East India & The City of Joy"** ("&The" styled to match the original branding / "Taj & Tigers"
