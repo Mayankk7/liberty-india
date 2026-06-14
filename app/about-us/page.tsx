@@ -50,33 +50,39 @@ export default function AboutUsPage() {
           </h2>
         </div>
 
-        {/* Image Grid with Text Card */}
-        <div className="w-full relative h-96 md:h-137.5 lg:h-162.5 xl:h-180">
-          {/* Background Images Grid */}
-          <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0">
+        {/* Image Grid with Text Card.
+         * Desktop: editorial overlay — the card floats over a 3-up image triptych.
+         * Mobile: the three photos stack into a continuous VERTICAL backdrop
+         * (grid-rows-3, no gaps) that fills the section, with the white banner on
+         * top, centred, framed by equal photo bands top & bottom. The container's
+         * vertical padding (not the card) creates those bands, so the backdrop
+         * always expands to contain the copy — no overflow, no cream gaps. */}
+        <div className="w-full relative h-auto py-32 sm:py-40 md:py-0 md:h-137.5 lg:h-162.5 xl:h-180">
+          {/* Background Images — vertical stack on mobile, 3 columns on desktop */}
+          <div className="absolute inset-0 grid grid-cols-1 grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-0">
             {/* Image 1 - Palace/Lake */}
-            <div 
+            <div
               className="relative h-full bg-cover bg-center"
                 style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-us/section/picture-1.svg')" }}
             />
 
             {/* Image 2 - Kerala Backwaters */}
-            <div 
+            <div
               className="relative h-full bg-cover bg-center"
                 style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-us/section/picture-2.svg')" }}
             />
 
             {/* Image 3 - Kerala Palm Trees */}
-            <div 
+            <div
               className="relative h-full bg-cover bg-center"
                 style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-us/section/picture-3.svg')" }}
             />
           </div>
 
-          {/* Text Card Overlay - Covering first image and half of second with margins */}
+          {/* Text Card — banner on top of the vertical photo backdrop (mobile),
+           * floating overlay (desktop) */}
           <div
-            className="absolute left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 bg-white p-8 md:p-10 lg:p-14 z-10 shadow-lg"
-            style={{ width: '42%' }}
+            className="relative md:absolute mx-4 md:mx-0 md:left-8 lg:left-12 md:top-1/2 md:-translate-y-1/2 w-auto md:w-[42%] bg-white p-8 md:p-10 lg:p-14 z-10 shadow-lg"
           >
             <p
               className="text-sm md:text-base lg:text-lg text-[#424242] font-normal tracking-[0.02em] leading-loose lg:leading-loose"
@@ -140,8 +146,9 @@ export default function AboutUsPage() {
             </p>
           </div>
 
-          {/* Three Pillars Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+          {/* Three Pillars Grid — stacked with clear spacing on mobile; the tight
+           * gap-0 + directional text padding (below) is a desktop-only layout. */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-0">
             {/* Pillar 1 - Authenticity */}
             <div className="group cursor-pointer">
               <div className="relative h-96 md:h-112.5 lg:h-130 overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
@@ -152,7 +159,7 @@ export default function AboutUsPage() {
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
-              <div className="pt-6 pr-4">
+              <div className="pt-6 md:pr-4">
                 <h3
                   className="text-lg md:text-xl font-semibold mb-3 transition-colors duration-300"
                   style={{ color: '#e58021', fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -178,7 +185,7 @@ export default function AboutUsPage() {
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
-              <div className="pt-6 px-4">
+              <div className="pt-6 md:px-4">
                 <h3
                   className="text-lg md:text-xl font-semibold mb-3 transition-colors duration-300"
                   style={{ color: '#e58021', fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -204,7 +211,7 @@ export default function AboutUsPage() {
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
-              <div className="pt-6 pl-4">
+              <div className="pt-6 md:pl-4">
                 <h3
                   className="text-lg md:text-xl font-semibold mb-3 transition-colors duration-300"
                   style={{ color: '#e58021', fontFamily: 'var(--font-playfair), Georgia, serif' }}

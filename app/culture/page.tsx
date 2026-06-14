@@ -37,8 +37,8 @@ export default function CulturePage() {
       </section>
 
       {/* The Living, Breathing Soul of India */}
-      <section className="w-full pt-12 md:pt-16 lg:pt-20 pb-0" style={{ backgroundColor: '#FDF8E8' }}>
-        <div className="w-[90%] max-w-5xl mx-auto text-center mb-10 md:mb-14">
+      <section className="w-full pt-6 md:pt-16 lg:pt-20 pb-0" style={{ backgroundColor: '#FDF8E8' }}>
+        <div className="w-[90%] max-w-5xl mx-auto text-center mb-12 md:mb-14">
           <h2
             className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-[#424242] leading-tight"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -47,9 +47,12 @@ export default function CulturePage() {
           </h2>
         </div>
 
-        {/* Image Grid with Text Card */}
-        <div className="w-full relative h-96 md:h-137.5 lg:h-162.5 xl:h-180">
-          <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0">
+        {/* Image Grid with Text Card.
+         * Mobile: photos stack into a continuous vertical backdrop (grid-rows-3)
+         * with the white banner centred on top, framed by photo bands (container
+         * py); desktop keeps the 3-up triptych + overlay card. */}
+        <div className="w-full relative h-auto py-32 sm:py-40 md:py-0 md:h-137.5 lg:h-162.5 xl:h-180">
+          <div className="absolute inset-0 grid grid-cols-1 grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-0">
             <div
               className="relative h-full bg-cover bg-center"
               style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/culture/picture-1.svg')" }}
@@ -64,7 +67,7 @@ export default function CulturePage() {
             />
           </div>
 
-          <div className="absolute top-6 sm:top-8 md:top-12 lg:top-16 left-4 md:left-8 lg:left-12 w-[85%] md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
+          <div className="relative md:absolute mx-4 md:mx-0 md:top-12 lg:top-16 md:left-8 lg:left-12 w-auto md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
             <p
               className="text-lg md:text-xl lg:text-[22px] text-[#424242] leading-loose"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -76,7 +79,7 @@ export default function CulturePage() {
       </section>
 
       {/* Liberty India connects you with */}
-      <section className="w-full py-10 md:py-12" style={{ backgroundColor: '#FDF8E8' }}>
+      <section className="w-full py-6 md:py-12" style={{ backgroundColor: '#FDF8E8' }}>
         <div className="w-[90%] max-w-5xl mx-auto text-center">
           <p
             className="text-xl md:text-2xl lg:text-3xl font-bold text-[#424242]"
@@ -88,11 +91,11 @@ export default function CulturePage() {
       </section>
 
       {/* A Tapestry of Faiths Section */}
-      <section className="w-full bg-white py-10 md:py-14">
-        <div className="w-full text-center mb-10 md:mb-14">
+      <section className="w-full bg-white pt-6 pb-2 md:py-14">
+        <div className="w-full text-center mb-12 md:mb-14">
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-4"
-            style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-2 md:mb-4 mx-auto"
+            style={{ fontFamily: 'var(--font-playfair), Georgia, serif', width: '70vw' }}
           >
             A Tapestry of Faiths
           </h2>
@@ -141,11 +144,11 @@ export default function CulturePage() {
       </section>
 
       {/* Festival Immersion Experiences Section */}
-      <section className="w-full bg-white py-10 md:py-14">
-        <div className="w-full text-center mb-10 md:mb-14">
+      <section className="w-full bg-white pt-8 pb-2 md:py-14">
+        <div className="w-full text-center mb-12 md:mb-14">
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-4"
-            style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-2 md:mb-4 mx-auto"
+            style={{ fontFamily: 'var(--font-playfair), Georgia, serif', width: '70vw' }}
           >
             Festival Immersion Experiences
           </h2>
@@ -182,10 +185,10 @@ export default function CulturePage() {
       </section>
 
       {/* Artisan & Craft Traditions Section */}
-      <section className="w-full bg-white pt-2 md:pt-4 pb-10 md:pb-14">
+      <section className="w-full bg-white pt-8 md:pt-4 pb-10 md:pb-14">
         <div className="w-full text-center mb-6 md:mb-8">
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-3"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-2 md:mb-3"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
             Artisan &amp; Craft Traditions
@@ -198,7 +201,8 @@ export default function CulturePage() {
           </p>
         </div>
 
-        <div className="mx-auto relative" style={{ width: '85vw' }}>
+        {/* Desktop: 2×2 image collage with centred text cards */}
+        <div className="hidden md:block mx-auto relative" style={{ width: '85vw' }}>
           {/* 2x2 Image Grid */}
           <div className="grid grid-cols-2 gap-0">
             {/* Top Left - Textile */}
@@ -298,6 +302,61 @@ export default function CulturePage() {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Mobile: stacked image-on-top + caption-below cards — the desktop collage's
+            floating centre text cards are too cramped on a phone */}
+        <div className="md:hidden w-[90%] mx-auto space-y-12">
+          {[
+            {
+              src: 'https://ik.imagekit.io/libertyindia/about-india/culture/textile.svg',
+              alt: 'Textile Traditions',
+              title: 'Textile Traditions',
+              body: "Handwoven silks and vibrant fabrics reflecting India's rich regional craftsmanship",
+            },
+            {
+              src: 'https://ik.imagekit.io/libertyindia/about-india/culture/pottery.svg',
+              alt: 'Pottery & Ceramics',
+              title: 'Pottery & Ceramics',
+              body: 'Earthy creations shaped by traditional techniques and timeless design',
+            },
+            {
+              src: 'https://ik.imagekit.io/libertyindia/about-india/culture/metal-work.svg',
+              alt: 'Metal Work & Jewellery',
+              title: 'Metal Work & Jewellery',
+              body: 'Intricate craftsmanship expressed through ornate metal artefacts and jewellery',
+            },
+            {
+              src: 'https://ik.imagekit.io/libertyindia/about-india/culture/carving.png',
+              alt: 'Kashmiri Wood Carving',
+              title: 'Kashmiri Wood Carving',
+              body: 'Delicately carved walnut wood creations showcasing timeless artistry',
+            },
+          ].map((c) => (
+            <div key={c.title} className="relative w-full">
+              <Image
+                src={c.src}
+                alt={c.alt}
+                width={800}
+                height={600}
+                className="w-full h-[240px] sm:h-[320px] object-cover"
+              />
+              <div className="relative z-10 -mt-12 mx-auto w-[90%] bg-white p-5 shadow-md text-left">
+                <h3
+                  className="text-xl font-bold text-[#424242] mb-2"
+                  style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+                >
+                  {c.title}
+                </h3>
+                <p
+                  className="text-[13px] text-[#424242] leading-loose"
+                  style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
+                >
+                  {c.body}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

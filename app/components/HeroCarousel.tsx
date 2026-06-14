@@ -27,9 +27,14 @@ export default function HeroCarousel() {
   const [activeIndex, setActiveIndex] = useState(2); // March (index 2) as default
   const [prevIndex, setPrevIndex] = useState(2);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  // `startFade` flips on once the incoming image has painted — that is what
+  // actually triggers the cross-fade of the outgoing image. Gating on load
+  // (instead of a blind timer) stops the swap from flashing the dark
+  // background on slower mobile connections.
+  const [startFade, setStartFade] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
-  const transitionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const endTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const activeMonth = MONTHS[activeIndex];
 
@@ -60,24 +65,50 @@ export default function HeroCarousel() {
   useEffect(() => { isTransitioningRef.current = isTransitioning; }, [isTransitioning]);
 
   // Smooth crossfade transition — stable reference (uses refs internally).
+  // The outgoing image is layered on top and only fades away once the incoming
+  // image has loaded (handleActiveLoad) or a short fallback elapses, so the
+  // swap never reveals the bare background mid-transition.
   const handleTransition = useCallback((newIndex: number) => {
     const currentIndex = activeIndexRef.current;
     if (newIndex === currentIndex || isTransitioningRef.current) return;
+    // The OUTGOING image stays as the opaque base; the incoming image fades in
+    // on top once it has actually loaded — so a swap can never flash the dark
+    // background mid-transition.
     setPrevIndex(currentIndex);
+    setStartFade(false);
     setIsTransitioning(true);
     setActiveIndex(newIndex);
 
-    // Allow crossfade to complete
-    if (transitionTimer.current) clearTimeout(transitionTimer.current);
-    transitionTimer.current = setTimeout(() => {
+    if (endTimer.current) clearTimeout(endTimer.current);
+    // Safety net only: if onLoad / transitionend never fire, force the swap to
+    // settle on the new image. Deliberately long so it never fires mid-load
+    // (the old 500ms timer was the cause of the fade-to-black).
+    endTimer.current = setTimeout(() => {
+      setStartFade(true);
+      setPrevIndex(newIndex);
       setIsTransitioning(false);
-    }, 1200);
+    }, 6000);
+  }, []);
+
+  // Fade the incoming image in the moment it has actually painted.
+  const handleActiveLoad = useCallback(() => {
+    if (isTransitioningRef.current) setStartFade(true);
+  }, []);
+
+  // Incoming image has fully faded in (it now covers the outgoing one) →
+  // settle it as the new base. startFade stays true; the next transition
+  // resets it via the keyed remount, so there is no flicker.
+  const handleIncomingFadeEnd = useCallback((e: { propertyName: string }) => {
+    if (e.propertyName !== 'opacity' || !isTransitioningRef.current) return;
+    if (endTimer.current) clearTimeout(endTimer.current);
+    setPrevIndex(activeIndexRef.current);
+    setIsTransitioning(false);
   }, []);
 
   // Clear any pending crossfade timer on unmount
   useEffect(() => {
     return () => {
-      if (transitionTimer.current) clearTimeout(transitionTimer.current);
+      if (endTimer.current) clearTimeout(endTimer.current);
     };
   }, []);
 
@@ -122,40 +153,46 @@ export default function HeroCarousel() {
       onFocusCapture={() => setIsPaused(true)}
       onBlurCapture={() => setIsPaused(false)}
     >
-      {/* Background Images with Crossfade */}
-      {/* Previous image (fading out) */}
-      {isTransitioning && (
-        <div className="absolute inset-0 z-1">
-          <Image
-            src={MONTHS[prevIndex].image}
-            alt=""
-            fill
-            sizes="100vw"
-            quality={90}
-            className="object-cover object-center"
-            aria-hidden="true"
-          />
-        </div>
-      )}
-
-      {/* Current image (fading in). Parallax stacks on top of the crossfade —
-       * lower speed (0.15) since Ken Burns already provides intra-image motion. */}
-      <div
-        className={`absolute inset-0 z-2 transition-opacity duration-1000 ease-in-out ${
-          isTransitioning ? 'opacity-0 animate-hero-fade-in' : 'opacity-100'
-        }`}
-      >
+      {/* Background images — robust crossfade.
+       * Bottom layer = the settled / outgoing image, ALWAYS fully opaque, so a
+       * swap can never reveal the dark background. Top layer = the incoming
+       * image, which fades in ONLY once it has actually painted (handleActiveLoad).
+       * Gating the fade on the real load — not a blind timer — removes the old
+       * "fade to black, then pop in" behaviour on slower image loads. */}
+      <div className="absolute inset-0 z-1">
         <Parallax speed={0.15} className="absolute inset-0">
           <Image
-            key={activeMonth.id}
-            src={activeMonth.image}
-            alt={`Travel destination: ${activeMonth.destination} - Best visited in ${activeMonth.name}`}
+            key={MONTHS[prevIndex].id}
+            src={MONTHS[prevIndex].image}
+            alt=""
+            aria-hidden="true"
             fill
             priority
             quality={90}
             sizes="100vw"
             className="object-cover object-center"
             placeholder="empty"
+          />
+        </Parallax>
+      </div>
+
+      {/* Incoming image — fades in over the opaque outgoing image once loaded. */}
+      <div
+        key={activeMonth.id}
+        className="absolute inset-0 z-2"
+        style={{ opacity: startFade ? 1 : 0, transition: 'opacity 900ms ease-in-out' }}
+        onTransitionEnd={handleIncomingFadeEnd}
+      >
+        <Parallax speed={0.15} className="absolute inset-0">
+          <Image
+            src={activeMonth.image}
+            alt={`Travel destination: ${activeMonth.destination} - Best visited in ${activeMonth.name}`}
+            fill
+            quality={90}
+            sizes="100vw"
+            className="object-cover object-center"
+            placeholder="empty"
+            onLoad={handleActiveLoad}
           />
         </Parallax>
       </div>

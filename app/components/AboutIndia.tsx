@@ -351,7 +351,7 @@ export default function AboutIndia() {
         <div className="absolute inset-0 bg-black/20" />
         <div className="absolute inset-0 flex items-center justify-center w-full">
           <p
-            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white text-center font-medium leading-snug w-full px-2 md:px-6 lg:px-10 drop-shadow-lg"
+            className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl text-white text-center font-medium leading-snug w-full px-2 md:px-6 lg:px-10 drop-shadow-lg"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
             &ldquo;Journeys, when crafted with intention,<br />become lifelong memories&rdquo;

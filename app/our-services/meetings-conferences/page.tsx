@@ -33,7 +33,7 @@ export default function MeetingsConferencesPage() {
       />
       <TaglineStrip text="Business Meets Inspiration" />
       <SectionOverview images={overviewImages} description={overviewDescription} />
-      <CustomizedPrograms imageSrc="https://ik.imagekit.io/libertyindia/services/meetings/program.svg" />
+      <CustomizedPrograms imageSrc="https://ik.imagekit.io/libertyindia/services/meetings/programs.png?tr=w-1600&updatedAt=1779259783246" />
       <Footer />
     </main>
   );

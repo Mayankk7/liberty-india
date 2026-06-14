@@ -156,6 +156,563 @@ repointed.
 > then **Done**, **Files**, **Next**. Older sessions archived in
 > `SESSION_LOG_ARCHIVE.md`.
 
+### 2026-06-13 (session 61) — Hero crossfade: kill the fade-to-black between slides
+**Done:** Client: hero "becomes black then changes the picture" on every slide change. Root cause in
+`HeroCarousel.tsx`: the crossfade fired `startFade` via a blind **500ms `fadeStartTimer`** fallback, so
+on any hero image that took >500ms to load the OUTGOING overlay faded out before the incoming had
+painted → the dark `bg-[#1a1008]` showed through → image popped in. Rewrote the crossfade to be
+load-gated and inverted so the background can never show:
+- **Bottom layer (z-1) = the OUTGOING/settled image, always opaque** (keyed on `prevIndex`, never
+  remounts mid-transition → stays painted).
+- **Top layer (z-2) = the INCOMING image**, keyed on `activeMonth.id`, `opacity: startFade ? 1 : 0`
+  with a 900ms transition; fades in **only** on the image's real `onLoad` (`handleActiveLoad`).
+- On fade-in `transitionEnd` (`handleIncomingFadeEnd`) → settle: `prevIndex = activeIndex` (bottom
+  remounts to the new image but is fully covered by the opaque top). Removed the 500ms timer entirely;
+  kept a single **6000ms safety** that only force-settles if `onLoad`/`transitionEnd` never fire.
+- Moved `priority` to the bottom (initial LCP); top loads on demand. Both keep Parallax + quality 90.
+Net: outgoing image stays put until the incoming has actually loaded and faded in over it — no black
+gap, no pop. Build clean 45/45.
+**Files:** `app/components/HeroCarousel.tsx`, `CLAUDE.md`.
+**Next:** Client reviews the home hero (tab months / let it auto-advance, incl. throttled/slow network)
+— slides should cross-fade with the previous photo held until the next is ready; never a black flash.
+
+### 2026-06-13 (session 60) — Home AboutIndia quote: smaller on mobile
+**Done:** Client: make the "Journeys, when crafted with intention, become lifelong memories" quote
+smaller on mobile. In `AboutIndia.tsx` the overlay `<p>` was `text-3xl md:text-4xl lg:text-5xl
+xl:text-6xl` → `text-xl sm:text-2xl md:text-4xl …` (mobile 30→20px, small tablet 24px; `md:`+ desktop
+unchanged). Build clean 45/45.
+**Files:** `app/components/AboutIndia.tsx`, `CLAUDE.md`.
+**Next:** Client reviews the home About-India quote band on mobile — smaller text. Adjust `text-xl`
+up/down if needed.
+
+### 2026-06-13 (session 59) — Fix Customised Programs image 500s (Next 16 qualities + oversized sources)
+**Done:** Client: programs image still not loading on Meetings + Incentives. Diagnosed via the Next image
+optimizer directly (dev server). Two distinct causes; build clean 45/45.
+1. **`quality={90}` not allowed (Next 16):** `next.config.ts images` had no `qualities`, so it defaulted
+   to `[75]` → any `quality={90}` image 400s. Only `HeroCarousel.tsx` (lines 163, 187) uses 90. Added
+   `qualities: [75, 90]`. **⚠️ next.config change needs a `npm run dev` RESTART to take effect.**
+2. **Oversized sources 500 the optimizer:** the new Meetings `programs.png` is **7 MB / 1926×2448 RGBA**
+   — `/_next/image?…q=75` returned **500 intermittently** (AVIF encode OOM/timeout on the heavy source;
+   normal images were 200). Incentives `programs.svg` = **4.7 MB** (returns 200 since SVGs aren't
+   sharp-processed, but very heavy). Fix = let ImageKit pre-resize so Next gets a light source:
+   - Meetings: `…/programs.png?updatedAt=…` → `…/programs.png?tr=w-1600&updatedAt=…` (1.76 MB; optimizer 3/3 200).
+   - Incentives: `…/programs.svg` → `…/programs.svg?tr=w-1600,f-png` (rasterised to 1.29 MB; optimizer 3/3 200).
+**Files:** `next.config.ts`, `app/our-services/meetings-conferences/page.tsx`,
+`app/our-services/incentives/page.tsx`, `CLAUDE.md`.
+**Next:** Client **restarts the dev server** (for the qualities config), then reviews `/our-services/
+meetings-conferences` + `/incentives` — both Customised Programs photos should now load. Real fix for the
+future: client should upload web-sized images (the 7 MB/4.7 MB originals are far too heavy); the `tr=`
+resize is a CDN-side band-aid.
+
+### 2026-06-13 (session 58) — Fix invisible "Customised Programs" image on Meetings page
+**Done:** Client flagged the Customised Programs image not showing on `/our-services/meetings-conferences`.
+Root cause: the page passed `…/services/meetings/program.svg` (singular, `.svg`) → **404** (probed). The
+real asset is `…/services/meetings/programs.png` (plural, `.png`, client-supplied URL) → 200. Updated the
+`<CustomizedPrograms imageSrc=…>` to the working PNG (with the client's `?updatedAt=` cache-buster). The
+Incentives page's `…/services/incentive/programs.svg` is fine (200), left untouched. Build clean 45/45.
+**Files:** `app/our-services/meetings-conferences/page.tsx`, `CLAUDE.md`.
+**Next:** Client reviews `/our-services/meetings-conferences` — the Customised Programs photo now renders.
+
+### 2026-06-13 (session 57) — Spiritual: left/right SPACING on section titles + paragraphs (mobile)
+**Done:** Client: "add the borders [= side spacing, per session 53's clarification] on left and right
+of the section title and paragraph" — same fix as nature. The 3 spiritual section headers (Sacred Hindu
+Pilgrimage Sites, Buddhist Sacred Journey, Sikh Spirituality) shared `w-full max-w-5xl mx-auto
+text-center mb-12 md:mb-14`; `replace_all` `w-full` → `w-[90%]` gives ~5% side margin on mobile
+(matching the `w-[90%]` ImageTextOverlay cards) while desktop stays capped at `max-w-5xl` (unchanged).
+The intro page-title (`w-full max-w-5xl mt-4 …`, no paragraph) + footer connector line were left as-is.
+Build clean 45/45.
+**Files:** `app/spiritual/page.tsx`, `CLAUDE.md`.
+**Next:** Client reviews `/spiritual` mobile — section titles/paragraphs now inset from the edges. (Same
+pattern still available for wellness section headers if wanted.)
+
+### 2026-06-13 (session 56) — Architecture inter-section spacing + Wellness Ayurveda cards get images
+**Done:** Two areas. Build clean 45/45.
+1. **Architecture — reduced empty space above Rajput + Colonial (mobile only).** Each gap = previous
+   section's `pb` + the section's own `pt`. Indo-Islamic / Rajput / Colonial all shared
+   `py-6 md:py-16 lg:py-20`; split the mobile values, desktop `md:py-16 lg:py-20` kept (the overlay
+   cards' `-bottom-10` protrusion needs the desktop pb): Indo-Islamic `py-6…` → `pt-6 pb-3…`; Rajput
+   `py-6…` → `py-3…`; Colonial `py-6…` → `pt-3 pb-6…`. Net mobile gaps above Rajput & Colonial ~48px→24px.
+2. **Wellness "Ayurveda Retreat Experiences" — images added per the Figma** (node 707-810). The 5
+   offering cards were text-only; now each is a vertical card (photo on top `h-72` + title/body below),
+   mirroring the Retreat Locations card pattern just beneath it. Images from the client's ImageKit
+   uploads (probed all 5 → 200): `Ayurvedic Consultations.png`, `Customized Treatment Programs.png`,
+   `Lifestyle Counselling.png`, `Herbal Medicine.png`, `Diet & Nutrition.png`. **Note:** the Diet image
+   only resolves with the literal `&` (`…/Diet%20&%20Nutrition.png`); the `%26` form 404s — kept the
+   literal form (round-trips fine through Next/Image). Lifestyle Counselling wasn't in the client's
+   pasted list but the file exists, so all 5 cards have real photos.
+**Files:** `app/architecture/page.tsx`, `app/wellness/page.tsx`, `CLAUDE.md`.
+**Next:** Client reviews `/architecture` mobile (tighter gaps above Rajput & Colonial) and `/wellness`
+(Ayurveda cards now show a photo on top of each tab). The Figma row looks gapless/edge-to-edge; I kept
+the site's `gap-4` + shadow card style for cohesion with the Retreat Locations section below — say the
+word to make it a flush edge-to-edge band instead.
+**Follow-up (same session):** Client wanted (a) the Ayurveda row **gapless on desktop** but **carded
+with visible images on mobile**, and (b) **more** space above Festival + Artisan in culture. (a) Grid
+`gap-4` → `gap-4 lg:gap-0` and card `shadow-md` → `shadow-md lg:shadow-none` → flush edge-to-edge band
+at `lg` (the Figma look), separated shadowed cards (images intact) below `lg`. (b) Festival/Artisan
+mobile `pt-4` → `pt-8` (gaps above each ~24px → ~40px; desktop `md:py-14` / `md:pt-4` untouched). Build
+clean 45/45.
+**Follow-up 2 (same session):** (1) **Hydration mismatch on the footer form** — a browser extension
+injects `fdprocessedid` onto form controls before React hydrates (the error named the `<button>`).
+Added `suppressHydrationWarning` to all 7 Footer form controls (name/phone/email inputs, select,
+textarea, checkbox, submit button) so the extension-injected attr no longer trips hydration. This is a
+rendering hint, not logic/fields/state — within the P0-freeze rules. (2) **Wellness Ayurveda** — client
+asked to bottom-align 3 of the 5 photos; the image `className` now derives object-position from the card
+title: `object-bottom` for Ayurvedic Consultations / Customised Treatment Programs / Lifestyle
+Counselling, `object-center` for Herbal Medicine + Diet & Nutrition (kept as-is). Build clean 45/45.
+
+### 2026-06-13 (session 55) — Culture: eliminate empty space above Festival + Artisan & Craft (mobile)
+**Done:** Client: "eliminate the empty space above Festival Immersion Experiences and above Artisan &
+Craft Traditions." Each gap = previous section's bottom padding + the section's own top padding.
+Zeroed the top padding of Festival/Artisan and shrank the bottom padding of the section above each
+(mobile only; desktop `md:py-14` etc. preserved). Build clean 45/45.
+- A Tapestry of Faiths: `py-6 md:py-14` → `pt-6 pb-2 md:py-14` (mobile bottom 24→8px).
+- Festival Immersion Experiences: `py-6 md:py-14` → `pt-0 pb-2 md:py-14` (mobile top 24→0, bottom 24→8px).
+- Artisan & Craft Traditions: `pt-2 md:pt-4 pb-10 md:pb-14` → `pt-0 md:pt-4 pb-10 md:pb-14` (mobile top 8→0).
+Net mobile gaps: above Festival ~48px→8px, above Artisan ~32px→8px (kept an 8px hair so the heading
+isn't glued to the card above; can go fully flush if wanted). Builds on session 54's `last:mb-0` (no
+trailing card margin).
+**Files:** `app/culture/page.tsx`, `CLAUDE.md`.
+**Next:** Client reviews `/culture` mobile — Festival and Artisan headings now sit just under the
+preceding section. If still too much/too little, trivial to adjust the 8px.
+**Follow-up (same session):** Client: "add space above each section where we removed it fully" — the
+8px (pt-0) read as glued. Bumped the two `pt-0` sections back to `pt-4` (Festival `pt-0 pb-2 md:py-14`
+→ `pt-4 pb-2 md:py-14`; Artisan `pt-0 md:pt-4 …` → `pt-4 md:pt-4 …`). Net mobile gaps now ~24px above
+each (Faiths/Festival `pb-2` 8px + own `pt-4` 16px); desktop unchanged. Build clean 45/45.
+
+### 2026-06-13 (session 54) — Heritage polish: heading centring, space above Living Traditions, Ancient Temple breathing room
+**Done:** Three client items on `/heritage`. Build clean 45/45.
+1. **"5,000 Years Written in Stone" centred:** the h2 was already in a `text-center` container, but
+   added explicit `text-center mx-auto` to the heading itself (belt-and-suspenders). If it still reads
+   left on the client's screen it's likely a dev cache — flagged.
+2. **Extra empty space above "Living Traditions of Indian Art" eliminated:** root cause = the shared
+   `ImageTextOverlay` gave its **last** card a `mb-16 md:mb-20` bottom margin, so every overlay
+   section had ~64px dead space below its last card (incl. Indian Dance Heritage, directly above
+   Living Traditions). Added `last:mb-0` to the Reveal wrapper → last card has no bottom margin; the
+   section `py` handles spacing. Beneficially tightens the bottom of ALL overlay sections (heritage
+   Dance/Art, culture Faiths/Fest, nature, spiritual, architecture) — consistent, not just heritage.
+3. **A little space above/below the "Ancient Temple Architecture" header:** its header `py` had been
+   cut to `py-6` in the session-51 tightening; nudged to `py-8 md:py-16` (mobile +8px above the heading
+   and below the paragraph; desktop unchanged).
+**Files:** `app/heritage/page.tsx`, `app/components/ImageTextOverlay.tsx`, `CLAUDE.md`.
+**Next:** Client reviews `/heritage` — heading centred, less gap before Living Traditions, a bit more
+room around the Ancient Temple header. Note #2 (`last:mb-0`) also affects culture/nature/spiritual/
+architecture overlay-section bottoms (intended/consistent). If "5,000 Years" still looks off, send a
+screenshot.
+
+### 2026-06-13 (session 53) — Nature: left/right SPACING on section title + paragraph (mobile)
+**Done:** First attempt added decorative `border-x` accent lines to the 4 nature section titles —
+client clarified they meant **spacing** ("not design borders, the spacing borders"), i.e. left/right
+padding so the title + paragraph don't touch the screen edges on mobile. **Reverted the borders** and
+instead changed the nature section-header containers `w-full max-w-5xl mx-auto text-center mb-12 md:mb-14`
+→ `w-[90%] max-w-5xl mx-auto text-center …` (replace_all, hits the intro heading + the 4 section headers).
+`w-[90%]` gives ~5% side margin on mobile (matching the `w-[90%]` ImageTextOverlay cards below) while
+desktop is unchanged (both `w-full` and `w-[90%]` cap at `max-w-5xl`). Build clean 45/45.
+**Files:** `app/nature/page.tsx`, `CLAUDE.md`.
+**Note:** spiritual + wellness section headers use the same edge-to-edge `w-full max-w-5xl mx-auto
+text-center` pattern — can apply the same `w-[90%]` side spacing there if the client wants consistency.
+**Next:** Client reviews `/nature` mobile — section titles/paragraphs now have left/right breathing
+room (aligned with the cards). Confirm desktop unchanged.
+
+### 2026-06-13 (session 52) — About-India: heading→paragraph gap reduced on the remaining section titles
+**Done:** Client (showing the "Festival Immersion Experiences" block, `mb-4`): "decrease the spacing
+between heading and paragraph in all sections, don't miss any." Session 50 only reduced the `mb-6`
+headings (nature/spiritual/wellness → `mb-2 md:mb-6`); the `mb-4`/`mb-3` section titles were missed.
+Reduced those to **`mb-2` on mobile** (desktop `md:` value kept), so every section title now has the
+same tight heading→paragraph gap on mobile:
+- heritage: Dance/Art + Ancient Temple `font-bold … mb-4 [max-w-3xl] mx-auto` → `mb-2 md:mb-4 …`.
+- culture: Faiths/Festivals `… mb-4 mx-auto` → `mb-2 md:mb-4 mx-auto`; Artisan & Craft `… mb-3`
+  → `mb-2 md:mb-3`.
+- Already `mb-2` (no change): architecture section headings, nature/spiritual/wellness (session 50),
+  wellness Retreat. Intro page-headings + connector bands have no heading+paragraph pair (skipped).
+Build clean 45/45. Desktop unchanged (gap reduction gated to mobile via `md:`).
+**Files:** `app/heritage/page.tsx`, `app/culture/page.tsx`, `CLAUDE.md`.
+**Next:** Client reviews mobile — every section title sits tight to its paragraph. (Desktop gaps
+preserved; say the word to reduce those too.)
+
+### 2026-06-13 (session 51) — About-India: tightened between-section padding (mobile only)
+**Done:** Client: "remove the padding between the sections" → confirmed (AskUserQuestion) = all
+about-india pages, **reduce** (not flush), mobile only / desktop protected. Reduced every content
+section's **mobile** vertical padding to a consistent `py-6` (was 8–12), keeping each `md:` value so
+desktop is byte-for-byte unchanged. Build clean 45/45. Patterns reduced (mobile → `py-6`/`pt-6`/`pb-8`,
+`md:` kept):
+`py-12 md:py-16 lg:py-20`→`py-6 …` (architecture ×5, nature intro); `py-10 md:py-2`→`py-6 md:py-2`
+(nature ×4, spiritual ×3); `py-10 md:py-14`→`py-6 md:py-14` (heritage Dance/Art/Mughal, culture
+Faiths/Fest); `py-12 md:py-16`→`py-6 md:py-16` (heritage temple header + Nagara/Vesara);
+`py-8 md:py-12 lg:py-16`→`py-6 …` (spiritual/wellness/wildlife intros); `py-10 md:py-12`→`py-6 md:py-12`
+(heritage/culture connector bands); `pt-12 md:pt-16 lg:pt-20`→`pt-6 …` (heritage/culture/architecture
+intro sections); `pb-20 md:pb-24`→`pb-8 md:pb-24` + `pb-16 md:pb-20 lg:pb-24`→`pb-8 …` (heritage card
+sections); wellness cream band `p-12`→`px-12 py-6 md:py-12` + retreat `py-16 md:py-20`→`py-6 md:py-20`.
+Net: mobile between-section gaps roughly halve; desktop unchanged everywhere.
+**Files:** `app/{heritage,culture,architecture,nature,spiritual,wellness,wildlife}/page.tsx`, `CLAUDE.md`.
+**Next:** Client reviews mobile (375/390) — sections sit closer together; confirm desktop (≥768) is
+unchanged.
+
+### 2026-06-13 (session 50) — About-India: spacing model unified, fonts, gaps, wellness retreat redesign
+**Done:** Four client directives. Build clean 45/45.
+1. **One spacing model (mobile, desktop untouched):** the overlay sections that used tiny `pt-2 pb-2`
+   (nature ×4, spiritual ×3) → `py-10 md:py-2` (mobile `py-10` to match the other sections' rhythm;
+   desktop `py-2` preserved). Mobile section spacing now consistent across about-india (no `py-2`
+   outliers); minor `py-10` vs card-grid `py-12` difference remains (≈8px).
+2. **Fonts → design system, site/card-wide:** `ImageTextOverlay` card-title font (was Merriweather on
+   the heritage variant) → **always Big Caslon (`var(--font-playfair)`)** — fixes overlay card titles
+   on heritage/culture/nature/spiritual (both breakpoints, per the explicit "everywhere" ask). Wellness
+   Ayurveda card titles Merriweather → Playfair. Card bodies/descriptions already Segoe
+   (`var(--font-merriweather)`). **Left as-is (flagged):** the big editorial intro-card statements +
+   cream-band connector lines are `<p>` in Playfair (Big Caslon) — they're heading-like serif
+   statements per the design benchmark; not converted to Segoe. Say the word to switch those too.
+3. **Section-header gaps (mobile, desktop protected):** heading→paragraph reduced
+   (`mb-6`→`mb-2 md:mb-6` on nature/spiritual/wellness section headings); header→content increased a
+   little (`text-center mb-10 md:mb-14`→`mb-12 md:mb-14` across about-india, mobile +8px).
+4. **Wellness "Retreat Locations" redesigned** (`wellness/page.tsx`): was 3 horizontal alternating
+   image/text rows with a hidden (`-z-10`) backdrop. Now **vertical cards** (image-on-top + compact
+   info card `p-5`/`text-[13px]`) in a `grid-cols-1 md:grid-cols-3` grid over the **now-visible**
+   `wellness-locations.jpg` backdrop (`bg-black/45` overlay for the white heading); smaller info card,
+   image `h-[240px] sm:h-[320px] md:h-56`. Matches the site's card-grid look.
+**Files:** `app/{heritage,culture,architecture,nature,spiritual,wellness}/page.tsx`,
+`app/components/ImageTextOverlay.tsx`, `CLAUDE.md`.
+**Note:** #2 font fix focused on about-india + the shared `ImageTextOverlay`; the rest of the site
+already follows the system (global `h1–h6`/`.font-serif` = Big Caslon, body = Segoe) — can sweep other
+pages if wanted. #4 retreat redesign changed desktop too (rows→card grid) per "make it vertical like
+other layout".
+**Next:** Client reviews mobile + desktop — wellness Retreat Locations card grid over the photo;
+overlay card titles now Big Caslon; section spacing/gaps consistent.
+
+### 2026-06-13 (session 49) — About-India mobile standardization pass (type scale + card-image size)
+**Done:** Client asked for a systematic mobile-only standardization across all about-india sections
+(audit → standard → apply → verify). After the audit + agreeing the standard, applied (mobile values
++ `md:` overrides preserving desktop byte-for-byte; build clean 45/45):
+- **Card image size unified → `h-[240px] sm:h-[320px]`** on mobile everywhere (was 5 different heights):
+  heritage Dravidian (`360/420`→), Nagara/Vesara/Taj/Red Fort (`300/360`→, replace_all), architecture
+  rock-cut (`h-90 md:h-110`→ keep md:h-110), culture craft mobile cards (`300/360`→), wellness retreat
+  rows (`h-72 md:h-80`→ keep md:h-80). ImageTextOverlay already `h-[240px] sm:h-[320px] md:h-[414px]`.
+- **Card title → `text-xl` mobile:** heritage Dravidian (`text-[22px]`→), wellness retreat
+  (`text-2xl`→`text-xl md:text-2xl`). Others already text-xl.
+- **Intro paragraphs → `text-sm` mobile:** nature/spiritual/wellness (`text-xs md:text-sm`→`text-sm
+  md:text-sm`, desktop 14 preserved); architecture section descriptions (`text-base md:text-lg`→`text-sm
+  md:text-lg`). heritage/culture already text-sm.
+- **Architecture colour outlier → `#424242` on mobile** (desktop `gray-900`/`gray-700` kept via `md:`):
+  section headings (`font-semibold gray-900`→`font-bold text-[#424242] md:font-semibold md:text-gray-900`),
+  section descriptions, rock-cut card title + body. Brings architecture in line with the `#424242`
+  design-system colour on mobile only.
+**Files:** `app/{heritage,culture,architecture,nature,spiritual,wellness}/page.tsx`, `CLAUDE.md`.
+**Deliberately NOT done (flagged to client, need a decision):**
+1. **Section vertical-padding rhythm** still varies per page — the pages mix two spacing models
+   (`ImageTextOverlay`-based sections carry spacing via the overlay's `mb-16`, vs card-grid sections
+   using section `py`). Forcing one mobile `py` across both risks desktop; left as-is pending decision.
+2. **ImageTextOverlay heritage-variant card-title font = Merriweather** (heritage Dance/Art, culture
+   Faiths/Fest, nature, spiritual). Design system wants Playfair, but the font is applied via inline
+   style on both breakpoints — switching would change desktop (violates mobile-only). Needs OK to
+   change desktop, or a gated Playfair-mobile/Merriweather-desktop switch.
+3. **Wellness retreat body** left at `text-base` (it's a feature paragraph, not a caption).
+4. Heading→paragraph (`mb-2/4/6`) and header→content gaps not yet unified (can do with `md:` protection).
+**Next:** Client reviews mobile (375/390) — card images now uniform height across every section;
+intro paragraphs + card titles consistent; architecture text colour matches. Confirm desktop (1280)
+unchanged. Then decide on the 4 flagged items above.
+
+### 2026-06-13 (session 48) — Heading/paragraph alignment finished + wellness Ayurveda/Retreat fixes
+**Done:** Client: "do this alignment in all about-india pages, and fix the broken wellness section
+(Ayurveda + Retreat Locations)." Build clean 45/45.
+1. **Alignment (heading width = paragraph width) completed.** Session 47 did the four `width:70vw`
+   blocks. Mapped the rest: the only remaining mismatches were sections whose paragraph is
+   `max-w-3xl mx-auto` but whose `<h2>` was full container width → added `max-w-3xl mx-auto` to those
+   headings: **architecture** 4 section headings (Ancient & Rock-Cut / Indo-Islamic / Rajput /
+   Colonial — shared class, `replace_all`) + **heritage** "Ancient Temple Architecture". No change
+   needed on nature/spiritual (h2 + p both direct children of a `max-w-5xl` container = already equal),
+   culture "Artisan & Craft" (p uncapped), or wellness headers (`max-w-5xl`). `AncientRockCutSection.tsx`
+   is dead code (unused) — skipped. **Flag:** "Colonial & Indo–Saracenic Architecture" is long; at
+   `max-w-3xl` it may wrap to 2 lines (matches the paragraph column).
+2. **Wellness "Ayurveda Retreat Experiences" fixed** (`wellness/page.tsx`): was a baked-in wide PNG
+   (`experiences.png`, `hidden md:block`) + a separate `md:hidden` card list — cramped/unreadable on
+   tablet. Replaced with the **5 cards as a responsive HTML grid on all screens**
+   (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-5`, `bg-white shadow-md p-5`), reusing the same copy.
+   Removed the now-unused `import Image from 'next/image'`.
+3. **Wellness "Wellness Retreat Locations" fixed** (3 alternating image/text rows over a bg photo):
+   rows were touching → added `mt-6 md:mt-8` between them; the middle (Six Senses Vana) row showed
+   text-on-top on mobile (DOM text-then-image) → `flex flex-col-reverse md:flex-row` so all three lead
+   with the image on mobile (desktop alternating layout unchanged); `bg-white bg-opacity-95`
+   (Tailwind-v4-removed utility) → `bg-white/95` so the near-opaque card actually renders. Left the
+   backdrop photo as-is.
+**Files:** `app/architecture/page.tsx`, `app/heritage/page.tsx`, `app/wellness/page.tsx`, `CLAUDE.md`.
+**Next:** User reviews — architecture/heritage section headings now match their paragraph width
+(check "Colonial…" wrap); `/wellness` Ayurveda = 5 responsive cards (no baked image), Retreat
+Locations = spaced rows, image-on-top on mobile for all 3. If the Retreat "broken" was actually the
+heading sitting over the backdrop photo on mobile, that's a quick follow-up (push image below heading
+/ add overlay).
+
+### 2026-06-13 (session 47) — Section headings constrained to match their paragraph width (70vw)
+**Done:** Client (showing the "Living Traditions of Indian Art" block): "for each section heading text,
+make the heading width equal to paragraph width." Those section-header blocks have a `<p>` with inline
+`width: 70vw` (+ `mx-auto text-center`) but a full-width `<h2>` above it. Added `mx-auto` (className) +
+`width: '70vw'` (style) to the `<h2>` in all **4** blocks that use the 70vw paragraph so the heading
+box matches the paragraph box: heritage "Indian Dance Heritage" + "Living Traditions of Indian Art";
+culture "A Tapestry of Faiths" + "Festival Immersion Experiences". Scoped each edit by the unique
+heading text (these 4 h2s share the same class/style as other headings — e.g. "Ancient Temple
+Architecture" — whose paragraphs are `max-w-3xl`, so those were left alone). Build clean 45/45.
+**Note:** only the `70vw`-paragraph sections were changed (the exact pattern the client pasted). Other
+section headers use `max-w-3xl` paragraphs; can extend the same treatment to those if wanted.
+**Files:** `app/heritage/page.tsx`, `app/culture/page.tsx`, `CLAUDE.md`.
+
+### 2026-06-13 (session 46) — Architecture page polish (section-by-section pass, start)
+**Done:** Client started a per-section polish of `/architecture`. Build clean 45/45.
+1. **Overview background taller + empty space removed** (`architecture/page.tsx`): the "Monuments to
+   Human Imagination" intro — container `py-32 sm:py-40 md:py-0 md:h-137.5 lg:h-162.5 xl:h-180`
+   → `py-40 sm:py-48 md:py-0 md:h-150 lg:h-175 xl:h-190` (taller backdrop photos on mobile + desktop).
+   The text card had a forced `md:h-[60%]` that made it taller than its copy (empty space inside) →
+   removed, so the card now sizes to content. Tightened the cream "Liberty India's architecture
+   journeys reveal" band `p-12` → `py-8 md:py-10 px-4` (was a big cream band around one short line).
+2. **Shadow on the Nagara / Dravidian / Vesara info cards** (Ancient & Rock-Cut): the 3 caption cards
+   had no shadow → added `shadow-md` (replace_all on the shared caption div), matching the heritage
+   cards.
+3. **Overlay info cards "moved down like heritage"** (Qutub Minar, Buland Darwaza, Amber Fort, Umaid
+   Bhawan, Victoria Memorial, Mumbai CST) — these are `ImageTextOverlay` (default variant). The caption
+   already flowed below on mobile (session 45), but the **default `imageClass` was `h-auto`** (short
+   ~190px banner) while heritage uses a fixed taller banner, so the card didn't read as "moved down."
+   Unified `imageClass` to `w-full h-[240px] sm:h-[320px] md:h-[414px] object-cover` for both variants
+   (heritage value unchanged → heritage/culture/nature/spiritual identical; only architecture, the sole
+   default caller, changes). Architecture overlays now match heritage: dominant banner + caption
+   overlapping just the bottom edge.
+**Files:** `app/architecture/page.tsx`, `app/components/ImageTextOverlay.tsx`, `CLAUDE.md`.
+**Flag for client:** the cream band text "Liberty India's architecture journeys reveal" reads as an
+incomplete sentence (heritage's equivalent is a full line) — left the copy as-is (didn't invent text);
+say the word if you want it completed/rewritten.
+**Next:** User reviews `/architecture` (mobile + desktop): taller overview backdrop, no empty space in
+the overview card, shadowed rock-cut cards, and the 6 overlay cards now match heritage. Continue the
+per-section polish on the next about-india page when ready.
+**Follow-up (same session):** Client clarified the overview height increase should be **mobile only**
+(confirmed via AskUserQuestion = the intro "Monuments to Human Imagination" backdrop). Reverted the
+session-46 desktop bump (`md:h-150 lg:h-175 xl:h-190` → back to `md:h-137.5 lg:h-162.5 xl:h-180`) and
+increased the mobile backdrop further (`py-40 sm:py-48` → `py-52 sm:py-60`, ~208/240px photo bands).
+Desktop overview now identical to its original height; only mobile is taller. Build clean 45/45.
+**Follow-up 2 (same session):** Client: "make padding equal between all the sections." The 4 content
+sections (Rock-Cut / Indo-Islamic / Rajput / Colonial) already share `py-12 md:py-16 lg:py-20`; the
+outlier was the cream "…journeys reveal" band (`py-8 md:py-10`, tightened in follow-up 1) → bumped to
+`py-12 md:py-16 lg:py-20` to match, and dropped the redundant `mt-0` on the Rock-Cut section. All
+section vertical padding now uniform. (Note: this re-adds some space to the cream band that follow-up 1
+had trimmed — consistency was the newer ask; offered to dial all sections to a tighter uniform value
+if the cream band reads too airy.) Overview keeps its matching `pt-12 md:pt-16 lg:pt-20` + `pb-0`
+(full-bleed backdrop). Build clean 45/45.
+
+### 2026-06-13 (session 45) — About-India: heritage card mobile treatment rolled out to remaining pages
+**Done:** Client: "do the same card layouting in culture, architecture, nature, spiritual, wellness,
+wildlife (mobile)." Mapped every card section across the 6 pages. **Key correction:** `ImageTextOverlay`
+is called with `variant="heritage"` by **heritage, culture, nature, spiritual** — only **architecture**
+uses the **default** variant. So the session-44 + move-banner-down edits to the heritage variant had
+**already** applied to culture/nature/spiritual's overlay cards (the session-44 note's "default variant /
+other pages unchanged" claim was wrong — its brace-glob grep had silently failed). Net result this
+session, mobile only (every `md:`/`lg:` byte-identical → tablet/desktop unchanged), build clean 45/45:
+- **`ImageTextOverlay.tsx` (Part A):** unified the caption position so **both** variants use the
+  flow-below-on-mobile layout (`relative md:absolute z-10 -mt-12 md:mt-0 mx-auto … md:-bottom-10
+  w-[90%] md:w-[38%] … md:right/left-8 lg:right/left-12`). The heritage branch was already exactly this
+  → heritage/culture/nature/spiritual unchanged; only the **default** branch (architecture's 3 overlay
+  sections: Indo-Islamic / Rajput / Colonial) changed. Also rebalanced the **default** font classes to
+  match (kept Playfair/gray): `titleClass` `text-lg`→`text-xl`, `descriptionClass` `text-sm
+  leading-relaxed`→`text-[13px] leading-loose md:leading-relaxed`. (Component imported only by the 5
+  about-india pages; architecture is the only default caller → blast radius = architecture.)
+- **architecture "Ancient & Rock-Cut" 3 cards (Part B)** (`architecture/page.tsx`): identical
+  classNames → `replace_all`. Caption `absolute … bottom-0 translate-y-1/2 w-[92%]` → `relative
+  md:absolute z-10 -mt-8 md:mt-0 mx-auto md:mx-0 md:left-1/2 md:-translate-x-1/2 md:bottom-0
+  md:translate-y-1/2 w-[92%]` (flows below + overlaps edge on mobile; desktop identical). Container
+  `flex … gap-0` → `gap-10 md:gap-0` (was crowding on mobile). Fonts h3 `text-lg`→`text-xl`,
+  p `text-sm`→`text-[13px] leading-loose`.
+- **culture craft collage (Part C)** (`culture/page.tsx`): kept the desktop 2×2 image collage +
+  centred text cards (wrapped `hidden md:block`); added a `md:hidden` mobile stack that renders the 4
+  craft items (Textile/Pottery/Metal Work/Kashmiri Wood Carving) via `.map` as image-on-top +
+  caption-below cards (image `h-[300px] sm:h-[360px] object-cover`, caption `-mt-12 mx-auto w-[90%]
+  p-5`, h3 `text-xl`, body `text-[13px] leading-loose`). Same `hidden md:block`/`md:hidden` split the
+  wellness Ayurveda section already uses. Fixes the cramped floating text cards on phones.
+- **No changes needed:** nature, spiritual (overlay-only, already done), culture overlays (done),
+  wellness (retreat rows already stack image-then-text; Ayurveda already a mobile card list), wildlife
+  (Wild Heritage is a baked graphic — collage.png + lion.svg — no image+caption cards). All 6 intros
+  were already done in session 41.
+**Files:** `app/components/ImageTextOverlay.tsx`, `app/architecture/page.tsx`, `app/culture/page.tsx`,
+`CLAUDE.md`.
+**Next:** User reviews mobile (<768px): `/architecture` (3 overlay sections flow caption below the
+banner + the Rock-Cut cards stack with a gap), `/culture` (craft section now 4 clean stacked cards).
+**Also re-check `/nature` + `/spiritual` overlay sections** — they were silently changed by the
+session-44 edits (should read well now, but confirm). Confirm tablet/desktop identical on all six.
+
+### 2026-06-13 (session 44) — Heritage: temple-card mobile treatment extended to Mughal + Dance + Art
+**Done:** Client: "like we did with Ancient Temple Architecture, do the same with the other sections of
+the Heritage page." Confirmed scope (AskUserQuestion) = **Mughal + Dance + Art** (the remaining card
+sections; the intro overview was done session 41, the 3 temple cards sessions 42–43). **Mobile only**
+(base/`sm:`; every `md:`/`lg:` byte-identical → tablet/desktop unchanged). Build clean 45/45.
+- **Mughal & Indo-Islamic (Taj Mahal + Red Fort)** — inline 2-card grid in `app/heritage/page.tsx`,
+  structurally identical to Nagara/Vesara, so a direct repeat of that recipe: grid `gap-6 md:gap-8`
+  → `gap-14 md:gap-8`; both images `w-full h-full` → `w-full h-[300px] sm:h-[360px] md:h-full
+  object-cover`; both captions `w-[85%] … px-6 py-5` → `w-[90%] md:w-[85%] … p-5` (md unchanged);
+  both headings `text-lg` → `text-xl`; both bodies `text-sm leading-relaxed` → `text-[13px]
+  leading-loose md:leading-relaxed`. Edits scoped by unique heading/body text (Taj/Red Fort share
+  classNames). **Watch:** `taj-mahal.svg` (4:3 art) cropped via object-cover at the new fixed height —
+  revert just it to natural aspect if it looks off; `red_fort.jpg` is a photo (crops fine).
+- **Indian Dance Heritage + Living Traditions of Indian Art** — both render via the shared
+  `ImageTextOverlay` (heritage variant). Key fact: the other 4 about-india pages (architecture,
+  nature, spiritual, culture) call it with **no `variant` = `default`**, and the component branches
+  fonts on `isHeritage`, so editing the **heritage branch only** is Heritage-scoped. They already use
+  image-on-top + overlapping caption, so only the type was rebalanced to match the temple cards:
+  heritage `titleClass` `text-lg` → `text-xl`; heritage `descriptionClass` `text-sm … leading-relaxed`
+  → `text-[13px] … leading-loose md:leading-relaxed`. Left the heritage `imageClass`
+  (`h-[240px] sm:h-[320px] md:h-[414px]`, wide 2.7:1 banners) and the (non-variant-gated) caption
+  `<div>` untouched so other pages stay identical.
+**Files:** `app/heritage/page.tsx`, `app/components/ImageTextOverlay.tsx`, `CLAUDE.md`.
+**Next:** User reviews `/heritage` mobile (<768px) — Mughal cards now match the temple cards (taller
+photos, clear gap, overlapping caption, rebalanced type); Dance/Art type matches. **Verify the other
+about-india pages** (`/culture`, `/architecture`, `/nature`, `/spiritual`) ImageTextOverlay sections
+are unchanged (default variant). Confirm heritage tablet/desktop identical to before.
+**Follow-up (same session):** Client: "move the info banner down in all cards — they're still covering
+most of the area." Root cause: the grid cards (Nagara/Vesara/Taj/Red Fort) used an `absolute -bottom-8`
+caption that, being tall, covered ~60–67% of the image; ImageTextOverlay (Dance/Art) similar (~61%).
+Fix (mobile only, desktop untouched) = move the caption to flow **below** the image and overlap only
+its bottom edge (the Dravidian pattern). (1) All 4 grid captions: `absolute -bottom-8 … left-1/2
+-translate-x-1/2` → `relative md:absolute z-10 -mt-12 md:mt-0 mx-auto md:mx-0 md:-bottom-10
+md:left-1/2 md:-translate-x-1/2` (one `replace_all` — identical classNames). Now overlaps ~48px (~16%),
+image dominant; desktop unchanged. (2) Dravidian overlap `-mt-20` → `-mt-12` (sits a touch lower).
+(3) `ImageTextOverlay.tsx`: gated the caption position by `isHeritage` — heritage mobile = `relative
+-mt-12 mx-auto` (flows below, overlaps edge), heritage desktop + the **entire default variant** are
+byte-identical (verified: default branch reproduces the original classes), so culture/architecture/
+nature/spiritual are untouched. Build clean 45/45.
+
+### 2026-06-13 (session 43) — Heritage temple cards: mobile layout matched to Figma frame
+**Done:** Client shared a Figma mobile frame (node `1155:1083` / card `1155:1086`) for the temple
+cards and asked to "arrange the current something like this." Pulled the frame via Figma MCP
+(get_screenshot + get_design_context): target = **image on top (dominant, full-width ~349px), white
+text card below it, centred and slightly narrower (337/367 ≈ 90%), pulled up to overlap the image's
+bottom edge**; heading 22px serif, body ~12px with airy line-height. Reworked all 3 temple cards in
+`app/heritage/page.tsx` to that layout — **mobile only** (every `md:`/`lg:` left byte-identical →
+tablet/desktop unchanged). Build clean 45/45.
+- **Dravidian card** (was a narrow box pinned over the lower-left of a tall photo): image
+  `h-[440px] sm:h-[500px]` → `h-[360px] sm:h-[420px]` (Figma ~square proportion); card switched from
+  `absolute bottom-[8px] left-4 w-[85%]` to `relative md:absolute -mt-20 md:mt-0 mx-auto md:mx-0
+  w-[90%] md:w-[38%] p-5` — so on mobile it's an in-flow centred card overlapping the photo's bottom
+  by 80px (photo peeks at the sides); desktop keeps the original left-bottom `md:absolute md:bottom-0
+  md:left-8 md:w-[38%]` overlay. Heading `text-lg` → `text-[22px]` (Figma 22px), body `text-sm
+  leading-relaxed` → `text-[13px] leading-loose` (md unchanged).
+- **Nagara + Vesara** (already image-on-top + caption overlapping the bottom): unified to match —
+  width `w-[85%]` → `w-[90%] md:w-[85%]`, padding `px-6 py-5` → `p-5` (md unchanged), heading
+  `text-lg` → `text-xl`, body → `text-[13px] leading-loose md:leading-relaxed`. Kept their absolute
+  `-bottom-8` overlap (already Figma-like) and the `gap-14 md:gap-8` stacking gap from session 42.
+- **Font note:** kept the site's **Playfair** heading (Figma uses Merriweather Bold) for consistency
+  with every other card on the site; trivial to switch if the client wants the exact Figma face.
+  Skipped the Figma's decorative second small temple cut-out (no such asset; not needed for the
+  layout). Edits scoped by unique heading/body text since the card classNames are shared with the
+  Mughal (Taj/Red Fort) cards — those + the dance/art `ImageTextOverlay` remain untouched.
+**Files:** `app/heritage/page.tsx`, `CLAUDE.md`.
+**Next:** User reviews `/heritage` at mobile width (<768px) — all 3 temple cards now read as
+image-on-top + centred white card overlapping the bottom (Figma look). Confirm tablet/desktop
+identical and Mughal/dance/art cards unchanged. Follow-ups available: exact Figma heading font
+(Merriweather), or tweak the photo height / overlap depth.
+**Follow-up (same session):** Client: "bring South onto the next line with India" + "don't change the
+container size, change the picture to fit it like the Figma." (1) Heading: added
+`<br className="md:hidden" />` before "South India" → mobile reads "Dravidian Temples of" / "South
+India"; desktop wraps naturally (unchanged). (2) Image fit — **investigated the source asset**:
+`Ancient_Temple_Architecture.png` is a wide **3620×1400 (2.6:1) composite** (a detailed gopuram on
+the left + a separate blue-sky temple inset rectangle on the right), so the mobile `object-cover`
+center-crop was landing on the seam between the two. `object-contain` would "fit" but leaves big
+white bands in the tall box (≠ the Figma's filled look). Previewed crops with PIL → the **left-framed
+crop** shows the full gopuram against clean blue sky (artifact-free, fills the box). Fix: kept the
+container size (`h-[360px] sm:h-[420px]`) and added `object-left md:object-center` so mobile shows
+that clean temple-on-sky; desktop is `md:h-auto` (full banner, no crop) so `object-left` is a no-op
+there → desktop unchanged. **Recommend** a proper portrait/blue-sky temple photo if they want the
+exact Figma image (the composite can't fill a tall portrait box seamlessly any other way). Build
+clean 45/45.
+
+### 2026-06-13 (session 42) — Heritage: mobile restyle of the 3 temple-architecture cards
+**Done:** Client review of `/heritage` on mobile — the three "Ancient Temple Architecture" cards read
+poorly. Scoped (via AskUserQuestion) to those 3 cards only (Dravidian + Northern Nagara + Vesara),
+**mobile only** (base/`sm:`; every `md:`/`lg:` left byte-identical so tablet/desktop unchanged), keep
+the overlay caption style with a taller photo. All inline in `app/heritage/page.tsx` — Mughal
+(Taj/Red Fort) cards and the dance/art `ImageTextOverlay` sections untouched. Build clean 45/45.
+- **Dravidian card:** photo `h-[340px] sm:h-[420px]` → `h-[440px] sm:h-[500px]` (more visible above
+  the overlay); card padding `px-6 py-5` → `px-5 py-4` (mobile) so the white box is more compact;
+  heading `text-xl … mb-4` → `text-lg … mb-2 md:mb-4` (20px→18px, tighter) — body stays `text-sm`,
+  hierarchy intact.
+- **Nagara + Vesara (2-col grid that stacks on mobile):** grid `gap-6 md:gap-8` → `gap-14 md:gap-8`
+  so the `-bottom-8` protruding caption of a stacked card no longer crowds the next card's image;
+  each image `w-full h-full` → `w-full h-[300px] sm:h-[360px] md:h-full object-cover` for a taller,
+  more dominant mobile photo. **Watch:** these two are 4:3 SVG art cropped via `object-cover` at the
+  new fixed height — if any temple looks awkwardly cropped on device, revert just those to natural
+  aspect (drop the base/sm height, keep `md:h-full`).
+- Note: `w-full h-full object-cover` and `grid … gap-6 md:gap-8` also appear in the Mughal section,
+  so each edit was scoped by unique context (image `src` / the section comment) to avoid touching it.
+**Files:** `app/heritage/page.tsx`, `CLAUDE.md`.
+**Next:** User reviews `/heritage` at mobile width (<768px) — Dravidian photo dominant with a compact
+caption + smaller heading; Nagara/Vesara stacked with clear separation and taller photos. Confirm
+tablet/desktop identical and the Mughal/dance/art cards unchanged. Follow-up if SVG crops look off.
+
+### 2026-06-13 (session 41) — Mobile "overview" layout rolled out sitewide
+**Done:** Client approved the About-Us "20 Years" mobile overview (session 40: tall photo backdrop +
+white banner centred on top) and asked for the **same layout on every overview section**. Confirmed
+scope via AskUserQuestion = all three families. Build clean 45/45. **Desktop untouched everywhere**
+(every change gated to `md:` / `lg:`).
+- **Part A — 7 About-India intro sections** (`heritage`, `culture`, `architecture`, `nature`,
+  `spiritual`, `wellness`, `wildlife` `/page.tsx`): identical structure to About-Us, so the same
+  3-edit recipe — container mobile `h-96` → `h-auto py-32 sm:py-40 md:py-0` (keep each page's md/lg/xl
+  heights); image grid `+grid-rows-3 md:grid-rows-none` so the 3 photos stack into a gapless vertical
+  backdrop on mobile; text card `relative md:absolute mx-4 md:mx-0 w-auto md:w-[42%]` with all desktop
+  positioning (`top-*`/`left-*`/translate, and architecture's inline `width:42% height:60%` → `md:`
+  classes) gated behind `md:`. 6 are top-aligned cards (Variant A); architecture is the centred
+  Variant B (inline style removed).
+- **Part B — service pages** (`app/components/services/SectionOverview.tsx`, one shared component →
+  all 7 `/our-services/*`): it already renders a tall `min-h-screen` Ken-Burns slideshow; the white
+  card was `hidden md:block` with a separate `md:hidden` text block stacked below on mobile. Removed
+  the stacked block and made the card show on mobile too — `absolute inset-x-4 md:inset-x-auto …
+  top-1/2 md:top-[calc(50%-60px)] -translate-y-1/2 … md:max-w-md`. Mobile now = full-bleed slideshow
+  with the banner centred on top.
+- **Part C — itinerary Overview tab** (`app/itineraries/template/OverviewSection.tsx`, one shared
+  component → all itineraries): was a 2-col grid (text+download | side image) that stacked below `lg`.
+  Kept the `lg+` two-column layout exactly; below `lg` added a `lg:hidden absolute inset-0` backdrop
+  using `overviewImage`, made the section `relative py-16 sm:py-20`, the grid `relative z-10`, the
+  left column a white banner (`bg-white shadow-lg lg:shadow-none p-7 sm:p-9 lg:p-0`) holding the
+  heading/paragraphs/`DownloadActions`, and gated the side image `hidden lg:block`. Caveat (client
+  opted in): single image + text-heavy copy → thinner photo bands than Part A on long overviews.
+**Files:** `app/{heritage,culture,architecture,nature,spiritual,wellness,wildlife}/page.tsx`,
+`app/components/services/SectionOverview.tsx`, `app/itineraries/template/OverviewSection.tsx`,
+`CLAUDE.md`.
+**Next:** User reviews on dev at mobile width — (a) all 7 about-india intros: photo backdrop + centred
+banner + photo bands top/bottom, no gaps/overflow; (b) each `/our-services/*` overview: slideshow with
+banner on top (no separate text block below); (c) an itinerary (e.g. `/itineraries/eastindia`)
+Overview: image backdrop with heading+text+download banner on top. Confirm desktop identical to before
+on all. Possible follow-up: if itinerary photo bands feel too thin, bump its `py` or shorten copy.
+
+### 2026-06-13 (session 40) — Mobile fixes: hero crossfade, About-Us overview stack, Our Promise spacing
+**Done:** Start of a "make mobile production-ready" pass; first three client items. Build clean 45/45.
+1. **Hero crossfade no longer breaks between slides** (`HeroCarousel.tsx`): the old approach hard-cut
+   the incoming image in on a fixed 1200ms timer while a CSS keyframe (`animate-hero-fade-in`) and an
+   opacity `transition` fought over the same property — on slower mobile connections the timer
+   outran the image load and the dark `#1a1008` background flashed through (the "breaking"). Rewrote
+   to a load-gated crossfade: the **active image is the always-opaque base layer** (z-1, keeps the
+   Parallax), and the **outgoing image sits on top** (z-2) and only fades out once the incoming image
+   has actually painted (`onLoad` → `startFade`), with a 500ms fallback (in case onLoad doesn't fire
+   for a fully-cached image) and a 2200ms safety teardown (in case `transitionend` is missed). No more
+   keyframe-vs-transition conflict; the swap can never reveal the bare background. Removed the now-dead
+   `transitionTimer` ref / `animate-hero-fade-in` usage from this component (the utility still exists
+   for the Navbar overlay).
+2. **About-Us "20 Years" overview made mobile-safe** (`about-us/page.tsx`): the text card was
+   `position:absolute width:42%` over an `absolute inset-0` image grid with `h-full` rows — on mobile
+   the 42% card (~157px) couldn't hold the paragraph and overflowed, while the grid's `h-full` rows
+   collapsed to ~0 (no intrinsic content height). Desktop is **untouched** (all overlay classes behind
+   `md:`). **Client follow-up (same session):** the first stack attempt (single image banner + card
+   in flow) left awkward cream gaps and a disconnected image floating below — client wanted the
+   photos shown as a **continuous vertical backdrop with the banner on top**. Final mobile layout: the
+   image grid is now `absolute inset-0 grid-cols-1 grid-rows-3` (→ `md:grid-rows-none md:grid-cols-3`),
+   so all three photos stack into a gapless vertical column filling the section; the white card is the
+   only in-flow child (`relative md:absolute`, z-10) centred on top, and the container's vertical
+   padding (not card margin — avoids margin-collapse) creates equal photo bands framing the banner
+   top & bottom. Backdrop = card height + padding, so it always expands to contain the copy (no
+   overflow, no gaps). Middle photo sits behind the card, same as the desktop triptych. **Client then
+   asked for a taller background / more visible photos** → padding bumped to `py-32 sm:py-40 md:py-0`
+   (128/160px bands, was 56/64px), so much more of the top & bottom photos shows on mobile.
+3. **Our Promise pillar spacing/grouping on mobile** (`about-us/page.tsx`): grid was `gap-0` and the
+   three text blocks carried desktop-only directional padding (`pr-4`/`px-4`/`pl-4`), so stacked on
+   mobile they touched with no gap and looked misaligned. Grid → `gap-10 md:gap-0`; directional
+   paddings gated behind `md:` so mobile text is symmetric (`pt-6` only). Desktop unchanged.
+**Files:** `app/components/HeroCarousel.tsx`, `app/about-us/page.tsx`, `CLAUDE.md`.
+**Next:** User reviews on dev at mobile width (<768px) — (a) home hero: tab through months / let it
+auto-advance, the image should cross-fade with no dark flash or jump; (b) `/about-us` "20 Years"
+section: three photos form a vertical backdrop with the white banner centred on top (photo bands
+top & bottom), full paragraph visible, no cream gaps/overflow; (c) `/about-us` "Our Promise": three
+cards stacked with clear spacing, text aligned.
+Desktop should look identical to before on all three. More mobile-view items to follow.
+
 ### 2026-06-13 (session 39) — Mobile navbar overlay restyle + scroll lock
 **Done:** Client flagged the mobile hamburger menu "layout/styling looks off". Redesigned the
 overlay in `Navbar.tsx` (the `mobileMenuOpen` block): was a bare `justify-end` close button + a

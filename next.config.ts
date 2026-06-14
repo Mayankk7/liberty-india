@@ -22,6 +22,9 @@ const nextConfig = {
     
     // Image formats for optimization
     formats: ['image/avif', 'image/webp'],
+
+    // Next 16 requires an allowlist of quality values; HeroCarousel uses 90.
+    qualities: [75, 90],
     
     // Allow local images
     remotePatterns: [

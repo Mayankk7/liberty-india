@@ -186,6 +186,7 @@ export default function Footer() {
                       type="text"
                       placeholder="Name"
                       aria-label="Name"
+                      suppressHydrationWarning
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-4 py-3 md:px-3.5 md:py-2.5 bg-[#252525] border border-[#3a3a3a] text-[#f0ebe0] placeholder:text-[#7a766f] text-[14px] focus:outline-none focus:border-[#E07B39] focus:ring-2 focus:ring-[#E07B39]/25 transition-colors"
@@ -195,6 +196,7 @@ export default function Footer() {
                       type="tel"
                       placeholder="Phone"
                       aria-label="Phone Number"
+                      suppressHydrationWarning
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3 md:px-3.5 md:py-2.5 bg-[#252525] border border-[#3a3a3a] text-[#f0ebe0] placeholder:text-[#7a766f] text-[14px] focus:outline-none focus:border-[#E07B39] focus:ring-2 focus:ring-[#E07B39]/25 transition-colors"
@@ -204,6 +206,7 @@ export default function Footer() {
                       type="email"
                       placeholder="Email"
                       aria-label="Email Address"
+                      suppressHydrationWarning
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-3 md:px-3.5 md:py-2.5 bg-[#252525] border border-[#3a3a3a] text-[#f0ebe0] placeholder:text-[#7a766f] text-[14px] focus:outline-none focus:border-[#E07B39] focus:ring-2 focus:ring-[#E07B39]/25 transition-colors"
@@ -215,6 +218,7 @@ export default function Footer() {
                   <select
                     value={formData.purpose}
                     aria-label="Purpose of enquiry"
+                    suppressHydrationWarning
                     onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
                     className={`w-full px-3.5 py-2.5 bg-[#252525] border border-[#3a3a3a] text-[14px] focus:outline-none focus:border-[#E07B39] focus:ring-2 focus:ring-[#E07B39]/25 transition-colors appearance-none cursor-pointer ${
                       formData.purpose ? 'text-[#f0ebe0]' : 'text-[#7a766f]'
@@ -242,6 +246,7 @@ export default function Footer() {
                   <textarea
                     placeholder="Your message (optional)"
                     aria-label="Your message"
+                    suppressHydrationWarning
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows={2}
@@ -253,6 +258,7 @@ export default function Footer() {
                   <label className="flex items-start gap-2 text-[11px] text-[#a0a09c] leading-snug cursor-pointer">
                     <input
                       type="checkbox"
+                      suppressHydrationWarning
                       checked={formData.agree}
                       onChange={(e) => setFormData({ ...formData, agree: e.target.checked })}
                       className="accent-[#E07B39] mt-0.5 h-3.5 w-3.5 shrink-0 cursor-pointer"
@@ -265,6 +271,7 @@ export default function Footer() {
                   {/* Submit — pill matches site CTA pattern */}
                   <button
                     type="submit"
+                    suppressHydrationWarning
                     disabled={status === 'submitting'}
                     className="group w-full mt-1 py-3.5 bg-[#2a2a2a] hover:bg-[#1a1a1a] border border-[#E07B39] hover:border-[#d56a25] disabled:opacity-60 disabled:cursor-not-allowed text-[#FDF39F] text-[14px] md:text-[15px] font-semibold rounded-none shadow-[0_10px_28px_-8px_rgba(0,0,0,0.45)] hover:shadow-[0_14px_36px_-8px_rgba(0,0,0,0.55)] transition-all duration-300 hover:scale-[1.01] cursor-pointer flex items-center justify-center gap-2"
                     style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}

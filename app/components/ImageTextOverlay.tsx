@@ -20,23 +20,20 @@ interface ImageTextOverlayProps {
 
 export default function ImageTextOverlay({ items, startPosition = 'right', variant = 'default' }: ImageTextOverlayProps) {
   const isHeritage = variant === 'heritage';
-  const titleFont = isHeritage
-    ? 'var(--font-merriweather), Georgia, serif'
-    : 'var(--font-playfair), Georgia, serif';
+  // Card titles are headings → always Big Caslon CC (var(--font-playfair)).
+  const titleFont = 'var(--font-playfair), Georgia, serif';
   const titleClass = isHeritage
-    ? 'text-lg md:text-xl lg:text-2xl font-bold text-[#424242] mb-1'
-    : 'text-lg md:text-xl lg:text-2xl font-semibold text-gray-900 mb-1';
+    ? 'text-xl md:text-xl lg:text-2xl font-bold text-[#424242] mb-1'
+    : 'text-xl md:text-xl lg:text-2xl font-semibold text-gray-900 mb-1';
   const subtitleClass = isHeritage
     ? 'text-xs md:text-sm text-[#424242] mb-2 italic'
     : 'text-xs md:text-sm text-gray-500 mb-2 italic';
   const descriptionClass = isHeritage
-    ? 'text-sm md:text-base text-[#424242] leading-relaxed'
-    : 'text-sm md:text-base text-gray-600 leading-relaxed';
-  // Heritage banners are wide exports (~2.7:1); a fixed height + object-cover
-  // fills the full-width container consistently. Default variant unchanged.
-  const imageClass = isHeritage
-    ? 'w-full h-[240px] sm:h-[320px] md:h-[414px] object-cover'
-    : 'w-full h-auto object-cover';
+    ? 'text-[13px] md:text-base text-[#424242] leading-loose md:leading-relaxed'
+    : 'text-[13px] md:text-base text-gray-600 leading-loose md:leading-relaxed';
+  // Banners are wide exports; a fixed height + object-cover fills the full-width
+  // container consistently and keeps the image dominant with the caption below.
+  const imageClass = 'w-full h-[240px] sm:h-[320px] md:h-[414px] object-cover';
   return (
     <div className="w-[90%] mx-auto flex flex-col">
       {items.map((item, index) => {
@@ -44,7 +41,7 @@ export default function ImageTextOverlay({ items, startPosition = 'right', varia
           startPosition === 'right' ? index % 2 === 0 : index % 2 !== 0;
 
         return (
-          <Reveal key={index} className="relative w-full overflow-visible mb-16 md:mb-20">
+          <Reveal key={index} className="relative w-full overflow-visible mb-16 md:mb-20 last:mb-0">
             <ImageWithLoader
               src={item.image}
               alt={item.alt}
@@ -52,12 +49,12 @@ export default function ImageTextOverlay({ items, startPosition = 'right', varia
               height={900}
               className={imageClass}
             />
-            {/* Text Overlay Card */}
+            {/* Text Overlay Card — image-on-top, caption flows below and overlaps only the
+                bottom edge on mobile (so the banner isn't covered); desktop keeps the floating
+                corner overlay. Same layout for both variants (they differ only in typography). */}
             <div
-              className={`absolute -bottom-6 sm:-bottom-8 md:-bottom-10 w-[90%] sm:w-[85%] md:w-[38%] bg-white px-5 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 shadow-md text-left ${
-                isRight
-                  ? 'right-3 sm:right-4 md:right-8 lg:right-12'
-                  : 'left-3 sm:left-4 md:left-8 lg:left-12'
+              className={`relative md:absolute z-10 -mt-12 md:mt-0 mx-auto md:mx-0 md:-bottom-10 w-[90%] md:w-[38%] bg-white px-5 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 shadow-md text-left ${
+                isRight ? 'md:right-8 lg:right-12' : 'md:left-8 lg:left-12'
               }`}
             >
               <h3

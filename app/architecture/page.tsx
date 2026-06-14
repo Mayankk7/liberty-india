@@ -37,8 +37,8 @@ export default function ArchitecturePage() {
       </section>
 
       {/* Monuments to Human Imagination Section */}
-      <section className="w-full pt-12 md:pt-16 lg:pt-20 pb-0" style={{ backgroundColor: '#FDF8E8' }}>
-        <div className="w-[90%] max-w-5xl mx-auto text-center mb-10 md:mb-14">
+      <section className="w-full pt-6 md:pt-16 lg:pt-20 pb-0" style={{ backgroundColor: '#FDF8E8' }}>
+        <div className="w-[90%] max-w-5xl mx-auto text-center mb-12 md:mb-14">
           <h2
             className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-gray-900 leading-tight"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -47,10 +47,13 @@ export default function ArchitecturePage() {
           </h2>
         </div>
 
-        {/* Image Grid with Text Card */}
-        <div className="w-full relative h-96 md:h-137.5 lg:h-162.5 xl:h-180">
+        {/* Image Grid with Text Card.
+         * Mobile: photos stack into a continuous vertical backdrop (grid-rows-3)
+         * with the white banner centred on top, framed by photo bands (container
+         * py); desktop keeps the 3-up triptych + overlay card. */}
+        <div className="w-full relative h-auto py-52 sm:py-60 md:py-0 md:h-137.5 lg:h-162.5 xl:h-180">
           {/* SVG Images Grid */}
-          <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0">
+          <div className="absolute inset-0 grid grid-cols-1 grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-0">
             {/* Image 1 */}
             <div className="relative h-full flex items-center justify-center">
                   <Image 
@@ -83,10 +86,9 @@ export default function ArchitecturePage() {
             </div>
           </div>
 
-          {/* Text Card Overlay */}
-          <div 
-            className="absolute left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 bg-white px-6 md:px-8 lg:px-10 py-6 md:py-8 lg:py-10 flex items-center z-10 shadow-lg"
-            style={{ width: '42%', height: '60%' }}
+          {/* Text Card — banner on top of the vertical photo backdrop (mobile), overlay (desktop) */}
+          <div
+            className="relative md:absolute mx-4 md:mx-0 md:left-8 lg:left-12 md:top-1/2 md:-translate-y-1/2 w-auto md:w-[42%] bg-white px-6 md:px-8 lg:px-10 py-6 md:py-8 lg:py-10 flex items-center z-10 shadow-lg"
           >
             <p
               className="text-sm md:text-base lg:text-xl text-gray-700 leading-loose lg:leading-loose max-w-lg mx-auto"
@@ -101,7 +103,7 @@ export default function ArchitecturePage() {
 
 
       {/* Section Heading Above Ancient & Rock-Cut Architecture */}
-      <div className="w-full bg-[#FDF8E8] p-12">
+      <div className="w-full bg-[#FDF8E8] py-6 md:py-16 lg:py-20 px-4">
         <div className="w-[90%] max-w-6xl mx-auto text-center">
           <h3 className="text-lg md:text-xl font-normal text-gray-800" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Liberty India's architecture journeys reveal
@@ -110,16 +112,16 @@ export default function ArchitecturePage() {
       </div>
 
       {/* Ancient & Rock-Cut Architecture Section (inline) */}
-      <div className="w-full mt-0 py-12 md:py-16 lg:py-20">
+      <div className="w-full py-6 md:py-16 lg:py-20">
         <div className="w-[90%] max-w-6xl mx-auto text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] md:font-semibold md:text-gray-900 mb-2 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Ancient & Rock-Cut Architecture
           </h2>
-          <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          <p className="text-sm md:text-lg text-[#424242] md:text-gray-700 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             Early structures primarily used wood, later transitioning to rock-cut, such as the Ajanta and Ellora caves (Hindu, Buddhist, Jain) and the monolithic temples at Mahabalipuram.
           </p>
         </div>
-        <div className="w-[80vw] max-w-none mx-auto flex flex-col md:flex-row gap-0 justify-center items-end">
+        <div className="w-[80vw] max-w-none mx-auto flex flex-col md:flex-row gap-10 md:gap-0 justify-center items-end">
           {/* Nagara */}
           <div className="relative flex-1 flex flex-col items-center">
             <Image
@@ -127,12 +129,12 @@ export default function ArchitecturePage() {
               alt="Nagara Temple"
               width={400}
               height={440}
-              className="object-cover object-center w-full h-90 md:h-110"
+              className="object-cover object-center w-full h-[240px] sm:h-[320px] md:h-110"
               priority={false}
             />
-            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 bg-white w-[92%] px-4 py-4 text-left z-10">
-              <h3 className="text-lg font-semibold text-gray-900 mb-1" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Nagara</h3>
-              <p className="text-sm text-gray-700" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+            <div className="relative md:absolute z-10 -mt-8 md:mt-0 mx-auto md:mx-0 md:left-1/2 md:-translate-x-1/2 md:bottom-0 md:translate-y-1/2 bg-white w-[92%] px-4 py-4 text-left shadow-md">
+              <h3 className="text-xl font-bold text-[#424242] md:font-semibold md:text-gray-900 mb-1" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Nagara</h3>
+              <p className="text-[13px] text-[#424242] md:text-gray-700 leading-loose" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
                 Characterized by beehive-shaped towers (shikharas), such as the Kandariya Mahadev Temple.
               </p>
             </div>
@@ -144,12 +146,12 @@ export default function ArchitecturePage() {
               alt="Dravidian Temple"
               width={400}
               height={440}
-              className="object-cover object-center w-full h-90 md:h-110"
+              className="object-cover object-center w-full h-[240px] sm:h-[320px] md:h-110"
               priority={false}
             />
-            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 bg-white w-[92%] px-4 py-4 text-left z-10">
-              <h3 className="text-lg font-semibold text-gray-900 mb-1" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Dravidian</h3>
-              <p className="text-sm text-gray-700" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+            <div className="relative md:absolute z-10 -mt-8 md:mt-0 mx-auto md:mx-0 md:left-1/2 md:-translate-x-1/2 md:bottom-0 md:translate-y-1/2 bg-white w-[92%] px-4 py-4 text-left shadow-md">
+              <h3 className="text-xl font-bold text-[#424242] md:font-semibold md:text-gray-900 mb-1" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Dravidian</h3>
+              <p className="text-[13px] text-[#424242] md:text-gray-700 leading-loose" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
                 Features towering, ornate gateways (gopurams) and large temple complexes, like the Brihadeeswarar Temple.
               </p>
             </div>
@@ -161,12 +163,12 @@ export default function ArchitecturePage() {
               alt="Vesara Temple"
               width={400}
               height={440}
-              className="object-cover object-center w-full h-90 md:h-110"
+              className="object-cover object-center w-full h-[240px] sm:h-[320px] md:h-110"
               priority={false}
             />
-            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 bg-white w-[92%] px-4 py-4 text-left z-10">
-              <h3 className="text-lg font-semibold text-gray-900 mb-1" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Vesara</h3>
-              <p className="text-sm text-gray-700" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+            <div className="relative md:absolute z-10 -mt-8 md:mt-0 mx-auto md:mx-0 md:left-1/2 md:-translate-x-1/2 md:bottom-0 md:translate-y-1/2 bg-white w-[92%] px-4 py-4 text-left shadow-md">
+              <h3 className="text-xl font-bold text-[#424242] md:font-semibold md:text-gray-900 mb-1" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Vesara</h3>
+              <p className="text-[13px] text-[#424242] md:text-gray-700 leading-loose" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
                 A hybrid style blending Nagara and Dravidian elements, common in the Deccan region (e.g., temples at Pattadakal).
               </p>
             </div>
@@ -175,12 +177,12 @@ export default function ArchitecturePage() {
       </div>
 
         {/* Indo-Islamic Architecture Section */}
-          <section className="w-full py-12 md:py-16 lg:py-20 bg-white">
+          <section className="w-full pt-6 pb-3 md:py-16 lg:py-20 bg-white">
           <div className="w-[90%] max-w-6xl mx-auto text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] md:font-semibold md:text-gray-900 mb-2 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
               Indo-Islamic Architecture
             </h2>
-            <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+            <p className="text-sm md:text-lg text-[#424242] md:text-gray-700 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
               A harmonious fusion of Persian refinement and Indian artistry, seen in the Qutb Minar, grand Mughal forts, and tranquil charbagh gardens
             </p>
           </div>
@@ -206,12 +208,12 @@ export default function ArchitecturePage() {
         </section>
 
         {/* Rajput Architecture Section */}
-        <section className="w-full py-12 md:py-16 lg:py-20 bg-white">
+        <section className="w-full py-3 md:py-16 lg:py-20 bg-white">
           <div className="w-[90%] max-w-6xl mx-auto text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] md:font-semibold md:text-gray-900 mb-2 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
               Rajput Architecture
             </h2>
-            <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+            <p className="text-sm md:text-lg text-[#424242] md:text-gray-700 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
               The grand forts and palaces of Amber and Chittorgarh embody Rajput valour and artistry, featuring ornate courtyards, fortified walls, and breathtaking hilltop settings.
             </p>
           </div>
@@ -237,12 +239,12 @@ export default function ArchitecturePage() {
         </section>
 
         {/* Colonial & Indo-Saracenic Architecture Section */}
-        <section className="w-full py-12 md:py-16 lg:py-20 bg-white">
+        <section className="w-full pt-3 pb-6 md:py-16 lg:py-20 bg-white">
           <div className="w-[90%] max-w-6xl mx-auto text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] md:font-semibold md:text-gray-900 mb-2 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
               Colonial & Indo–Saracenic Architecture
             </h2>
-            <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+            <p className="text-sm md:text-lg text-[#424242] md:text-gray-700 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
               Introduced by British, Portuguese, and Dutch influences, this style combines Neoclassical and Gothic forms with Mughal elements, seen in landmarks like Victoria Memorial and Mumbai CST
             </p>
           </div>

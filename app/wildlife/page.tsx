@@ -36,7 +36,7 @@ export default function WildlifePage() {
       </section>
 
       {/* Wildlife Title Section */}
-      <section className="w-full py-8 md:py-12 lg:py-16 bg-[#FDF8E8]">
+      <section className="w-full py-6 md:py-12 lg:py-16 bg-[#FDF8E8]">
         <div className="w-full max-w-5xl mt-4 mx-auto text-center">
           <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-[#424242] leading-tight" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Encounters with India&apos;s Magnificent Creatures
@@ -45,10 +45,10 @@ export default function WildlifePage() {
       </section>
 
       {/* Image Grid with Top-Overlap Intro Card (heritage benchmark) */}
-      <section className="w-full py-8 md:py-12 lg:py-16 bg-[#FDF8E8]">
-        <div className="w-full relative h-96 md:h-[550px] lg:h-[650px] xl:h-[720px]">
+      <section className="w-full py-6 md:py-12 lg:py-16 bg-[#FDF8E8]">
+        <div className="w-full relative h-auto py-32 sm:py-40 md:py-0 md:h-[550px] lg:h-[650px] xl:h-[720px]">
           {/* Images Grid */}
-          <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0 w-full h-full">
+          <div className="absolute inset-0 grid grid-cols-1 grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-0 w-full h-full">
             <div className="relative h-full w-full">
               <ImageWithLoader
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -80,8 +80,8 @@ export default function WildlifePage() {
               />
             </div>
           </div>
-          {/* Text Card Overlay */}
-          <div className="absolute top-6 sm:top-8 md:top-12 lg:top-16 left-4 md:left-8 lg:left-12 w-[85%] md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
+          {/* Text Card — banner on top of the vertical photo backdrop (mobile), overlay (desktop) */}
+          <div className="relative md:absolute mx-4 md:mx-0 md:top-12 lg:top-16 md:left-8 lg:left-12 w-auto md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
             <p className="text-lg md:text-xl lg:text-[22px] text-[#424242] leading-loose" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
               India, a premier global biodiversity hotspot, hosts 7-8% of the world&apos;s plant and animal species—including 423 mammals and over 1,200 birds—across just 2.4% of Earth&apos;s land. From Himalayan alpine forests to desert scrub and tropical rainforests, its protected realms of 900+ national parks and sanctuaries safeguard icons like the Royal Bengal Tiger, One-horned Rhinoceros, Asian Elephant, and both tigers and lions found nowhere else, inviting luxury safaris amid untamed splendour.
             </p>

@@ -105,8 +105,10 @@ export default function SectionOverview({
           />
         </div>
 
-        {/* Desktop floating card */}
-        <div className="hidden md:block absolute left-4 md:left-8 lg:left-12 top-[calc(50%-60px)] -translate-y-1/2 z-10 bg-white shadow-md max-w-md lg:max-w-lg px-8 py-10 md:px-10 md:py-10">
+        {/* Floating card — overlaid on the slideshow. On mobile it's centred and
+            full-width (banner-on-photo, matching the other overview sections);
+            on desktop it floats left, vertically offset. */}
+        <div className="absolute inset-x-4 md:inset-x-auto md:left-8 lg:left-12 top-1/2 md:top-[calc(50%-60px)] -translate-y-1/2 z-10 bg-white shadow-md md:max-w-md lg:max-w-lg px-8 py-10 md:px-10 md:py-10">
           <p
             className="text-[18px] text-[#424242] leading-loose"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -114,16 +116,6 @@ export default function SectionOverview({
             {description}
           </p>
         </div>
-      </div>
-
-      {/* Mobile description (stacked below the slideshow) */}
-      <div className="md:hidden bg-white px-6 py-8">
-        <p
-          className="text-[18px] text-[#424242] leading-loose"
-          style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
-        >
-          {description}
-        </p>
       </div>
     </section>
   );

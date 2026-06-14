@@ -32,16 +32,19 @@ export default function NaturePage() {
       </section>
 
       {/* Section Title */}
-      <section className="w-full py-12 md:py-16 lg:py-20 bg-[#FDF8E8]">
-        <div className="w-full max-w-5xl mx-auto text-center mb-10 md:mb-14">
+      <section className="w-full py-6 md:py-16 lg:py-20 bg-[#FDF8E8]">
+        <div className="w-[90%] max-w-5xl mx-auto text-center mb-12 md:mb-14">
           <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-[#424242] leading-tight" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             The Raw Majesty of India&apos;s Landscapes
           </h2>
         </div>
-        {/* Image Grid with Text Card */}
-        <div className="w-full relative h-96 md:h-[550px] lg:h-[650px] xl:h-[720px]">
+        {/* Image Grid with Text Card.
+         * Mobile: photos stack into a continuous vertical backdrop (grid-rows-3)
+         * with the white banner centred on top, framed by photo bands (container
+         * py); desktop keeps the 3-up triptych + overlay card. */}
+        <div className="w-full relative h-auto py-32 sm:py-40 md:py-0 md:h-[550px] lg:h-[650px] xl:h-[720px]">
           {/* Images Grid */}
-          <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0 w-full h-full">
+          <div className="absolute inset-0 grid grid-cols-1 grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-0 w-full h-full">
             <div className="relative h-full w-full">
               <ImageWithLoader
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -73,8 +76,8 @@ export default function NaturePage() {
               />
             </div>
           </div>
-          {/* Text Card Overlay */}
-          <div className="absolute top-6 sm:top-8 md:top-12 lg:top-16 left-4 md:left-8 lg:left-12 w-[85%] md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
+          {/* Text Card — banner on top of the vertical photo backdrop (mobile), overlay (desktop) */}
+          <div className="relative md:absolute mx-4 md:mx-0 md:top-12 lg:top-16 md:left-8 lg:left-12 w-auto md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
             <p className="text-lg md:text-xl lg:text-[22px] text-[#424242] leading-loose" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
               From the snow-capped peaks of the Himalayas to the palm-fringed backwaters of Kerala, India unfolds as a destination of extraordinary range. Retreat into mist-wrapped mountain sanctuaries for world-class wellness, track tigers through legendary national parks on bespoke safaris, or unwind on secluded shores where the Arabian Sea meets untouched sands—every landscape an invitation to journeys that restore, inspire, and transform.
             </p>
@@ -95,12 +98,12 @@ export default function NaturePage() {
       {/* Nature Destinations Section - Minimal spacing */}
 
       {/* Majestic Mountain Realms */}
-      <section className="w-full bg-white pt-2 pb-2">
-        <div className="w-full max-w-5xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+      <section className="w-full bg-white py-6 md:py-2">
+        <div className="w-[90%] max-w-5xl mx-auto text-center mb-12 md:mb-14">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-2 md:mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Majestic Mountain Realms
           </h2>
-          <p className="text-xs md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          <p className="text-sm md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             Journey through some of the world’s most inspiring mountain regions. From the stark, dramatic landscapes of Leh–Ladakh to the lush valleys of Kashmir, experience nature, culture, and adventure at breathtaking altitudes.
           </p>
         </div>
@@ -127,12 +130,12 @@ export default function NaturePage() {
       </section>
 
       {/* Coastal Serenity */}
-      <section className="w-full bg-white pt-2 pb-2">
-        <div className="w-full max-w-5xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+      <section className="w-full bg-white py-6 md:py-2">
+        <div className="w-[90%] max-w-5xl mx-auto text-center mb-12 md:mb-14">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-2 md:mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Coastal Serenity
           </h2>
-          <p className="text-xs md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          <p className="text-sm md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             India’s diverse coastline stretches from vibrant beach hubs to secluded tropical shores, offering sun, culture, and coastal serenity
           </p>
         </div>
@@ -159,12 +162,12 @@ export default function NaturePage() {
       </section>
 
       {/* Timeless Desert Horizons */}
-      <section className="w-full bg-white pt-2 pb-2">
-        <div className="w-full max-w-5xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+      <section className="w-full bg-white py-6 md:py-2">
+        <div className="w-[90%] max-w-5xl mx-auto text-center mb-12 md:mb-14">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-2 md:mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Timeless Desert Horizons
           </h2>
-          <p className="text-xs md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          <p className="text-sm md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             The golden landscapes of India’s desert regions offer royal heritage, vast dunes, and unforgettable cultural experiences
           </p>
         </div>
@@ -191,12 +194,12 @@ export default function NaturePage() {
       </section>
 
       {/* Serene Backwater Retreats */}
-      <section className="w-full bg-white pt-2 pb-2">
-        <div className="w-full max-w-5xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+      <section className="w-full bg-white py-6 md:py-2">
+        <div className="w-[90%] max-w-5xl mx-auto text-center mb-12 md:mb-14">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-2 md:mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Serene Backwater Escapes
           </h2>
-          <p className="text-xs md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          <p className="text-sm md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             Serene networks of lagoons and canals lined with lush greenery offer tranquil journeys through South India’s most peaceful landscapes
           </p>
         </div>

@@ -39,21 +39,24 @@ export default function HeritagePage() {
       </section>
 
       {/* 5,000 Years Section with Image Grid */}
-      <section className="w-full pt-12 md:pt-16 lg:pt-20 pb-0" style={{ backgroundColor: '#FDF8E8' }}>
+      <section className="w-full pt-6 md:pt-16 lg:pt-20 pb-0" style={{ backgroundColor: '#FDF8E8' }}>
         {/* Heading */}
-        <div className="w-[90%] max-w-5xl mx-auto text-center mb-10 md:mb-14">
+        <div className="w-[90%] max-w-5xl mx-auto text-center mb-12 md:mb-14">
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-[#424242] leading-tight"
+            className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-[#424242] leading-tight text-center mx-auto"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
             5,000 Years Written in Stone
           </h2>
         </div>
 
-        {/* Image Grid with Text Card */}
-        <div className="w-full relative h-96 md:h-[550px] lg:h-[650px] xl:h-[720px]">
+        {/* Image Grid with Text Card.
+         * Mobile: photos stack into a continuous vertical backdrop (grid-rows-3)
+         * with the white banner centred on top, framed by photo bands (container
+         * py); desktop keeps the 3-up triptych + overlay card. */}
+        <div className="w-full relative h-auto py-32 sm:py-40 md:py-0 md:h-[550px] lg:h-[650px] xl:h-[720px]">
           {/* Background Images Grid */}
-          <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0">
+          <div className="absolute inset-0 grid grid-cols-1 grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-0">
             {/* Image 1 */}
             <div 
               className="relative h-full bg-cover bg-center"
@@ -73,8 +76,8 @@ export default function HeritagePage() {
             />
           </div>
 
-          {/* Text Card Overlay */}
-          <div className="absolute top-6 sm:top-8 md:top-12 lg:top-16 left-4 md:left-8 lg:left-12 w-[85%] md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
+          {/* Text Card — banner on top of the vertical photo backdrop (mobile), overlay (desktop) */}
+          <div className="relative md:absolute mx-4 md:mx-0 md:top-12 lg:top-16 md:left-8 lg:left-12 w-auto md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
             <p
               className="text-lg md:text-xl lg:text-[22px] text-[#424242] leading-loose"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
@@ -86,7 +89,7 @@ export default function HeritagePage() {
       </section>
 
       {/* Liberty India Heritage Journeys Section */}
-      <section className="w-full py-10 md:py-12" style={{ backgroundColor: '#FDF8E8' }}>
+      <section className="w-full py-6 md:py-12" style={{ backgroundColor: '#FDF8E8' }}>
         <div className="w-[90%] max-w-5xl mx-auto text-center">
           <p
             className="text-xl md:text-2xl lg:text-3xl font-bold text-[#424242]"
@@ -102,10 +105,10 @@ export default function HeritagePage() {
       {/* Ancient Temple Architecture Section */}
       <section className="w-full bg-white">
         {/* Header with white background */}
-        <div className="w-full py-12 md:py-16 bg-white">
+        <div className="w-full py-8 md:py-16 bg-white">
           <div className="w-[90%] max-w-4xl mx-auto text-center">
             <h2
-              className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-4"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-2 md:mb-4 max-w-3xl mx-auto"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
               Ancient Temple Architecture
@@ -120,7 +123,7 @@ export default function HeritagePage() {
         </div>
 
         {/* Temple Images Section - 90% width with overlapping text card */}
-        <div className="w-[90%] mx-auto relative pb-16 md:pb-20 lg:pb-24">
+        <div className="w-[90%] mx-auto relative pb-8 md:pb-20 lg:pb-24">
           {/* Main container with temple image */}
           <div className="relative w-full">
             <Image
@@ -128,20 +131,22 @@ export default function HeritagePage() {
               alt="Ancient Temple Architecture"
               width={1600}
               height={900}
-              className="w-full h-[340px] sm:h-[420px] md:h-auto object-cover"
+              className="w-full h-[240px] sm:h-[320px] md:h-auto object-cover object-left md:object-center"
             />
           </div>
 
-          {/* Dravidian Temples Text Card - Overlapping the image */}
-          <div className="absolute bottom-[8px] md:bottom-0 left-4 md:left-8 lg:left-12 w-[85%] md:w-[38%] bg-white px-6 py-5 md:px-8 md:py-6 shadow-md text-left z-20">
+          {/* Dravidian Temples Text Card — mobile: image on top, card below overlapping
+              its bottom edge (centred, narrower so the photo peeks at the sides);
+              desktop: unchanged left-bottom overlay. */}
+          <div className="relative md:absolute -mt-12 md:mt-0 mx-auto md:mx-0 md:bottom-0 md:left-8 lg:left-12 w-[90%] md:w-[38%] bg-white p-5 md:px-8 md:py-6 shadow-md text-left z-20">
             <h3
-              className="text-xl md:text-2xl lg:text-[1.75rem] font-bold text-[#424242] mb-4"
+              className="text-xl md:text-2xl lg:text-[1.75rem] font-bold text-[#424242] mb-2 md:mb-4"
               style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
             >
-              Dravidian Temples of South India
+              Dravidian Temples of <br className="md:hidden" />South India
             </h3>
             <p
-              className="text-sm md:text-base text-[#424242] leading-relaxed"
+              className="text-[13px] md:text-base text-[#424242] leading-loose md:leading-relaxed"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
               Brihadeeswarar Temple in Thanjavur, a UNESCO World Heritage site and architectural masterpiece; Meenakshi Amman Temple in Madurai, still vibrant with daily worship; the intricate Shore Temple of Mahabalipuram
@@ -151,10 +156,11 @@ export default function HeritagePage() {
       </section>
 
       {/* Northern Nagara & Vesara Temples Section */}
-      <section className="w-full bg-white py-12 md:py-16 pb-20 md:pb-24">
+      <section className="w-full bg-white py-6 md:py-16 pb-8 md:pb-24">
         <div className="w-[90%] mx-auto">
-          {/* Two Card Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {/* Two Card Grid — wider gap on mobile so the protruding caption of one
+              stacked card doesn't crowd the next card's image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-8">
             {/* Northern Nagara Style Temples Card */}
             <div className="relative w-full overflow-visible">
               <Image
@@ -162,18 +168,18 @@ export default function HeritagePage() {
                 alt="Northern Nagara Style Temples"
                 width={800}
                 height={600}
-                className="w-full h-full object-cover"
+                className="w-full h-[240px] sm:h-[320px] md:h-full object-cover"
               />
-              {/* Text Overlay Card - 80% width, centered */}
-              <div className="absolute -bottom-8 md:-bottom-10 left-1/2 -translate-x-1/2 w-[85%] bg-white px-6 py-5 md:px-8 md:py-6 shadow-md text-left">
+              {/* Text Overlay Card - image on top, card overlapping the bottom edge (centred) */}
+              <div className="relative md:absolute z-10 -mt-12 md:mt-0 mx-auto md:mx-0 md:-bottom-10 md:left-1/2 md:-translate-x-1/2 w-[90%] md:w-[85%] bg-white p-5 md:px-8 md:py-6 shadow-md text-left">
                 <h3
-                  className="text-lg md:text-xl lg:text-2xl font-bold text-[#424242] mb-2"
+                  className="text-xl md:text-xl lg:text-2xl font-bold text-[#424242] mb-2"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   Northern Nagara Style Temples
                 </h3>
                 <p
-                  className="text-sm md:text-base text-[#424242] leading-relaxed"
+                  className="text-[13px] md:text-base text-[#424242] leading-loose md:leading-relaxed"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
                   The ornate Sun Temple at Konark, Lingaraj Temple, and the UNESCO World Heritage site – Western Group of Temples in Khajuraho
@@ -188,18 +194,18 @@ export default function HeritagePage() {
                 alt="Vesara Temples"
                 width={800}
                 height={600}
-                className="w-full h-full object-cover"
+                className="w-full h-[240px] sm:h-[320px] md:h-full object-cover"
               />
-              {/* Text Overlay Card - 80% width, centered */}
-              <div className="absolute -bottom-8 md:-bottom-10 left-1/2 -translate-x-1/2 w-[85%] bg-white px-6 py-5 md:px-8 md:py-6 shadow-md text-left">
+              {/* Text Overlay Card - image on top, card overlapping the bottom edge (centred) */}
+              <div className="relative md:absolute z-10 -mt-12 md:mt-0 mx-auto md:mx-0 md:-bottom-10 md:left-1/2 md:-translate-x-1/2 w-[90%] md:w-[85%] bg-white p-5 md:px-8 md:py-6 shadow-md text-left">
                 <h3
-                  className="text-lg md:text-xl lg:text-2xl font-bold text-[#424242] mb-2"
+                  className="text-xl md:text-xl lg:text-2xl font-bold text-[#424242] mb-2"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   Vesara Temples
                 </h3>
                 <p
-                  className="text-sm md:text-base text-[#424242] leading-relaxed"
+                  className="text-[13px] md:text-base text-[#424242] leading-loose md:leading-relaxed"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
                   The legendary Hoysala temples at Belur and Halebidu, renowned for their detailed carvings, star-shaped plans, and timeless stone artistry
@@ -211,7 +217,7 @@ export default function HeritagePage() {
       </section>
 
       {/* Mughal & Indo-Islamic Heritage Section */}
-      <section className="w-full bg-white py-10 md:py-14 pb-20 md:pb-24">
+      <section className="w-full bg-white py-6 md:py-14 pb-8 md:pb-24">
         <div className="w-[90%] mx-auto">
           {/* Section Heading */}
           <div className="text-center mb-10 md:mb-12">
@@ -223,8 +229,9 @@ export default function HeritagePage() {
             </h2>
           </div>
 
-          {/* Two Card Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {/* Two Card Grid — wider gap on mobile so the protruding caption of one
+              stacked card doesn't crowd the next card's image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-8">
             {/* Taj Mahal Card */}
             <div className="relative w-full overflow-visible">
               <Image
@@ -232,18 +239,18 @@ export default function HeritagePage() {
                 alt="Taj Mahal"
                 width={800}
                 height={600}
-                className="w-full h-full object-cover"
+                className="w-full h-[240px] sm:h-[320px] md:h-full object-cover"
               />
-              {/* Text Overlay - 80% width, centered */}
-              <div className="absolute -bottom-8 md:-bottom-10 left-1/2 -translate-x-1/2 w-[85%] bg-white px-6 py-5 md:px-8 md:py-6 shadow-md text-left">
+              {/* Text Overlay - image on top, card overlapping the bottom edge (centred) */}
+              <div className="relative md:absolute z-10 -mt-12 md:mt-0 mx-auto md:mx-0 md:-bottom-10 md:left-1/2 md:-translate-x-1/2 w-[90%] md:w-[85%] bg-white p-5 md:px-8 md:py-6 shadow-md text-left">
                 <h3
-                  className="text-lg md:text-xl lg:text-2xl font-bold text-[#424242] mb-2"
+                  className="text-xl md:text-xl lg:text-2xl font-bold text-[#424242] mb-2"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   Taj Mahal
                 </h3>
                 <p
-                  className="text-sm md:text-base text-[#424242] leading-relaxed"
+                  className="text-[13px] md:text-base text-[#424242] leading-loose md:leading-relaxed"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
                   More than a monument of love; it is an architectural masterpiece of white marble symmetry
@@ -258,18 +265,18 @@ export default function HeritagePage() {
                 alt="Red Fort"
                 width={800}
                 height={600}
-                className="w-full h-full object-cover"
+                className="w-full h-[240px] sm:h-[320px] md:h-full object-cover"
               />
-              {/* Text Overlay - 80% width, centered */}
-              <div className="absolute -bottom-8 md:-bottom-10 left-1/2 -translate-x-1/2 w-[85%] bg-white px-6 py-5 md:px-8 md:py-6 shadow-md text-left">
+              {/* Text Overlay - image on top, card overlapping the bottom edge (centred) */}
+              <div className="relative md:absolute z-10 -mt-12 md:mt-0 mx-auto md:mx-0 md:-bottom-10 md:left-1/2 md:-translate-x-1/2 w-[90%] md:w-[85%] bg-white p-5 md:px-8 md:py-6 shadow-md text-left">
                 <h3
-                  className="text-lg md:text-xl lg:text-2xl font-bold text-[#424242] mb-2"
+                  className="text-xl md:text-xl lg:text-2xl font-bold text-[#424242] mb-2"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
                   Red Fort
                 </h3>
                 <p
-                  className="text-sm md:text-base text-[#424242] leading-relaxed"
+                  className="text-[13px] md:text-base text-[#424242] leading-loose md:leading-relaxed"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
                   The seat of Mughal power, with labyrinthine passages and imperial gardens
@@ -281,11 +288,11 @@ export default function HeritagePage() {
       </section>
 
       {/* Indian Dance Heritage Section */}
-      <section className="w-full bg-white py-10 md:py-14">
-        <div className="w-full text-center mb-10 md:mb-14">
+      <section className="w-full bg-white py-6 md:py-14">
+        <div className="w-full text-center mb-12 md:mb-14">
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-4"
-            style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-2 md:mb-4 mx-auto"
+            style={{ fontFamily: 'var(--font-playfair), Georgia, serif', width: '70vw' }}
           >
             Indian Dance Heritage
           </h2>
@@ -327,11 +334,11 @@ export default function HeritagePage() {
       </section>
 
       {/* Living Traditions of Indian Art Section */}
-      <section className="w-full bg-white py-10 md:py-14">
-        <div className="w-full text-center mb-10 md:mb-14">
+      <section className="w-full bg-white py-6 md:py-14">
+        <div className="w-full text-center mb-12 md:mb-14">
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-4"
-            style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#424242] mb-2 md:mb-4 mx-auto"
+            style={{ fontFamily: 'var(--font-playfair), Georgia, serif', width: '70vw' }}
           >
             Living Traditions of Indian Art
           </h2>

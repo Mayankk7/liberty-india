@@ -27,7 +27,7 @@ export default function IncentivesPage() {
       />
       <TaglineStrip text="Celebrating Excellence Through Transformations" />
       <SectionOverview images={overviewImages} description={overviewDescription} />
-      <CustomizedPrograms imageSrc="https://ik.imagekit.io/libertyindia/services/incentive/programs.svg" />
+      <CustomizedPrograms imageSrc="https://ik.imagekit.io/libertyindia/services/incentive/programs.svg?tr=w-1600,f-png" />
       <Footer />
     </main>
   );

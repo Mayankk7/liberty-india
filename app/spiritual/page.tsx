@@ -36,7 +36,7 @@ export default function SpiritualPage() {
       </section>
 
       {/* Spirituality Title Section */}
-      <section className="w-full py-8 md:py-12 lg:py-16 bg-[#FDF8E8]">
+      <section className="w-full py-6 md:py-12 lg:py-16 bg-[#FDF8E8]">
         <div className="w-full max-w-5xl mt-4 mx-auto text-center">
           <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-normal text-[#424242] leading-tight" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             The Eternal Quest for Understanding
@@ -46,11 +46,14 @@ export default function SpiritualPage() {
 
       {/* Nature Destinations Section - Minimal spacing */}
             {/* Section Title */}
-            <section className="w-full py-8 md:py-12 lg:py-16 bg-[#FDF8E8]">
-              {/* Image Grid with Text Card */}
-              <div className="w-full relative h-96 md:h-[550px] lg:h-[650px] xl:h-[720px]">
+            <section className="w-full py-6 md:py-12 lg:py-16 bg-[#FDF8E8]">
+              {/* Image Grid with Text Card.
+               * Mobile: photos stack into a continuous vertical backdrop (grid-rows-3)
+               * with the white banner centred on top, framed by photo bands (container
+               * py); desktop keeps the 3-up triptych + overlay card. */}
+              <div className="w-full relative h-auto py-32 sm:py-40 md:py-0 md:h-[550px] lg:h-[650px] xl:h-[720px]">
                 {/* Images Grid */}
-                <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-0 w-full h-full">
+                <div className="absolute inset-0 grid grid-cols-1 grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-0 w-full h-full">
                   <div className="relative h-full w-full">
                     <Image
                       src="https://ik.imagekit.io/libertyindia/about-india/spiritual/picture-1.png"
@@ -79,8 +82,8 @@ export default function SpiritualPage() {
                     />
                   </div>
                 </div>
-                {/* Text Card Overlay */}
-                <div className="absolute top-6 sm:top-8 md:top-12 lg:top-16 left-4 md:left-8 lg:left-12 w-[85%] md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
+                {/* Text Card — banner on top of the vertical photo backdrop (mobile), overlay (desktop) */}
+                <div className="relative md:absolute mx-4 md:mx-0 md:top-12 lg:top-16 md:left-8 lg:left-12 w-auto md:w-[42%] bg-white px-6 py-6 md:px-9 md:py-8 shadow-md text-left z-10">
                   <p className="text-lg md:text-xl lg:text-[22px] text-[#424242] leading-loose" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
                     An ancient way of life connecting the everyday with the divine, India&apos;s spiritual heritage centres on self-realisation, karma, and inner peace. Guided by Yoga, Vedanta, Buddhism, and Bhakti traditions, it invites discerning travellers to embrace compassion, unity, and the timeless pursuit of Moksha through transformative retreats and sacred pilgrimages.
                   </p>
@@ -98,12 +101,12 @@ export default function SpiritualPage() {
             </section>
 
       {/* Majestic Mountain Realms */}
-      <section className="w-full mt-4 bg-white pt-2 pb-2">
-        <div className="w-full max-w-5xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+      <section className="w-full mt-4 bg-white py-6 md:py-2">
+        <div className="w-[90%] max-w-5xl mx-auto text-center mb-12 md:mb-14">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-2 md:mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Sacred Hindu Pilgrimage Sites
           </h2>
-          <p className="text-xs md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          <p className="text-sm md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             Destinations of profound spiritual significance in Hindu tradition
           </p>
         </div>
@@ -128,12 +131,12 @@ export default function SpiritualPage() {
       </section>
 
       {/* Coastal Serenity */}
-      <section className="w-full bg-white pt-2 pb-2">
-        <div className="w-full max-w-5xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+      <section className="w-full bg-white py-6 md:py-2">
+        <div className="w-[90%] max-w-5xl mx-auto text-center mb-12 md:mb-14">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-2 md:mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Buddhist Sacred Journey
           </h2>
-          <p className="text-xs md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          <p className="text-sm md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             Following the footsteps of Buddha and the development of Buddhism in India
           </p>
         </div>
@@ -158,12 +161,12 @@ export default function SpiritualPage() {
       </section>
 
       {/* Timeless Desert Horizons */}
-      <section className="w-full bg-white pt-2 pb-2">
-        <div className="w-full max-w-5xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
+      <section className="w-full bg-white py-6 md:py-2">
+        <div className="w-[90%] max-w-5xl mx-auto text-center mb-12 md:mb-14">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-2 md:mb-6 font-bold text-[#424242]" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>
             Sikh Spirituality & The Golden Temple
           </h2>
-          <p className="text-xs md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
+          <p className="text-sm md:text-sm text-[#424242] mt-1 mb-8" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
             The Golden Temple of Amritsar represents Sikhism's core principles of equality and community
           </p>
         </div>
