@@ -48,7 +48,7 @@ export default function NaturePage() {
             <div className="relative h-full w-full">
               <ImageWithLoader
                 sizes="(max-width: 768px) 100vw, 33vw"
-                src="https://ik.imagekit.io/libertyindia/about-india/nature/picture-1.svg"
+                src="/images/optimized/about-india/nature/picture-1.webp"
                 alt="Nature 1"
                 fill
                 className="object-cover object-center"
@@ -58,7 +58,7 @@ export default function NaturePage() {
             <div className="relative h-full w-full">
               <ImageWithLoader
                 sizes="(max-width: 768px) 100vw, 33vw"
-                src="https://ik.imagekit.io/libertyindia/about-india/nature/picture-2.svg"
+                src="https://ik.imagekit.io/libertyindia/about-india/nature/picture-2.svg?tr=w-1920,f-webp"
                 alt="Nature 2"
                 fill
                 className="object-cover object-center"
@@ -68,7 +68,7 @@ export default function NaturePage() {
             <div className="relative h-full w-full">
               <ImageWithLoader
                 sizes="(max-width: 768px) 100vw, 33vw"
-                src="https://ik.imagekit.io/libertyindia/about-india/nature/picture-3.svg"
+                src="/images/optimized/about-india/nature/picture-3.webp"
                 alt="Nature 3"
                 fill
                 className="object-cover object-center"
@@ -144,7 +144,7 @@ export default function NaturePage() {
           startPosition="right"
           items={[
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/nature/andaman.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/nature/andaman.svg?tr=w-1920,f-webp',
               alt: 'Andaman Islands',
               title: 'Andaman Islands',
               description:
@@ -208,7 +208,7 @@ export default function NaturePage() {
           startPosition="left"
           items={[
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/nature/alleppy.svg',
+              image: '/images/optimized/about-india/nature/alleppy.webp',
               alt: 'Alleppey (Alappuzha)',
               title: 'Alleppey (Alappuzha)',
               description:

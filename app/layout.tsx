@@ -3,6 +3,11 @@ import { Playfair_Display, Merriweather, Poppins } from 'next/font/google';
 import './globals.css';
 import PageLoader from './components/PageLoader';
 import LenisProvider from './components/LenisProvider';
+import CookieConsent from './components/CookieConsent';
+import NewsletterPopup from './components/NewsletterPopup';
+import { consentBootstrapScript } from './lib/consent';
+import { GTM_ID } from './lib/siteConfig';
+import { SITE_URL } from './lib/seo';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -50,10 +55,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Liberty India' }],
   creator: 'Liberty India',
   publisher: 'Liberty India',
-  metadataBase: new URL('https://libertyindia.com'),
-  alternates: {
-    canonical: '/',
-  },
+  metadataBase: new URL(SITE_URL),
+  // No site-wide canonical here: each page sets its own (see app/lib/seo.ts).
+  // A canonical in the root layout would point every page at the homepage.
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -129,6 +133,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${merriweather.variable} ${poppins.variable}`}>
       <head>
+        {/* Consent Mode v2 defaults + GTM. Must stay the FIRST script so the
+            "denied" defaults exist before any Google tag loads. */}
+        <script dangerouslySetInnerHTML={{ __html: consentBootstrapScript(GTM_ID) }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -137,6 +144,8 @@ export default function RootLayout({
       <body className={`${merriweather.className} antialiased overflow-x-hidden`}>
         <PageLoader />
         <LenisProvider>{children}</LenisProvider>
+        <NewsletterPopup />
+        <CookieConsent />
       </body>
     </html>
   );

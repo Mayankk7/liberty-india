@@ -16,7 +16,7 @@ export default function CulturePage() {
       <section className="relative w-full pt-16">
         <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh] overflow-hidden bg-[#3a2f1f]">
           <Image
-            src="https://ik.imagekit.io/libertyindia/about-india/culture/culture-bg.svg"
+            src="/images/optimized/about-india/culture/culture-bg.webp"
             alt="Culture of India - Traditional puppets and artistry"
             fill
             className="object-cover scale-[1.25] origin-center"
@@ -55,15 +55,15 @@ export default function CulturePage() {
           <div className="absolute inset-0 grid grid-cols-1 grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-0">
             <div
               className="relative h-full bg-cover bg-center"
-              style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/culture/picture-1.svg')" }}
+              style={{ backgroundImage: "url('/images/optimized/about-india/culture/picture-1.webp')" }}
             />
             <div
               className="relative h-full bg-cover bg-center"
-              style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/culture/picture-2.svg')" }}
+              style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/culture/picture-2.svg?tr=w-1920,f-webp')" }}
             />
             <div
               className="relative h-full bg-cover bg-center"
-              style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/culture/picture-3.svg')" }}
+              style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/culture/picture-3.svg?tr=w-1920,f-webp')" }}
             />
           </div>
 
@@ -119,21 +119,21 @@ export default function CulturePage() {
                 "The world's oldest living spiritual tradition, Hinduism is rooted in the philosophies of dharma and karma, embracing a vast tapestry of rituals, sacred texts, and paths to spiritual liberation",
             },
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/culture/buddhism.svg',
+              image: '/images/optimized/about-india/culture/buddhism.webp',
               alt: 'Buddhism - Statues and monasteries',
               title: 'Buddhism',
               description:
                 'Founded in India by the Buddha, this timeless philosophy teaches mindfulness, compassion, and the pursuit of enlightenment through the path of balance and inner awakening',
             },
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/culture/jainism.svg',
+              image: '/images/optimized/about-india/culture/jainism.webp',
               alt: 'Jainism - Temples and sculptures',
               title: 'Jainism',
               description:
                 "One of India's most ancient faiths, Jainism is centered on non-violence, self-discipline, and spiritual purity, inspiring a profound respect for all living beings",
             },
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/culture/sikhism.svg',
+              image: '/images/optimized/about-india/culture/sikhism.webp',
               alt: 'Sikhism - Golden Temple and community',
               title: 'Sikhism',
               description:
@@ -165,7 +165,7 @@ export default function CulturePage() {
           startPosition="right"
           items={[
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/culture/diwali.svg',
+              image: '/images/optimized/about-india/culture/diwali.webp',
               alt: 'Diwali - Festival of Lights',
               title: 'Diwali',
               subtitle: 'October - November',
@@ -173,7 +173,7 @@ export default function CulturePage() {
                 'The Festival of Lights, celebrated with prayers, family gatherings, and the symbolic victory of light over darkness',
             },
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/culture/holi.svg',
+              image: '/images/optimized/about-india/culture/holi.webp',
               alt: 'Holi - Festival of Colours',
               title: 'Holi',
               subtitle: 'March',
@@ -208,7 +208,7 @@ export default function CulturePage() {
             {/* Top Left - Textile */}
             <div className="relative aspect-square md:aspect-4/3">
               <Image
-                src="https://ik.imagekit.io/libertyindia/about-india/culture/textile.svg"
+                src="https://ik.imagekit.io/libertyindia/about-india/culture/textile.svg?tr=w-1920,f-webp"
                 alt="Textile Traditions"
                 fill
                 className="object-cover"
@@ -217,7 +217,7 @@ export default function CulturePage() {
             {/* Top Right - Pottery */}
             <div className="relative aspect-square md:aspect-4/3">
               <Image
-                src="https://ik.imagekit.io/libertyindia/about-india/culture/pottery.svg"
+                src="/images/optimized/about-india/culture/pottery.webp"
                 alt="Pottery & Ceramics"
                 fill
                 className="object-cover"
@@ -226,7 +226,7 @@ export default function CulturePage() {
             {/* Bottom Left - Metal Work */}
             <div className="relative aspect-square md:aspect-4/3">
               <Image
-                src="https://ik.imagekit.io/libertyindia/about-india/culture/metal-work.svg"
+                src="https://ik.imagekit.io/libertyindia/about-india/culture/metal-work.svg?tr=w-1920,f-webp"
                 alt="Metal Work & Jewellery"
                 fill
                 className="object-cover"
@@ -309,19 +309,19 @@ export default function CulturePage() {
         <div className="md:hidden w-[90%] mx-auto space-y-12">
           {[
             {
-              src: 'https://ik.imagekit.io/libertyindia/about-india/culture/textile.svg',
+              src: 'https://ik.imagekit.io/libertyindia/about-india/culture/textile.svg?tr=w-1920,f-webp',
               alt: 'Textile Traditions',
               title: 'Textile Traditions',
               body: "Handwoven silks and vibrant fabrics reflecting India's rich regional craftsmanship",
             },
             {
-              src: 'https://ik.imagekit.io/libertyindia/about-india/culture/pottery.svg',
+              src: '/images/optimized/about-india/culture/pottery.webp',
               alt: 'Pottery & Ceramics',
               title: 'Pottery & Ceramics',
               body: 'Earthy creations shaped by traditional techniques and timeless design',
             },
             {
-              src: 'https://ik.imagekit.io/libertyindia/about-india/culture/metal-work.svg',
+              src: 'https://ik.imagekit.io/libertyindia/about-india/culture/metal-work.svg?tr=w-1920,f-webp',
               alt: 'Metal Work & Jewellery',
               title: 'Metal Work & Jewellery',
               body: 'Intricate craftsmanship expressed through ornate metal artefacts and jewellery',

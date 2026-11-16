@@ -63,7 +63,7 @@ function fromCategory(category: ItineraryCategory, limit: number): CardData[] {
         priceValue: it.startingPrice,
         priceNote: hasPrice ? 'per person' : '',
         duration: it.duration,
-        href: `/itineraries/${it.slug}`,
+        href: `/itineraries/${it.slug}/`,
       };
     });
 }
@@ -83,7 +83,7 @@ function fromItems(items: ItineraryItem[]): CardData[] {
       priceValue: hasPrice ? `€${item.price!.toLocaleString()}` : 'Price on request',
       priceNote: hasPrice ? 'per person' : '',
       duration: item.duration,
-      href: item.slug ? `/itineraries/${item.slug}` : undefined,
+      href: item.slug ? `/itineraries/${item.slug}/` : undefined,
     };
   });
 }

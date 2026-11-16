@@ -1,3 +1,4 @@
+import { pageMetadata } from '../../lib/seo';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SectionOverview from '../../components/services/SectionOverview';
@@ -18,6 +19,8 @@ const overviewImages = [
 
 const overviewDescription =
   "For those who wish to explore India with purpose and depth, our Special Interest Tours offer a more immersive and soul-awakening journey of a lifetime. Built around individual passions, these journeys go beyond sightseeing — inviting you into the heart of India's culture, traditions, and landscapes. From private culinary trails and sacred pilgrimages to yogic retreats and textile explorations, every experience is expert-led, authentic, and crafted with seamless attention to detail.";
+
+export const metadata = pageMetadata('/our-services/special-interest/');
 
 export default function SpecialInterestPage() {
   return (

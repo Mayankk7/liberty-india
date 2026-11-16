@@ -53,7 +53,7 @@ export default function WellnessPage() {
           <div className="relative h-full w-full">
             <ImageWithLoader
               sizes="(max-width: 768px) 100vw, 33vw"
-              src="https://ik.imagekit.io/libertyindia/about-india/wellness/picture-1.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/wellness/picture-1.svg?tr=w-1920,f-webp"
               alt="Wellness 1"
               fill
               className="object-cover object-center"
@@ -63,7 +63,7 @@ export default function WellnessPage() {
           <div className="relative h-full w-full">
             <ImageWithLoader
               sizes="(max-width: 768px) 100vw, 33vw"
-              src="https://ik.imagekit.io/libertyindia/about-india/wellness/picture-2.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/wellness/picture-2.svg?tr=w-1920,f-webp"
               alt="Wellness 2"
               fill
               className="object-cover object-center"
@@ -73,7 +73,7 @@ export default function WellnessPage() {
           <div className="relative h-full w-full">
             <ImageWithLoader
               sizes="(max-width: 768px) 100vw, 33vw"
-              src="https://ik.imagekit.io/libertyindia/about-india/wellness/picture-3.svg"
+              src="/images/optimized/about-india/wellness/picture-3.webp"
               alt="Wellness 3"
               fill
               className="object-cover object-center"
@@ -205,7 +205,7 @@ export default function WellnessPage() {
             {/* Ananda Spa */}
             <div className="bg-white shadow-lg overflow-hidden flex flex-col">
               <div className="relative w-full h-[240px] sm:h-[320px] md:h-56">
-                <ImageWithLoader src="https://ik.imagekit.io/libertyindia/about-india/wellness/ananda-spa.svg" alt="Ananda Spa" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover object-center" />
+                <ImageWithLoader src="https://ik.imagekit.io/libertyindia/about-india/wellness/ananda-spa.svg?tr=w-1920,f-webp" alt="Ananda Spa" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover object-center" />
               </div>
               <div className="p-5 flex-1">
                 <h3 className="text-xl font-bold text-[#424242] mb-2" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Ananda Spa</h3>
@@ -218,7 +218,7 @@ export default function WellnessPage() {
             {/* Six Senses Vana */}
             <div className="bg-white shadow-lg overflow-hidden flex flex-col">
               <div className="relative w-full h-[240px] sm:h-[320px] md:h-56">
-                <ImageWithLoader src="https://ik.imagekit.io/libertyindia/about-india/wellness/vana.svg" alt="Six Senses Vana" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover object-center" />
+                <ImageWithLoader src="https://ik.imagekit.io/libertyindia/about-india/wellness/vana.svg?tr=w-1920,f-webp" alt="Six Senses Vana" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover object-center" />
               </div>
               <div className="p-5 flex-1">
                 <h3 className="text-xl font-bold text-[#424242] mb-2" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>Six Senses Vana</h3>
@@ -231,7 +231,7 @@ export default function WellnessPage() {
             {/* SwaSwara Wellness */}
             <div className="bg-white shadow-lg overflow-hidden flex flex-col">
               <div className="relative w-full h-[240px] sm:h-[320px] md:h-56">
-                <ImageWithLoader src="https://ik.imagekit.io/libertyindia/about-india/wellness/swa-swara.svg" alt="SwaSwara Wellness" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover object-center" />
+                <ImageWithLoader src="https://ik.imagekit.io/libertyindia/about-india/wellness/swa-swara.svg?tr=w-1920,f-webp" alt="SwaSwara Wellness" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover object-center" />
               </div>
               <div className="p-5 flex-1">
                 <h3 className="text-xl font-bold text-[#424242] mb-2" style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}>SwaSwara Wellness</h3>

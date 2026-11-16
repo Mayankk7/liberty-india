@@ -29,7 +29,7 @@ export default function AboutIndia() {
         {/* Layer 2: India Map centered, same height as collage */}
         <div className="absolute inset-0 z-10 flex items-center justify-center">
           <Image
-            src="https://ik.imagekit.io/libertyindia/about-india/home/india-map.svg"
+            src="https://ik.imagekit.io/libertyindia/about-india/home/india-map.svg?tr=w-1920,f-webp"
             alt="India map silhouette"
             fill
             className="h-full w-auto max-h-full object-contain drop-shadow-lg"
@@ -45,7 +45,7 @@ export default function AboutIndia() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
           {/* Heritage Card */}
           <Reveal>
-          <Link href="/heritage" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block">
+          <Link href="/heritage/" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block">
             <div className="absolute inset-0 rounded-lg overflow-hidden">
               <ImageWithLoader
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -86,7 +86,7 @@ export default function AboutIndia() {
 
           {/* Culture Card */}
           <Reveal delay={80}>
-          <Link href="/culture" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block">
+          <Link href="/culture/" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block">
             <div className="absolute inset-0 rounded-lg overflow-hidden">
               <ImageWithLoader
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -127,7 +127,7 @@ export default function AboutIndia() {
 
           {/* Architecture Card */}
           <Reveal delay={160}>
-          <Link href="/architecture" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block">
+          <Link href="/architecture/" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block">
             <div className="absolute inset-0 rounded-lg overflow-hidden">
               <ImageWithLoader
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -171,7 +171,7 @@ export default function AboutIndia() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-2">
           {/* Nature Card - 3/5 width */}
           <Reveal className="md:col-span-3">
-          <Link href="/nature" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block">
+          <Link href="/nature/" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block">
             <div className="absolute inset-0 rounded-lg overflow-hidden">
               <Image
                   src="https://ik.imagekit.io/libertyindia/about-india/home/nature.png?updatedAt=1773508275329"
@@ -212,10 +212,10 @@ export default function AboutIndia() {
           {/* Spiritual Card - 2/5 width */}
           <Reveal className="md:col-span-2" delay={80}>
           <div className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg">
-            <Link href="/spiritual" className="block w-full h-full">
+            <Link href="/spiritual/" className="block w-full h-full">
               <div className="absolute inset-0 rounded-lg overflow-hidden">
                 <Image
-                  src="https://ik.imagekit.io/libertyindia/about-india/home/spiritual.svg"
+                  src="https://ik.imagekit.io/libertyindia/about-india/home/spiritual.svg?tr=w-1920,f-webp"
                   alt="Spiritual - Paths of Inner Discovery"
                   fill
                   className="object-cover card-zoom"
@@ -256,7 +256,7 @@ export default function AboutIndia() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           {/* Wellness Card - 2/5 width */}
           <Reveal className="md:col-span-2">
-          <Link href="/wellness" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block" onClick={e => { if (!['/wellness'].includes('/wellness')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
+          <Link href="/wellness/" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block" onClick={e => { if (!['/wellness/'].includes('/wellness/')) { e.preventDefault(); window.location.href = '/under-development/'; } }}>
             <div className="absolute inset-0 rounded-lg overflow-hidden">
               <ImageWithLoader
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -297,7 +297,7 @@ export default function AboutIndia() {
 
           {/* Wildlife Card - 3/5 width */}
           <Reveal className="md:col-span-3" delay={80}>
-          <Link href="/wildlife" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block" onClick={e => { if (!['/wildlife'].includes('/wildlife')) { e.preventDefault(); window.location.href = '/under-development'; } }}>
+          <Link href="/wildlife/" className="group card-lift relative h-56 sm:h-64 md:h-84 lg:h-96 rounded-lg cursor-pointer shadow-lg block" onClick={e => { if (!['/wildlife/'].includes('/wildlife/')) { e.preventDefault(); window.location.href = '/under-development/'; } }}>
             <div className="absolute inset-0 rounded-lg overflow-hidden">
               <ImageWithLoader
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -341,7 +341,7 @@ export default function AboutIndia() {
       {/* Quote Divider Section */}
       <Reveal className="relative w-full overflow-hidden">
         <Image
-          src="https://ik.imagekit.io/libertyindia/about-india/section-end.svg"
+          src="https://ik.imagekit.io/libertyindia/about-india/section-end.svg?tr=w-1920,f-webp"
           alt="Mountain landscape with inspirational quote"
           width={1920}
           height={600}

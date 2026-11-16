@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import type { Itinerary } from '../itineraries';
+import { sendEnquiry } from '../../lib/enquiry';
+import PrivacyPolicyLink from '../../components/PrivacyPolicyLink';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -105,10 +107,9 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
       .join(' ');
 
     try {
-      const res = await fetch('/api/inquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      const res = await sendEnquiry({
+        apiPath: '/api/inquiry',
+        apiBody: {
           name: fullName,
           email: form.email,
           phone: form.phone,
@@ -116,11 +117,23 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
           travellers: '',
           message: `${form.travelPlans}\n\n— Marketing opt-in: ${form.marketing ? 'Yes' : 'No'}`,
           itinerary: { slug: itinerary.slug, title: itinerary.title },
-        }),
+        },
+        formName: 'expert_enquiry',
+        formLocation: itinerary.slug,
+        contact: {
+          name: fullName,
+          email: form.email,
+          phone: form.phone,
+          message: form.travelPlans,
+          details: {
+            Itinerary: itinerary.title,
+            'Marketing opt-in': form.marketing ? 'Yes' : 'No',
+          },
+        },
       });
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
+        const data = res.data;
         if (res.status === 422 && data?.errors) {
           setErrors(data.errors);
           setStatus('idle');
@@ -299,7 +312,7 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
                       className="accent-[#E07B39] mt-0.5 h-4 w-4 shrink-0 cursor-pointer"
                     />
                     <span style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
-                      I accept the <span className="underline underline-offset-2">Privacy Policy</span>
+                      I accept the <PrivacyPolicyLink />
                       <span className="text-[#E07B39] ml-0.5">*</span>
                     </span>
                   </label>

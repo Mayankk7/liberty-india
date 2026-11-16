@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // One URL format site-wide: /page/ (a static export writes /page/index.html).
+  trailingSlash: true,
   // @react-pdf/renderer (and its native-ish deps) must run as a real Node module
   // in the server runtime rather than being bundled by Next.
   serverExternalPackages: ['@react-pdf/renderer', 'sharp'],
@@ -9,7 +11,7 @@ const nextConfig = {
       // the old slug is live on the deployed production site.
       {
         source: '/itineraries/northeast-india-city-of-joy',
-        destination: '/itineraries/eastindia',
+        destination: '/itineraries/eastindia/',
         permanent: true,
       },
     ];

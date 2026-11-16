@@ -46,7 +46,7 @@ export default function RelatedItineraries({ current }: { current: Itinerary }) 
               priceValue={it.startingPrice}
               priceNote={it.startingPriceNote}
               duration={it.duration}
-              href={`/itineraries/${it.slug}`}
+              href={`/itineraries/${it.slug}/`}
             />
           ))}
         </div>

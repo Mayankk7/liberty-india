@@ -60,19 +60,19 @@ export default function HeritagePage() {
             {/* Image 1 */}
             <div 
               className="relative h-full bg-cover bg-center"
-                style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/heritage/picture-1.svg')" }}
+                style={{ backgroundImage: "url('/images/optimized/about-india/heritage/picture-1.webp')" }}
             />
 
             {/* Image 2 */}
             <div 
               className="relative h-full bg-cover bg-center"
-                style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/heritage/picture-2.svg')" }}
+                style={{ backgroundImage: "url('/images/optimized/about-india/heritage/picture-2.webp')" }}
             />
 
             {/* Image 3 */}
             <div 
               className="relative h-full bg-cover bg-center"
-                style={{ backgroundImage: "url('https://ik.imagekit.io/libertyindia/about-india/heritage/picture-3.svg')" }}
+                style={{ backgroundImage: "url('/images/optimized/about-india/heritage/picture-3.webp')" }}
             />
           </div>
 
@@ -164,7 +164,7 @@ export default function HeritagePage() {
             {/* Northern Nagara Style Temples Card */}
             <div className="relative w-full overflow-visible">
               <Image
-                src="https://ik.imagekit.io/libertyindia/about-india/heritage/northern-nagara-temples.svg"
+                src="https://ik.imagekit.io/libertyindia/about-india/heritage/northern-nagara-temples.svg?tr=w-1920,f-webp"
                 alt="Northern Nagara Style Temples"
                 width={800}
                 height={600}
@@ -190,7 +190,7 @@ export default function HeritagePage() {
             {/* Vesara Temples Card */}
             <div className="relative w-full overflow-visible">
               <Image
-                src="https://ik.imagekit.io/libertyindia/about-india/heritage/vesara-temples.svg"
+                src="https://ik.imagekit.io/libertyindia/about-india/heritage/vesara-temples.svg?tr=w-1920,f-webp"
                 alt="Vesara Temples"
                 width={800}
                 height={600}
@@ -235,7 +235,7 @@ export default function HeritagePage() {
             {/* Taj Mahal Card */}
             <div className="relative w-full overflow-visible">
               <Image
-                src="https://ik.imagekit.io/libertyindia/about-india/heritage/taj-mahal.svg"
+                src="/images/optimized/about-india/heritage/taj-mahal.webp"
                 alt="Taj Mahal"
                 width={800}
                 height={600}
@@ -309,21 +309,21 @@ export default function HeritagePage() {
           startPosition="right"
           items={[
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/heritage/mohiniyattam.svg',
+              image: '/images/optimized/about-india/heritage/mohiniyattam.webp',
               alt: 'Mohiniyattam - Classical dance of Kerala',
               title: 'Mohiniyattam',
               description:
                 "Kerala's graceful dance form distinguished by soft movements, expressive gestures, and timeless elegance",
             },
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/heritage/kathak.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/heritage/kathak.svg?tr=w-1920,f-webp',
               alt: 'Kathak - Classical dance of North India',
               title: 'Kathak',
               description:
                 "North India's classical dance known for elegant spins, intricate footwork, and lyrical storytelling",
             },
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/heritage/bharatnatayam.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/heritage/bharatnatayam.svg?tr=w-1920,f-webp',
               alt: 'Bharatanatyam - Classical temple dance of Tamil Nadu',
               title: 'Bharatanatyam',
               description:
@@ -355,21 +355,21 @@ export default function HeritagePage() {
           startPosition="right"
           items={[
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/heritage/madhubani.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/heritage/madhubani.svg?tr=w-1920,f-webp',
               alt: 'Madhubani Art - Traditional painting from Bihar',
               title: 'Madhubani',
               description:
                 "Bihar's vibrant painting tradition, where natural pigments bring intricate patterns and sacred stories to life",
             },
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/heritage/warli.svg',
+              image: 'https://ik.imagekit.io/libertyindia/about-india/heritage/warli.svg?tr=w-1920,f-webp',
               alt: 'Warli Art - Tribal art of Maharashtra',
               title: 'Warli',
               description:
                 "A minimalist tribal expression from Maharashtra, where simple white forms narrate timeless stories of community and ritual",
             },
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/heritage/pattachitra.svg',
+              image: '/images/optimized/about-india/heritage/pattachitra.webp',
               alt: 'Pattachitra Art - Scroll painting of Odisha',
               title: 'Pattachitra',
               description:

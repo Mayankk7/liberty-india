@@ -16,7 +16,7 @@ export default function SpiritualPage() {
       <section className="relative w-full pt-0">
         <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
-            src="https://ik.imagekit.io/libertyindia/about-india/spiritual/spiritual-bg.svg"
+            src="/images/optimized/about-india/spiritual/spiritual-bg.webp"
             alt="Spiritual India Hero"
             fill
             className="object-cover object-center"
@@ -115,7 +115,7 @@ export default function SpiritualPage() {
           startPosition="left"
           items={[
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/spiritual/varanasi.svg',
+              image: '/images/optimized/about-india/spiritual/varanasi.webp',
               alt: 'Varanasi Ghats',
               title: 'Varanasi',
               description: 'The holiest city for Hindus, where the Ganges River is believed to cleanse souls of past karma. Witness evening aarti (prayer ceremonies) on the ghats. (Uttar Pradesh)',
@@ -151,7 +151,7 @@ export default function SpiritualPage() {
               description: 'The place where Buddha attained enlightenment under the Bodhi Tree; the Mahabodhi Temple is one of the world’s oldest brick temples. (Bihar)',
             },
             {
-              image: 'https://ik.imagekit.io/libertyindia/about-india/spiritual/sarnath.svg',
+              image: '/images/optimized/about-india/spiritual/sarnath.webp',
               alt: 'Sarnath Stupa',
               title: 'Sarnath',
               description: 'Where Buddha delivered his first sermon, now featuring the iconic Lion Capital. (Uttar Pradesh)',

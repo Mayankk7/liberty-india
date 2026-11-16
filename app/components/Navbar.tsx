@@ -10,10 +10,10 @@ import { applyFilters, EMPTY_FILTERS, getRegion } from '../journeys/filters';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
-  { label: 'About us', href: '/about-us' },
+  { label: 'About us', href: '/about-us/' },
   { label: 'About India', href: '/#about-india', hasDropdown: true },
   { label: 'Our Services', href: '/#services', hasDropdown: true },
-  { label: 'Journeys', href: '/journeys' },
+  { label: 'Journeys', href: '/journeys/' },
   { label: 'Contact Us', href: '/#contact' },
 ];
 
@@ -111,13 +111,13 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
 
   function goToItinerary(slug: string) {
     closeSearch();
-    router.push(`/itineraries/${slug}`);
+    router.push(`/itineraries/${slug}/`);
   }
 
   function goToJourneys() {
     const q = trimmed ? `?q=${encodeURIComponent(trimmed)}` : '';
     closeSearch();
-    router.push(`/journeys${q}`);
+    router.push(`/journeys/${q}`);
   }
 
   function onInputKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -149,10 +149,10 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
   }
 
   function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
-    const realPages = ['/', '/about-us', '/#about-india', '/#services', '/journeys', '/#contact', '/nature', '/wellness', '/wildlife', '/heritage', '/spiritual', '/culture', '/architecture'];
+    const realPages = ['/', '/about-us/', '/#about-india', '/#services', '/journeys/', '/#contact', '/nature/', '/wellness/', '/wildlife/', '/heritage/', '/spiritual/', '/culture/', '/architecture/'];
     if (!realPages.includes(href)) {
       e.preventDefault();
-      window.location.href = '/under-development';
+      window.location.href = '/under-development/';
       return;
     }
     // On the homepage, smooth-scroll in place instead of letting the hash jump.

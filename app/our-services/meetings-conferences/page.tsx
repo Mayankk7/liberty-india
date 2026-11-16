@@ -1,3 +1,4 @@
+import { pageMetadata } from '../../lib/seo';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SectionOverview from '../../components/services/SectionOverview';
@@ -22,6 +23,8 @@ const overviewImages = [
 
 const overviewDescription =
   "MICE (Meetings, Incentives, Conferences, Exhibitions) travel combines business requirements with transformational experiences. It's about facilitating productive meetings while creating an environment where attendees can connect, learn, and be inspired.";
+
+export const metadata = pageMetadata('/our-services/meetings-conferences/');
 
 export default function MeetingsConferencesPage() {
   return (

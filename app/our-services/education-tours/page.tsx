@@ -1,3 +1,4 @@
+import { pageMetadata } from '../../lib/seo';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SectionOverview from '../../components/services/SectionOverview';
@@ -19,13 +20,15 @@ const overviewImages = [
 const overviewDescription =
   "Education Tours combine rigorous learning with experiential discovery. They're designed for students, teachers and lifelong learners seeking to understand India beyond textbooks.";
 
+export const metadata = pageMetadata('/our-services/education-tours/');
+
 export default function EducationToursPage() {
   return (
     <main className="min-h-screen bg-white w-full overflow-x-hidden">
       <Navbar variant="white" />
       <ServiceHero
         title="Education Tours"
-        imageSrc="https://ik.imagekit.io/libertyindia/services/education-tours/education-bg.svg"
+        imageSrc="https://ik.imagekit.io/libertyindia/services/education-tours/education-bg.svg?tr=w-1920,f-webp"
       />
       <TaglineStrip text="Learning Journeys That Transform Understanding" />
       <SectionOverview images={overviewImages} description={overviewDescription} />

@@ -42,7 +42,7 @@ export default function JourneyFinder() {
     (next: Filters) => {
       setFilters(next);
       const params = filtersToParams(next).toString();
-      router.replace(params ? `/journeys?${params}` : '/journeys', { scroll: false });
+      router.replace(params ? `/journeys/?${params}` : '/journeys/', { scroll: false });
     },
     [router]
   );
@@ -173,7 +173,7 @@ function CardForItinerary({ it }: { it: Itinerary }) {
       priceValue={it.startingPrice}
       priceNote={it.startingPriceNote}
       duration={it.duration}
-      href={`/itineraries/${it.slug}`}
+      href={`/itineraries/${it.slug}/`}
       badge={isPrivate ? 'Private Journeys' : 'Small Group Journeys'}
       bgColor={isPrivate ? '#fdf8e8' : undefined}
     />

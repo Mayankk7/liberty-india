@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import type { Itinerary } from '../itineraries';
+import { sendEnquiry } from '../../lib/enquiry';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -97,17 +98,29 @@ export default function InquiryModal({ open, onClose, itinerary }: Props) {
     setServerError(null);
 
     try {
-      const res = await fetch('/api/inquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      const res = await sendEnquiry({
+        apiPath: '/api/inquiry',
+        apiBody: {
           ...form,
           itinerary: { slug: itinerary.slug, title: itinerary.title },
-        }),
+        },
+        formName: 'itinerary_enquiry',
+        formLocation: itinerary.slug,
+        contact: {
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          message: form.message,
+          details: {
+            Itinerary: itinerary.title,
+            'Preferred travel month': form.month,
+            'Number of travellers': form.travellers,
+          },
+        },
       });
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
+        const data = res.data;
         if (res.status === 422 && data?.errors) {
           setErrors(data.errors);
           setStatus('idle');

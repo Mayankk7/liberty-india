@@ -2,14 +2,20 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import NewsletterForm from './NewsletterForm';
+import PrivacyPolicyLink from './PrivacyPolicyLink';
+import { CONSENT_OPEN_EVENT } from '../lib/consent';
+import { sendEnquiry } from '../lib/enquiry';
+import { NEWSLETTER_VISIBLE, PRIVACY_POLICY_URL, SOCIAL_LINKS } from '../lib/siteConfig';
 // import ReCAPTCHA from 'react-google-recaptcha';
 
 const quickLinks = [
   { label: 'Home', href: '/' },
-  { label: 'About us', href: '/about-us' },
+  { label: 'About us', href: '/about-us/' },
   { label: 'About India', href: '/#about-india' },
-  { label: 'Journeys', href: '/journeys' },
+  { label: 'Journeys', href: '/journeys/' },
   { label: 'Our Services', href: '/#services' },
+  { label: 'FAQ', href: '/faq/' },
   { label: 'Contact Us', href: '/#contact' },
 ];
 
@@ -32,10 +38,21 @@ export default function Footer() {
     setErrorMsg('');
 
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+      // Same payload as before; sendEnquiry routes it to HubSpot when an
+      // enquiry form is configured (static hosting), else to /api/contact,
+      // and pushes the generate_lead event on success.
+      const res = await sendEnquiry({
+        apiPath: '/api/contact',
+        apiBody: formData,
+        formName: 'request_proposal',
+        formLocation: 'footer',
+        contact: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          details: { Purpose: formData.purpose },
+        },
       });
 
       if (res.ok) {
@@ -44,7 +61,7 @@ export default function Footer() {
         return;
       }
 
-      const data = await res.json().catch(() => ({}));
+      const data = res.data;
       if (data.errors) {
         const first = Object.values(data.errors)[0] as string;
         setErrorMsg(first || 'Please check the form and try again.');
@@ -64,12 +81,11 @@ export default function Footer() {
       <div className="relative w-full overflow-hidden">
         {/* Background Image - local cleaned copy (monument vector stripped) */}
         <Image
-          src="/footer-1.svg"
+          src="/footer-1.webp"
           alt="Misty mountain landscape"
           fill
           className="object-cover object-center origin-left scale-x-[1.03] -z-0 select-none pointer-events-none"
           sizes="100vw"
-          priority
         />
 
         {/* Readability gradient — darker on the left where the copy sits */}
@@ -264,7 +280,11 @@ export default function Footer() {
                       className="accent-[#E07B39] mt-0.5 h-3.5 w-3.5 shrink-0 cursor-pointer"
                     />
                     <span style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
-                      I agree to receive updates from Liberty India per the privacy policy.
+                      I agree to receive updates from Liberty India per the{' '}
+                      <PrivacyPolicyLink className="underline underline-offset-2 hover:text-white">
+                        privacy policy
+                      </PrivacyPolicyLink>
+                      .
                     </span>
                   </label>
 
@@ -349,12 +369,14 @@ export default function Footer() {
                 India&apos;s destination management partner for MICE, luxury
                 leisure, and curated journeys across the subcontinent.
               </p>
-              {/* Social icons — placeholder "#" hrefs for now.
-                 TODO: replace "#" with the live Instagram / Facebook / LinkedIn
-                 profile URLs when the client supplies them. */}
+              {/* Social icons — each shows only once its URL is set in
+                 app/lib/siteConfig.ts, so there are no dead "#" links. */}
               <div className="flex items-center gap-4">
+                {SOCIAL_LINKS.instagram && (
                 <a
-                  href="#"
+                  href={SOCIAL_LINKS.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="Instagram"
                   className="text-white/60 hover:text-white transition-colors duration-200"
                 >
@@ -362,8 +384,12 @@ export default function Footer() {
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                   </svg>
                 </a>
+                )}
+                {SOCIAL_LINKS.facebook && (
                 <a
-                  href="#"
+                  href={SOCIAL_LINKS.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="Facebook"
                   className="text-white/60 hover:text-white transition-colors duration-200"
                 >
@@ -371,8 +397,12 @@ export default function Footer() {
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                   </svg>
                 </a>
+                )}
+                {SOCIAL_LINKS.linkedin && (
                 <a
-                  href="#"
+                  href={SOCIAL_LINKS.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="LinkedIn"
                   className="text-white/60 hover:text-white transition-colors duration-200"
                 >
@@ -380,6 +410,7 @@ export default function Footer() {
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                   </svg>
                 </a>
+                )}
               </div>
             </div>
 
@@ -416,13 +447,13 @@ export default function Footer() {
               </h4>
               <ul className="space-y-3">
                 {[
-                  { label: 'Meetings & Conferences', href: '/our-services/meetings-conferences' },
-                  { label: 'Incentives', href: '/our-services/incentives' },
-                  { label: 'Premium Leisure', href: '/our-services/premium-leisure' },
-                  { label: 'Cruise Handling', href: '/our-services/cruise-handling' },
-                  { label: 'Special Interest Tours', href: '/our-services/special-interest' },
-                  { label: 'Sports Tourism', href: '/our-services/sports-tourism' },
-                  { label: 'Education Tours', href: '/our-services/education-tours' },
+                  { label: 'Meetings & Conferences', href: '/our-services/meetings-conferences/' },
+                  { label: 'Incentives', href: '/our-services/incentives/' },
+                  { label: 'Premium Leisure', href: '/our-services/premium-leisure/' },
+                  { label: 'Cruise Handling', href: '/our-services/cruise-handling/' },
+                  { label: 'Special Interest Tours', href: '/our-services/special-interest/' },
+                  { label: 'Sports Tourism', href: '/our-services/sports-tourism/' },
+                  { label: 'Education Tours', href: '/our-services/education-tours/' },
                 ].map((s) => (
                   <li key={s.label}>
                     <a
@@ -485,6 +516,35 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Newsletter sign-up → HubSpot (hidden in production until configured) */}
+          {NEWSLETTER_VISIBLE && (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-6 gap-x-8 lg:gap-x-10 py-10 md:py-12 border-b border-white/12">
+              <div className="lg:col-span-4 lg:pr-6">
+                <h4
+                  className="text-white font-semibold text-[11px] mb-3 uppercase tracking-[0.18em]"
+                  style={{ fontFamily: 'Poppins, sans-serif' }}
+                >
+                  Newsletter
+                </h4>
+                <p
+                  className="text-white text-xl md:text-2xl font-semibold leading-snug mb-2"
+                  style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
+                >
+                  India, in your inbox
+                </p>
+                <p
+                  className="text-white/65 text-[13px] leading-relaxed max-w-sm"
+                  style={{ fontFamily: 'Poppins, sans-serif' }}
+                >
+                  New itineraries, destination insights and programme ideas from the Liberty India team.
+                </p>
+              </div>
+              <div className="lg:col-span-8">
+                <NewsletterForm location="footer" theme="dark" />
+              </div>
+            </div>
+          )}
+
           {/* Bottom bar — Zarah AI centered prominently, copyright beneath */}
           <div className="mt-8 md:mt-10 flex flex-col items-center gap-3 text-center">
             <div className="flex items-center gap-2.5">
@@ -507,6 +567,20 @@ export default function Footer() {
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
               © {new Date().getFullYear()} Liberty India. All rights reserved.
+              {PRIVACY_POLICY_URL && (
+                <>
+                  <span aria-hidden="true"> · </span>
+                  <PrivacyPolicyLink className="underline underline-offset-2 hover:text-white transition-colors" />
+                </>
+              )}
+              <span aria-hidden="true"> · </span>
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new Event(CONSENT_OPEN_EVENT))}
+                className="underline underline-offset-2 hover:text-white transition-colors cursor-pointer"
+              >
+                Cookie settings
+              </button>
             </p>
           </div>
         </div>

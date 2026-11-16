@@ -1,3 +1,4 @@
+import { pageMetadata } from '../../lib/seo';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SectionOverview from '../../components/services/SectionOverview';
@@ -19,13 +20,15 @@ const overviewImages = [
 const overviewDescription =
   "At the heart of India lies a thousand different journeys—no two ever the same. As a premium leisure Destination Management Company, we specialise in crafting bespoke experiences that reflect the individuality of every traveller. From royal palaces and hidden retreats to immersive cultural encounters, each itinerary is thoughtfully curated with precision, discretion, and an uncompromising commitment to excellence. With us, India is not just a destination—it is a deeply personal journey.";
 
+export const metadata = pageMetadata('/our-services/premium-leisure/');
+
 export default function PremiumLeisurePage() {
   return (
     <main className="min-h-screen bg-white w-full overflow-x-hidden">
       <Navbar variant="white" />
       <ServiceHero
         title="Premium Leisure"
-        imageSrc="https://ik.imagekit.io/libertyindia/services/premium-leisure/leisure-bg.svg"
+        imageSrc="https://ik.imagekit.io/libertyindia/services/premium-leisure/leisure-bg.svg?tr=w-1920,f-webp"
       />
       <TaglineStrip text="Luxury Journeys Crafted for You" />
       <SectionOverview images={overviewImages} description={overviewDescription} />

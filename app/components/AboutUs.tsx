@@ -75,7 +75,7 @@ export default function AboutUs() {
               fontFamily: 'var(--font-merriweather), Georgia, serif',
             }}
             aria-label="Discover more about Liberty India"
-            href="/about-us"
+            href="/about-us/"
           >
             Discover More
           </a>

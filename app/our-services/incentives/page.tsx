@@ -1,3 +1,4 @@
+import { pageMetadata } from '../../lib/seo';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SectionOverview from '../../components/services/SectionOverview';
@@ -17,17 +18,19 @@ const overviewImages = [
 const overviewDescription =
   "As a premier Destination Management Company in India, we design refined, high-impact experiences that go far beyond conventional rewards—think private escapes, curated cultural immersions, and seamless luxury at every touchpoint. Each program is meticulously tailored to reflect your brand’s stature while inspiring exceptional performance, deep loyalty, and lasting impressions. Transform achievement into an unforgettable journey of prestige and distinction.";
 
+export const metadata = pageMetadata('/our-services/incentives/');
+
 export default function IncentivesPage() {
   return (
     <main className="min-h-screen bg-white w-full overflow-x-hidden">
       <Navbar variant="white" />
       <ServiceHero
         title="Incentives"
-        imageSrc="https://ik.imagekit.io/libertyindia/services/incentive/incentive-bg.svg"
+        imageSrc="https://ik.imagekit.io/libertyindia/services/incentive/incentive-bg.svg?tr=w-1920,f-webp"
       />
       <TaglineStrip text="Celebrating Excellence Through Transformations" />
       <SectionOverview images={overviewImages} description={overviewDescription} />
-      <CustomizedPrograms imageSrc="https://ik.imagekit.io/libertyindia/services/incentive/programs.svg?tr=w-1600,f-png" />
+      <CustomizedPrograms imageSrc="https://ik.imagekit.io/libertyindia/services/incentive/programs.svg?tr=w-1920,f-webp" />
       <Footer />
     </main>
   );

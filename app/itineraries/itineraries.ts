@@ -394,7 +394,7 @@ export const itineraries: Itinerary[] = [
     ],
       heroImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/eastindia/main-bg.jpg",
       overviewImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/eastindia/overview.jpg",
-      mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+      mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg?tr=w-1920,f-webp",
       coordinates: ITINERARY_MAP_ROUTES["eastindia"],
       // Hotel images sourced session 38 (Commons) — were wrongly reusing day-2/4/7
       // scenery SVGs. Oberoi Grand = exact property; other two = representative
@@ -488,7 +488,7 @@ export const itineraries: Itinerary[] = [
     ],
     heroImage: "https://ik.imagekit.io/libertyindia/itineraries/ayurveda-kairali/main-bg.png",
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/ayurveda-kairali/overview.png",
-    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg?tr=w-1920,f-webp",
     coordinates: ITINERARY_MAP_ROUTES["kairali-ayurvedic-healing-village"],
   },
 
@@ -568,7 +568,7 @@ export const itineraries: Itinerary[] = [
     ],
     heroImage: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/main-bg.png",
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/classical-golden-triangle/overview.png",
-    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg?tr=w-1920,f-webp",
     coordinates: ITINERARY_MAP_ROUTES["classical-golden-triangle"],
     // Hotels per the client's Golden Triangle docx city table (Deluxe column);
     // images shared with golden-triangle-with-ranthambore (same properties).
@@ -663,7 +663,7 @@ export const itineraries: Itinerary[] = [
     ],
     heroImage: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/main-bg.webp",
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/taj-and-tigers/overview.png",
-    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg?tr=w-1920,f-webp",
     coordinates: ITINERARY_MAP_ROUTES["taj-and-tigers"],
     // Same route as Golden Triangle with Ranthambore — the client docx city
     // table applies; images shared with that itinerary (same properties).
@@ -756,7 +756,7 @@ export const itineraries: Itinerary[] = [
     ],
     heroImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/unveiling-the-enchanting-south-tamil-nadu/main-bg.jpg",
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/south-india-tamil-nadu/overview.png",
-    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg?tr=w-1920,f-webp",
     coordinates: ITINERARY_MAP_ROUTES["unveiling-the-enchanting-south-tamil-nadu"],
     // Cities shared with Enchanting Tamil Nadu & Kerala — hotels per that
     // docx city table (Deluxe column).
@@ -926,7 +926,7 @@ export const itineraries: Itinerary[] = [
     ],
     heroImage: "https://ik.imagekit.io/libertyindia/itineraries/northeast-india-sojourn/main-bg.png",
     overviewImage: "https://ik.imagekit.io/libertyindia/itineraries/northeast-india-sojourn/overview.png",
-    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg?tr=w-1920,f-webp",
     coordinates: ITINERARY_MAP_ROUTES["northeast-india-sojourn"],
     // Cities shared with Incredible North East India — hotels per that docx
     // city table (Deluxe column); shared images for the shared properties.
@@ -1244,7 +1244,7 @@ export const itineraries: Itinerary[] = [
     // mapImage unused by the template. Swap to ImageKit + official hotel photos later.
     heroImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/safari-and-heritage-trail/main-bg.jpg",
     overviewImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/safari-and-heritage-trail/overview.jpg",
-    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg?tr=w-1920,f-webp",
     coordinates: ITINERARY_MAP_ROUTES["safari-and-heritage-trail"],
     // Hotel images are REPRESENTATIVE premium stand-ins (exact properties not free-licensed) — see SOURCES.md.
     suggestedHotels: [
@@ -1346,7 +1346,7 @@ export const itineraries: Itinerary[] = [
     // mapImage unused by the template. Swap to ImageKit + official hotel photos later.
     heroImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/incredible-north-east-india/main-bg.jpg",
     overviewImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/incredible-north-east-india/overview.jpg",
-    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg?tr=w-1920,f-webp",
     coordinates: ITINERARY_MAP_ROUTES["incredible-north-east-india"],
     // Hotel images are REPRESENTATIVE premium stand-ins (exact properties not free-licensed) — see SOURCES.md.
     suggestedHotels: [
@@ -1446,7 +1446,7 @@ export const itineraries: Itinerary[] = [
     // under /images/itineraries/golden-triangle-with-ranthambore/. See SOURCES.md. mapImage unused.
     heroImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/golden-triangle-with-ranthambore/main-bg.jpg",
     overviewImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/golden-triangle-with-ranthambore/overview.jpg",
-    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg?tr=w-1920,f-webp",
     coordinates: ITINERARY_MAP_ROUTES["golden-triangle-with-ranthambore"],
     // Hotel images are REPRESENTATIVE premium stand-ins (exact properties not free-licensed) — see SOURCES.md.
     suggestedHotels: [
@@ -1642,7 +1642,7 @@ export const itineraries: Itinerary[] = [
     // Images: local Pexels + Wikimedia Commons (premium, free-license) — see SOURCES.md in the image folder
     heroImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/enchanting-south-india-tamilnadu-kerala/main-bg.jpg",
     overviewImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/enchanting-south-india-tamilnadu-kerala/overview.jpg",
-    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg?tr=w-1920,f-webp",
     coordinates: ITINERARY_MAP_ROUTES["enchanting-south-india-tamilnadu-kerala"],
     // Hotel images are representative luxury/heritage stand-ins — see SOURCES.md
     suggestedHotels: [
@@ -1747,7 +1747,7 @@ export const itineraries: Itinerary[] = [
     // Images: local Pexels + Wikimedia Commons (premium, free-license) — see SOURCES.md in the image folder
     heroImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/indias-natural-and-historical-treasures/main-bg.jpg",
     overviewImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/indias-natural-and-historical-treasures/overview.jpg",
-    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg?tr=w-1920,f-webp",
     coordinates: ITINERARY_MAP_ROUTES["indias-natural-and-historical-treasures"],
     // Hotel images are representative luxury/heritage stand-ins — see SOURCES.md
     suggestedHotels: [
@@ -1845,7 +1845,7 @@ export const itineraries: Itinerary[] = [
     // Images: local Pexels (premium, free-license) — see SOURCES.md in the image folder
     heroImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/encounter-with-the-royal-bengal-tiger/main-bg.jpg",
     overviewImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/encounter-with-the-royal-bengal-tiger/overview.jpg",
-    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg?tr=w-1920,f-webp",
     coordinates: ITINERARY_MAP_ROUTES["encounter-with-the-royal-bengal-tiger"],
     // Hotel images are representative luxury/lodge stand-ins — see SOURCES.md
     suggestedHotels: [
@@ -2041,7 +2041,7 @@ export const itineraries: Itinerary[] = [
     // Images: local (Pexels + Wikimedia Commons, free-license) — see SOURCES.md in the image folder
     heroImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/footsteps-of-lord-buddha/main-bg.jpg",
     overviewImage: "https://ik.imagekit.io/libertyindia/images/imagekit-upload/itineraries/footsteps-of-lord-buddha/overview.jpg",
-    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg",
+    mapImage: "https://ik.imagekit.io/libertyindia/itineraries/north-east/map.svg?tr=w-1920,f-webp",
     coordinates: ITINERARY_MAP_ROUTES["footsteps-of-lord-buddha"],
     // Hotel images are representative luxury stand-ins — see SOURCES.md
     suggestedHotels: [

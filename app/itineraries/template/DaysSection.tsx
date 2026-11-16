@@ -228,10 +228,20 @@ export default function DaysSection({ itinerary }: { itinerary: Itinerary }) {
                   <h3 className="flex-1 text-[15px] md:text-base lg:text-[17px] text-[#424242] leading-snug min-w-0 tracking-[0.02em]">
                     {day.title}
                   </h3>
-                  <span className="text-[13px] md:text-sm text-[#424242] whitespace-nowrap tracking-[0.02em]">
-                    <span className="font-semibold">Overnight</span>{' '}
-                    {day.overnight}
-                  </span>
+                  {/* No overnight stay (value "—"): the final day reads
+                      "Departure"; any other such day shows nothing. */}
+                  {day.overnight && day.overnight !== '—' ? (
+                    <span className="text-[13px] md:text-sm text-[#424242] whitespace-nowrap tracking-[0.02em]">
+                      <span className="font-semibold">Overnight</span>{' '}
+                      {day.overnight}
+                    </span>
+                  ) : (
+                    i === itinerary.days.length - 1 && (
+                      <span className="text-[13px] md:text-sm font-semibold text-[#424242] whitespace-nowrap tracking-[0.02em]">
+                        Departure
+                      </span>
+                    )
+                  )}
                 </header>
 
                 <div className="flex flex-col md:flex-row gap-4 md:gap-0 p-4 md:p-0">

@@ -156,6 +156,43 @@ repointed.
 > then **Done**, **Files**, **Next**. Older sessions archived in
 > `SESSION_LOG_ARCHIVE.md`.
 
+### 2026-11-11 (session 62) — Client change-list: consent, HubSpot, SEO, FAQ, speed
+**Done:** Everything on the client's list that needs no client input, all static-host compatible
+(no server). Build clean 48/48, tsc + eslint clean on touched files.
+- **Cookie banner + Consent Mode v2** (`CookieConsent.tsx`, `lib/consent.ts`): Accept / Reject /
+  Preferences; inline `<head>` script defaults all signals to denied, re-applies the saved choice, loads
+  GTM only if `NEXT_PUBLIC_GTM_ID` is set. Footer "Cookie settings" reopens it.
+- **Newsletter → HubSpot** (`NewsletterForm.tsx`, `NewsletterPopup.tsx`, `lib/hubspot.ts`): footer row +
+  pop-up (12s, after cookie choice, 30-day snooze). Hidden in production until HubSpot IDs are set.
+- **Enquiry forms** (`lib/enquiry.ts` → `sendEnquiry`): Footer, InquiryModal, ExpertInquiryModal and the
+  previously dead `CustomizedPrograms` (now wired; phone made required) all submit through one helper:
+  HubSpot when `NEXT_PUBLIC_HUBSPOT_ENQUIRY_FORM_ID` is set, else the old `/api/*` route. Pushes
+  `generate_lead` on success. **Footer form (P0-frozen): only the fetch call was swapped, per the
+  user's instruction to do all client changes; fields/state/UI untouched.**
+- **SEO** (`lib/seo.ts`): every page has its own title/description/canonical (interim copy — client doc
+  still to be pasted into `PAGES`); client pages get metadata via a per-route `layout.tsx`; itineraries
+  via `generateMetadata`. Removed the root-layout canonical that pointed every page at `/`.
+  `trailingSlash: true` + all internal links updated. `app/sitemap.ts`, `app/robots.ts`.
+- **FAQ** (`/faq/`, content in `app/faq/faqs.ts`, FAQPage JSON-LD, footer link). ⚠️ Answers are a DRAFT
+  written from existing site copy — client to approve/replace.
+- **"Overnight —"** → last day shows "Departure", other no-overnight days show nothing (`DaysSection`).
+- **Links:** social icons + Privacy Policy are config-driven (`siteConfig.ts`); hidden / plain text until
+  URLs are set, so no dead `#` links.
+- **Mobile speed:** 66 raster-in-SVG images (615 MB total, up to 25 MB each) now load as WebP (11.6 MB
+  total): 35 via ImageKit `?tr=w-1920,f-webp`; 31 too large for ImageKit to transform were rasterised
+  to `public/images/optimized/` (taj-mahal needed an EXIF auto-orient fix). `footer-1.svg` (8.5 MB,
+  preloaded on every page) → `footer-1.webp` (65 KB). Home page weight 6.2 MB → 1.8 MB (local Lighthouse).
+**Files:** `app/lib/{siteConfig,consent,hubspot,enquiry,seo}.ts`, `app/components/{CookieConsent,
+NewsletterForm,NewsletterPopup,PrivacyPolicyLink,Footer}.tsx`, `app/components/services/
+CustomizedPrograms.tsx`, `app/{sitemap,robots}.ts`, `app/faq/*`, per-route `layout.tsx` ×10, all
+`page.tsx` (metadata / image URLs), `next.config.ts`, `public/images/optimized/*`, `public/footer-1.webp`.
+**Next / blocked on client:** GTM ID; HubSpot Hub ID + newsletter & enquiry form GUIDs (fields
+`firstname, lastname, email, phone, company, jobtitle, message`); social URLs; privacy policy URL/text;
+SEO doc; FAQ content; new itineraries + home/language copy. CMS on hold. Still server-only (won't work
+on the static host): itinerary PDF download + OTP, `next.config` redirects. Repo is not yet configured
+for `output: 'export'` (API routes + redirects block it). Hero image causes an intermittent CLS ~0.25
+on mobile Lighthouse (pre-existing, not investigated). `public/footer-1.svg` is now unused.
+
 ### 2026-06-13 (session 61) — Hero crossfade: kill the fade-to-black between slides
 **Done:** Client: hero "becomes black then changes the picture" on every slide change. Root cause in
 `HeroCarousel.tsx`: the crossfade fired `startFade` via a blind **500ms `fadeStartTimer`** fallback, so

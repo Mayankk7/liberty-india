@@ -1,11 +1,8 @@
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { pageMetadata } from '../lib/seo';
 
-export const metadata = {
-  title: 'Contact Us | Liberty India',
-  description:
-    "Request a proposal from Liberty India — India's destination management partner for MICE, luxury leisure and curated journeys. Tell us about your programme and our team will handle India end to end.",
-};
+export const metadata = pageMetadata('/contact-us/');
 
 /**
  * /contact-us renders the full site chrome and routes the visitor straight to

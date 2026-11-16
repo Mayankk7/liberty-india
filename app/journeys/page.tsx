@@ -1,16 +1,11 @@
 import { Suspense } from 'react';
-import type { Metadata } from 'next';
+import { pageMetadata } from '../lib/seo';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Reveal from '../components/Reveal';
 import JourneyFinder from './JourneyFinder';
 
-export const metadata: Metadata = {
-  title: 'All Journeys | Liberty India',
-  description:
-    'Browse every Liberty India journey. Filter by region, interest, travel style, and group format to find your next bespoke India experience.',
-  alternates: { canonical: '/journeys' },
-};
+export const metadata = pageMetadata('/journeys/');
 
 export default function JourneysPage() {
   return (

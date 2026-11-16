@@ -111,7 +111,7 @@ export default function Journeys() {
                   priceNote={matchingItinerary?.startingPriceNote ?? 'per person'}
                   duration={journey.duration}
                   href={
-                    matchingItinerary ? `/itineraries/${matchingItinerary.slug}` : undefined
+                    matchingItinerary ? `/itineraries/${matchingItinerary.slug}/` : undefined
                   }
                 />
               </Reveal>
@@ -122,7 +122,7 @@ export default function Journeys() {
         {/* View-All link to the dedicated /journeys page */}
         <div className="text-center mt-12">
           <Link
-            href="/journeys"
+            href="/journeys/"
             className="inline-block px-10 py-3.5 text-base font-medium text-white rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
             style={{
               backgroundColor: '#E07B39',

@@ -62,7 +62,7 @@ export default function WildlifePage() {
             <div className="relative h-full w-full">
               <ImageWithLoader
                 sizes="(max-width: 768px) 100vw, 33vw"
-                src="https://ik.imagekit.io/libertyindia/about-india/wildlife/picture-2.svg"
+                src="/images/optimized/about-india/wildlife/picture-2.webp"
                 alt="Nature 2"
                 fill
                 className="object-cover object-center"
@@ -72,7 +72,7 @@ export default function WildlifePage() {
             <div className="relative h-full w-full">
               <ImageWithLoader
                 sizes="(max-width: 768px) 100vw, 33vw"
-                src="https://ik.imagekit.io/libertyindia/about-india/wildlife/picture-3.svg"
+                src="/images/optimized/about-india/wildlife/picture-3.webp"
                 alt="Nature 3"
                 fill
                 className="object-cover object-center"

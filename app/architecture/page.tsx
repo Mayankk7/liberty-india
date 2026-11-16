@@ -17,7 +17,7 @@ export default function ArchitecturePage() {
       <section className="relative w-full pt-16">
         <div className="relative w-full lg:w-[102vw] h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <Image
-            src="https://ik.imagekit.io/libertyindia/about-india/architecture/architecture-bg.svg"
+            src="/images/optimized/about-india/architecture/architecture-bg.webp"
             alt="Architecture of India - Amber Fort"
             fill
             className="object-cover object-center"
@@ -142,7 +142,7 @@ export default function ArchitecturePage() {
           {/* Dravidian */}
           <div className="relative flex-1 flex flex-col items-center">
             <Image
-              src="https://ik.imagekit.io/libertyindia/about-india/architecture/dravidian.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/architecture/dravidian.svg?tr=w-1920,f-webp"
               alt="Dravidian Temple"
               width={400}
               height={440}
@@ -159,7 +159,7 @@ export default function ArchitecturePage() {
           {/* Vesara */}
           <div className="relative flex-1 flex flex-col items-center">
             <Image
-              src="https://ik.imagekit.io/libertyindia/about-india/architecture/vesara.svg"
+              src="https://ik.imagekit.io/libertyindia/about-india/architecture/vesara.svg?tr=w-1920,f-webp"
               alt="Vesara Temple"
               width={400}
               height={440}
@@ -196,7 +196,7 @@ export default function ArchitecturePage() {
                   'A soaring UNESCO landmark of red sandstone, showcasing intricate carvings and the early brilliance of Indo-Islamic design',
               },
               {
-                image: 'https://ik.imagekit.io/libertyindia/about-india/architecture/buland-darwaza.svg',
+                image: '/images/optimized/about-india/architecture/buland-darwaza.webp',
                 alt: 'Buland Darwaza',
                 title: 'Buland Darwaza',
                 description:
@@ -227,7 +227,7 @@ export default function ArchitecturePage() {
                   'Overlooking the Aravalli hills, this majestic palace-fort blends Rajput strength with ornate halls, mirrored chambers, and sweeping courtyards.',
               },
               {
-                image: 'https://ik.imagekit.io/libertyindia/about-india/architecture/umaid-bhawan.svg',
+                image: 'https://ik.imagekit.io/libertyindia/about-india/architecture/umaid-bhawan.svg?tr=w-1920,f-webp',
                 alt: 'Umaid Bhawan Palace',
                 title: 'Umaid Bhawan Palace',
                 description:

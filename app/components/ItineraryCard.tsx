@@ -139,12 +139,12 @@ export default function ItineraryCard({
       tabIndex={0}
       aria-label={`${title} (under development)`}
       onClick={() => {
-        window.location.href = '/under-development';
+        window.location.href = '/under-development/';
       }}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          window.location.href = '/under-development';
+          window.location.href = '/under-development/';
         }
       }}
     >
