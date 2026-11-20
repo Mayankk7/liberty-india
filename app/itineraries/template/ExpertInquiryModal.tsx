@@ -299,7 +299,7 @@ export default function ExpertInquiryModal({ open, onClose, itinerary }: Props) 
                       className="accent-[#E07B39] mt-0.5 h-4 w-4 shrink-0 cursor-pointer"
                     />
                     <span style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
-                      I accept the <span className="underline underline-offset-2">Privacy Policy</span>
+                      I accept the <a href="/privacy-policy/" className="underline underline-offset-2">Privacy Policy</a>
                       <span className="text-[#E07B39] ml-0.5">*</span>
                     </span>
                   </label>

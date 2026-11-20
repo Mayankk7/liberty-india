@@ -1,3 +1,4 @@
+import { pageMetadata } from '../../lib/seo';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SectionOverview from '../../components/services/SectionOverview';
@@ -15,6 +16,8 @@ const overviewImages = [
 
 const overviewDescription =
   "Our cruise handling services cover every aspect of port operations, ensuring seamless turnaround and exceptional guest experiences. From pre-arrival planning to on-ground execution, our experienced team manages port logistics, vessel clearance coordination, shore excursions, transportation, and guest services with precision and reliability.";
+
+export const metadata = pageMetadata('/our-services/cruise-handling/');
 
 export default function CruiseHandlingPage() {
   return (

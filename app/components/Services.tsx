@@ -1,7 +1,7 @@
 'use client';
 
 import ImageWithLoader from './ImageWithLoader';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Reveal from './Reveal';
 
 interface Service {
@@ -20,7 +20,7 @@ const services: Service[] = [
     subtitle: 'Journeys by Water',
     description: 'Effortless river and coastal cruise experiences.',
     image: 'https://ik.imagekit.io/libertyindia/services/cruise.jpg?updatedAt=1779235200000',
-    href: '/our-services/cruise-handling',
+    href: '/our-services/cruise-handling/',
   },
   {
     id: 'meetings',
@@ -28,7 +28,7 @@ const services: Service[] = [
     subtitle: 'Business Meets Inspiration',
     description: 'Seamless events in extraordinary settings.',
     image: 'https://ik.imagekit.io/libertyindia/services/meetings.svg',
-    href: '/our-services/meetings-conferences',
+    href: '/our-services/meetings-conferences/',
   },
   {
     id: 'premium-leisure',
@@ -36,7 +36,7 @@ const services: Service[] = [
     subtitle: 'Travel, Perfectly Personal',
     description: 'Bespoke journeys crafted entirely around you.',
     image: 'https://ik.imagekit.io/libertyindia/services/premium-leisure.svg',
-    href: '/our-services/premium-leisure',
+    href: '/our-services/premium-leisure/',
   },
   {
     id: 'incentives',
@@ -44,7 +44,7 @@ const services: Service[] = [
     subtitle: 'Reward Through Experience',
     description: 'Transformational journeys that inspire and motivate.',
     image: 'https://ik.imagekit.io/libertyindia/services/incentive.svg',
-    href: '/our-services/incentives',
+    href: '/our-services/incentives/',
   },
   {
     id: 'education-tours',
@@ -52,7 +52,7 @@ const services: Service[] = [
     subtitle: 'Learning Beyond Classrooms',
     description: 'Immersive journeys that deepen understanding.',
     image: 'https://ik.imagekit.io/libertyindia/services/education-tours.svg',
-    href: '/our-services/education-tours',
+    href: '/our-services/education-tours/',
   },
   {
     id: 'special-interest',
@@ -60,7 +60,7 @@ const services: Service[] = [
     subtitle: 'Travel with Purpose',
     description: 'Deep dives into passions, guided by experts.',
     image: 'https://ik.imagekit.io/libertyindia/services/special-interest.svg',
-    href: '/our-services/special-interest',
+    href: '/our-services/special-interest/',
   },
   {
     id: 'sports-tourism',
@@ -68,7 +68,7 @@ const services: Service[] = [
     subtitle: 'Where Sport Meets Culture',
     description: 'Competitive, traditional, and adventure-led experiences.',
     image: 'https://ik.imagekit.io/libertyindia/services/sports-tourism.svg?updatedAt=1779235200000',
-    href: '/our-services/sports-tourism',
+    href: '/our-services/sports-tourism/',
   },
 ];
 
@@ -93,26 +93,13 @@ function ServiceCard({
   const subtitleClass = size === 'sm' ? 'text-xs md:text-base' : 'text-[13px] sm:text-sm md:text-lg';
   const descClass = size === 'sm' ? 'text-[11px] md:text-sm' : 'text-[12px] sm:text-sm md:text-base';
 
-  const router = useRouter();
-  const go = () => {
-    router.push(service.href);
-  };
-
   return (
     // .card-lift carries the lift + ::after shadow, so the root must NOT be
     // overflow-hidden (it would clip the shadow) — the image zoom is clipped
     // by its own inner wrapper instead.
-    <div
-      className={`group card-lift relative rounded-lg cursor-pointer ${className}`}
-      onClick={go}
-      tabIndex={0}
-      role="button"
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          go();
-        }
-      }}
+    <Link
+      href={service.href}
+      className={`block group card-lift relative rounded-lg cursor-pointer ${className}`}
       aria-label={service.title}
     >
       <div className="absolute inset-0 rounded-lg overflow-hidden">
@@ -147,7 +134,7 @@ function ServiceCard({
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

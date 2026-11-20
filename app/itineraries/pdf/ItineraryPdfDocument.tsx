@@ -176,7 +176,7 @@ export function ItineraryPdfDocument({ itinerary, heroSrc, overviewSrc, mapSrc }
         </View>
 
         <View style={s.footer} fixed>
-          <Text style={s.footerText}>Liberty India  ·  India@liberty-int.com</Text>
+          <Text style={s.footerText}>Liberty India  ·  India@liberty-india.com</Text>
           <Text style={s.footerText} render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`} />
         </View>
       </Page>

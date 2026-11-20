@@ -6,6 +6,10 @@ import Services from './components/Services';
 import Journeys from './components/Journeys';
 import Footer from './components/Footer';
 
+import { pageMetadata } from './lib/seo';
+
+export const metadata = pageMetadata('/');
+
 export default function Home() {
   return (
     <main>

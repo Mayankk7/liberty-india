@@ -1,3 +1,4 @@
+import { pageMetadata } from '../../lib/seo';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SectionOverview from '../../components/services/SectionOverview';
@@ -15,6 +16,8 @@ const overviewImages = [
 
 const overviewDescription =
   "Sports tourism in India blends the excitement of athletic experiences with meaningful cultural immersion, offering guests the opportunity to participate in or witness the country's vibrant and diverse sporting traditions. From the iconic Narendra Modi Stadium in Ahmedabad — the world's largest cricket stadium, seating over 132,000 spectators — to Himalayan treks, royal polo, and grassroots cricket, every journey connects world-class sport with the spirit of its destination.";
+
+export const metadata = pageMetadata('/our-services/sports-tourism/');
 
 export default function SportsTourismPage() {
   return (

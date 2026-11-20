@@ -1,11 +1,8 @@
+import { pageMetadata } from '../lib/seo';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-export const metadata = {
-  title: 'Contact Us | Liberty India',
-  description:
-    "Request a proposal from Liberty India — India's destination management partner for MICE, luxury leisure and curated journeys. Tell us about your programme and our team will handle India end to end.",
-};
+export const metadata = pageMetadata('/contact-us/');
 
 /**
  * /contact-us renders the full site chrome and routes the visitor straight to
@@ -32,15 +29,13 @@ export default function ContactUsPage() {
             className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#424242] mb-4 leading-[1.15]"
             style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
           >
-            Let&apos;s build your next India programme
+            Plan your trip to India
           </h1>
           <p
             className="text-sm md:text-base text-[#424242]/80 leading-relaxed max-w-xl mx-auto"
             style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
           >
-            Tell us what your clients or delegates need, and our team will handle
-            India end to end. Share your brief using the form below and a Liberty
-            India specialist will respond with a tailored proposal.
+            Share the places you want to see, your travel dates and the pace you prefer. A Liberty India travel expert will put together a private itinerary for you.
           </p>
         </div>
       </section>

@@ -127,7 +127,7 @@ export default function CustomizedPrograms({ imageSrc, imageAlt }: CustomizedPro
                 <input type="checkbox" required className="accent-[#E07B39] mt-0.5 w-3.5 h-3.5 shrink-0" />
                 <span>
                   I accept the{' '}
-                  <a href="#" className="underline underline-offset-2 hover:text-[#E07B39]">
+                  <a href="/privacy-policy/" className="underline underline-offset-2 hover:text-[#E07B39]">
                     Privacy Policy
                   </a>
                   .

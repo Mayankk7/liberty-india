@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Playfair_Display, Merriweather, Poppins } from 'next/font/google';
 import './globals.css';
+import { DEFAULT_OG_IMAGE, SITE_URL } from './lib/seo';
+import CookieConsent from './components/CookieConsent';
+import { consentDefaults } from './lib/consent-defaults';
 import PageLoader from './components/PageLoader';
 import LenisProvider from './components/LenisProvider';
 
@@ -26,9 +29,6 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Liberty India | India\'s Leading Destination Management Company | DMC & MICE',
-  description:
-    'Liberty India is India\'s premier Destination Management Company (DMC) specialising in MICE, Leisure travel, Events & Beyond. Experience where ancient wisdom meets modern luxury across India\'s most iconic destinations.',
   keywords: [
     'Liberty India',
     'India DMC',
@@ -50,39 +50,12 @@ export const metadata: Metadata = {
   authors: [{ name: 'Liberty India' }],
   creator: 'Liberty India',
   publisher: 'Liberty India',
-  metadataBase: new URL('https://libertyindia.com'),
-  alternates: {
-    canonical: '/',
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://libertyindia.com',
-    siteName: 'Liberty India',
-    title: 'Liberty India | India\'s Leading DMC & MICE Company',
-    description:
-      'India\'s premier Destination Management Company specialising in MICE, Leisure travel, Events & Beyond. Where ancient wisdom meets modern luxury.',
-    images: [
-      {
-        url: '/images/home-section/mar.jpg',
-        width: 1920,
-        height: 1080,
-        alt: 'Liberty India - Where Ancient Wisdom Meets Modern Luxury',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Liberty India | India\'s Leading DMC & MICE Company',
-    description:
-      'India\'s premier Destination Management Company specialising in MICE, Leisure travel, Events & Beyond.',
-    images: ['/images/home-section/mar.jpg'],
-  },
+  metadataBase: new URL(SITE_URL),
   robots: {
-    index: true,
+    index: process.env.VERCEL_ENV !== 'preview',
     follow: true,
     googleBot: {
-      index: true,
+      index: process.env.VERCEL_ENV !== 'preview',
       follow: true,
       'max-video-preview': -1,
       'max-image-preview': 'large',
@@ -101,8 +74,8 @@ const jsonLd = {
   name: 'Liberty India',
   description:
     "India's Leading Destination Management Company specialising in MICE, Leisure, Events & Beyond.",
-  url: 'https://libertyindia.com',
-  image: 'https://libertyindia.com/images/home-section/mar.jpg',
+  url: SITE_URL + '/',
+  image: DEFAULT_OG_IMAGE,
   address: {
     '@type': 'PostalAddress',
     addressCountry: 'IN',
@@ -129,6 +102,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${merriweather.variable} ${poppins.variable}`}>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: consentDefaults }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -136,6 +110,7 @@ export default function RootLayout({
       </head>
       <body className={`${merriweather.className} antialiased overflow-x-hidden`}>
         <PageLoader />
+        <CookieConsent />
         <LenisProvider>{children}</LenisProvider>
       </body>
     </html>

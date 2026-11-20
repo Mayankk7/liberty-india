@@ -11,11 +11,11 @@ import { NextResponse } from 'next/server';
  * Env:
  *   RESEND_API_KEY  - required for real delivery
  *   INQUIRY_TO      - destination inbox (falls back to CONTACT_TO,
- *                     then India@liberty-int.com)
+ *                     then India@liberty-india.com)
  *   CONTACT_FROM    - verified Resend sender (reused across the site)
  *
  * Without RESEND_API_KEY, both payloads are logged server-side and the
- * request still succeeds — same dev pattern as /api/contact.
+ * request still succeeds.
  */
 
 interface InquiryPayload {
@@ -57,14 +57,14 @@ export async function POST(request: Request) {
   }
 
   const to =
-    process.env.INQUIRY_TO ?? process.env.CONTACT_TO ?? 'India@liberty-int.com';
+    process.env.INQUIRY_TO ?? process.env.CONTACT_TO ?? 'India@liberty-india.com';
   const from = process.env.CONTACT_FROM ?? 'Liberty India <onboarding@resend.dev>';
   const apiKey = process.env.RESEND_API_KEY;
 
   const subjectTitle = itineraryTitle || 'Itinerary inquiry';
 
   const companyHtml = `
-    <h2>New itinerary inquiry from libertyindia.com</h2>
+    <h2>New itinerary inquiry from liberty-india.com</h2>
     <p><strong>Itinerary:</strong> ${escapeHtml(itineraryTitle || '—')}${
       itinerarySlug ? ` <em>(${escapeHtml(itinerarySlug)})</em>` : ''
     }</p>

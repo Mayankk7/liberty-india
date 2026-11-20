@@ -1,7 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { CONSENT_OPEN_EVENT } from '../lib/consent-defaults';
+import { ENQUIRY_CONSENT_TEXT } from '../lib/contact';
 // import ReCAPTCHA from 'react-google-recaptcha';
 
 const quickLinks = [
@@ -11,6 +13,7 @@ const quickLinks = [
   { label: 'Journeys', href: '/journeys' },
   { label: 'Our Services', href: '/#services' },
   { label: 'Contact Us', href: '/#contact' },
+  { label: 'FAQ', href: '/faq/' },
 ];
 
 export default function Footer() {
@@ -20,8 +23,11 @@ export default function Footer() {
     email: '',
     message: '',
     purpose: '',
+    country: '',
+    travelDates: '',
     agree: false,
   });
+  const submissionId = useRef('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -32,15 +38,17 @@ export default function Footer() {
     setErrorMsg('');
 
     try {
+      submissionId.current ||= crypto.randomUUID();
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, submissionId: submissionId.current }),
       });
 
       if (res.ok) {
+        submissionId.current = '';
         setStatus('success');
-        setFormData({ name: '', phone: '', email: '', message: '', purpose: '', agree: false });
+        setFormData({ name: '', phone: '', email: '', message: '', purpose: '', country: '', travelDates: '', agree: false });
         return;
       }
 
@@ -98,13 +106,13 @@ export default function Footer() {
                   className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-semibold text-white mb-4 leading-[1.15]"
                   style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                 >
-                  We build the ground programme behind yours
+                  How would you like to see India?
                 </h2>
                 <p
                   className="text-sm sm:text-base md:text-lg text-white/85 font-light leading-relaxed max-w-md"
                   style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                 >
-                  Tell us what your clients or delegates need, and we&apos;ll handle India end to end.
+                  Tell us where you want to go and what you love to do. Our local team will plan a private trip around you.
                 </p>
               </div>
 
@@ -153,7 +161,7 @@ export default function Footer() {
                   noValidate
                 >
                   {/* Heading — eyebrow + serif headline matches the
-                       "Contact us today / We build the ground programme behind yours"
+                       "Contact us today / How would you like to see India?"
                        pattern on the left side of this section */}
                   <div className="mb-2">
                     <p
@@ -166,7 +174,7 @@ export default function Footer() {
                       className="text-xl md:text-[26px] font-semibold text-[#f5efe0] leading-tight"
                       style={{ fontFamily: 'var(--font-playfair), Georgia, serif' }}
                     >
-                      Tell us about your programme
+                      Tell us about your trip
                     </h3>
                   </div>
 
@@ -187,6 +195,7 @@ export default function Footer() {
                       placeholder="Name"
                       aria-label="Name"
                       suppressHydrationWarning
+                      name="name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-4 py-3 md:px-3.5 md:py-2.5 bg-[#252525] border border-[#3a3a3a] text-[#f0ebe0] placeholder:text-[#7a766f] text-[14px] focus:outline-none focus:border-[#E07B39] focus:ring-2 focus:ring-[#E07B39]/25 transition-colors"
@@ -197,6 +206,7 @@ export default function Footer() {
                       placeholder="Phone"
                       aria-label="Phone Number"
                       suppressHydrationWarning
+                      name="phone"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3 md:px-3.5 md:py-2.5 bg-[#252525] border border-[#3a3a3a] text-[#f0ebe0] placeholder:text-[#7a766f] text-[14px] focus:outline-none focus:border-[#E07B39] focus:ring-2 focus:ring-[#E07B39]/25 transition-colors"
@@ -207,6 +217,7 @@ export default function Footer() {
                       placeholder="Email"
                       aria-label="Email Address"
                       suppressHydrationWarning
+                      name="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-3 md:px-3.5 md:py-2.5 bg-[#252525] border border-[#3a3a3a] text-[#f0ebe0] placeholder:text-[#7a766f] text-[14px] focus:outline-none focus:border-[#E07B39] focus:ring-2 focus:ring-[#E07B39]/25 transition-colors"
@@ -214,8 +225,28 @@ export default function Footer() {
                     />
                   </div>
 
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {([
+                      ['country', 'Country of residence'],
+                      ['travelDates', 'Travel dates or month'],
+                    ] as const).map(([field, label]) => (
+                      <input
+                        key={field}
+                        type="text"
+                        name={field}
+                        aria-label={label}
+                        placeholder={label}
+                        autoComplete={field === 'country' ? 'country-name' : undefined}
+                        value={formData[field]}
+                        onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
+                        className="w-full px-4 py-3 md:px-3.5 md:py-2.5 bg-[#252525] border border-[#3a3a3a] text-[#f0ebe0] placeholder:text-[#7a766f] text-[14px] focus:outline-none focus:border-[#E07B39] focus:ring-2 focus:ring-[#E07B39]/25 transition-colors"
+                      />
+                    ))}
+                  </div>
+
                   {/* Purpose */}
                   <select
+                    name="purpose"
                     value={formData.purpose}
                     aria-label="Purpose of enquiry"
                     suppressHydrationWarning
@@ -247,6 +278,7 @@ export default function Footer() {
                     placeholder="Your message (optional)"
                     aria-label="Your message"
                     suppressHydrationWarning
+                    name="message"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows={2}
@@ -264,7 +296,9 @@ export default function Footer() {
                       className="accent-[#E07B39] mt-0.5 h-3.5 w-3.5 shrink-0 cursor-pointer"
                     />
                     <span style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>
-                      I agree to receive updates from Liberty India per the privacy policy.
+                      {ENQUIRY_CONSENT_TEXT} Read our{' '}
+                      <a href="/privacy-policy/" className="underline">privacy policy</a> and{' '}
+                      <a href="/cookie-policy/" className="underline">cookie policy</a>.
                     </span>
                   </label>
 
@@ -462,11 +496,11 @@ export default function Footer() {
                     <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
                   </svg>
                   <a
-                    href="mailto:India@liberty-int.com"
+                    href="mailto:India@liberty-india.com"
                     className="text-white/65 text-[13px] hover:text-white transition-colors"
                     style={{ fontFamily: 'Poppins, sans-serif' }}
                   >
-                    India@liberty-int.com
+                    India@liberty-india.com
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
@@ -502,6 +536,13 @@ export default function Footer() {
                 Powered by Zarah AI
               </p>
             </div>
+            <nav aria-label="Privacy and cookies" className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-white/75">
+              <a className="hover:underline" href="/privacy-policy/">Privacy Policy</a>
+              <a className="hover:underline" href="/cookie-policy/">Cookie Policy</a>
+              <button type="button" className="cursor-pointer hover:underline" onClick={() => window.dispatchEvent(new Event(CONSENT_OPEN_EVENT))}>
+                Cookie settings
+              </button>
+            </nav>
             <p
               className="text-white/45 text-[11px] md:text-[12px] tracking-wide"
               style={{ fontFamily: 'Poppins, sans-serif' }}

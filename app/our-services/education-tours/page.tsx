@@ -1,3 +1,4 @@
+import { pageMetadata } from '../../lib/seo';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SectionOverview from '../../components/services/SectionOverview';
@@ -18,6 +19,8 @@ const overviewImages = [
 
 const overviewDescription =
   "Education Tours combine rigorous learning with experiential discovery. They're designed for students, teachers and lifelong learners seeking to understand India beyond textbooks.";
+
+export const metadata = pageMetadata('/our-services/education-tours/');
 
 export default function EducationToursPage() {
   return (

@@ -280,7 +280,7 @@ export default function InquiryModal({ open, onClose, itinerary }: Props) {
                 className="text-[11px] text-[#424242]/60 text-center leading-relaxed"
                 style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
               >
-                We&rsquo;ll never share your details. By submitting, you agree to be contacted by Liberty India.
+                By submitting, you agree to be contacted by Liberty India about this enquiry. Read our <a href="/privacy-policy/" className="underline">privacy policy</a>.
               </p>
             </form>
           )}

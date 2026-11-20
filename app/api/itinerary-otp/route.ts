@@ -134,7 +134,7 @@ async function handleVerify(body: Record<string, unknown>) {
   }
 
   // Notify Liberty India who downloaded which journey.
-  const to = process.env.INQUIRY_TO ?? process.env.CONTACT_TO ?? 'India@liberty-int.com';
+  const to = process.env.INQUIRY_TO ?? process.env.CONTACT_TO ?? 'India@liberty-india.com';
   await sendEmail({
     to,
     replyTo: payload.e,

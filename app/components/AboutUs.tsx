@@ -105,7 +105,7 @@ export default function AboutUs() {
             name: 'Liberty India',
             description:
               'Liberty India is a premier Destination Management Company specialising in bespoke India programmes for tour operators, travel advisors, corporate buyers and travellers.',
-            url: 'https://libertyindia.com',
+            url: 'https://liberty-india.com/',
             logo: 'https://ik.imagekit.io/libertyindia/about-us/logo.svg',
             sameAs: [],
             contactPoint: {

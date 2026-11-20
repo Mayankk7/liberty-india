@@ -1,3 +1,4 @@
+import { pageMetadata } from '../../lib/seo';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SectionOverview from '../../components/services/SectionOverview';
@@ -16,6 +17,8 @@ const overviewImages = [
 
 const overviewDescription =
   "As a premier Destination Management Company in India, we design refined, high-impact experiences that go far beyond conventional rewards—think private escapes, curated cultural immersions, and seamless luxury at every touchpoint. Each program is meticulously tailored to reflect your brand’s stature while inspiring exceptional performance, deep loyalty, and lasting impressions. Transform achievement into an unforgettable journey of prestige and distinction.";
+
+export const metadata = pageMetadata('/our-services/incentives/');
 
 export default function IncentivesPage() {
   return (

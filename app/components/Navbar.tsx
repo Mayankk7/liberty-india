@@ -111,14 +111,10 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
 
   function goToItinerary(slug: string) {
     closeSearch();
-    router.push(`/itineraries/${slug}`);
+    router.push(`/itineraries/${slug}/`);
   }
 
-  function goToJourneys() {
-    const q = trimmed ? `?q=${encodeURIComponent(trimmed)}` : '';
-    closeSearch();
-    router.push(`/journeys${q}`);
-  }
+  const journeysHref = trimmed ? `/journeys/?q=${encodeURIComponent(trimmed)}` : '/journeys/';
 
   function onInputKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (visible.length === 0) return;
@@ -241,7 +237,7 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
           {/* Nav links — editorial, left-aligned, hairline dividers, staggered in */}
           <div className="flex flex-1 flex-col justify-center px-8">
             {NAV_ITEMS.map((item, i) => {
-              const active = pathname === item.href;
+              const active = pathname === item.href || pathname === item.href + '/';
               return (
                 <Link
                   key={item.label}
@@ -419,7 +415,7 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
             <div className="px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40">
               <div className="border-t border-[#EFE9C9] pt-3 pb-3">
                 {hasQuery && matches.length === 0 ? (
-                  <EmptyState query={trimmed} onSeeAll={goToJourneys} />
+                  <EmptyState query={trimmed} onSeeAll={closeSearch} />
                 ) : (
                   <>
                     <p
@@ -441,7 +437,7 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
                           itinerary={it}
                           active={i === activeIdx}
                           delayMs={i * 35}
-                          onClick={() => goToItinerary(it.slug)}
+                          onClick={closeSearch}
                           onMouseEnter={() => setActiveIdx(i)}
                         />
                       ))}
@@ -465,15 +461,15 @@ export default function Navbar({ variant = 'transparent' }: NavbarProps) {
                     <Kbd>esc</Kbd>
                     <span className="ml-0.5">close</span>
                   </p>
-                  <button
-                    type="button"
-                    onClick={goToJourneys}
+                  <Link
+                    href={journeysHref}
+                    onClick={closeSearch}
                     className="group inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#E07B39] hover:text-[#c66a2f] transition-colors"
                     style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                   >
                     {hasQuery ? `See all ${totalMatches}` : 'Browse all'}
                     <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -517,8 +513,8 @@ function ResultRow({
       className="search-result-in"
       style={{ animationDelay: `${delayMs}ms` }}
     >
-      <button
-        type="button"
+      <Link
+        href={`/itineraries/${itinerary.slug}/`}
         onClick={onClick}
         onMouseEnter={onMouseEnter}
         className={`relative w-full flex items-center gap-4 pl-5 pr-4 py-3 rounded-[12px] text-left cursor-pointer transition-colors ${
@@ -569,7 +565,7 @@ function ResultRow({
         >
           →
         </span>
-      </button>
+      </Link>
     </li>
   );
 }
@@ -595,15 +591,15 @@ function EmptyState({ query, onSeeAll }: { query: string; onSeeAll: () => void }
         Try a region (Rajasthan, Kerala), a theme (Heritage, Wildlife),
         or browse the full collection.
       </p>
-      <button
-        type="button"
+      <Link
+        href="/journeys/"
         onClick={onSeeAll}
         className="group inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-[#E9E4BF] text-[12px] font-semibold uppercase tracking-[0.14em] text-[#141313] hover:bg-[#FFFDEC] hover:border-[#E07B39]/40 transition-colors"
         style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
       >
         Browse all journeys
         <span aria-hidden="true" className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
-      </button>
+      </Link>
     </div>
   );
 }
